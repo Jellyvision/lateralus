@@ -32,6 +32,8 @@ define([
    * @param {Lateralus} lateralus
    * @param {Lateralus.Component} __super__ The constructor that this subclass
    * is extending.
+   * @param {Object} options Parameters to pass to the `{{#crossLink
+   * "Lataralus.Component"}}{{/crossLink}} subclass.
    * @param {Object} viewOpts The opts Object to pass to the Backbone.View
    * subclass constructor.
    * @param {Lateralus.Component} [opt_parentComponent] The parent component of
@@ -41,7 +43,8 @@ define([
    * @protected
    * @constructor
    */
-  function Component (lateralus, __super__, viewOpts, opt_parentComponent) {
+  function Component (
+      lateralus, __super__, options, viewOpts, opt_parentComponent) {
 
     /**
      * A reference to the central `{{#crossLink "Lateralus"}}{{/crossLink}}`
@@ -128,7 +131,7 @@ define([
      * @default undefined
      */
     if (this.initialize) {
-      this.initialize();
+      this.initialize(options);
     }
   }
 

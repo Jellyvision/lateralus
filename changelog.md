@@ -2,7 +2,9 @@
 
   * Lataralus.Component no longer requires a View parameter.
   * All protoProps properties are mixed into the Lataralus.Component subclass
-    by Lataralus.Component#extend.
+    by Lataralus.Component.extend.
+  * Adds options parameter to Lataralus.Component constructor and passes it to
+    initialize function.
 
 # 0.0.1
 
