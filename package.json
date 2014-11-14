@@ -1,0 +1,24 @@
+{
+  "name": "lateralus",
+  "version": "0.0.1",
+  "description": "A UI component framework",
+  "license": "MIT",
+  "main": "Gruntfile.js",
+  "author": {
+    "name": "Jeremy Kahn",
+    "email": "jeremy@jellyvision.com",
+    "url": "https://github.com/jeremyckahn"
+  },
+  "dependencies": {
+    "grunt": "~0.4.5",
+    "load-grunt-tasks": "~0.6.0",
+    "grunt-contrib-yuidoc": "^0.5.2",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-bump": "0.0.16"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jellyvision/lateralus.git"
+  }
+}

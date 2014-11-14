@@ -1,0 +1,28 @@
+{
+  "name": "lateralus",
+  "version": "0.0.1",
+  "authors": [
+    "Jeremy Kahn <jeremy@jellyvision.com>"
+  ],
+  "description": "A UI component framework",
+  "moduleType": [
+    "amd"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "backbone": "~1.1.2",
+    "lodash": "~2.4.1",
+    "jquery": "1.11.1",
+    "requirejs": "~2.1.10",
+    "requirejs-text": "~2.0.12",
+    "mustache": "~0.8.2"
+  }
+}

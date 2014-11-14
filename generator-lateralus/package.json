@@ -1,0 +1,25 @@
+{
+  "name": "generator-lateralus",
+  "version": "0.0.1",
+  "description": "A Yeoman generator for Lateralus",
+  "license": "MIT",
+  "main": "app/index.js",
+  "author": {
+    "name": "Jeremy Kahn",
+    "email": "jeremy@jellyvision.com",
+    "url": "https://github.com/jeremyckahn"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "dependencies": {
+    "yeoman-generator": "^0.17.0",
+    "chalk": "^0.5.0",
+    "yosay": "^0.3.0",
+    "mustache": "^0.8.2",
+    "underscore.string": "^2.3.3"
+  },
+  "peerDependencies": {
+    "yo": ">=1.0.0"
+  }
+}

@@ -1,0 +1,698 @@
+{
+    "project": {
+        "name": "Lateralus",
+        "version": "0.0.1",
+        "logo": "http://cdn.jellyvision.com/wp-content/themes/jellyvision/img/header-logo.png"
+    },
+    "files": {
+        "scripts/lateralus.component.js": {
+            "name": "scripts/lateralus.component.js",
+            "modules": {},
+            "classes": {
+                "Lateralus.Component": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "scripts/lateralus.component.view.js": {
+            "name": "scripts/lateralus.component.view.js",
+            "modules": {},
+            "classes": {
+                "Lateralus.Component.View": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "scripts/lateralus.js": {
+            "name": "scripts/lateralus.js",
+            "modules": {},
+            "classes": {
+                "Lateralus": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "scripts/lateralus.mixins.js": {
+            "name": "scripts/lateralus.mixins.js",
+            "modules": {},
+            "classes": {
+                "Lateralus.mixins": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "Lateralus.Component": {
+            "name": "Lateralus.Component",
+            "shortname": "Lateralus.Component",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "scripts/lateralus.component.js",
+            "line": 18,
+            "description": "The constructor for this method should not be called directly.  Instead,\nuse the `{{#crossLink \"Lateralus.mixins/addComponent\"}}{{/crossLink}}`\nmixin method:\n\n    var App = Lateralus.beget(function () {\n      Lateralus.apply(this, arguments);\n    });\n\n    var app = new App(document.getElementById('app'));\n    var component = app.addComponent(Lateralus.Component);\n\n    console.log(component instanceof Lateralus.Component); // true",
+            "params": [
+                {
+                    "name": "lateralus",
+                    "description": "",
+                    "type": "Lateralus"
+                },
+                {
+                    "name": "__super__",
+                    "description": "The constructor that this subclass\nis extending.",
+                    "type": "Lateralus.Component"
+                },
+                {
+                    "name": "viewOpts",
+                    "description": "The opts Object to pass to the Backbone.View\nsubclass constructor.",
+                    "type": "Object"
+                },
+                {
+                    "name": "opt_parentComponent",
+                    "description": "The parent component of\nthis component, if any.",
+                    "type": "Lateralus.Component",
+                    "optional": true
+                }
+            ],
+            "uses": [
+                "http://backbonejs.org/#Events",
+                "Lateralus.mixins"
+            ],
+            "access": "protected",
+            "tagname": "",
+            "is_constructor": 1
+        },
+        "Lateralus.Component.View": {
+            "name": "Lateralus.Component.View",
+            "shortname": "Lateralus.Component.View",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "scripts/lateralus.component.view.js",
+            "line": 253,
+            "description": "This class builds on the ideas and APIs of\n[`Backbone.View`](http://backbonejs.org/#View).",
+            "extends": "{Backbone.View}"
+        },
+        "Lateralus": {
+            "name": "Lateralus",
+            "shortname": "Lateralus",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "scripts/lateralus.js",
+            "line": 18,
+            "description": "You should not need to call the Lateralus constructor directly, use\n`{{#crossLink \"Lateralus/beget\"}}{{/crossLink}}` instead.  To create a new\nLateralus app:\n\n    var App = Lateralus.beget(function () {\n      // Don't forget to call the Lateralus constructor!\n      Lateralus.apply(this, arguments);\n    });\n\n    var app = new App(document.getElementById('app'));",
+            "access": "protected",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "el",
+                    "description": "The DOM element that contains the entire Lateralus\napp.",
+                    "type": "Element"
+                }
+            ],
+            "is_constructor": 1
+        },
+        "Lateralus.mixins": {
+            "name": "Lateralus.mixins",
+            "shortname": "Lateralus.mixins",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [
+                "Lateralus.Component"
+            ],
+            "file": "scripts/lateralus.mixins.js",
+            "line": 12,
+            "description": "These method are mixed into `{{#crossLink\n\"Lateralus.Component\"}}{{/crossLink}}` and `{{#crossLink\n\"Lateralus.Component.View\"}}{{/crossLink}}`.",
+            "requires": [
+                "http://backbonejs.org/#Events"
+            ]
+        }
+    },
+    "classitems": [
+        {
+            "file": "scripts/lateralus.component.js",
+            "line": 46,
+            "description": "A reference to the central `{{#crossLink \"Lateralus\"}}{{/crossLink}}`\ninstance.",
+            "itemtype": "property",
+            "name": "lateralus",
+            "type": "{Lateralus}",
+            "final": 1,
+            "class": "Lateralus.Component"
+        },
+        {
+            "file": "scripts/lateralus.component.js",
+            "line": 55,
+            "description": "A reference to the class which this `{{#crossLink\n\"Lateralus.Component\"}}{{/crossLink}}` extends.",
+            "itemtype": "property",
+            "name": "__super__",
+            "access": "private",
+            "tagname": "",
+            "type": "{Lateralus.Component}",
+            "final": 1,
+            "class": "Lateralus.Component"
+        },
+        {
+            "file": "scripts/lateralus.component.js",
+            "line": 65,
+            "description": "If a `{{#crossLink \"Lateralus.Component\"}}{{/crossLink}}` has `mixins`\ndefined on its `prototype` before it is instantiated, the objects\nwithin `mixins` will be merged into this `{{#crossLink\n\"Lateralus.Component\"}}{{/crossLink}}` at instantiation-time with\n`{{#crossLink \"Lateralus.Component/mixin\"}}{{/crossLink}}`.",
+            "itemtype": "property",
+            "name": "mixins",
+            "type": "{Object|Array(Object)|undefined}",
+            "default": "undefined",
+            "class": "Lateralus.Component"
+        },
+        {
+            "file": "scripts/lateralus.component.js",
+            "line": 80,
+            "description": "If this is a subcomponent of another `{{#crossLink\n\"Lateralus.Component\"}}{{/crossLink}}`, this property is a reference\nto the parent `{{#crossLink \"Lateralus.Component\"}}{{/crossLink}}`.",
+            "itemtype": "property",
+            "name": "parentComponent",
+            "type": "{Lateralus.Component|undefined}",
+            "default": "undefined",
+            "class": "Lateralus.Component"
+        },
+        {
+            "file": "scripts/lateralus.component.js",
+            "line": 91,
+            "description": "The `{{#crossLink \"Lateralus.Component.View\"}}{{/crossLink}}`\nconstructor to use, if any.  If this `{{#crossLink\n\"Lateralus.Component\"}}{{/crossLink}}` is intended to render to the DOM,\n`View` should be defined on the `prototype` before instantiating:\n\n    var ExtendedComponent = Lateralus.Component.extend({\n      name: 'extended'\n      ,View: Lateralus.Component.View\n      ,template: '<div></div>'\n    });",
+            "itemtype": "property",
+            "name": "View",
+            "type": "{Lateralus.Component.View|undefined}",
+            "default": "undefined",
+            "class": "Lateralus.Component"
+        },
+        {
+            "file": "scripts/lateralus.component.js",
+            "line": 107,
+            "description": "If `{{#crossLink \"Lateralus.Component/View:property\"}}{{/crossLink}}`\nis defined, this is an instance of that constructor.",
+            "itemtype": "property",
+            "name": "view",
+            "type": "{Lateralus.Component.View|undefined}",
+            "default": "undefined",
+            "class": "Lateralus.Component"
+        },
+        {
+            "file": "scripts/lateralus.component.js",
+            "line": 123,
+            "description": "A method to be called when this `{{#crossLink\n\"Lateralus.Component\"}}{{/crossLink}}` has been set up.",
+            "itemtype": "property",
+            "name": "initialize",
+            "type": "{Function|undefined}",
+            "default": "undefined",
+            "class": "Lateralus.Component"
+        },
+        {
+            "file": "scripts/lateralus.component.js",
+            "line": 137,
+            "description": "Create a `{{#crossLink \"Lateralus.Component\"}}{{/crossLink}}` subclass.",
+            "itemtype": "method",
+            "name": "extend",
+            "params": [
+                {
+                    "name": "protoProps",
+                    "description": "",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "name",
+                            "description": "The name of this component it should\n  have no whitespace.",
+                            "type": "String"
+                        },
+                        {
+                            "name": "View",
+                            "description": "The `{{#crossLink\n  \"Lateralus.Component.View\"}}{{/crossLink}}` to render this component\n  with.",
+                            "type": "Lateralus.Component.View",
+                            "optional": true
+                        }
+                    ]
+                }
+            ],
+            "class": "Lateralus.Component"
+        },
+        {
+            "file": "scripts/lateralus.component.js",
+            "line": 174,
+            "description": "Merge the properties of another object into this `{{#crossLink\n\"Lateralus.Component\"}}{{/crossLink}}`.  If `mixin` has a function called\n`initialize`, it is called in the context of this `{{#crossLink\n\"Lateralus.Component\"}}{{/crossLink}}`.",
+            "itemtype": "method",
+            "name": "mixin",
+            "params": [
+                {
+                    "name": "mixin",
+                    "description": "The object to mix in to this one.",
+                    "type": "Object"
+                }
+            ],
+            "class": "Lateralus.Component"
+        },
+        {
+            "file": "scripts/lateralus.component.js",
+            "line": 194,
+            "description": "The name of this component.  This is used internally by Lateralus.",
+            "access": "protected",
+            "tagname": "",
+            "itemtype": "property",
+            "name": "name",
+            "type": "string",
+            "class": "Lateralus.Component"
+        },
+        {
+            "file": "scripts/lateralus.component.js",
+            "line": 204,
+            "description": "Meant to be overridden by subclasses.",
+            "itemtype": "method",
+            "name": "toJSON",
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "Lateralus.Component"
+        },
+        {
+            "file": "scripts/lateralus.component.js",
+            "line": 213,
+            "itemtype": "method",
+            "name": "toString",
+            "return": {
+                "description": "The name of this Component.  This is used internally by\nLateralus.",
+                "type": "String"
+            },
+            "class": "Lateralus.Component"
+        },
+        {
+            "file": "scripts/lateralus.component.view.js",
+            "line": 24,
+            "description": "The DOM template to be used with this View.",
+            "type": "{string|null}",
+            "default": "{null}",
+            "class": "Lateralus.Component.View"
+        },
+        {
+            "file": "scripts/lateralus.component.view.js",
+            "line": 31,
+            "itemtype": "method",
+            "name": "toString",
+            "access": "protected",
+            "tagname": "",
+            "return": {
+                "description": "The name of this View.  This is used internally by\nLateralus.",
+                "type": "String"
+            },
+            "class": "Lateralus.Component.View"
+        },
+        {
+            "file": "scripts/lateralus.component.view.js",
+            "line": 42,
+            "description": "The constructor for this class should not be called by application code,\nit is used by the `{{#crossLink \"Lateralus.Component\"}}{{/crossLink}}`\nconstructor.",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "lateralus",
+                    "description": "",
+                    "type": "Lateralus"
+                },
+                {
+                    "name": "__super__",
+                    "description": "The constructor that this subclass is\nextending.",
+                    "type": "Backbone.View"
+                },
+                {
+                    "name": "__proto",
+                    "description": "The prototype that this subclass is\nextending.",
+                    "type": "Backbone.View"
+                },
+                {
+                    "name": "component",
+                    "description": "",
+                    "type": "Lateralus.Component"
+                },
+                {
+                    "name": "options",
+                    "description": "Gets passed to\n[`Backbone.View#initialize'](http://backbonejs.org/#Collection-constructor).",
+                    "type": "Object",
+                    "optional": true
+                },
+                {
+                    "name": "opt_parentView",
+                    "description": "",
+                    "type": "Lateralus.Component.View",
+                    "optional": true
+                }
+            ],
+            "is_constructor": 1,
+            "class": "Lateralus.Component.View"
+        },
+        {
+            "file": "scripts/lateralus.component.view.js",
+            "line": 63,
+            "description": "A reference to the class which this `{{#crossLink\n\"Lateralus.Component.View\"}}{{/crossLink}}` extends.",
+            "itemtype": "property",
+            "name": "__super__",
+            "access": "private",
+            "tagname": "",
+            "type": "{Lateralus.Component.View}",
+            "final": 1,
+            "class": "Lateralus.Component.View"
+        },
+        {
+            "file": "scripts/lateralus.component.view.js",
+            "line": 73,
+            "description": "A reference to the object that proceeds this one on the prototype chain.",
+            "itemtype": "property",
+            "name": "__proto",
+            "access": "private",
+            "tagname": "",
+            "type": "{Object}",
+            "final": 1,
+            "class": "Lateralus.Component.View"
+        },
+        {
+            "file": "scripts/lateralus.component.view.js",
+            "line": 82,
+            "description": "If this is a subview of another `{{#crossLink\n\"Lateralus.Component.View\"}}{{/crossLink}}`, this property is a\nreference to the parent `{{#crossLink\n\"Lateralus.Component.View\"}}{{/crossLink}}`.",
+            "itemtype": "property",
+            "name": "parentView",
+            "type": "{Lateralus.Component.View|null}",
+            "default": "null",
+            "class": "Lateralus.Component.View"
+        },
+        {
+            "file": "scripts/lateralus.component.view.js",
+            "line": 93,
+            "description": "A reference to the `{{#crossLink \"Lateralus.Component\"}}{{/crossLink}}`\nto which this `{{#crossLink \"Lateralus.Component.View\"}}{{/crossLink}}`\nbelongs.",
+            "itemtype": "property",
+            "name": "component",
+            "type": "{Lateralus.Component}",
+            "final": 1,
+            "class": "Lateralus.Component.View"
+        },
+        {
+            "file": "scripts/lateralus.component.view.js",
+            "line": 105,
+            "description": "This is called when a `{{#crossLink\n\"Lateralus.Component.View\"}}{{/crossLink}}` is initialized, it is not\ncalled directly.\n\n`{{#crossLink \"Lateralus.Component.View\"}}{{/crossLink}}` subclasses that\noverride `initialize` must call this base method:\n\n    var ExtendedComponentView = Lateralus.Component.View.extend({\n      initialize: function () {\n        this._super('initialize', arguments);\n      }\n    });",
+            "itemtype": "method",
+            "name": "initialize",
+            "params": [
+                {
+                    "name": "opts",
+                    "description": "Any properties or methods to attach to this\n`{{#crossLink \"Lateralus.Component.View\"}}{{/crossLink}}` instance.",
+                    "type": "Object",
+                    "optional": true
+                }
+            ],
+            "access": "protected",
+            "tagname": "",
+            "class": "Lateralus.Component.View"
+        },
+        {
+            "file": "scripts/lateralus.component.view.js",
+            "line": 129,
+            "description": "Meant to be overridden in subclasses.  With `attachDefaultOptions`, you\ncan provide an object of default parameters that should be attached to the\nView instance when the base `initialize` method is called.  These values\ncan be overridden by the [`options` values that are provided to the View\nconstructor](http://backbonejs.org/#View-constructor).",
+            "itemtype": "property",
+            "name": "attachDefaultOptions",
+            "type": "{Object}",
+            "access": "protected",
+            "tagname": "",
+            "class": "Lateralus.Component.View"
+        },
+        {
+            "file": "scripts/lateralus.component.view.js",
+            "line": 141,
+            "description": "Adds a subview.  Subviews are lighter than subcomponents.  It is\npreferable to use a subview rather than a subcomponent when there is clear\ninterdependency between two Views.  This pattern is useful when you want\nto keep display logic well-organized into several Views, but have it\ncompartmentalized within a single component.",
+            "itemtype": "method",
+            "name": "addSubview",
+            "params": [
+                {
+                    "name": "Subview",
+                    "description": "A constructor, not an instance.",
+                    "type": "Lateralus.Component.View"
+                },
+                {
+                    "name": "subviewOptions",
+                    "description": "`Backbone.View` [constructor\noptions](http://backbonejs.org/#View-constructor) to pass along to the\nsubview when it is instantiated.",
+                    "type": "Object",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "The instantiated subview.",
+                "type": "Lateralus.Component.View"
+            },
+            "class": "Lateralus.Component.View"
+        },
+        {
+            "file": "scripts/lateralus.component.view.js",
+            "line": 156,
+            "description": "The subviews of this object.  Do not modify this property directly, it\nis managed by Lateralus.",
+            "itemtype": "property",
+            "name": "subviews",
+            "type": "{Array(Lateralus.Component.View)}",
+            "class": "Lateralus.Component.View"
+        },
+        {
+            "file": "scripts/lateralus.component.view.js",
+            "line": 179,
+            "description": "Meant to be overridden.  This method returns the object whose properties\nare used as render variables in `{{#crossLink\n\"Lateralus.Component.View/renderTemplate\"}}{{/crossLink}}`.",
+            "itemtype": "method",
+            "name": "getTemplateRenderData",
+            "access": "protected",
+            "tagname": "",
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "Lateralus.Component.View"
+        },
+        {
+            "file": "scripts/lateralus.component.view.js",
+            "line": 191,
+            "description": "Meant to be called by `{{#crossLink\n\"Lateralus.Component.View/initialize\"}}{{/crossLink}}` and infrequently\nthereafter, this method empties out\n[`$el`](http://backbonejs.org/#View-$el) and does a full re-render.\n[`render`](http://backbonejs.org/#View-render) should only be used for\npartial renders.",
+            "itemtype": "method",
+            "name": "renderTemplate",
+            "class": "Lateralus.Component.View"
+        },
+        {
+            "file": "scripts/lateralus.component.view.js",
+            "line": 212,
+            "description": "Look for any DOM elements within [`$el`](http://backbonejs.org/#View-$el)\nthat have a class that looks like _`$this`_ and create a property on this\ninstance with the same name.  The attached property is a jQuery object\nthat references the corresponding DOM element.",
+            "itemtype": "method",
+            "name": "bindToDOM",
+            "access": "private",
+            "tagname": "",
+            "class": "Lateralus.Component.View"
+        },
+        {
+            "file": "scripts/lateralus.component.view.js",
+            "line": 234,
+            "description": "Remove this `{{#crossLink \"Lateralus.Component.View\"}}{{/crossLink}}` from\nthe DOM and cleanly dispose of any references.",
+            "itemtype": "method",
+            "name": "dispose",
+            "chainable": 1,
+            "class": "Lateralus.Component.View"
+        },
+        {
+            "file": "scripts/lateralus.component.view.js",
+            "line": 261,
+            "description": "Overrides [`Backbone.View#extend`](http://backbonejs.org/#View-extend) to\nset up explicit prototype chain references for `{{#crossLink\n\"Lateralus.mixins/_super\"}}{{/crossLink}}` calls.",
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "Lateralus.Component.View"
+        },
+        {
+            "file": "scripts/lateralus.js",
+            "line": 42,
+            "description": "Set up the prototype chain between two objects.",
+            "static": 1,
+            "itemtype": "method",
+            "name": "inherit",
+            "params": [
+                {
+                    "name": "child",
+                    "description": "",
+                    "type": "Function"
+                },
+                {
+                    "name": "parent",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "A reference to the passed-in `child` parameter.",
+                "type": "Function"
+            },
+            "class": "Lateralus"
+        },
+        {
+            "file": "scripts/lateralus.js",
+            "line": 57,
+            "description": "Create a `{{#crossLink \"Lateralus\"}}{{/crossLink}}` application instance.\n\n    var App = Lateralus.beget(function () {\n      Lateralus.apply(this, arguments);\n    });",
+            "static": 1,
+            "itemtype": "method",
+            "name": "beget",
+            "params": [
+                {
+                    "name": "child",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "The created `{{#crossLink \"Lateralus\"}}{{/crossLink}}`\nsubclass.",
+                "type": "Function"
+            },
+            "class": "Lateralus"
+        },
+        {
+            "file": "scripts/lateralus.js",
+            "line": 73,
+            "description": "This is the same as the `{{#crossLink\n\"Lateralus.mixins/addComponent\"}}{{/crossLink}}` mixin method.  See the\ndocumentation for that.",
+            "itemtype": "method",
+            "name": "addComponent",
+            "class": "Lateralus"
+        },
+        {
+            "file": "scripts/lateralus.js",
+            "line": 81,
+            "itemtype": "method",
+            "name": "toString",
+            "return": {
+                "description": "This is `\"lateralus\"`.",
+                "type": "String"
+            },
+            "class": "Lateralus"
+        },
+        {
+            "file": "scripts/lateralus.mixins.js",
+            "line": 21,
+            "description": "Add a subcomponent to a `{{#crossLink \"Lateralus\"}}{{/crossLink}}` or\n`{{#crossLink \"Lateralus.Component\"}}{{/crossLink}}` instance.\n\n    var App = Lateralus.beget(function () {\n      Lateralus.apply(this, arguments);\n    });\n\n    var app = new App(document.getElementById('app'));\n    var component = app.addComponent(Lateralus.Component);\n    var subcomponent = component.addComponent(Lateralus.Component);",
+            "itemtype": "method",
+            "name": "addComponent",
+            "params": [
+                {
+                    "name": "Component",
+                    "description": "A constructor, not an instance.",
+                    "type": "Lateralus.Component"
+                },
+                {
+                    "name": "viewOptions",
+                    "description": "The `options` object to be passed along to\nthe `Component` parameter's {{#crossLink\n\"Lateralus.Component.View\"}}{{/crossLink}} instance.",
+                    "type": "Object",
+                    "optional": true
+                },
+                {
+                    "name": "options",
+                    "description": "",
+                    "type": "Object",
+                    "optional": true,
+                    "props": [
+                        {
+                            "name": "$appendTo",
+                            "description": "Optional element to append the\n  component's View element to.  If omitted:\n  * If the caller is the central `{{#crossLink\n  \"Lateralus\"}}{{/crossLink}}` instance, it is appended to its `$el`.\n  * If the caller is a `{{#crossLink\n  \"Lateralus.Component\"}}{{/crossLink}}`, it is appended to its view's\n  `$el`.",
+                            "type": "JQuery",
+                            "optional": true
+                        }
+                    ]
+                }
+            ],
+            "return": {
+                "description": "The component that was added.",
+                "type": "Lateralus.Component"
+            },
+            "class": "Lateralus.mixins"
+        },
+        {
+            "file": "scripts/lateralus.mixins.js",
+            "line": 55,
+            "description": "The subcomponents belonging to this object.  Do not modify this\nproperty directly, it is managed by Lateralus.",
+            "itemtype": "property",
+            "name": "components",
+            "type": "{Object(Lateralus.Component)}",
+            "class": "Lateralus.mixins"
+        },
+        {
+            "file": "scripts/lateralus.mixins.js",
+            "line": 63,
+            "description": "An internal counter registry of the subcomponents belonging to this\nobject.",
+            "itemtype": "property",
+            "name": "componentCounters",
+            "type": "{Object(number)}",
+            "access": "private",
+            "tagname": "",
+            "class": "Lateralus.mixins"
+        },
+        {
+            "file": "scripts/lateralus.mixins.js",
+            "line": 103,
+            "description": "Components should never communicate directly with one another in order to \nmaintain a loosely-coupled architecture.  Instead, they should just \nbroadcast general messages with the [`Backbone.Events` \nAPI](http://backbonejs.org/#Events).  `emit` facilitates this loose \ncoupling by firing an event that bubbles throughout the app, depending on \nwhat calls it:\n\n* If this is called by a `{{#crossLink\n\"Lateralus.Component\"}}{{/crossLink}}`, this triggers an event on that\n`{{#crossLink \"Lateralus.Component\"}}{{/crossLink}}` as well as the\ncentral `{{#crossLink \"Lateralus\"}}{{/crossLink}}` instance.\n* If this is called by a `{{#crossLink\n\"Lateralus.Component.View\"}}{{/crossLink}}`, this triggers an event on\nthat `{{#crossLink \"Lateralus.Component.View\"}}{{/crossLink}}`, the\n`{{#crossLink \"Lateralus.Component\"}}{{/crossLink}}` to which it belongs,\nand the central `{{#crossLink \"Lateralus\"}}{{/crossLink}}` instance.\n\nThis method has the same method signature as\n[`Backbone.Events.trigger`](http://backbonejs.org/#Events-trigger).",
+            "itemtype": "method",
+            "name": "emit",
+            "params": [
+                {
+                    "name": "eventName",
+                    "description": "The name of the event.",
+                    "type": "String"
+                },
+                {
+                    "name": "args",
+                    "description": "Any arguments to pass along to the listeners.",
+                    "type": "...any",
+                    "optional": true
+                }
+            ],
+            "class": "Lateralus.mixins"
+        },
+        {
+            "file": "scripts/lateralus.mixins.js",
+            "line": 139,
+            "description": "Call a method of the next object on the prototype chain where it is\npresent.  This method is prepended with an underscore to prevent conflict\nwith the ES6 `super` keyword.\n\n    Lateralus.Component.extend({\n      initialize: function () {\n        // The same as Lateralus.Component.prototype.initialize.apply(this, arguments);\n        this._super('initialize', arguments);\n      }\n    });",
+            "itemtype": "method",
+            "name": "_super",
+            "params": [
+                {
+                    "name": "methodName",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "args",
+                    "description": "the `arguments` array from the calling function.",
+                    "type": "Arguments",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "Whatever the called method returned.",
+                "type": "Any"
+            },
+            "class": "Lateralus.mixins"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "Missing item type\nThe DOM template to be used with this View.",
+            "line": " scripts/lateralus.component.view.js:24"
+        },
+        {
+            "message": "Missing item type\nThe constructor for this class should not be called by application code,\nit is used by the `{{#crossLink \"Lateralus.Component\"}}{{/crossLink}}`\nconstructor.",
+            "line": " scripts/lateralus.component.view.js:42"
+        },
+        {
+            "message": "Missing item type\nOverrides [`Backbone.View#extend`](http://backbonejs.org/#View-extend) to\nset up explicit prototype chain references for `{{#crossLink\n\"Lateralus.mixins/_super\"}}{{/crossLink}}` calls.",
+            "line": " scripts/lateralus.component.view.js:261"
+        }
+    ]
+}
