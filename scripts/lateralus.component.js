@@ -151,7 +151,6 @@ define([
 
     _.each([
           'name'
-          ,'View'
         ], function (prop) {
       if (typeof protoProps[prop] === 'undefined') {
         threwError = true;
@@ -163,10 +162,7 @@ define([
       throw 'Component.extend failed.  See previous error message(s).';
     }
 
-    _.extend(extendedComponent, {
-      View: protoProps.View
-      ,template: protoProps.template
-    });
+    _.extend(extendedComponent, protoProps);
 
     return extendedComponent;
   };
