@@ -36,6 +36,30 @@ module.exports = function (grunt) {
         tagMessage: 'Version %VERSION%',
         push: false
       }
+    },
+    requirejs: {
+      options: {
+        baseUrl: 'scripts',
+        name: 'lateralus',
+        paths: {
+          'jquery': 'empty:',
+          'underscore': 'empty:',
+          'backbone': 'empty:',
+          'mustache': 'empty:'
+        },
+      },
+      unminified: {
+        options: {
+          optimize: 'none',
+          out: 'dist/lateralus.js'
+        }
+      },
+      minified: {
+        options: {
+          optimize: 'uglify',
+          out: 'dist/lateralus.min.js'
+        }
+      }
     }
   });
 
