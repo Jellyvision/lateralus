@@ -16,7 +16,8 @@
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-bump": "0.0.16",
-    "grunt-contrib-requirejs": "^0.4.4"
+    "grunt-contrib-requirejs": "^0.4.4",
+    "grunt-banner": "^0.2.3"
   },
   "repository": {
     "type": "git",

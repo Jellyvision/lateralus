@@ -1,12 +1,14 @@
-// jshint maxlen:100
+// jshint maxlen:120
 'use strict';
 
 module.exports = function (grunt) {
   // load all grunt tasks
   require('load-grunt-tasks')(grunt);
 
+  var pkg = grunt.file.readJSON('package.json');
+
   grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
+    pkg: pkg,
     watch: {
       yuidoc: {
         files: ['scripts/*.js'],
@@ -60,8 +62,18 @@ module.exports = function (grunt) {
           out: 'dist/lateralus.min.js'
         }
       }
+    },
+    usebanner: {
+      dist: {
+        options: {
+          banner: '/* Lateralus v.' + pkg.version + ' | https://github.com/Jellyvision/lateralus */'
+        },
+        files: {
+          src: ['dist/lateralus.js', 'dist/lateralus.min.js']
+        }
+      }
     }
   });
 
-  grunt.registerTask('default', ['clean', 'yuidoc']);
+  grunt.registerTask('default', ['clean', 'yuidoc', 'requirejs', 'usebanner']);
 };

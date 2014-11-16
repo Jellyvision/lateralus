@@ -1,3 +1,4 @@
+/* Lateralus v.0.0.1 | https://github.com/Jellyvision/lateralus */
 define('lateralus.mixins',[
 
   'underscore'
