@@ -34,14 +34,8 @@ define([
    * @param {Object} [viewOptions] The `options` object to be passed along to
    * the `Component` parameter's {{#crossLink
    * "Lateralus.Component.View"}}{{/crossLink}} instance.
-   * @param {Object} [options]
-   *   @param {jQuery} [options.$appendTo] Optional element to append the
-   *   component's View element to.  If omitted:
-   *   * If the caller is the central `{{#crossLink
-   *   "Lateralus"}}{{/crossLink}}` instance, it is appended to its `$el`.
-   *   * If the caller is a `{{#crossLink
-   *   "Lateralus.Component"}}{{/crossLink}}`, it is appended to its view's
-   *   `$el`.
+   * @param {Object} [options] Gets passed to the new {{#crossLink
+   * "Lateralus.Component"}}{{/crossLink}} instance.
    * @return {Lateralus.Component} The component that was added.
    */
   mixins.addComponent = function (Component, viewOptions, options) {
@@ -82,9 +76,8 @@ define([
       ,thisIsLateralus ? null : this
     );
 
-    if ((this.$el || this.view) && component.view) {
-      var $el = thisIsLateralus ? this.$el : this.view.$el;
-      (options.$appendTo || $el).append(component.view.$el);
+    if (thisIsLateralus && component.view) {
+      this.$el.append(component.view.$el);
     }
 
     var componentType = component.toString();
@@ -102,11 +95,11 @@ define([
   };
 
   /**
-   * Components should never communicate directly with one another in order to 
-   * maintain a loosely-coupled architecture.  Instead, they should just 
-   * broadcast general messages with the [`Backbone.Events` 
-   * API](http://backbonejs.org/#Events).  `emit` facilitates this loose 
-   * coupling by firing an event that bubbles throughout the app, depending on 
+   * Components should never communicate directly with one another in order to
+   * maintain a loosely-coupled architecture.  Instead, they should just
+   * broadcast general messages with the [`Backbone.Events`
+   * API](http://backbonejs.org/#Events).  `emit` facilitates this loose
+   * coupling by firing an event that bubbles throughout the app, depending on
    * what calls it:
    *
    * * If this is called by a `{{#crossLink

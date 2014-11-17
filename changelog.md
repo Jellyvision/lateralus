@@ -1,3 +1,8 @@
+# 0.0.3
+
+  * Don't append subcomponets when they are added.
+  * Get rid of the $appendTo option parameter for addComponent.
+
 # 0.0.2
 
   * Lataralus.Component no longer requires a View parameter.
