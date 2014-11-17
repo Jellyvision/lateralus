@@ -126,10 +126,14 @@ define([
    * @param {Lateralus} lateralus
    * @param {Lateralus.Component} __super__ The constructor that this subclass
    * is extending.
-   * @param {Object} options Parameters to pass to the &#x60;{{#crossLink
-   * &quot;Lataralus.Component&quot;}}{{/crossLink}} subclass.
-   * @param {Object} viewOpts The opts Object to pass to the Backbone.View
-   * subclass constructor.
+   * @param {Object} options Values to attach to this &#x60;{{#crossLink
+   * &quot;Lateralus.Component&quot;}}{{/crossLink}}&#x60; instance.  This object also get
+   * passed to the &#x60;{{#crossLink
+   * &quot;Lateralus.Component/initialize:property&quot;}}{{/crossLink}}&#x60; method, if one
+   * is defined.
+   * @param {Object} viewOptions The &#x60;options&#x60; Object to pass to the
+   * &#x60;{{#crossLink &quot;Lateralus.Component/View:property&quot;}}{{/crossLink}}&#x60;
+   * constructor.
    * @param {Lateralus.Component} [opt_parentComponent] The parent component of
    * this component, if any.
    * @uses http://backbonejs.org/#Events
@@ -138,7 +142,7 @@ define([
    * @constructor
    */
   function Component (
-      lateralus, __super__, options, viewOpts, opt_parentComponent) {
+      lateralus, __super__, options, viewOptions, opt_parentComponent) {
 
     /**
      * A reference to the central &#x60;{{#crossLink &quot;Lateralus&quot;}}{{/crossLink}}&#x60;
@@ -213,9 +217,11 @@ define([
           ,this.View.__super__
           ,this.View.prototype.__proto
           ,this
-          ,viewOpts
+          ,viewOptions
         );
     }
+
+    _.extend(this, options);
 
     /**
      * A method to be called when this &#x60;{{#crossLink
