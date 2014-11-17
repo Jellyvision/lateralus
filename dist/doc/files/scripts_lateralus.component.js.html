@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.0.1</em>
+            <em>API Docs for: 0.0.2</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -126,6 +126,8 @@ define([
    * @param {Lateralus} lateralus
    * @param {Lateralus.Component} __super__ The constructor that this subclass
    * is extending.
+   * @param {Object} options Parameters to pass to the &#x60;{{#crossLink
+   * &quot;Lataralus.Component&quot;}}{{/crossLink}} subclass.
    * @param {Object} viewOpts The opts Object to pass to the Backbone.View
    * subclass constructor.
    * @param {Lateralus.Component} [opt_parentComponent] The parent component of
@@ -135,7 +137,8 @@ define([
    * @protected
    * @constructor
    */
-  function Component (lateralus, __super__, viewOpts, opt_parentComponent) {
+  function Component (
+      lateralus, __super__, options, viewOpts, opt_parentComponent) {
 
     /**
      * A reference to the central &#x60;{{#crossLink &quot;Lateralus&quot;}}{{/crossLink}}&#x60;
@@ -222,7 +225,7 @@ define([
      * @default undefined
      */
     if (this.initialize) {
-      this.initialize();
+      this.initialize(options);
     }
   }
 
@@ -245,7 +248,6 @@ define([
 
     _.each([
           &#x27;name&#x27;
-          ,&#x27;View&#x27;
         ], function (prop) {
       if (typeof protoProps[prop] === &#x27;undefined&#x27;) {
         threwError = true;
@@ -257,10 +259,7 @@ define([
       throw &#x27;Component.extend failed.  See previous error message(s).&#x27;;
     }
 
-    _.extend(extendedComponent, {
-      View: protoProps.View
-      ,template: protoProps.template
-    });
+    _.extend(extendedComponent, protoProps);
 
     return extendedComponent;
   };

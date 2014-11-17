@@ -1,7 +1,7 @@
 {
     "project": {
         "name": "Lateralus",
-        "version": "0.0.1",
+        "version": "0.0.2",
         "logo": "http://cdn.jellyvision.com/wp-content/themes/jellyvision/img/header-logo.png"
     },
     "files": {
@@ -65,6 +65,11 @@
                     "name": "__super__",
                     "description": "The constructor that this subclass\nis extending.",
                     "type": "Lateralus.Component"
+                },
+                {
+                    "name": "options",
+                    "description": "Parameters to pass to the `{{#crossLink\n\"Lataralus.Component\"}}{{/crossLink}} subclass.",
+                    "type": "Object"
                 },
                 {
                     "name": "viewOpts",
@@ -142,7 +147,7 @@
     "classitems": [
         {
             "file": "scripts/lateralus.component.js",
-            "line": 46,
+            "line": 49,
             "description": "A reference to the central `{{#crossLink \"Lateralus\"}}{{/crossLink}}`\ninstance.",
             "itemtype": "property",
             "name": "lateralus",
@@ -152,7 +157,7 @@
         },
         {
             "file": "scripts/lateralus.component.js",
-            "line": 55,
+            "line": 58,
             "description": "A reference to the class which this `{{#crossLink\n\"Lateralus.Component\"}}{{/crossLink}}` extends.",
             "itemtype": "property",
             "name": "__super__",
@@ -164,7 +169,7 @@
         },
         {
             "file": "scripts/lateralus.component.js",
-            "line": 65,
+            "line": 68,
             "description": "If a `{{#crossLink \"Lateralus.Component\"}}{{/crossLink}}` has `mixins`\ndefined on its `prototype` before it is instantiated, the objects\nwithin `mixins` will be merged into this `{{#crossLink\n\"Lateralus.Component\"}}{{/crossLink}}` at instantiation-time with\n`{{#crossLink \"Lateralus.Component/mixin\"}}{{/crossLink}}`.",
             "itemtype": "property",
             "name": "mixins",
@@ -174,7 +179,7 @@
         },
         {
             "file": "scripts/lateralus.component.js",
-            "line": 80,
+            "line": 83,
             "description": "If this is a subcomponent of another `{{#crossLink\n\"Lateralus.Component\"}}{{/crossLink}}`, this property is a reference\nto the parent `{{#crossLink \"Lateralus.Component\"}}{{/crossLink}}`.",
             "itemtype": "property",
             "name": "parentComponent",
@@ -184,7 +189,7 @@
         },
         {
             "file": "scripts/lateralus.component.js",
-            "line": 91,
+            "line": 94,
             "description": "The `{{#crossLink \"Lateralus.Component.View\"}}{{/crossLink}}`\nconstructor to use, if any.  If this `{{#crossLink\n\"Lateralus.Component\"}}{{/crossLink}}` is intended to render to the DOM,\n`View` should be defined on the `prototype` before instantiating:\n\n    var ExtendedComponent = Lateralus.Component.extend({\n      name: 'extended'\n      ,View: Lateralus.Component.View\n      ,template: '<div></div>'\n    });",
             "itemtype": "property",
             "name": "View",
@@ -194,7 +199,7 @@
         },
         {
             "file": "scripts/lateralus.component.js",
-            "line": 107,
+            "line": 110,
             "description": "If `{{#crossLink \"Lateralus.Component/View:property\"}}{{/crossLink}}`\nis defined, this is an instance of that constructor.",
             "itemtype": "property",
             "name": "view",
@@ -204,7 +209,7 @@
         },
         {
             "file": "scripts/lateralus.component.js",
-            "line": 123,
+            "line": 126,
             "description": "A method to be called when this `{{#crossLink\n\"Lateralus.Component\"}}{{/crossLink}}` has been set up.",
             "itemtype": "property",
             "name": "initialize",
@@ -214,7 +219,7 @@
         },
         {
             "file": "scripts/lateralus.component.js",
-            "line": 137,
+            "line": 140,
             "description": "Create a `{{#crossLink \"Lateralus.Component\"}}{{/crossLink}}` subclass.",
             "itemtype": "method",
             "name": "extend",
@@ -242,7 +247,7 @@
         },
         {
             "file": "scripts/lateralus.component.js",
-            "line": 174,
+            "line": 173,
             "description": "Merge the properties of another object into this `{{#crossLink\n\"Lateralus.Component\"}}{{/crossLink}}`.  If `mixin` has a function called\n`initialize`, it is called in the context of this `{{#crossLink\n\"Lateralus.Component\"}}{{/crossLink}}`.",
             "itemtype": "method",
             "name": "mixin",
@@ -257,7 +262,7 @@
         },
         {
             "file": "scripts/lateralus.component.js",
-            "line": 194,
+            "line": 193,
             "description": "The name of this component.  This is used internally by Lateralus.",
             "access": "protected",
             "tagname": "",
@@ -268,7 +273,7 @@
         },
         {
             "file": "scripts/lateralus.component.js",
-            "line": 204,
+            "line": 203,
             "description": "Meant to be overridden by subclasses.",
             "itemtype": "method",
             "name": "toJSON",
@@ -280,7 +285,7 @@
         },
         {
             "file": "scripts/lateralus.component.js",
-            "line": 213,
+            "line": 212,
             "itemtype": "method",
             "name": "toString",
             "return": {
@@ -636,7 +641,7 @@
         },
         {
             "file": "scripts/lateralus.mixins.js",
-            "line": 103,
+            "line": 104,
             "description": "Components should never communicate directly with one another in order to \nmaintain a loosely-coupled architecture.  Instead, they should just \nbroadcast general messages with the [`Backbone.Events` \nAPI](http://backbonejs.org/#Events).  `emit` facilitates this loose \ncoupling by firing an event that bubbles throughout the app, depending on \nwhat calls it:\n\n* If this is called by a `{{#crossLink\n\"Lateralus.Component\"}}{{/crossLink}}`, this triggers an event on that\n`{{#crossLink \"Lateralus.Component\"}}{{/crossLink}}` as well as the\ncentral `{{#crossLink \"Lateralus\"}}{{/crossLink}}` instance.\n* If this is called by a `{{#crossLink\n\"Lateralus.Component.View\"}}{{/crossLink}}`, this triggers an event on\nthat `{{#crossLink \"Lateralus.Component.View\"}}{{/crossLink}}`, the\n`{{#crossLink \"Lateralus.Component\"}}{{/crossLink}}` to which it belongs,\nand the central `{{#crossLink \"Lateralus\"}}{{/crossLink}}` instance.\n\nThis method has the same method signature as\n[`Backbone.Events.trigger`](http://backbonejs.org/#Events-trigger).",
             "itemtype": "method",
             "name": "emit",
@@ -657,7 +662,7 @@
         },
         {
             "file": "scripts/lateralus.mixins.js",
-            "line": 139,
+            "line": 140,
             "description": "Call a method of the next object on the prototype chain where it is\npresent.  This method is prepended with an underscore to prevent conflict\nwith the ES6 `super` keyword.\n\n    Lateralus.Component.extend({\n      initialize: function () {\n        // The same as Lateralus.Component.prototype.initialize.apply(this, arguments);\n        this._super('initialize', arguments);\n      }\n    });",
             "itemtype": "method",
             "name": "_super",

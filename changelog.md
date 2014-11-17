@@ -5,6 +5,7 @@
     by Lataralus.Component.extend.
   * Adds options parameter to Lataralus.Component constructor and passes it to
     initialize function.
+  * Adds build tasks and provides compiled binaries in dist/.
 
 # 0.0.1
 
