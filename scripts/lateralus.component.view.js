@@ -122,6 +122,19 @@ define([
    */
   fn.initialize = function (opts) {
     this.$el.addClass(this.toString());
+
+    /**
+     * The CSS class names specified by this property will be attached to `$el`
+     * when this `{{#crossLink "Lateralus.Component.View"}}{{/crossLink}}` is
+     * initialized.
+     * @property className
+     * @type {string|undefined}
+     * @default {undefined}
+     */
+    if (this.className) {
+      this.$el.addClass(this.className);
+    }
+
     _.extend(this, _.defaults(_.clone(opts), this.attachDefaultOptions));
     this.renderTemplate();
   };
