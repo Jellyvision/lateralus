@@ -4,6 +4,7 @@
   * Get rid of the $appendTo option parameter for addComponent.
   * If a Lateralus.Component.View has a className defined on the prototype,
     attach it to $el in the initialize method.
+  * generator-lateralus creates styles/main.sass for new components.
 
 # 0.0.2
 

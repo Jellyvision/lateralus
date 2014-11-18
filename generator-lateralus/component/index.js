@@ -35,6 +35,7 @@ var LateralusGenerator = yeoman.generators.Base.extend({
       this.dest.write('view.js', viewTemplate);
 
       this.src.copy('template.mustache', 'template.mustache');
+      this.src.copy('styles/main.sass', 'styles/main.sass');
     }
   }
 });
