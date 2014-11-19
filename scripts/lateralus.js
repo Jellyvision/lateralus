@@ -78,6 +78,37 @@ define([
    */
   Lateralus.prototype.addComponent = mixins.addComponent;
 
+  _.each([
+
+    /**
+     * Cross-browser friendly wrapper for `console.log`.
+     * @method log
+     * @param {...any} Any parameters to pass along to `console.log`.
+     */
+    'log'
+
+    /**
+     * Cross-browser friendly wrapper for `console.warn`.
+     * @method warn
+     * @param {...any} Any parameters to pass along to `console.warn`.
+     */
+    ,'warn'
+
+    /**
+     * Cross-browser friendly wrapper for `console.error`.
+     * @method error
+     * @param {...any} Any parameters to pass along to `console.error`.
+     */
+    ,'error'
+
+  ], function (consoleMethodName) {
+    Lateralus.prototype[consoleMethodName] = function () {
+      if (typeof console !== 'undefined' && console[consoleMethodName]) {
+        console[consoleMethodName].apply(console, arguments);
+      }
+    };
+  });
+
   /**
    * @method toString
    * @return {string} This is `"lateralus"`.

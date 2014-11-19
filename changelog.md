@@ -5,6 +5,7 @@
   * If a Lateralus.Component.View has a className defined on the prototype,
     attach it to $el in the initialize method.
   * generator-lateralus creates styles/main.sass for new components.
+  * Add Lateralus#(log|warn|error) methods.
 
 # 0.0.2
 
