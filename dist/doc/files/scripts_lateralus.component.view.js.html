@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.0.2</em>
+            <em>API Docs for: 0.0.3</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -216,6 +216,19 @@ define([
    */
   fn.initialize = function (opts) {
     this.$el.addClass(this.toString());
+
+    /**
+     * The CSS class names specified by this property will be attached to &#x60;$el&#x60;
+     * when this &#x60;{{#crossLink &quot;Lateralus.Component.View&quot;}}{{/crossLink}}&#x60; is
+     * initialized.
+     * @property className
+     * @type {string|undefined}
+     * @default {undefined}
+     */
+    if (this.className) {
+      this.$el.addClass(this.className);
+    }
+
     _.extend(this, _.defaults(_.clone(opts), this.attachDefaultOptions));
     this.renderTemplate();
   };

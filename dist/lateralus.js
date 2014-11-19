@@ -1,4 +1,4 @@
-/* Lateralus v.0.0.2 | https://github.com/Jellyvision/lateralus */
+/* Lateralus v.0.0.3 | https://github.com/Jellyvision/lateralus */
 define('lateralus.mixins',[
 
   'underscore'
@@ -35,14 +35,8 @@ define('lateralus.mixins',[
    * @param {Object} [viewOptions] The `options` object to be passed along to
    * the `Component` parameter's {{#crossLink
    * "Lateralus.Component.View"}}{{/crossLink}} instance.
-   * @param {Object} [options]
-   *   @param {jQuery} [options.$appendTo] Optional element to append the
-   *   component's View element to.  If omitted:
-   *   * If the caller is the central `{{#crossLink
-   *   "Lateralus"}}{{/crossLink}}` instance, it is appended to its `$el`.
-   *   * If the caller is a `{{#crossLink
-   *   "Lateralus.Component"}}{{/crossLink}}`, it is appended to its view's
-   *   `$el`.
+   * @param {Object} [options] Gets passed to the new {{#crossLink
+   * "Lateralus.Component"}}{{/crossLink}} instance.
    * @return {Lateralus.Component} The component that was added.
    */
   mixins.addComponent = function (Component, viewOptions, options) {
@@ -83,9 +77,8 @@ define('lateralus.mixins',[
       ,thisIsLateralus ? null : this
     );
 
-    if ((this.$el || this.view) && component.view) {
-      var $el = thisIsLateralus ? this.$el : this.view.$el;
-      (options.$appendTo || $el).append(component.view.$el);
+    if (thisIsLateralus && component.view) {
+      this.$el.append(component.view.$el);
     }
 
     var componentType = component.toString();
@@ -103,11 +96,11 @@ define('lateralus.mixins',[
   };
 
   /**
-   * Components should never communicate directly with one another in order to 
-   * maintain a loosely-coupled architecture.  Instead, they should just 
-   * broadcast general messages with the [`Backbone.Events` 
-   * API](http://backbonejs.org/#Events).  `emit` facilitates this loose 
-   * coupling by firing an event that bubbles throughout the app, depending on 
+   * Components should never communicate directly with one another in order to
+   * maintain a loosely-coupled architecture.  Instead, they should just
+   * broadcast general messages with the [`Backbone.Events`
+   * API](http://backbonejs.org/#Events).  `emit` facilitates this loose
+   * coupling by firing an event that bubbles throughout the app, depending on
    * what calls it:
    *
    * * If this is called by a `{{#crossLink
@@ -302,6 +295,19 @@ define('lateralus.component.view',[
    */
   fn.initialize = function (opts) {
     this.$el.addClass(this.toString());
+
+    /**
+     * The CSS class names specified by this property will be attached to `$el`
+     * when this `{{#crossLink "Lateralus.Component.View"}}{{/crossLink}}` is
+     * initialized.
+     * @property className
+     * @type {string|undefined}
+     * @default {undefined}
+     */
+    if (this.className) {
+      this.$el.addClass(this.className);
+    }
+
     _.extend(this, _.defaults(_.clone(opts), this.attachDefaultOptions));
     this.renderTemplate();
   };
@@ -761,6 +767,37 @@ define('lateralus',[
    * @method addComponent
    */
   Lateralus.prototype.addComponent = mixins.addComponent;
+
+  _.each([
+
+    /**
+     * Cross-browser friendly wrapper for `console.log`.
+     * @method log
+     * @param {...any} Any parameters to pass along to `console.log`.
+     */
+    'log'
+
+    /**
+     * Cross-browser friendly wrapper for `console.warn`.
+     * @method warn
+     * @param {...any} Any parameters to pass along to `console.warn`.
+     */
+    ,'warn'
+
+    /**
+     * Cross-browser friendly wrapper for `console.error`.
+     * @method error
+     * @param {...any} Any parameters to pass along to `console.error`.
+     */
+    ,'error'
+
+  ], function (consoleMethodName) {
+    Lateralus.prototype[consoleMethodName] = function () {
+      if (typeof console !== 'undefined' && console[consoleMethodName]) {
+        console[consoleMethodName].apply(console, arguments);
+      }
+    };
+  });
 
   /**
    * @method toString

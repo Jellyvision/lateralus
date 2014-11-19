@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.0.2</em>
+            <em>API Docs for: 0.0.3</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -128,14 +128,8 @@ define([
    * @param {Object} [viewOptions] The &#x60;options&#x60; object to be passed along to
    * the &#x60;Component&#x60; parameter&#x27;s {{#crossLink
    * &quot;Lateralus.Component.View&quot;}}{{/crossLink}} instance.
-   * @param {Object} [options]
-   *   @param {jQuery} [options.$appendTo] Optional element to append the
-   *   component&#x27;s View element to.  If omitted:
-   *   * If the caller is the central &#x60;{{#crossLink
-   *   &quot;Lateralus&quot;}}{{/crossLink}}&#x60; instance, it is appended to its &#x60;$el&#x60;.
-   *   * If the caller is a &#x60;{{#crossLink
-   *   &quot;Lateralus.Component&quot;}}{{/crossLink}}&#x60;, it is appended to its view&#x27;s
-   *   &#x60;$el&#x60;.
+   * @param {Object} [options] Gets passed to the new {{#crossLink
+   * &quot;Lateralus.Component&quot;}}{{/crossLink}} instance.
    * @return {Lateralus.Component} The component that was added.
    */
   mixins.addComponent = function (Component, viewOptions, options) {
@@ -176,9 +170,8 @@ define([
       ,thisIsLateralus ? null : this
     );
 
-    if ((this.$el || this.view) &amp;&amp; component.view) {
-      var $el = thisIsLateralus ? this.$el : this.view.$el;
-      (options.$appendTo || $el).append(component.view.$el);
+    if (thisIsLateralus &amp;&amp; component.view) {
+      this.$el.append(component.view.$el);
     }
 
     var componentType = component.toString();
@@ -196,11 +189,11 @@ define([
   };
 
   /**
-   * Components should never communicate directly with one another in order to 
-   * maintain a loosely-coupled architecture.  Instead, they should just 
-   * broadcast general messages with the [&#x60;Backbone.Events&#x60; 
-   * API](http://backbonejs.org/#Events).  &#x60;emit&#x60; facilitates this loose 
-   * coupling by firing an event that bubbles throughout the app, depending on 
+   * Components should never communicate directly with one another in order to
+   * maintain a loosely-coupled architecture.  Instead, they should just
+   * broadcast general messages with the [&#x60;Backbone.Events&#x60;
+   * API](http://backbonejs.org/#Events).  &#x60;emit&#x60; facilitates this loose
+   * coupling by firing an event that bubbles throughout the app, depending on
    * what calls it:
    *
    * * If this is called by a &#x60;{{#crossLink

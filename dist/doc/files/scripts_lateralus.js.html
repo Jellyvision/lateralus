@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.0.2</em>
+            <em>API Docs for: 0.0.3</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -171,6 +171,37 @@ define([
    * @method addComponent
    */
   Lateralus.prototype.addComponent = mixins.addComponent;
+
+  _.each([
+
+    /**
+     * Cross-browser friendly wrapper for &#x60;console.log&#x60;.
+     * @method log
+     * @param {...any} Any parameters to pass along to &#x60;console.log&#x60;.
+     */
+    &#x27;log&#x27;
+
+    /**
+     * Cross-browser friendly wrapper for &#x60;console.warn&#x60;.
+     * @method warn
+     * @param {...any} Any parameters to pass along to &#x60;console.warn&#x60;.
+     */
+    ,&#x27;warn&#x27;
+
+    /**
+     * Cross-browser friendly wrapper for &#x60;console.error&#x60;.
+     * @method error
+     * @param {...any} Any parameters to pass along to &#x60;console.error&#x60;.
+     */
+    ,&#x27;error&#x27;
+
+  ], function (consoleMethodName) {
+    Lateralus.prototype[consoleMethodName] = function () {
+      if (typeof console !== &#x27;undefined&#x27; &amp;&amp; console[consoleMethodName]) {
+        console[consoleMethodName].apply(console, arguments);
+      }
+    };
+  });
 
   /**
    * @method toString
