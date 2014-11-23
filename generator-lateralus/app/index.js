@@ -13,8 +13,8 @@ var LateralusGenerator = yeoman.generators.Base.extend({
       type: 'input',
       name: 'appName',
       // jshint maxlen:120
-      message: 'What is the name of this Lateralus app?  Apps should be named like:',
-      default: 'my-app'
+      message: 'What is the name of this Lateralus app?',
+      default: process.cwd().split('/').pop()
     }, function (answers) {
       this.appName = answers.appName;
       done();
@@ -31,17 +31,27 @@ var LateralusGenerator = yeoman.generators.Base.extend({
         ,appInstance: appCtor[0].toLowerCase() + appCtor.slice(1)
       };
 
-      var process = function (file) {
+      var templateProcessor = function (file) {
         return Mustache.render(file, renderData);
       };
 
-      this.directory('./', './', process);
+      var originalCwd = process.cwd();
+
+      this.directory('./', './', templateProcessor);
 
       this.sourceRoot(path.join(__dirname, '_templates'));
       this.copy('app/scripts/app.js',
-          'app/scripts/' + this.appName + '.js', process);
+          'app/scripts/' + this.appName + '.js', templateProcessor);
 
-      this.installDependencies();
+      this.composeWith('lateralus:component', {
+        options: {
+          componentName: 'container'
+        }
+      }).on('end', function () {
+        process.chdir(originalCwd);
+        this.installDependencies();
+      }.bind(this));
+
     }
   }
 });
