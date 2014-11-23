@@ -1,5 +1,6 @@
 # 0.0.4
 
+  * Adds displayName to beget constructor.
   * generator-lateralus sets up ContainerComponent.
 
 # 0.0.3
