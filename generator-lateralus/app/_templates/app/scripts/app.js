@@ -2,9 +2,13 @@ define([
 
   'lateralus'
 
+  ,'{{appName}}.component.container'
+
 ], function (
 
   Lateralus
+
+  ,ContainerComponent
 
 ) {
   'use strict';
@@ -16,6 +20,7 @@ define([
    */
   var {{appCtor}} = Lateralus.beget(function () {
     Lateralus.apply(this, arguments);
+    this.containerComponent = this.addComponent(ContainerComponent);
   });
 
   return {{appCtor}};

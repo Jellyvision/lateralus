@@ -24,6 +24,9 @@ require.config({
     name: '{{appName}}'
     ,location: 'scripts'
     ,main: '{{appName}}'
+  }, {
+    name: '{{appName}}.component.container'
+    ,location: 'scripts/components/container'
   }]
 });
 

@@ -4,12 +4,14 @@ var yeoman = require('yeoman-generator');
 var Mustache = require('mustache');
 var _s = require('underscore.string');
 
-var LateralusGenerator = yeoman.generators.Base.extend({
+var LateralusComponentGenerator = yeoman.generators.Base.extend({
   initializing: function () {
     this.pkg = require('../package.json');
     this.isLateralus = this.appname === 'lateralus';
 
-    this.componentName = this.arguments[0];
+    var options = this.options || {};
+
+    this.componentName = options.componentName || this.arguments[0];
   },
 
   writing: {
@@ -40,4 +42,4 @@ var LateralusGenerator = yeoman.generators.Base.extend({
   }
 });
 
-module.exports = LateralusGenerator;
+module.exports = LateralusComponentGenerator;

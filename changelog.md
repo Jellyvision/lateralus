@@ -1,3 +1,7 @@
+# 0.0.4
+
+  * generator-lateralus sets up ContainerComponent.
+
 # 0.0.3
 
   * Don't append subcomponents when they are added.
