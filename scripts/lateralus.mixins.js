@@ -129,6 +129,22 @@ define([
     this.lateralus.trigger.apply(this.lateralus, args);
   };
 
+  /**
+   * Listen for an event that is triggered on the central {{#crossLink
+   * "Lateralus"}}{{/crossLink}} instance and bind a function handler.
+   * @method listenFor
+   * @param {string} event The name of the event to listen for.
+   * @param {Function} callback The function handler to bind.
+   */
+  mixins.listenFor = function (event, callback) {
+    var thisIsLateralus = this.toString() === 'lateralus';
+    if (thisIsLateralus) {
+      this.on(event, callback);
+    } else {
+      this.listenTo(this.lateralus, event, callback);
+    }
+  };
+
   //jshint maxlen:100
   /**
    * Call a method of the next object on the prototype chain where it is

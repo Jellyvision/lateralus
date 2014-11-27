@@ -1,3 +1,8 @@
+# 0.0.5
+
+  * Adds listenFor mixin method.
+  * Makes Lateralus#toString @final.
+
 # 0.0.4
 
   * Adds displayName to beget constructor.

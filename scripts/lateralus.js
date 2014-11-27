@@ -79,6 +79,14 @@ define([
    */
   Lateralus.prototype.addComponent = mixins.addComponent;
 
+  /**
+   * This is the same as the `{{#crossLink
+   * "Lateralus.mixins/listenFor"}}{{/crossLink}}` mixin method.  See the
+   * documentation for that.
+   * @method listenFor
+   */
+  Lateralus.prototype.listenFor = mixins.listenFor;
+
   _.each([
 
     /**
@@ -111,8 +119,10 @@ define([
   });
 
   /**
+   * Do not override this method, it is used internally.
    * @method toString
    * @return {string} This is `"lateralus"`.
+   * @final
    */
   Lateralus.prototype.toString = function () {
     return 'lateralus';
