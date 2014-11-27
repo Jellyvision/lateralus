@@ -757,6 +757,7 @@ define('lateralus',[
    * subclass.
    */
   Lateralus.beget = function (child) {
+    child.displayName = child.name || 'begetConstructor';
     return Lateralus.inherit(child, Lateralus);
   };
 

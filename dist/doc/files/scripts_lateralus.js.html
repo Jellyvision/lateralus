@@ -161,6 +161,7 @@ define([
    * subclass.
    */
   Lateralus.beget = function (child) {
+    child.displayName = child.name || &#x27;begetConstructor&#x27;;
     return Lateralus.inherit(child, Lateralus);
   };
 

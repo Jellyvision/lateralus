@@ -573,7 +573,7 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 73,
+            "line": 74,
             "description": "This is the same as the `{{#crossLink\n\"Lateralus.mixins/addComponent\"}}{{/crossLink}}` mixin method.  See the\ndocumentation for that.",
             "itemtype": "method",
             "name": "addComponent",
@@ -581,7 +581,7 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 83,
+            "line": 84,
             "description": "Cross-browser friendly wrapper for `console.log`.",
             "itemtype": "method",
             "name": "log",
@@ -596,7 +596,7 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 90,
+            "line": 91,
             "description": "Cross-browser friendly wrapper for `console.warn`.",
             "itemtype": "method",
             "name": "warn",
@@ -611,7 +611,7 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 97,
+            "line": 98,
             "description": "Cross-browser friendly wrapper for `console.error`.",
             "itemtype": "method",
             "name": "error",
@@ -626,7 +626,7 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 112,
+            "line": 113,
             "itemtype": "method",
             "name": "toString",
             "return": {
