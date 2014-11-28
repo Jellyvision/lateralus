@@ -2,6 +2,7 @@
 
   * Adds listenFor mixin method.
   * Makes Lateralus#toString @final.
+  * Make Lateralus.Component.View#getTemplateRenderData return model data.
 
 # 0.0.4
 

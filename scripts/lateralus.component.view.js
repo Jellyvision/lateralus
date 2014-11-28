@@ -190,15 +190,24 @@ define([
   };
 
   /**
-   * Meant to be overridden.  This method returns the object whose properties
-   * are used as render variables in `{{#crossLink
-   * "Lateralus.Component.View/renderTemplate"}}{{/crossLink}}`.
+   * This method returns the object whose properties are used as render
+   * variables in `{{#crossLink
+   * "Lateralus.Component.View/renderTemplate"}}{{/crossLink}}`.  By default,
+   * this returns the raw
+   * [`Backbone.Model`](http://backbonejs.org/#Model-toJSON) data, if this View
+   * has a Model.  Otherwise, an empty object is returned.
    * @method getTemplateRenderData
    * @protected
    * @return {Object}
    */
   fn.getTemplateRenderData = function () {
-    return {};
+    var renderData = {};
+
+    if (this.model) {
+      _.extend(renderData, this.model.toJSON());
+    }
+
+    return renderData;
   };
 
   /**
