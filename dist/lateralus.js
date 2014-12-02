@@ -1,4 +1,4 @@
-/* Lateralus v.0.0.3 | https://github.com/Jellyvision/lateralus */
+/* Lateralus v.0.0.5 | https://github.com/Jellyvision/lateralus */
 define('lateralus.mixins',[
 
   'underscore'
@@ -128,6 +128,22 @@ define('lateralus.mixins',[
     }
 
     this.lateralus.trigger.apply(this.lateralus, args);
+  };
+
+  /**
+   * Listen for an event that is triggered on the central {{#crossLink
+   * "Lateralus"}}{{/crossLink}} instance and bind a function handler.
+   * @method listenFor
+   * @param {string} event The name of the event to listen for.
+   * @param {Function} callback The function handler to bind.
+   */
+  mixins.listenFor = function (event, callback) {
+    var thisIsLateralus = this.toString() === 'lateralus';
+    if (thisIsLateralus) {
+      this.on(event, callback);
+    } else {
+      this.listenTo(this.lateralus, event, callback);
+    }
   };
 
   //jshint maxlen:100
@@ -363,15 +379,24 @@ define('lateralus.component.view',[
   };
 
   /**
-   * Meant to be overridden.  This method returns the object whose properties
-   * are used as render variables in `{{#crossLink
-   * "Lateralus.Component.View/renderTemplate"}}{{/crossLink}}`.
+   * This method returns the object whose properties are used as render
+   * variables in `{{#crossLink
+   * "Lateralus.Component.View/renderTemplate"}}{{/crossLink}}`.  The method
+   * can be overridden.
    * @method getTemplateRenderData
    * @protected
-   * @return {Object}
+   * @return {Object} The [raw `Backbone.Model`
+   * data](http://backbonejs.org/#Model-toJSON), if this View has a Model.
+   * Otherwise, an empty object is returned.
    */
   fn.getTemplateRenderData = function () {
-    return {};
+    var renderData = {};
+
+    if (this.model) {
+      _.extend(renderData, this.model.toJSON());
+    }
+
+    return renderData;
   };
 
   /**
@@ -769,6 +794,14 @@ define('lateralus',[
    */
   Lateralus.prototype.addComponent = mixins.addComponent;
 
+  /**
+   * This is the same as the `{{#crossLink
+   * "Lateralus.mixins/listenFor"}}{{/crossLink}}` mixin method.  See the
+   * documentation for that.
+   * @method listenFor
+   */
+  Lateralus.prototype.listenFor = mixins.listenFor;
+
   _.each([
 
     /**
@@ -801,8 +834,10 @@ define('lateralus',[
   });
 
   /**
+   * Do not override this method, it is used internally.
    * @method toString
    * @return {string} This is `"lateralus"`.
+   * @final
    */
   Lateralus.prototype.toString = function () {
     return 'lateralus';

@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.0.3</em>
+            <em>API Docs for: 0.0.5</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -284,15 +284,24 @@ define([
   };
 
   /**
-   * Meant to be overridden.  This method returns the object whose properties
-   * are used as render variables in &#x60;{{#crossLink
-   * &quot;Lateralus.Component.View/renderTemplate&quot;}}{{/crossLink}}&#x60;.
+   * This method returns the object whose properties are used as render
+   * variables in &#x60;{{#crossLink
+   * &quot;Lateralus.Component.View/renderTemplate&quot;}}{{/crossLink}}&#x60;.  The method
+   * can be overridden.
    * @method getTemplateRenderData
    * @protected
-   * @return {Object}
+   * @return {Object} The [raw &#x60;Backbone.Model&#x60;
+   * data](http://backbonejs.org/#Model-toJSON), if this View has a Model.
+   * Otherwise, an empty object is returned.
    */
   fn.getTemplateRenderData = function () {
-    return {};
+    var renderData = {};
+
+    if (this.model) {
+      _.extend(renderData, this.model.toJSON());
+    }
+
+    return renderData;
   };
 
   /**

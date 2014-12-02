@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.0.3</em>
+            <em>API Docs for: 0.0.5</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -100,7 +100,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../files/scripts_lateralus.component.view.js.html#l266"><code>scripts&#x2F;lateralus.component.view.js:266</code></a>
+            Defined in: <a href="../files/scripts_lateralus.component.view.js.html#l275"><code>scripts&#x2F;lateralus.component.view.js:275</code></a>
         </div>
     
 
@@ -435,7 +435,7 @@ subview when it is instantiated.</p>
             
         
         
-        <a href="../files/scripts_lateralus.component.view.js.html#l225"><code>scripts&#x2F;lateralus.component.view.js:225</code></a>
+        <a href="../files/scripts_lateralus.component.view.js.html#l234"><code>scripts&#x2F;lateralus.component.view.js:234</code></a>
         
         </p>
 
@@ -495,7 +495,7 @@ that references the corresponding DOM element.</p>
             
         
         
-        <a href="../files/scripts_lateralus.component.view.js.html#l247"><code>scripts&#x2F;lateralus.component.view.js:247</code></a>
+        <a href="../files/scripts_lateralus.component.view.js.html#l256"><code>scripts&#x2F;lateralus.component.view.js:256</code></a>
         
         </p>
 
@@ -568,8 +568,9 @@ the DOM and cleanly dispose of any references.</p>
     </div>
 
     <div class="description">
-        <p>Meant to be overridden.  This method returns the object whose properties
-are used as render variables in <code><a href="../classes/Lateralus.Component.View.html#method_renderTemplate" class="crosslink">renderTemplate</a></code>.</p>
+        <p>This method returns the object whose properties are used as render
+variables in <code><a href="../classes/Lateralus.Component.View.html#method_renderTemplate" class="crosslink">renderTemplate</a></code>.  The method
+can be overridden.</p>
 
     </div>
 
@@ -584,6 +585,10 @@ are used as render variables in <code><a href="../classes/Lateralus.Component.Vi
                     
                         <span class="type">Object</span>:
                     
+                    <p>The <a href="http://backbonejs.org/#Model-toJSON">raw <code>Backbone.Model</code>
+data</a>, if this View has a Model.
+Otherwise, an empty object is returned.</p>
+
                 
             </div>
         </div>
@@ -726,7 +731,7 @@ override <code>initialize</code> must call this base method:</p>
             
         
         
-        <a href="../files/scripts_lateralus.component.view.js.html#l204"><code>scripts&#x2F;lateralus.component.view.js:204</code></a>
+        <a href="../files/scripts_lateralus.component.view.js.html#l213"><code>scripts&#x2F;lateralus.component.view.js:213</code></a>
         
         </p>
 

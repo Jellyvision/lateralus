@@ -1,7 +1,7 @@
 {
     "project": {
         "name": "Lateralus",
-        "version": "0.0.3",
+        "version": "0.0.5",
         "logo": "http://cdn.jellyvision.com/wp-content/themes/jellyvision/img/header-logo.png"
     },
     "files": {
@@ -100,7 +100,7 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "scripts/lateralus.component.view.js",
-            "line": 266,
+            "line": 275,
             "description": "This class builds on the ideas and APIs of\n[`Backbone.View`](http://backbonejs.org/#View).",
             "extends": "{Backbone.View}"
         },
@@ -478,20 +478,20 @@
         {
             "file": "scripts/lateralus.component.view.js",
             "line": 192,
-            "description": "Meant to be overridden.  This method returns the object whose properties\nare used as render variables in `{{#crossLink\n\"Lateralus.Component.View/renderTemplate\"}}{{/crossLink}}`.",
+            "description": "This method returns the object whose properties are used as render\nvariables in `{{#crossLink\n\"Lateralus.Component.View/renderTemplate\"}}{{/crossLink}}`.  The method\ncan be overridden.",
             "itemtype": "method",
             "name": "getTemplateRenderData",
             "access": "protected",
             "tagname": "",
             "return": {
-                "description": "",
+                "description": "The [raw `Backbone.Model`\ndata](http://backbonejs.org/#Model-toJSON), if this View has a Model.\nOtherwise, an empty object is returned.",
                 "type": "Object"
             },
             "class": "Lateralus.Component.View"
         },
         {
             "file": "scripts/lateralus.component.view.js",
-            "line": 204,
+            "line": 213,
             "description": "Meant to be called by `{{#crossLink\n\"Lateralus.Component.View/initialize\"}}{{/crossLink}}` and infrequently\nthereafter, this method empties out\n[`$el`](http://backbonejs.org/#View-$el) and does a full re-render.\n[`render`](http://backbonejs.org/#View-render) should only be used for\npartial renders.",
             "itemtype": "method",
             "name": "renderTemplate",
@@ -499,7 +499,7 @@
         },
         {
             "file": "scripts/lateralus.component.view.js",
-            "line": 225,
+            "line": 234,
             "description": "Look for any DOM elements within [`$el`](http://backbonejs.org/#View-$el)\nthat have a class that looks like _`$this`_ and create a property on this\ninstance with the same name.  The attached property is a jQuery object\nthat references the corresponding DOM element.",
             "itemtype": "method",
             "name": "bindToDOM",
@@ -509,7 +509,7 @@
         },
         {
             "file": "scripts/lateralus.component.view.js",
-            "line": 247,
+            "line": 256,
             "description": "Remove this `{{#crossLink \"Lateralus.Component.View\"}}{{/crossLink}}` from\nthe DOM and cleanly dispose of any references.",
             "itemtype": "method",
             "name": "dispose",
@@ -518,7 +518,7 @@
         },
         {
             "file": "scripts/lateralus.component.view.js",
-            "line": 274,
+            "line": 283,
             "description": "Overrides [`Backbone.View#extend`](http://backbonejs.org/#View-extend) to\nset up explicit prototype chain references for `{{#crossLink\n\"Lateralus.mixins/_super\"}}{{/crossLink}}` calls.",
             "return": {
                 "description": "",
@@ -581,7 +581,15 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 84,
+            "line": 82,
+            "description": "This is the same as the `{{#crossLink\n\"Lateralus.mixins/listenFor\"}}{{/crossLink}}` mixin method.  See the\ndocumentation for that.",
+            "itemtype": "method",
+            "name": "listenFor",
+            "class": "Lateralus"
+        },
+        {
+            "file": "scripts/lateralus.js",
+            "line": 92,
             "description": "Cross-browser friendly wrapper for `console.log`.",
             "itemtype": "method",
             "name": "log",
@@ -596,7 +604,7 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 91,
+            "line": 99,
             "description": "Cross-browser friendly wrapper for `console.warn`.",
             "itemtype": "method",
             "name": "warn",
@@ -611,7 +619,7 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 98,
+            "line": 106,
             "description": "Cross-browser friendly wrapper for `console.error`.",
             "itemtype": "method",
             "name": "error",
@@ -626,13 +634,15 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 113,
+            "line": 121,
+            "description": "Do not override this method, it is used internally.",
             "itemtype": "method",
             "name": "toString",
             "return": {
                 "description": "This is `\"lateralus\"`.",
                 "type": "String"
             },
+            "final": 1,
             "class": "Lateralus"
         },
         {
@@ -709,7 +719,27 @@
         },
         {
             "file": "scripts/lateralus.mixins.js",
-            "line": 133,
+            "line": 132,
+            "description": "Listen for an event that is triggered on the central {{#crossLink\n\"Lateralus\"}}{{/crossLink}} instance and bind a function handler.",
+            "itemtype": "method",
+            "name": "listenFor",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "The name of the event to listen for.",
+                    "type": "String"
+                },
+                {
+                    "name": "callback",
+                    "description": "The function handler to bind.",
+                    "type": "Function"
+                }
+            ],
+            "class": "Lateralus.mixins"
+        },
+        {
+            "file": "scripts/lateralus.mixins.js",
+            "line": 149,
             "description": "Call a method of the next object on the prototype chain where it is\npresent.  This method is prepended with an underscore to prevent conflict\nwith the ES6 `super` keyword.\n\n    Lateralus.Component.extend({\n      initialize: function () {\n        // The same as Lateralus.Component.prototype.initialize.apply(this, arguments);\n        this._super('initialize', arguments);\n      }\n    });",
             "itemtype": "method",
             "name": "_super",
@@ -744,7 +774,7 @@
         },
         {
             "message": "Missing item type\nOverrides [`Backbone.View#extend`](http://backbonejs.org/#View-extend) to\nset up explicit prototype chain references for `{{#crossLink\n\"Lateralus.mixins/_super\"}}{{/crossLink}}` calls.",
-            "line": " scripts/lateralus.component.view.js:274"
+            "line": " scripts/lateralus.component.view.js:283"
         }
     ]
 }

@@ -1,6 +1,6 @@
 {
   "name": "lateralus",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "A UI component framework",
   "license": "MIT",
   "main": "Gruntfile.js",

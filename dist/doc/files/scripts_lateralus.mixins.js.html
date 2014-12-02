@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.0.3</em>
+            <em>API Docs for: 0.0.5</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -221,6 +221,22 @@ define([
     }
 
     this.lateralus.trigger.apply(this.lateralus, args);
+  };
+
+  /**
+   * Listen for an event that is triggered on the central {{#crossLink
+   * &quot;Lateralus&quot;}}{{/crossLink}} instance and bind a function handler.
+   * @method listenFor
+   * @param {string} event The name of the event to listen for.
+   * @param {Function} callback The function handler to bind.
+   */
+  mixins.listenFor = function (event, callback) {
+    var thisIsLateralus = this.toString() === &#x27;lateralus&#x27;;
+    if (thisIsLateralus) {
+      this.on(event, callback);
+    } else {
+      this.listenTo(this.lateralus, event, callback);
+    }
   };
 
   //jshint maxlen:100

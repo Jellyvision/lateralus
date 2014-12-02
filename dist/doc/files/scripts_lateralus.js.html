@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.0.3</em>
+            <em>API Docs for: 0.0.5</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -173,6 +173,14 @@ define([
    */
   Lateralus.prototype.addComponent = mixins.addComponent;
 
+  /**
+   * This is the same as the &#x60;{{#crossLink
+   * &quot;Lateralus.mixins/listenFor&quot;}}{{/crossLink}}&#x60; mixin method.  See the
+   * documentation for that.
+   * @method listenFor
+   */
+  Lateralus.prototype.listenFor = mixins.listenFor;
+
   _.each([
 
     /**
@@ -205,8 +213,10 @@ define([
   });
 
   /**
+   * Do not override this method, it is used internally.
    * @method toString
    * @return {string} This is &#x60;&quot;lateralus&quot;&#x60;.
+   * @final
    */
   Lateralus.prototype.toString = function () {
     return &#x27;lateralus&#x27;;
