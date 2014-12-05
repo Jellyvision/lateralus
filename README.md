@@ -1,11 +1,6 @@
 # Lateralus
 
-```
-.-.     .--.  .---. .----..----.   .--.  .-.   .-. .-. .----.
-| |    / {} \{_   _}| {_  | {}  } / {} \ | |   | { } |{ {__
-| `--./  /\  \ | |  | {__ | .-. \/  /\  \| `--.| {_} |.-._} }
-`----'`-'  `-' `-'  `----'`-' `-'`-'  `-'`----'`-----'`----'
-```
+![Lateralus logo](img/logo.png)
 
 Lateralus is a single page web application framework.  It is designed around the idea that UIs should be divided into discreet, reusable, loosely-coupled components.  These components should communicate only indirectly and be easily swappable or removable.  Lateralus provides patterns and utilities to cleanly isolate individual components of your app.
 
