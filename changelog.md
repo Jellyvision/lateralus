@@ -1,3 +1,8 @@
+# 0.0.6
+
+  * Add support for providing a component-level Backbone.Model constructor to
+    Views.
+
 # 0.0.5
 
   * Adds listenFor mixin method.

@@ -111,6 +111,14 @@ define([
      * @default undefined
      */
     if (this.View) {
+      var augmentedViewOptions = viewOptions;
+
+      // A model instance provided to addComponent takes precendence over the
+      // prototype property.
+      if (this.Model && !viewOptions.model) {
+        augmentedViewOptions.model = new this.Model();
+      }
+
       /**
        * If `{{#crossLink "Lateralus.Component/View:property"}}{{/crossLink}}`
        * is defined, this is an instance of that constructor.
@@ -123,7 +131,7 @@ define([
           ,this.View.__super__
           ,this.View.prototype.__proto
           ,this
-          ,viewOptions
+          ,augmentedViewOptions
         );
     }
 
@@ -147,11 +155,14 @@ define([
    * Create a `{{#crossLink "Lateralus.Component"}}{{/crossLink}}` subclass.
    * @method extend
    * @param {Object} protoProps
-   *   @param {string} protoProps.name The name of this component it should
-   *   have no whitespace.
-   *   @param {Lateralus.Component.View} [protoProps.View] The `{{#crossLink
-   *   "Lateralus.Component.View"}}{{/crossLink}}` to render this component
-   *   with.
+   * @param {string} protoProps.name The name of this component it should have
+   * no whitespace.
+   * @param {Lateralus.Component.View} [protoProps.View] The `{{#crossLink
+   * "Lateralus.Component.View"}}{{/crossLink}}` to render this component with.
+   * @param {Backbone.Model} [protoProps.Model] The optional
+   * [`Backbone.Model`](http://backbonejs.org/#Model) to be provided to
+   * `protoProps.View` when it is instantiated.  This does nothing if
+   * `protoProps.View` is not defined.
    */
   Component.extend = function (protoProps) {
     var extendedComponent = Backbone.Model.extend.call(this, protoProps);
