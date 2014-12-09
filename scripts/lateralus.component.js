@@ -4,6 +4,7 @@ define([
   ,'backbone'
   ,'./lateralus.mixins'
   ,'./lateralus.component.view'
+  ,'./lateralus.component.model'
 
 ], function (
 
@@ -11,6 +12,7 @@ define([
   ,Backbone
   ,mixins
   ,ComponentView
+  ,ComponentModel
 
 ) {
   'use strict';
@@ -37,6 +39,12 @@ define([
    * passed to the `{{#crossLink
    * "Lateralus.Component/initialize:property"}}{{/crossLink}}` method, if one
    * is defined.
+   * @param {Object} [options.modelAttributes] Any attributes to pre-populate
+   * the `{{#crossLink "Lateralus.Component/Model:property"}}{{/crossLink}}`
+   * instance with, if there is one.
+   * @param {Object} [options.modelOptions] Any parameters to pass to the
+   * `{{#crossLink "Lateralus.Component/Model:property"}}{{/crossLink}}`
+   * instance, if there is one.
    * @param {Object} viewOptions The `options` Object to pass to the
    * `{{#crossLink "Lateralus.Component/View:property"}}{{/crossLink}}`
    * constructor.
@@ -116,7 +124,14 @@ define([
       // A model instance provided to addComponent takes precendence over the
       // prototype property.
       if (this.Model && !viewOptions.model) {
-        augmentedViewOptions.model = new this.Model();
+        augmentedViewOptions.model = new this.Model(
+          lateralus
+          ,this.Model.__super__
+          ,this.Model.prototype.__proto
+          ,this
+          ,options.modelAttributes
+          ,options.modelOptions
+        );
       }
 
       /**
@@ -150,6 +165,7 @@ define([
   }
 
   Component.View = ComponentView;
+  Component.Model = ComponentModel;
 
   /**
    * Create a `{{#crossLink "Lateralus.Component"}}{{/crossLink}}` subclass.
@@ -159,9 +175,9 @@ define([
    * no whitespace.
    * @param {Lateralus.Component.View} [protoProps.View] The `{{#crossLink
    * "Lateralus.Component.View"}}{{/crossLink}}` to render this component with.
-   * @param {Backbone.Model} [protoProps.Model] The optional
-   * [`Backbone.Model`](http://backbonejs.org/#Model) to be provided to
-   * `protoProps.View` when it is instantiated.  This does nothing if
+   * @param {Lateralus.Component.Model} [protoProps.Model] The optional
+   * `{{#crossLink "Lateralus.Component.Model"}}{{/crossLink}}` to be provided
+   * to `protoProps.View` when it is instantiated.  This does nothing if
    * `protoProps.View` is not defined.
    */
   Component.extend = function (protoProps) {

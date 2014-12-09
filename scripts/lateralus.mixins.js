@@ -36,6 +36,12 @@ define([
    * "Lateralus.Component.View"}}{{/crossLink}} instance.
    * @param {Object} [options] Gets passed to the new {{#crossLink
    * "Lateralus.Component"}}{{/crossLink}} instance.
+   * @param {Object} [options.modelAttributes] Any attributes to pre-populate
+   * the `{{#crossLink "Lateralus.Component/Model:property"}}{{/crossLink}}`
+   * instance with, if there is one.
+   * @param {Object} [options.modelOptions] Any parameters to pass to the
+   * `{{#crossLink "Lateralus.Component/Model:property"}}{{/crossLink}}`
+   * instance, if there is one.
    * @return {Lateralus.Component} The component that was added.
    */
   mixins.addComponent = function (Component, viewOptions, options) {
