@@ -1,7 +1,7 @@
 # 0.0.6
 
-  * Add support for providing a component-level Backbone.Model constructor to
-    Views.
+  * Introduce Lateralus.Component.Model.
+  * Add support for providing a component-level Model constructor to Views.
 
 # 0.0.5
 
