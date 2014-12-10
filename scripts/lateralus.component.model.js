@@ -81,6 +81,14 @@ define([
 
   /**
    * This is the same as the `{{#crossLink
+   * "Lateralus.mixins/emit"}}{{/crossLink}}` mixin method.  See the
+   * documentation for that.
+   * @method emit
+   */
+  fn.emit = mixins.emit;
+
+  /**
+   * This is the same as the `{{#crossLink
    * "Lateralus.mixins/listenFor"}}{{/crossLink}}` mixin method.  See the
    * documentation for that.
    * @method listenFor
