@@ -124,7 +124,7 @@ define([
       // A model instance provided to addComponent takes precendence over the
       // prototype property.
       if (this.Model && !viewOptions.model) {
-        augmentedViewOptions.model = new this.Model(
+        this.model = new this.Model(
           lateralus
           ,this.Model.__super__
           ,this.Model.prototype.__proto
@@ -132,6 +132,8 @@ define([
           ,options.modelAttributes
           ,options.modelOptions
         );
+
+        augmentedViewOptions.model = this.model;
       }
 
       /**
