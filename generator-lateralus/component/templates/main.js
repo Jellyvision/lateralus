@@ -2,6 +2,7 @@ define([
 
   'lateralus'
 
+  ,'./model'
   ,'./view'
   ,'text!./template.mustache'
 
@@ -9,6 +10,7 @@ define([
 
   Lateralus
 
+  ,Model
   ,View
   ,template
 
@@ -17,6 +19,7 @@ define([
 
   var {{componentClassName}}Component = Lateralus.Component.extend({
     name: '{{componentName}}'
+    ,Model: Model
     ,View: View
     ,template: template
   });

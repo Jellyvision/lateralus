@@ -33,6 +33,10 @@ var LateralusComponentGenerator = yeoman.generators.Base.extend({
       var mainTemplate = Mustache.render(this.src.read('main.js'), renderData);
       this.dest.write('main.js', mainTemplate);
 
+      var modelTemplate =
+        Mustache.render(this.src.read('model.js'), renderData);
+      this.dest.write('model.js', modelTemplate);
+
       var viewTemplate = Mustache.render(this.src.read('view.js'), renderData);
       this.dest.write('view.js', viewTemplate);
 

@@ -78,7 +78,7 @@ define([
       lateralusReference
       ,Component.__super__
       ,options
-      ,viewOptions
+      ,viewOptions || {}
       ,thisIsLateralus ? null : this
     );
 
