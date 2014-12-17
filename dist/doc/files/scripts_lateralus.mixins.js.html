@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.0.5</em>
+            <em>API Docs for: 0.0.6</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -44,6 +44,8 @@
                 <li><a href="../classes/Lateralus.html">Lateralus</a></li>
             
                 <li><a href="../classes/Lateralus.Component.html">Lateralus.Component</a></li>
+            
+                <li><a href="../classes/Lateralus.Component.Model.html">Lateralus.Component.Model</a></li>
             
                 <li><a href="../classes/Lateralus.Component.View.html">Lateralus.Component.View</a></li>
             
@@ -130,6 +132,12 @@ define([
    * &quot;Lateralus.Component.View&quot;}}{{/crossLink}} instance.
    * @param {Object} [options] Gets passed to the new {{#crossLink
    * &quot;Lateralus.Component&quot;}}{{/crossLink}} instance.
+   * @param {Object} [options.modelAttributes] Any attributes to pre-populate
+   * the &#x60;{{#crossLink &quot;Lateralus.Component/Model:property&quot;}}{{/crossLink}}&#x60;
+   * instance with, if there is one.
+   * @param {Object} [options.modelOptions] Any parameters to pass to the
+   * &#x60;{{#crossLink &quot;Lateralus.Component/Model:property&quot;}}{{/crossLink}}&#x60;
+   * instance, if there is one.
    * @return {Lateralus.Component} The component that was added.
    */
   mixins.addComponent = function (Component, viewOptions, options) {
@@ -166,7 +174,7 @@ define([
       lateralusReference
       ,Component.__super__
       ,options
-      ,viewOptions
+      ,viewOptions || {}
       ,thisIsLateralus ? null : this
     );
 

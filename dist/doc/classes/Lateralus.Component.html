@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.0.5</em>
+            <em>API Docs for: 0.0.6</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -44,6 +44,8 @@
                 <li><a href="../classes/Lateralus.html">Lateralus</a></li>
             
                 <li><a href="../classes/Lateralus.Component.html">Lateralus.Component</a></li>
+            
+                <li><a href="../classes/Lateralus.Component.Model.html">Lateralus.Component.Model</a></li>
             
                 <li><a href="../classes/Lateralus.Component.View.html">Lateralus.Component.View</a></li>
             
@@ -107,7 +109,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../files/scripts_lateralus.component.js.html#l18"><code>scripts&#x2F;lateralus.component.js:18</code></a>
+            Defined in: <a href="../files/scripts_lateralus.component.js.html#l20"><code>scripts&#x2F;lateralus.component.js:20</code></a>
         </div>
     
 
@@ -204,7 +206,7 @@ console.log(component instanceof Lateralus.Component); // true</code></pre>
             
         
         
-        <a href="../files/scripts_lateralus.component.js.html#l18"><code>scripts&#x2F;lateralus.component.js:18</code></a>
+        <a href="../files/scripts_lateralus.component.js.html#l20"><code>scripts&#x2F;lateralus.component.js:20</code></a>
         
         </p>
 
@@ -271,6 +273,44 @@ is defined.</p>
 
                     </div>
 
+                    
+                        <ul class="params-list">
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[modelAttributes]</code>
+                                    <span class="type">Object</span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Any attributes to pre-populate
+the <code>Lateralus.Component/Model:property</code>
+instance with, if there is one.</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[modelOptions]</code>
+                                    <span class="type">Object</span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Any parameters to pass to the
+<code>Lateralus.Component/Model:property</code>
+instance, if there is one.</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                        </ul>
                     
                 </li>
             
@@ -545,7 +585,7 @@ this component, if any.</p>
             
         
         
-        <a href="../files/scripts_lateralus.mixins.js.html#l149"><code>scripts&#x2F;lateralus.mixins.js:149</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l155"><code>scripts&#x2F;lateralus.mixins.js:155</code></a>
         
         </p>
 
@@ -763,6 +803,44 @@ the <code>Component</code> parameter&#39;s <a href="../classes/Lateralus.Compone
                     </div>
 
                     
+                        <ul class="params-list">
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[modelAttributes]</code>
+                                    <span class="type">Object</span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Any attributes to pre-populate
+the <code>Lateralus.Component/Model:property</code>
+instance with, if there is one.</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[modelOptions]</code>
+                                    <span class="type">Object</span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Any parameters to pass to the
+<code>Lateralus.Component/Model:property</code>
+instance, if there is one.</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                        </ul>
+                    
                 </li>
             
             </ul>
@@ -834,7 +912,7 @@ the <code>Component</code> parameter&#39;s <a href="../classes/Lateralus.Compone
             
         
         
-        <a href="../files/scripts_lateralus.mixins.js.html#l97"><code>scripts&#x2F;lateralus.mixins.js:97</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l103"><code>scripts&#x2F;lateralus.mixins.js:103</code></a>
         
         </p>
 
@@ -956,7 +1034,7 @@ and the central <code><a href="../classes/Lateralus.html" class="crosslink">Late
             
         
         
-        <a href="../files/scripts_lateralus.component.js.html#l146"><code>scripts&#x2F;lateralus.component.js:146</code></a>
+        <a href="../files/scripts_lateralus.component.js.html#l172"><code>scripts&#x2F;lateralus.component.js:172</code></a>
         
         </p>
 
@@ -999,8 +1077,8 @@ and the central <code><a href="../classes/Lateralus.html" class="crosslink">Late
                                 
 
                                 <div class="param-description">
-                                    <p>The name of this component it should
-  have no whitespace.</p>
+                                    <p>The name of this component.  It should
+have no whitespace.</p>
 
                                 </div>
 
@@ -1015,8 +1093,25 @@ and the central <code><a href="../classes/Lateralus.html" class="crosslink">Late
                                 
 
                                 <div class="param-description">
-                                    <p>The <code><a href="../classes/Lateralus.Component.View.html" class="crosslink">Lateralus.Component.View</a></code> to render this component
-  with.</p>
+                                    <p>The <code><a href="../classes/Lateralus.Component.View.html" class="crosslink">Lateralus.Component.View</a></code> to render this component with.</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[Model]</code>
+                                    <span class="type"><a href="../classes/Lateralus.Component.Model.html" class="crosslink">Lateralus.Component.Model</a></span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>The optional
+<code><a href="../classes/Lateralus.Component.Model.html" class="crosslink">Lateralus.Component.Model</a></code> to be provided
+to <code>protoProps.View</code> when it is instantiated.  This does nothing if
+<code>protoProps.View</code> is not defined.</p>
 
                                 </div>
 
@@ -1082,7 +1177,7 @@ and the central <code><a href="../classes/Lateralus.html" class="crosslink">Late
             
         
         
-        <a href="../files/scripts_lateralus.mixins.js.html#l132"><code>scripts&#x2F;lateralus.mixins.js:132</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l138"><code>scripts&#x2F;lateralus.mixins.js:138</code></a>
         
         </p>
 
@@ -1187,7 +1282,7 @@ and the central <code><a href="../classes/Lateralus.html" class="crosslink">Late
             
         
         
-        <a href="../files/scripts_lateralus.component.js.html#l179"><code>scripts&#x2F;lateralus.component.js:179</code></a>
+        <a href="../files/scripts_lateralus.component.js.html#l208"><code>scripts&#x2F;lateralus.component.js:208</code></a>
         
         </p>
 
@@ -1271,7 +1366,7 @@ and the central <code><a href="../classes/Lateralus.html" class="crosslink">Late
             
         
         
-        <a href="../files/scripts_lateralus.component.js.html#l209"><code>scripts&#x2F;lateralus.component.js:209</code></a>
+        <a href="../files/scripts_lateralus.component.js.html#l238"><code>scripts&#x2F;lateralus.component.js:238</code></a>
         
         </p>
 
@@ -1342,7 +1437,7 @@ and the central <code><a href="../classes/Lateralus.html" class="crosslink">Late
             
         
         
-        <a href="../files/scripts_lateralus.component.js.html#l218"><code>scripts&#x2F;lateralus.component.js:218</code></a>
+        <a href="../files/scripts_lateralus.component.js.html#l247"><code>scripts&#x2F;lateralus.component.js:247</code></a>
         
         </p>
 
@@ -1414,7 +1509,7 @@ Lateralus.</p>
             
         
         
-        <a href="../files/scripts_lateralus.component.js.html#l62"><code>scripts&#x2F;lateralus.component.js:62</code></a>
+        <a href="../files/scripts_lateralus.component.js.html#l70"><code>scripts&#x2F;lateralus.component.js:70</code></a>
         
         </p>
 
@@ -1458,7 +1553,7 @@ Lateralus.</p>
             
         
         
-        <a href="../files/scripts_lateralus.mixins.js.html#l57"><code>scripts&#x2F;lateralus.mixins.js:57</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l63"><code>scripts&#x2F;lateralus.mixins.js:63</code></a>
         
         </p>
 
@@ -1501,7 +1596,7 @@ object.</p>
             
         
         
-        <a href="../files/scripts_lateralus.mixins.js.html#l49"><code>scripts&#x2F;lateralus.mixins.js:49</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l55"><code>scripts&#x2F;lateralus.mixins.js:55</code></a>
         
         </p>
 
@@ -1547,7 +1642,7 @@ property directly, it is managed by Lateralus.</p>
             
         
         
-        <a href="../files/scripts_lateralus.component.js.html#l132"><code>scripts&#x2F;lateralus.component.js:132</code></a>
+        <a href="../files/scripts_lateralus.component.js.html#l157"><code>scripts&#x2F;lateralus.component.js:157</code></a>
         
         </p>
 
@@ -1596,7 +1691,7 @@ property directly, it is managed by Lateralus.</p>
             
         
         
-        <a href="../files/scripts_lateralus.component.js.html#l53"><code>scripts&#x2F;lateralus.component.js:53</code></a>
+        <a href="../files/scripts_lateralus.component.js.html#l61"><code>scripts&#x2F;lateralus.component.js:61</code></a>
         
         </p>
 
@@ -1642,7 +1737,7 @@ instance.</p>
             
         
         
-        <a href="../files/scripts_lateralus.component.js.html#l72"><code>scripts&#x2F;lateralus.component.js:72</code></a>
+        <a href="../files/scripts_lateralus.component.js.html#l80"><code>scripts&#x2F;lateralus.component.js:80</code></a>
         
         </p>
 
@@ -1694,7 +1789,7 @@ within <code>mixins</code> will be merged into this <code><a href="../classes/La
             
         
         
-        <a href="../files/scripts_lateralus.component.js.html#l199"><code>scripts&#x2F;lateralus.component.js:199</code></a>
+        <a href="../files/scripts_lateralus.component.js.html#l228"><code>scripts&#x2F;lateralus.component.js:228</code></a>
         
         </p>
 
@@ -1739,7 +1834,7 @@ within <code>mixins</code> will be merged into this <code><a href="../classes/La
             
         
         
-        <a href="../files/scripts_lateralus.component.js.html#l87"><code>scripts&#x2F;lateralus.component.js:87</code></a>
+        <a href="../files/scripts_lateralus.component.js.html#l95"><code>scripts&#x2F;lateralus.component.js:95</code></a>
         
         </p>
 
@@ -1787,7 +1882,7 @@ to the parent <code><a href="../classes/Lateralus.Component.html" class="crossli
             
         
         
-        <a href="../files/scripts_lateralus.component.js.html#l98"><code>scripts&#x2F;lateralus.component.js:98</code></a>
+        <a href="../files/scripts_lateralus.component.js.html#l106"><code>scripts&#x2F;lateralus.component.js:106</code></a>
         
         </p>
 
@@ -1841,7 +1936,7 @@ constructor to use, if any.  If this <code><a href="../classes/Lateralus.Compone
             
         
         
-        <a href="../files/scripts_lateralus.component.js.html#l114"><code>scripts&#x2F;lateralus.component.js:114</code></a>
+        <a href="../files/scripts_lateralus.component.js.html#l139"><code>scripts&#x2F;lateralus.component.js:139</code></a>
         
         </p>
 

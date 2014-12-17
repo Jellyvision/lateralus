@@ -173,8 +173,8 @@ define([
    * Create a `{{#crossLink "Lateralus.Component"}}{{/crossLink}}` subclass.
    * @method extend
    * @param {Object} protoProps
-   * @param {string} protoProps.name The name of this component it should have
-   * no whitespace.
+   * @param {string} protoProps.name The name of this component.  It should
+   * have no whitespace.
    * @param {Lateralus.Component.View} [protoProps.View] The `{{#crossLink
    * "Lateralus.Component.View"}}{{/crossLink}}` to render this component with.
    * @param {Lateralus.Component.Model} [protoProps.Model] The optional
