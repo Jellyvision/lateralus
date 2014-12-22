@@ -165,10 +165,17 @@ define([
    *     });
    * @method _super
    * @param {string} methodName
-   * @param {arguments} [args] the `arguments` array from the calling function.
+   * @param {arguments} args the `arguments` array from the calling function.
+   * @param {Function} [opt_base] A static reference to the constructor of the
+   * calling method.  This parameter is necessary for `extended` chains longer
+   * than two objects to prevent endless recursive loops.
    * @return {any} Whatever the called method returned.
    */
-  mixins._super = function (methodName, args) {
+  mixins._super = function (methodName, args, opt_base) {
+    if (opt_base) {
+      return opt_base.__super__[methodName].apply(this, args);
+    }
+
     var fn = this.__super__[methodName];
     var lookup = this.__proto;
 

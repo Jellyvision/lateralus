@@ -1,5 +1,6 @@
 # 0.0.7
 
+  * Add opt_base parameter to _super.
   * Introduce Lateralus.Model.
 
 # 0.0.6

@@ -16,7 +16,7 @@ define([
      * @param {Object} [options]
      */
     initialize: function () {
-      this._super('initialize', arguments);
+      this._super('initialize', arguments, {{componentClassName}});
     }
   });
 
