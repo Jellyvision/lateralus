@@ -3,6 +3,7 @@ define([
   'underscore'
   ,'backbone'
   ,'./lateralus.mixins'
+  ,'./lateralus.model'
   ,'./lateralus.component'
 
 ], function (
@@ -10,6 +11,7 @@ define([
   _
   ,Backbone
   ,mixins
+  ,LateralusModel
   ,Component
 
 ) {
@@ -35,6 +37,7 @@ define([
   function Lateralus (el) {
     this.el = el;
     this.$el = $(el);
+    this.model = new LateralusModel(this);
   }
 
   _.extend(Lateralus.prototype, Backbone.Events);

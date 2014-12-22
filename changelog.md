@@ -1,3 +1,7 @@
+# 0.0.7
+
+  * Introduce Lateralus.Model.
+
 # 0.0.6
 
   * Introduce Lateralus.Component.Model.
