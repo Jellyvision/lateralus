@@ -223,6 +223,7 @@ define([
    * @param {{ Object.<string|Function> }} events The map of methods of names
    * of methods to bind to.
    * @param {Lateralus|Lateralus.Component} emitter The Object to listen to.
+   * @chainable
    * @private
    */
   Component.prototype.delegateEvents = function (events, emitter) {
