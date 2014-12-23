@@ -164,6 +164,14 @@ define([
     if (this.initialize) {
       this.initialize(options);
     }
+
+    if (this.events) {
+      this.delegateEvents(this.events, this);
+    }
+
+    if (this.lateralusEvents) {
+      this.delegateEvents(this.lateralusEvents, this.lateralus);
+    }
   }
 
   Component.View = ComponentView;
@@ -203,6 +211,37 @@ define([
     _.extend(extendedComponent, protoProps);
 
     return extendedComponent;
+  };
+
+  var delegateEventSplitter = /^(\S+)\s*(.*)$/;
+
+  /**
+   * Functions similarly to
+   * [Backbone.View#delegateEvents](http://backbonejs.org/#View-delegateEvents).
+   * Take a map of events and bind them to an event-emitting object.
+   * @method delegateEvents
+   * @param {{ Object.<string|Function> }} events The map of methods of names
+   * of methods to bind to.
+   * @param {Lateralus|Lateralus.Component} emitter The Object to listen to.
+   * @private
+   */
+  Component.prototype.delegateEvents = function (events, emitter) {
+    for (var key in events) {
+      var method = events[key];
+      if (!_.isFunction(method)) {
+        method = this[events[key]];
+      }
+
+      if (!method) {
+        new Error('Method "' + method + '" not found for ' + this.toString());
+      }
+
+      var match = key.match(delegateEventSplitter);
+      this.listenTo(emitter, match[1], _.bind(method, this));
+
+    }
+
+    return this;
   };
 
   /**
