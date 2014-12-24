@@ -9,14 +9,17 @@ define([
 ) {
   'use strict';
 
-  var {{componentClassName}}ComponentModel = Lateralus.Component.Model.extend({
+  var Base = Lateralus.Component.Model;
+  var baseProto = Base.prototype;
+
+  var {{componentClassName}}ComponentModel = Base.extend({
     /**
      * Parameters are the same as http://backbonejs.org/#Model-constructor
      * @param {Object} [attributes]
      * @param {Object} [options]
      */
     initialize: function () {
-      this._super('initialize', arguments, {{componentClassName}}ComponentModel);
+      baseProto.initialize.apply(this, arguments);
     }
   });
 

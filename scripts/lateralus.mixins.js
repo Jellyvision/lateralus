@@ -163,6 +163,9 @@ define([
    *         this._super('initialize', arguments);
    *       }
    *     });
+   *
+   * **Note**: This method has been deprecated due to limitations in JavaScript
+   * and will be removed soon.
    * @method _super
    * @param {string} methodName
    * @param {arguments} args the `arguments` array from the calling function.
@@ -170,6 +173,7 @@ define([
    * calling method.  This parameter is necessary for `extended` chains longer
    * than two objects to prevent endless recursive loops.
    * @return {any} Whatever the called method returned.
+   * @deprecated
    */
   mixins._super = function (methodName, args, opt_base) {
     if (opt_base) {

@@ -1,5 +1,6 @@
 # 0.0.7
 
+  * Deprecate _super.
   * Add Component.prototype.delegateEvents.
   * Add opt_base parameter to _super.
   * Introduce Lateralus.Model.
