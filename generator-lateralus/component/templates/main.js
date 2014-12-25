@@ -17,7 +17,9 @@ define([
 ) {
   'use strict';
 
-  var {{componentClassName}}Component = Lateralus.Component.extend({
+  var Base = Lateralus.Component;
+
+  var {{componentClassName}}Component = Base.extend({
     name: '{{componentName}}'
     ,Model: Model
     ,View: View
