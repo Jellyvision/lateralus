@@ -1,5 +1,6 @@
 # 0.0.7
 
+  * Don't attach View constructor classnames for subviews.
   * Deprecate _super.
   * Add Component.prototype.delegateEvents.
   * Add opt_base parameter to _super.

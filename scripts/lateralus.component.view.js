@@ -121,7 +121,11 @@ define([
    * @protected
    */
   fn.initialize = function (opts) {
-    this.$el.addClass(this.toString());
+    // this.toString references the central Component constructor, so don't
+    // attach the class for it here.
+    if (!this.parentView) {
+      this.$el.addClass(this.toString());
+    }
 
     /**
      * The CSS class names specified by this property will be attached to `$el`
