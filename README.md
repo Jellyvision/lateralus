@@ -111,6 +111,7 @@ Lateralus's functionality is divided up into several primary Objects under the `
   * `Lateralus`
   * `Lateralus.Component`
   * `Lateralus.Component.View`
+  * `Lateralus.Component.Model`
 
 ### Lateralus
 
@@ -126,8 +127,11 @@ This is the basic directory structure for a component:
 
 ````
 my-component/
+  styles/
+    main.sass
   main.js
   view.js
+  model.js
   template.mustache
 ````
 
@@ -161,19 +165,32 @@ Lateralus uses [Mustache.js](https://github.com/janl/mustache.js/) for its templ
 
 ### Lateralus.Component.View
 
-This Object extends [`Backbone.View`](http://backbonejs.org/#View) with Lateralus-specific functionality.  Importantly, this overrides `Backbone.View.prototype.extend` to build an inheritance chain to be used the `_super` method.  Here's a basic `Lateralus.Component.View` subclass module:
+This Object extends [`Backbone.View`](http://backbonejs.org/#View) with Lateralus-specific functionality.  Here's a basic `Lateralus.Component.View` subclass module:
 
 ````javascript
 define(['lateralus'], function (Lateralus) {
   'use strict';
 
-  var ExtendedComponentView = Lateralus.Component.View.extend({});
+  var Base = Lateralus.Component.View;
+  var baseProto = Base.prototype;
+
+  var ExtendedComponentView = Base.extend({
+    initialize: function () {
+      // An initialize method definition isn't strictly required for a simple
+      // example like this, but it's a good habit to get into.  Additionally,
+      // generator-lateralus sets up new Views this way.  With the Base/baseProto
+      // pattern above, you can easily achieve "super"-like functionality (like
+      // Java has).  If you want to add additional initialization code for this
+      // View, you should insert it after the baseProto.initialize call.
+      baseProto.initialize.apply(this, arguments);
+    }
+  });
 
   return ExtendedComponentView;
 });
 ````
 
-Views have a reference to the central `Lateralus` instance as `this.lateralus`, and a reference to the `Lateralus.Component` they belong to with `this.component`.  Generally, you can use `Lateralus.Component.View` exactly as you would `Backbone.View`.
+A `Lateralus.Component.View` has a reference to the central `Lateralus` instance as `this.lateralus`, and a reference to the `Lateralus.Component` it belongs to with `this.component`.  This is necessary for using the `emit` and `listenFor` mixin methods to communicate with the rest of the app.  Generally, you can use `Lateralus.Component.View` exactly as you would `Backbone.View`, but it gives you a few additional APIs.
 
 As a convenience, `Lateralus.Component.View` implicitly binds DOM nodes in the template as jQuery objects.  If the component's template looks like this:
 
@@ -185,4 +202,8 @@ As a convenience, `Lateralus.Component.View` implicitly binds DOM nodes in the t
 
 The view will automatically have properties `this.$container` and `this.$header` that are jQuery objects referencing the `div` and the `h2`, respecively.
 
-Unlike `Backbone.View`, `Lateralus.Component.View` renders its template for you.  `this.renderTemplate` is called automatically when the View is instantiated, but you are free to do further rendering with `this.render`.  `this.render` should be used for partial updates, whereas `this.renderTemplate` should be used to completely replace the contents of the View's `$el` with whatever is in `this.template`.
+`Lateralus.Component.View` transparently renders its template for you.  `this.renderTemplate` is called by `Lateralus.Component.View.prototype.initialize` (which is why you should generally call `baseProto.initialize` as demonstrated above), but you are free to do further rendering with `this.render`.  `this.render` should be used for partial updates, whereas `this.renderTemplate` should be used to completely replace the contents of the View's `$el` with whatever is in `this.template`.
+
+### Lateralus.Component.Model
+
+Similarly to `Lateralus.Component.View`, this object extends its Backbone counterpart &mdash; `Backbone.Model`.  This doesn't add much in the way of new functionality, but it does have a reference to the central `Lateralus` instance and can therefore `emit` and `listenFor` messages.
