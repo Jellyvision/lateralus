@@ -1,3 +1,8 @@
+# 0.0.8
+
+  * Fix build process.
+  * Remove _super.
+
 # 0.0.7
 
   * Don't attach View constructor classnames for subviews.

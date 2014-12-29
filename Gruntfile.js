@@ -41,8 +41,12 @@ module.exports = function (grunt) {
     },
     requirejs: {
       options: {
-        baseUrl: 'scripts',
-        name: 'lateralus',
+        include: 'lateralus',
+        packages: [{
+          name: 'lateralus',
+          location: 'scripts',
+          main: 'lateralus'
+        }],
         paths: {
           'jquery': 'empty:',
           'underscore': 'empty:',
