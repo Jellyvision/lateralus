@@ -165,10 +165,64 @@ define([
       this.initialize(options);
     }
 
+    /**
+     * A map of functions or string references to functions that will handle
+     * [events](http://backbonejs.org/#Events) dispatched to this `{{#crossLink
+     * "Lateralus.Component"}}{{/crossLink}}` instance.  This is useful for
+     * responding to events that are specific to this `{{#crossLink
+     * "Lateralus.Component"}}{{/crossLink}}` and don't affect others.
+     *
+     *     var ExtendedComponent = Lateralus.Component.extend({
+     *       name: 'extended'
+     *
+     *       ,events: {
+     *         dataAdded: 'onDataAdded'
+     *
+     *         ,dataRemoved: function () {
+     *           // ...
+     *         }
+     *       }
+     *
+     *       ,onDataAdded: function () {
+     *         // ...
+     *       }
+     *     });
+     * @protected
+     * @property events
+     * @type {Object|undefined}
+     * @default undefined
+     */
     if (this.events) {
       this.delegateEvents(this.events, this);
     }
 
+    /**
+     * A map of functions or string references to functions that will handle
+     * [events](http://backbonejs.org/#Events) dispatched to the central
+     * `{{#crossLink "Lateralus"}}{{/crossLink}}` instance.  Distinct from
+     * `{{#crossLink "Lateralus.Component/events:property"}}{{/crossLink}}`,
+     * this is useful for responding to app-wide events.
+     *
+     *     var ExtendedComponent = Lateralus.Component.extend({
+     *       name: 'extended'
+     *
+     *       ,lateralusEvents: {
+     *         anotherComponentChanged: 'onAnotherComponentChanged'
+     *
+     *         ,anotherComponentDestroyed: function () {
+     *           // ...
+     *         }
+     *       }
+     *
+     *       ,onAnotherComponentChanged: function () {
+     *         // ...
+     *       }
+     *     });
+     * @protected
+     * @property lateralusEvents
+     * @type {Object|undefined}
+     * @default undefined
+     */
     if (this.lateralusEvents) {
       this.delegateEvents(this.lateralusEvents, this.lateralus);
     }
@@ -213,6 +267,34 @@ define([
     return extendedComponent;
   };
 
+  /**
+   * Merge the properties of another object into this `{{#crossLink
+   * "Lateralus.Component"}}{{/crossLink}}`.  If `mixin` has a function called
+   * `initialize`, it is called in the context of this `{{#crossLink
+   * "Lateralus.Component"}}{{/crossLink}}`.
+   * @method mixin
+   * @param {Object} mixin The object to mix in to this one.
+   */
+  Component.prototype.mixin = function (mixin) {
+    _.extend(this, _.omit(mixin, 'initialize'));
+
+    if (typeof mixin.initialize === 'function') {
+      mixin.initialize.call(this);
+    }
+  };
+
+  // Prototype members
+  //
+  _.extend(Component.prototype, Backbone.Events, mixins);
+
+  /**
+   * The name of this component.  This is used internally by Lateralus.
+   * @protected
+   * @property name
+   * @type string
+   */
+  Component.prototype.name = 'component';
+
   var delegateEventSplitter = /^(\S+)\s*(.*)$/;
 
   /**
@@ -220,7 +302,7 @@ define([
    * [Backbone.View#delegateEvents](http://backbonejs.org/#View-delegateEvents).
    * Take a map of events and bind them to an event-emitting object.
    * @method delegateEvents
-   * @param {{ Object.<string|Function> }} events The map of methods of names
+   * @param { Object(string|Function) } events The map of methods of names
    * of methods to bind to.
    * @param {Lateralus|Lateralus.Component} emitter The Object to listen to.
    * @chainable
@@ -244,36 +326,6 @@ define([
 
     return this;
   };
-
-  /**
-   * Merge the properties of another object into this `{{#crossLink
-   * "Lateralus.Component"}}{{/crossLink}}`.  If `mixin` has a function called
-   * `initialize`, it is called in the context of this `{{#crossLink
-   * "Lateralus.Component"}}{{/crossLink}}`.
-   * @method mixin
-   * @param {Object} mixin The object to mix in to this one.
-   */
-  Component.prototype.mixin = function (mixin) {
-    _.extend(this, _.omit(mixin, 'initialize'));
-
-    if (typeof mixin.initialize === 'function') {
-      mixin.initialize.call(this);
-    }
-  };
-
-  // Prototype members
-  //
-  _.extend(Component.prototype, Backbone.Events);
-
-  /**
-   * The name of this component.  This is used internally by Lateralus.
-   * @protected
-   * @property name
-   * @type string
-   */
-  Component.prototype.name = 'component';
-
-  _.extend(Component.prototype, mixins);
 
   /**
    * Meant to be overridden by subclasses.
