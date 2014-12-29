@@ -5,6 +5,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "Lateralus.Component",
         "Lateralus.Component.Model",
         "Lateralus.Component.View",
+        "Lateralus.Model",
         "Lateralus.mixins"
     ],
     "modules": [],

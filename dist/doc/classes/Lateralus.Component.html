@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.0.6</em>
+            <em>API Docs for: 0.0.7</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -50,6 +50,8 @@
                 <li><a href="../classes/Lateralus.Component.View.html">Lateralus.Component.View</a></li>
             
                 <li><a href="../classes/Lateralus.mixins.html">Lateralus.mixins</a></li>
+            
+                <li><a href="../classes/Lateralus.Model.html">Lateralus.Model</a></li>
             
             </ul>
 
@@ -386,15 +388,24 @@ this component, if any.</p>
 
                     <ul class="index-list methods">
                         
-                            <li class="index-item method inherited">
+                            <li class="index-item method deprecated inherited">
                                 <a href="#method__super">_super</a>
 
                                 
+                                
+                                    <span class="flag deprecated">deprecated</span>
                                 
                             </li>
                         
                             <li class="index-item method inherited">
                                 <a href="#method_addComponent">addComponent</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method_delegateEvents">delegateEvents</a>
 
                                 
                                 
@@ -473,6 +484,13 @@ this component, if any.</p>
                                 
                             </li>
                         
+                            <li class="index-item property protected">
+                                <a href="#property_events">events</a>
+
+                                
+                                
+                            </li>
+                        
                             <li class="index-item property">
                                 <a href="#property_initialize">initialize</a>
 
@@ -482,6 +500,13 @@ this component, if any.</p>
                         
                             <li class="index-item property">
                                 <a href="#property_lateralus">lateralus</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property protected">
+                                <a href="#property_lateralusEvents">lateralusEvents</a>
 
                                 
                                 
@@ -509,14 +534,14 @@ this component, if any.</p>
                             </li>
                         
                             <li class="index-item property">
-                                <a href="#property_View">View</a>
+                                <a href="#property_view">view</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item property">
-                                <a href="#property_view">view</a>
+                                <a href="#property_View">View</a>
 
                                 
                                 
@@ -536,7 +561,7 @@ this component, if any.</p>
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method__super" class="method item inherited">
+                    <div id="method__super" class="method item deprecated inherited">
     <h3 class="name"><code>_super</code></h3>
 
     
@@ -551,7 +576,13 @@ this component, if any.</p>
             
                 <li class="arg">
                     
-                        <code class="optional">[args]</code>
+                        <code>args</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[opt_base]</code>
                     
                 </li>
             
@@ -565,6 +596,8 @@ this component, if any.</p>
         </span>
     
 
+    
+        <span class="flag deprecated">deprecated</span>
     
 
     
@@ -605,6 +638,8 @@ with the ES6 <code>super</code> keyword.</p>
     this._super(&#39;initialize&#39;, arguments);
   }
 });</code></pre>
+<p><strong>Note</strong>: This method has been deprecated due to limitations in JavaScript
+and will be removed soon.</p>
 
     </div>
 
@@ -631,15 +666,33 @@ with the ES6 <code>super</code> keyword.</p>
             
                 <li class="param">
                     
-                        <code class="param-name optional">[args]</code>
+                        <code class="param-name">args</code>
                         <span class="type">Arguments</span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
                     
 
                     
 
                     <div class="param-description">
                         <p>the <code>arguments</code> array from the calling function.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[opt_base]</code>
+                        <span class="type">Function</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>A static reference to the constructor of the
+calling method.  This parameter is necessary for <code>extended</code> chains longer
+than two objects to prevent endless recursive loops.</p>
 
                     </div>
 
@@ -867,6 +920,124 @@ instance, if there is one.</p>
 </div>
 
                 
+                    <div id="method_delegateEvents" class="method item private">
+    <h3 class="name"><code>delegateEvents</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>events</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>emitter</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag chainable">chainable</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/scripts_lateralus.component.js.html#l300"><code>scripts&#x2F;lateralus.component.js:300</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Functions similarly to
+<a href="http://backbonejs.org/#View-delegateEvents">Backbone.View#delegateEvents</a>.
+Take a map of events and bind them to an event-emitting object.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">events</code>
+                        <span class="type">Object(string | Function)</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The map of methods of names
+of methods to bind to.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">emitter</code>
+                        <span class="type"><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a> | <a href="../classes/Lateralus.Component.html" class="crosslink">Lateralus.Component</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The Object to listen to.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
                     <div id="method_emit" class="method item inherited">
     <h3 class="name"><code>emit</code></h3>
 
@@ -1034,7 +1205,7 @@ and the central <code><a href="../classes/Lateralus.html" class="crosslink">Late
             
         
         
-        <a href="../files/scripts_lateralus.component.js.html#l172"><code>scripts&#x2F;lateralus.component.js:172</code></a>
+        <a href="../files/scripts_lateralus.component.js.html#l234"><code>scripts&#x2F;lateralus.component.js:234</code></a>
         
         </p>
 
@@ -1282,7 +1453,7 @@ to <code>protoProps.View</code> when it is instantiated.  This does nothing if
             
         
         
-        <a href="../files/scripts_lateralus.component.js.html#l208"><code>scripts&#x2F;lateralus.component.js:208</code></a>
+        <a href="../files/scripts_lateralus.component.js.html#l270"><code>scripts&#x2F;lateralus.component.js:270</code></a>
         
         </p>
 
@@ -1366,7 +1537,7 @@ to <code>protoProps.View</code> when it is instantiated.  This does nothing if
             
         
         
-        <a href="../files/scripts_lateralus.component.js.html#l238"><code>scripts&#x2F;lateralus.component.js:238</code></a>
+        <a href="../files/scripts_lateralus.component.js.html#l330"><code>scripts&#x2F;lateralus.component.js:330</code></a>
         
         </p>
 
@@ -1437,7 +1608,7 @@ to <code>protoProps.View</code> when it is instantiated.  This does nothing if
             
         
         
-        <a href="../files/scripts_lateralus.component.js.html#l247"><code>scripts&#x2F;lateralus.component.js:247</code></a>
+        <a href="../files/scripts_lateralus.component.js.html#l339"><code>scripts&#x2F;lateralus.component.js:339</code></a>
         
         </p>
 
@@ -1619,6 +1790,72 @@ property directly, it is managed by Lateralus.</p>
 </div>
 
                 
+                    <div id="property_events" class="property item protected">
+    <h3 class="name"><code>events</code></h3>
+    <span class="type">Object | Undefined</span>
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/scripts_lateralus.component.js.html#l168"><code>scripts&#x2F;lateralus.component.js:168</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>A map of functions or string references to functions that will handle
+<a href="http://backbonejs.org/#Events">events</a> dispatched to this <code><a href="../classes/Lateralus.Component.html" class="crosslink">Lateralus.Component</a></code> instance.  This is useful for
+responding to events that are specific to this <code><a href="../classes/Lateralus.Component.html" class="crosslink">Lateralus.Component</a></code> and don&#39;t affect others.</p>
+<pre class="code prettyprint"><code>var ExtendedComponent = Lateralus.Component.extend({
+  name: &#39;extended&#39;
+
+  ,events: {
+    dataAdded: &#39;onDataAdded&#39;
+
+    ,dataRemoved: function () {
+      // ...
+    }
+  }
+
+  ,onDataAdded: function () {
+    // ...
+  }
+});</code></pre>
+
+    </div>
+
+    
+        <p><strong>Default:</strong> undefined</p>
+    
+
+    
+
+    
+</div>
+
+                
                     <div id="property_initialize" class="property item">
     <h3 class="name"><code>initialize</code></h3>
     <span class="type">Function | Undefined</span>
@@ -1714,6 +1951,74 @@ instance.</p>
 </div>
 
                 
+                    <div id="property_lateralusEvents" class="property item protected">
+    <h3 class="name"><code>lateralusEvents</code></h3>
+    <span class="type">Object | Undefined</span>
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/scripts_lateralus.component.js.html#l199"><code>scripts&#x2F;lateralus.component.js:199</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>A map of functions or string references to functions that will handle
+<a href="http://backbonejs.org/#Events">events</a> dispatched to the central
+<code><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a></code> instance.  Distinct from
+<code><a href="../classes/Lateralus.Component.html#property_events" class="crosslink">events</a></code>,
+this is useful for responding to app-wide events.</p>
+<pre class="code prettyprint"><code>var ExtendedComponent = Lateralus.Component.extend({
+  name: &#39;extended&#39;
+
+  ,lateralusEvents: {
+    anotherComponentChanged: &#39;onAnotherComponentChanged&#39;
+
+    ,anotherComponentDestroyed: function () {
+      // ...
+    }
+  }
+
+  ,onAnotherComponentChanged: function () {
+    // ...
+  }
+});</code></pre>
+
+    </div>
+
+    
+        <p><strong>Default:</strong> undefined</p>
+    
+
+    
+
+    
+</div>
+
+                
                     <div id="property_mixins" class="property item">
     <h3 class="name"><code>mixins</code></h3>
     <span class="type">Object | Array(Object) | Undefined</span>
@@ -1789,7 +2094,7 @@ within <code>mixins</code> will be merged into this <code><a href="../classes/La
             
         
         
-        <a href="../files/scripts_lateralus.component.js.html#l228"><code>scripts&#x2F;lateralus.component.js:228</code></a>
+        <a href="../files/scripts_lateralus.component.js.html#l290"><code>scripts&#x2F;lateralus.component.js:290</code></a>
         
         </p>
 
@@ -1859,6 +2164,54 @@ to the parent <code><a href="../classes/Lateralus.Component.html" class="crossli
 </div>
 
                 
+                    <div id="property_view" class="property item">
+    <h3 class="name"><code>view</code></h3>
+    <span class="type"><a href="../classes/Lateralus.Component.View.html" class="crosslink">Lateralus.Component.View</a> | Undefined</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/scripts_lateralus.component.js.html#l139"><code>scripts&#x2F;lateralus.component.js:139</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>If <code><a href="../classes/Lateralus.Component.html#property_View" class="crosslink">View</a></code>
+is defined, this is an instance of that constructor.</p>
+
+    </div>
+
+    
+        <p><strong>Default:</strong> undefined</p>
+    
+
+    
+
+    
+</div>
+
+                
                     <div id="property_View" class="property item">
     <h3 class="name"><code>View</code></h3>
     <span class="type"><a href="../classes/Lateralus.Component.View.html" class="crosslink">Lateralus.Component.View</a> | Undefined</span>
@@ -1900,54 +2253,6 @@ constructor to use, if any.  If this <code><a href="../classes/Lateralus.Compone
   ,View: Lateralus.Component.View
   ,template: &#39;&lt;div&gt;&lt;/div&gt;&#39;
 });</code></pre>
-
-    </div>
-
-    
-        <p><strong>Default:</strong> undefined</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_view" class="property item">
-    <h3 class="name"><code>view</code></h3>
-    <span class="type"><a href="../classes/Lateralus.Component.View.html" class="crosslink">Lateralus.Component.View</a> | Undefined</span>
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/scripts_lateralus.component.js.html#l139"><code>scripts&#x2F;lateralus.component.js:139</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>If <code><a href="../classes/Lateralus.Component.html#property_View" class="crosslink">View</a></code>
-is defined, this is an instance of that constructor.</p>
 
     </div>
 

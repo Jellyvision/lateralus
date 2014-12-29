@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.0.6</em>
+            <em>API Docs for: 0.0.7</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -50,6 +50,8 @@
                 <li><a href="../classes/Lateralus.Component.View.html">Lateralus.Component.View</a></li>
             
                 <li><a href="../classes/Lateralus.mixins.html">Lateralus.mixins</a></li>
+            
+                <li><a href="../classes/Lateralus.Model.html">Lateralus.Model</a></li>
             
             </ul>
 
@@ -217,7 +219,11 @@ define([
    * @protected
    */
   fn.initialize = function (opts) {
-    this.$el.addClass(this.toString());
+    // this.toString references the central Component constructor, so don&#x27;t
+    // attach the class for it here.
+    if (!this.parentView) {
+      this.$el.addClass(this.toString());
+    }
 
     /**
      * The CSS class names specified by this property will be attached to &#x60;$el&#x60;

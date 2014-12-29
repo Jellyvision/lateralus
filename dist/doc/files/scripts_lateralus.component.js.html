@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.0.6</em>
+            <em>API Docs for: 0.0.7</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -50,6 +50,8 @@
                 <li><a href="../classes/Lateralus.Component.View.html">Lateralus.Component.View</a></li>
             
                 <li><a href="../classes/Lateralus.mixins.html">Lateralus.mixins</a></li>
+            
+                <li><a href="../classes/Lateralus.Model.html">Lateralus.Model</a></li>
             
             </ul>
 
@@ -260,6 +262,68 @@ define([
     if (this.initialize) {
       this.initialize(options);
     }
+
+    /**
+     * A map of functions or string references to functions that will handle
+     * [events](http://backbonejs.org/#Events) dispatched to this &#x60;{{#crossLink
+     * &quot;Lateralus.Component&quot;}}{{/crossLink}}&#x60; instance.  This is useful for
+     * responding to events that are specific to this &#x60;{{#crossLink
+     * &quot;Lateralus.Component&quot;}}{{/crossLink}}&#x60; and don&#x27;t affect others.
+     *
+     *     var ExtendedComponent = Lateralus.Component.extend({
+     *       name: &#x27;extended&#x27;
+     *
+     *       ,events: {
+     *         dataAdded: &#x27;onDataAdded&#x27;
+     *
+     *         ,dataRemoved: function () {
+     *           // ...
+     *         }
+     *       }
+     *
+     *       ,onDataAdded: function () {
+     *         // ...
+     *       }
+     *     });
+     * @protected
+     * @property events
+     * @type {Object|undefined}
+     * @default undefined
+     */
+    if (this.events) {
+      this.delegateEvents(this.events, this);
+    }
+
+    /**
+     * A map of functions or string references to functions that will handle
+     * [events](http://backbonejs.org/#Events) dispatched to the central
+     * &#x60;{{#crossLink &quot;Lateralus&quot;}}{{/crossLink}}&#x60; instance.  Distinct from
+     * &#x60;{{#crossLink &quot;Lateralus.Component/events:property&quot;}}{{/crossLink}}&#x60;,
+     * this is useful for responding to app-wide events.
+     *
+     *     var ExtendedComponent = Lateralus.Component.extend({
+     *       name: &#x27;extended&#x27;
+     *
+     *       ,lateralusEvents: {
+     *         anotherComponentChanged: &#x27;onAnotherComponentChanged&#x27;
+     *
+     *         ,anotherComponentDestroyed: function () {
+     *           // ...
+     *         }
+     *       }
+     *
+     *       ,onAnotherComponentChanged: function () {
+     *         // ...
+     *       }
+     *     });
+     * @protected
+     * @property lateralusEvents
+     * @type {Object|undefined}
+     * @default undefined
+     */
+    if (this.lateralusEvents) {
+      this.delegateEvents(this.lateralusEvents, this.lateralus);
+    }
   }
 
   Component.View = ComponentView;
@@ -319,7 +383,7 @@ define([
 
   // Prototype members
   //
-  _.extend(Component.prototype, Backbone.Events);
+  _.extend(Component.prototype, Backbone.Events, mixins);
 
   /**
    * The name of this component.  This is used internally by Lateralus.
@@ -329,7 +393,37 @@ define([
    */
   Component.prototype.name = &#x27;component&#x27;;
 
-  _.extend(Component.prototype, mixins);
+  var delegateEventSplitter = /^(\S+)\s*(.*)$/;
+
+  /**
+   * Functions similarly to
+   * [Backbone.View#delegateEvents](http://backbonejs.org/#View-delegateEvents).
+   * Take a map of events and bind them to an event-emitting object.
+   * @method delegateEvents
+   * @param { Object(string|Function) } events The map of methods of names
+   * of methods to bind to.
+   * @param {Lateralus|Lateralus.Component} emitter The Object to listen to.
+   * @chainable
+   * @private
+   */
+  Component.prototype.delegateEvents = function (events, emitter) {
+    for (var key in events) {
+      var method = events[key];
+      if (!_.isFunction(method)) {
+        method = this[events[key]];
+      }
+
+      if (!method) {
+        new Error(&#x27;Method &quot;&#x27; + method + &#x27;&quot; not found for &#x27; + this.toString());
+      }
+
+      var match = key.match(delegateEventSplitter);
+      this.listenTo(emitter, match[1], _.bind(method, this));
+
+    }
+
+    return this;
+  };
 
   /**
    * Meant to be overridden by subclasses.

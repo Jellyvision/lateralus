@@ -1,4 +1,4 @@
-/* Lateralus v.0.0.6 | https://github.com/Jellyvision/lateralus */
+/* Lateralus v.0.0.7 | https://github.com/Jellyvision/lateralus */
 define('lateralus.mixins',[
 
   'underscore'
@@ -164,12 +164,23 @@ define('lateralus.mixins',[
    *         this._super('initialize', arguments);
    *       }
    *     });
+   *
+   * **Note**: This method has been deprecated due to limitations in JavaScript
+   * and will be removed soon.
    * @method _super
    * @param {string} methodName
-   * @param {arguments} [args] the `arguments` array from the calling function.
+   * @param {arguments} args the `arguments` array from the calling function.
+   * @param {Function} [opt_base] A static reference to the constructor of the
+   * calling method.  This parameter is necessary for `extended` chains longer
+   * than two objects to prevent endless recursive loops.
    * @return {any} Whatever the called method returned.
+   * @deprecated
    */
-  mixins._super = function (methodName, args) {
+  mixins._super = function (methodName, args, opt_base) {
+    if (opt_base) {
+      return opt_base.__super__[methodName].apply(this, args);
+    }
+
     var fn = this.__super__[methodName];
     var lookup = this.__proto;
 
@@ -191,6 +202,73 @@ define('lateralus.mixins',[
   };
 
   return mixins;
+});
+
+define('lateralus.model',[
+
+  'backbone'
+
+  ,'./lateralus.mixins'
+
+], function (
+
+  Backbone
+
+  ,mixins
+
+) {
+  
+
+  var fn = {};
+
+  /**
+   * @method toString
+   * @protected
+   * @return {string} The name of this Model.  This is used internally by
+   * Lateralus.
+   */
+  fn.toString = function () {
+    return this.lateralus.toString() + '-model';
+  };
+
+  // jshint maxlen:100
+  /**
+   * The constructor for this class should not be called by application code,
+   * it is used by the `{{#crossLink "Lateralus"}}{{/crossLink}}` constructor.
+   * @private
+   * @param {Lateralus} lateralus
+   * @constructor
+   */
+  fn.constructor = function ( lateralus) {
+    this.lateralus = lateralus;
+    Backbone.Model.call(this);
+  };
+
+  /**
+   * This is the same as the `{{#crossLink
+   * "Lateralus.mixins/emit"}}{{/crossLink}}` mixin method.  See the
+   * documentation for that.
+   * @method emit
+   */
+  fn.emit = mixins.emit;
+
+  /**
+   * This is the same as the `{{#crossLink
+   * "Lateralus.mixins/listenFor"}}{{/crossLink}}` mixin method.  See the
+   * documentation for that.
+   * @method listenFor
+   */
+  fn.listenFor = mixins.listenFor;
+
+  /**
+   * This class builds on the ideas and APIs of
+   * [`Backbone.Model`](http://backbonejs.org/#Model).
+   * @class Lateralus.Model
+   * @extends {Backbone.Model}
+   */
+  var LateralusModel = Backbone.Model.extend(fn);
+
+  return LateralusModel;
 });
 
 define('lateralus.component.view',[
@@ -316,7 +394,11 @@ define('lateralus.component.view',[
    * @protected
    */
   fn.initialize = function (opts) {
-    this.$el.addClass(this.toString());
+    // this.toString references the central Component constructor, so don't
+    // attach the class for it here.
+    if (!this.parentView) {
+      this.$el.addClass(this.toString());
+    }
 
     /**
      * The CSS class names specified by this property will be attached to `$el`
@@ -784,6 +866,68 @@ define('lateralus.component',[
     if (this.initialize) {
       this.initialize(options);
     }
+
+    /**
+     * A map of functions or string references to functions that will handle
+     * [events](http://backbonejs.org/#Events) dispatched to this `{{#crossLink
+     * "Lateralus.Component"}}{{/crossLink}}` instance.  This is useful for
+     * responding to events that are specific to this `{{#crossLink
+     * "Lateralus.Component"}}{{/crossLink}}` and don't affect others.
+     *
+     *     var ExtendedComponent = Lateralus.Component.extend({
+     *       name: 'extended'
+     *
+     *       ,events: {
+     *         dataAdded: 'onDataAdded'
+     *
+     *         ,dataRemoved: function () {
+     *           // ...
+     *         }
+     *       }
+     *
+     *       ,onDataAdded: function () {
+     *         // ...
+     *       }
+     *     });
+     * @protected
+     * @property events
+     * @type {Object|undefined}
+     * @default undefined
+     */
+    if (this.events) {
+      this.delegateEvents(this.events, this);
+    }
+
+    /**
+     * A map of functions or string references to functions that will handle
+     * [events](http://backbonejs.org/#Events) dispatched to the central
+     * `{{#crossLink "Lateralus"}}{{/crossLink}}` instance.  Distinct from
+     * `{{#crossLink "Lateralus.Component/events:property"}}{{/crossLink}}`,
+     * this is useful for responding to app-wide events.
+     *
+     *     var ExtendedComponent = Lateralus.Component.extend({
+     *       name: 'extended'
+     *
+     *       ,lateralusEvents: {
+     *         anotherComponentChanged: 'onAnotherComponentChanged'
+     *
+     *         ,anotherComponentDestroyed: function () {
+     *           // ...
+     *         }
+     *       }
+     *
+     *       ,onAnotherComponentChanged: function () {
+     *         // ...
+     *       }
+     *     });
+     * @protected
+     * @property lateralusEvents
+     * @type {Object|undefined}
+     * @default undefined
+     */
+    if (this.lateralusEvents) {
+      this.delegateEvents(this.lateralusEvents, this.lateralus);
+    }
   }
 
   Component.View = ComponentView;
@@ -843,7 +987,7 @@ define('lateralus.component',[
 
   // Prototype members
   //
-  _.extend(Component.prototype, Backbone.Events);
+  _.extend(Component.prototype, Backbone.Events, mixins);
 
   /**
    * The name of this component.  This is used internally by Lateralus.
@@ -853,7 +997,37 @@ define('lateralus.component',[
    */
   Component.prototype.name = 'component';
 
-  _.extend(Component.prototype, mixins);
+  var delegateEventSplitter = /^(\S+)\s*(.*)$/;
+
+  /**
+   * Functions similarly to
+   * [Backbone.View#delegateEvents](http://backbonejs.org/#View-delegateEvents).
+   * Take a map of events and bind them to an event-emitting object.
+   * @method delegateEvents
+   * @param { Object(string|Function) } events The map of methods of names
+   * of methods to bind to.
+   * @param {Lateralus|Lateralus.Component} emitter The Object to listen to.
+   * @chainable
+   * @private
+   */
+  Component.prototype.delegateEvents = function (events, emitter) {
+    for (var key in events) {
+      var method = events[key];
+      if (!_.isFunction(method)) {
+        method = this[events[key]];
+      }
+
+      if (!method) {
+        new Error('Method "' + method + '" not found for ' + this.toString());
+      }
+
+      var match = key.match(delegateEventSplitter);
+      this.listenTo(emitter, match[1], _.bind(method, this));
+
+    }
+
+    return this;
+  };
 
   /**
    * Meant to be overridden by subclasses.
@@ -881,6 +1055,7 @@ define('lateralus',[
   'underscore'
   ,'backbone'
   ,'./lateralus.mixins'
+  ,'./lateralus.model'
   ,'./lateralus.component'
 
 ], function (
@@ -888,6 +1063,7 @@ define('lateralus',[
   _
   ,Backbone
   ,mixins
+  ,LateralusModel
   ,Component
 
 ) {
@@ -911,8 +1087,29 @@ define('lateralus',[
    * @constructor
    */
   function Lateralus (el) {
+    /**
+     * The DOM node that contains this `{{#crossLink
+     * "Lateralus"}}{{/crossLink}}` instance.
+     * @property el
+     * @type {HTMLElement}
+     */
     this.el = el;
+
+    /**
+     * The jQuery Object that contains `{{#crossLink
+     * "Lateralus/el:property"}}{{/crossLink}}`.
+     * @property $el
+     * @type {jQuery}
+     */
     this.$el = $(el);
+
+    /**
+     * Maintains the state of the central `{{#crossLink
+     * "Lateralus"}}{{/crossLink}}` instance.
+     * @property model
+     * @type {Lateralus.Model}
+     */
+    this.model = new LateralusModel(this);
   }
 
   _.extend(Lateralus.prototype, Backbone.Events);

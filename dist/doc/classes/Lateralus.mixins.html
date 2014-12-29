@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.0.6</em>
+            <em>API Docs for: 0.0.7</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -50,6 +50,8 @@
                 <li><a href="../classes/Lateralus.Component.View.html">Lateralus.Component.View</a></li>
             
                 <li><a href="../classes/Lateralus.mixins.html">Lateralus.mixins</a></li>
+            
+                <li><a href="../classes/Lateralus.Model.html">Lateralus.Model</a></li>
             
             </ul>
 
@@ -140,10 +142,12 @@
 
                     <ul class="index-list methods">
                         
-                            <li class="index-item method">
+                            <li class="index-item method deprecated">
                                 <a href="#method__super">_super</a>
 
                                 
+                                
+                                    <span class="flag deprecated">deprecated</span>
                                 
                             </li>
                         
@@ -206,7 +210,7 @@
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method__super" class="method item">
+                    <div id="method__super" class="method item deprecated">
     <h3 class="name"><code>_super</code></h3>
 
     
@@ -221,7 +225,13 @@
             
                 <li class="arg">
                     
-                        <code class="optional">[args]</code>
+                        <code>args</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[opt_base]</code>
                     
                 </li>
             
@@ -235,6 +245,8 @@
         </span>
     
 
+    
+        <span class="flag deprecated">deprecated</span>
     
 
     
@@ -278,6 +290,8 @@ with the ES6 <code>super</code> keyword.</p>
     this._super(&#39;initialize&#39;, arguments);
   }
 });</code></pre>
+<p><strong>Note</strong>: This method has been deprecated due to limitations in JavaScript
+and will be removed soon.</p>
 
     </div>
 
@@ -304,15 +318,33 @@ with the ES6 <code>super</code> keyword.</p>
             
                 <li class="param">
                     
-                        <code class="param-name optional">[args]</code>
+                        <code class="param-name">args</code>
                         <span class="type">Arguments</span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
                     
 
                     
 
                     <div class="param-description">
                         <p>the <code>arguments</code> array from the calling function.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[opt_base]</code>
+                        <span class="type">Function</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>A static reference to the constructor of the
+calling method.  This parameter is necessary for <code>extended</code> chains longer
+than two objects to prevent endless recursive loops.</p>
 
                     </div>
 

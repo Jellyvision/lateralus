@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.0.6</em>
+            <em>API Docs for: 0.0.7</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -50,6 +50,8 @@
                 <li><a href="../classes/Lateralus.Component.View.html">Lateralus.Component.View</a></li>
             
                 <li><a href="../classes/Lateralus.mixins.html">Lateralus.mixins</a></li>
+            
+                <li><a href="../classes/Lateralus.Model.html">Lateralus.Model</a></li>
             
             </ul>
 
@@ -259,12 +261,23 @@ define([
    *         this._super(&#x27;initialize&#x27;, arguments);
    *       }
    *     });
+   *
+   * **Note**: This method has been deprecated due to limitations in JavaScript
+   * and will be removed soon.
    * @method _super
    * @param {string} methodName
-   * @param {arguments} [args] the &#x60;arguments&#x60; array from the calling function.
+   * @param {arguments} args the &#x60;arguments&#x60; array from the calling function.
+   * @param {Function} [opt_base] A static reference to the constructor of the
+   * calling method.  This parameter is necessary for &#x60;extended&#x60; chains longer
+   * than two objects to prevent endless recursive loops.
    * @return {any} Whatever the called method returned.
+   * @deprecated
    */
-  mixins._super = function (methodName, args) {
+  mixins._super = function (methodName, args, opt_base) {
+    if (opt_base) {
+      return opt_base.__super__[methodName].apply(this, args);
+    }
+
     var fn = this.__super__[methodName];
     var lookup = this.__proto;
 
