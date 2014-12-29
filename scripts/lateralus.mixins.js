@@ -115,6 +115,9 @@ define([
    * coupling by firing an event that bubbles throughout the app, depending on
    * what calls it:
    *
+   * * If this is called by `{{#crossLink "Lateralus"}}{{/crossLink}}`, this
+   * just triggers an event on that `{{#crossLink "Lateralus"}}{{/crossLink}}`
+   * instance.
    * * If this is called by a `{{#crossLink
    * "Lateralus.Component"}}{{/crossLink}}`, this triggers an event on that
    * `{{#crossLink "Lateralus.Component"}}{{/crossLink}}` as well as the

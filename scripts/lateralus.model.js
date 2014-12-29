@@ -33,7 +33,6 @@ define([
    * it is used by the `{{#crossLink "Lateralus"}}{{/crossLink}}` constructor.
    * @private
    * @param {Lateralus} lateralus
-   * @uses Lateralus.mixins
    * @constructor
    */
   fn.constructor = function (lateralus) {
@@ -48,6 +47,7 @@ define([
    * [`Backbone.Model`](http://backbonejs.org/#Model).
    * @class Lateralus.Model
    * @extends {Backbone.Model}
+   * @uses Lateralus.mixins
    */
   var LateralusModel = Backbone.Model.extend(fn);
 
