@@ -19,6 +19,14 @@ define([
   var mixins = {};
 
   /**
+   * @param {Object} obj
+   * @return {boolean}
+   */
+  function isLateralus (obj) {
+    return obj.toString() === 'lateralus';
+  }
+
+  /**
    * Add a subcomponent to a `{{#crossLink "Lateralus"}}{{/crossLink}}` or
    * `{{#crossLink "Lateralus.Component"}}{{/crossLink}}` instance.
    *
@@ -71,7 +79,7 @@ define([
     }
 
     // If thisIsLateralus is false, `this` is a Lateralus.Component instance.
-    var thisIsLateralus = this.toString() === 'lateralus';
+    var thisIsLateralus = isLateralus(this);
 
     var lateralusReference = thisIsLateralus ? this : this.lateralus;
     var component = new Component(
@@ -127,6 +135,10 @@ define([
     var args = _.toArray(arguments);
     this.trigger.apply(this, args);
 
+    if (isLateralus(this)) {
+      return;
+    }
+
     if (this.component) {
       this.component.trigger.apply(this.component, args);
     }
@@ -142,7 +154,7 @@ define([
    * @param {Function} callback The function handler to bind.
    */
   mixins.listenFor = function (event, callback) {
-    var thisIsLateralus = this.toString() === 'lateralus';
+    var thisIsLateralus = isLateralus(this);
     if (thisIsLateralus) {
       this.on(event, callback);
     } else {

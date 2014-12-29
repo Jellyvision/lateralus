@@ -32,6 +32,7 @@ define([
    * @param {Element} el The DOM element that contains the entire Lateralus
    * app.
    * @class Lateralus
+   * @uses Lateralus.mixins
    * @constructor
    */
   function Lateralus (el) {
@@ -60,7 +61,9 @@ define([
     this.model = new LateralusModel(this);
   }
 
-  _.extend(Lateralus.prototype, Backbone.Events);
+  var fn = Lateralus.prototype;
+
+  _.extend(fn, Backbone.Events);
 
   /**
    * Set up the prototype chain between two objects.
@@ -94,21 +97,7 @@ define([
     return Lateralus.inherit(child, Lateralus);
   };
 
-  /**
-   * This is the same as the `{{#crossLink
-   * "Lateralus.mixins/addComponent"}}{{/crossLink}}` mixin method.  See the
-   * documentation for that.
-   * @method addComponent
-   */
-  Lateralus.prototype.addComponent = mixins.addComponent;
-
-  /**
-   * This is the same as the `{{#crossLink
-   * "Lateralus.mixins/listenFor"}}{{/crossLink}}` mixin method.  See the
-   * documentation for that.
-   * @method listenFor
-   */
-  Lateralus.prototype.listenFor = mixins.listenFor;
+  _.extend(fn, mixins);
 
   _.each([
 
@@ -134,7 +123,7 @@ define([
     ,'error'
 
   ], function (consoleMethodName) {
-    Lateralus.prototype[consoleMethodName] = function () {
+    fn[consoleMethodName] = function () {
       if (typeof console !== 'undefined' && console[consoleMethodName]) {
         console[consoleMethodName].apply(console, arguments);
       }
@@ -147,7 +136,7 @@ define([
    * @return {string} This is `"lateralus"`.
    * @final
    */
-  Lateralus.prototype.toString = function () {
+  fn.toString = function () {
     return 'lateralus';
   };
 

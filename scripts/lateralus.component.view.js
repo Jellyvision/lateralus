@@ -49,6 +49,7 @@ define([
    * @param {Object} [options] Gets passed to
    * [`Backbone.View#initialize'](http://backbonejs.org/#Collection-constructor).
    * @param {Lateralus.Component.View} [opt_parentView]
+   * @uses Lateralus.mixins
    * @constructor
    */
   fn.constructor = function (lateralus, component, options, opt_parentView) {

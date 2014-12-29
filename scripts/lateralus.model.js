@@ -1,12 +1,14 @@
 define([
 
-  'backbone'
+  'underscore'
+  ,'backbone'
 
   ,'./lateralus.mixins'
 
 ], function (
 
-  Backbone
+  _
+  ,Backbone
 
   ,mixins
 
@@ -31,28 +33,15 @@ define([
    * it is used by the `{{#crossLink "Lateralus"}}{{/crossLink}}` constructor.
    * @private
    * @param {Lateralus} lateralus
+   * @uses Lateralus.mixins
    * @constructor
    */
-  fn.constructor = function ( lateralus) {
+  fn.constructor = function (lateralus) {
     this.lateralus = lateralus;
     Backbone.Model.call(this);
   };
 
-  /**
-   * This is the same as the `{{#crossLink
-   * "Lateralus.mixins/emit"}}{{/crossLink}}` mixin method.  See the
-   * documentation for that.
-   * @method emit
-   */
-  fn.emit = mixins.emit;
-
-  /**
-   * This is the same as the `{{#crossLink
-   * "Lateralus.mixins/listenFor"}}{{/crossLink}}` mixin method.  See the
-   * documentation for that.
-   * @method listenFor
-   */
-  fn.listenFor = mixins.listenFor;
+  _.extend(fn, mixins);
 
   /**
    * This class builds on the ideas and APIs of

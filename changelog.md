@@ -1,5 +1,6 @@
 # 0.0.8
 
+  * Properly mix in mixins module to all other modules.
   * Fix build process.
   * Remove _super.
 

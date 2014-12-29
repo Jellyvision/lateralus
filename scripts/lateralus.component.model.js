@@ -1,12 +1,14 @@
 define([
 
-  'backbone'
+  'underscore'
+  ,'backbone'
 
   ,'./lateralus.mixins'
 
 ], function (
 
-  Backbone
+  _
+  ,Backbone
 
   ,mixins
 
@@ -37,6 +39,7 @@ define([
    * [`Backbone.Model#initialize'](http://backbonejs.org/#Model-constructor).
    * @param {Object} [options] Gets passed to
    * [`Backbone.Model#initialize'](http://backbonejs.org/#Model-constructor).
+   * @uses Lateralus.mixins
    * @constructor
    */
   fn.constructor = function (lateralus, component, attributes, options) {
@@ -54,21 +57,7 @@ define([
     Backbone.Model.call(this, attributes, options);
   };
 
-  /**
-   * This is the same as the `{{#crossLink
-   * "Lateralus.mixins/emit"}}{{/crossLink}}` mixin method.  See the
-   * documentation for that.
-   * @method emit
-   */
-  fn.emit = mixins.emit;
-
-  /**
-   * This is the same as the `{{#crossLink
-   * "Lateralus.mixins/listenFor"}}{{/crossLink}}` mixin method.  See the
-   * documentation for that.
-   * @method listenFor
-   */
-  fn.listenFor = mixins.listenFor;
+  _.extend(fn, mixins);
 
   /**
    * This class builds on the ideas and APIs of
