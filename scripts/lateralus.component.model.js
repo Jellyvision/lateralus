@@ -71,14 +71,6 @@ define([
   fn.listenFor = mixins.listenFor;
 
   /**
-   * This is the same as the `{{#crossLink
-   * "Lateralus.mixins/_super"}}{{/crossLink}}` mixin method.  See the
-   * documentation for that.
-   * @method _super
-   */
-  fn._super = mixins._super;
-
-  /**
    * This class builds on the ideas and APIs of
    * [`Backbone.Model`](http://backbonejs.org/#Model).
    * @class Lateralus.Component.Model

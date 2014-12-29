@@ -85,9 +85,13 @@ define([
    * `{{#crossLink "Lateralus.Component.View"}}{{/crossLink}}` subclasses that
    * override `initialize` must call this base method:
    *
-   *     var ExtendedComponentView = Lateralus.Component.View.extend({
+   *     var Base = Lateralus.Component.View;
+   *     var baseProto = Base.prototype;
+   *
+   *     var ExtendedComponentView = Base.extend({
    *       initialize: function () {
-   *         this._super('initialize', arguments);
+   *         baseProto.initialize.apply(this, arguments);
+   *         // Other logic...
    *       }
    *     });
    * @method initialize
