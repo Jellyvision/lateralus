@@ -2,7 +2,8 @@
 
   * Don't attach View constructor classnames for subviews.
   * Deprecate _super.
-  * Add Component.prototype.delegateEvents.
+  * Add Component.prototype.delegateEvents, and events and lateralusEvents
+    maps.
   * Add opt_base parameter to _super.
   * Introduce Lateralus.Model.
 

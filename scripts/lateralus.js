@@ -35,8 +35,28 @@ define([
    * @constructor
    */
   function Lateralus (el) {
+    /**
+     * The DOM node that contains this `{{#crossLink
+     * "Lateralus"}}{{/crossLink}}` instance.
+     * @property el
+     * @type {HTMLElement}
+     */
     this.el = el;
+
+    /**
+     * The jQuery Object that contains `{{#crossLink
+     * "Lateralus/el:property"}}{{/crossLink}}`.
+     * @property $el
+     * @type {jQuery}
+     */
     this.$el = $(el);
+
+    /**
+     * Maintains the state of the central `{{#crossLink
+     * "Lateralus"}}{{/crossLink}}` instance.
+     * @property model
+     * @type {Lateralus.Model}
+     */
     this.model = new LateralusModel(this);
   }
 
