@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.0.7</em>
+            <em>API Docs for: 0.1.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -155,12 +155,6 @@ console.log(component instanceof Lateralus.Component); // true</code></pre>
             
                 <li class="arg">
                     
-                        <code>__super__</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
                         <code>options</code>
                     
                 </li>
@@ -238,23 +232,6 @@ console.log(component instanceof Lateralus.Component); // true</code></pre>
 
                     <div class="param-description">
                          
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">__super__</code>
-                        <span class="type"><a href="../classes/Lateralus.Component.html" class="crosslink">Lateralus.Component</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The constructor that this subclass
-is extending.</p>
-
                     </div>
 
                     
@@ -388,15 +365,6 @@ this component, if any.</p>
 
                     <ul class="index-list methods">
                         
-                            <li class="index-item method deprecated inherited">
-                                <a href="#method__super">_super</a>
-
-                                
-                                
-                                    <span class="flag deprecated">deprecated</span>
-                                
-                            </li>
-                        
                             <li class="index-item method inherited">
                                 <a href="#method_addComponent">addComponent</a>
 
@@ -462,13 +430,6 @@ this component, if any.</p>
                     <h3>Properties</h3>
 
                     <ul class="index-list properties">
-                        
-                            <li class="index-item property private">
-                                <a href="#property___super__">__super__</a>
-
-                                
-                                
-                            </li>
                         
                             <li class="index-item property private inherited">
                                 <a href="#property_componentCounters">componentCounters</a>
@@ -561,168 +522,6 @@ this component, if any.</p>
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method__super" class="method item deprecated inherited">
-    <h3 class="name"><code>_super</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>methodName</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>args</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code class="optional">[opt_base]</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">Any</span>
-        </span>
-    
-
-    
-        <span class="flag deprecated">deprecated</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                <p>Inherited from
-                <a href="../classes/Lateralus.mixins.html#method__super">Lateralus.mixins</a>:
-            
-        
-        
-        <a href="../files/scripts_lateralus.mixins.js.html#l155"><code>scripts&#x2F;lateralus.mixins.js:155</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Call a method of the next object on the prototype chain where it is
-present.  This method is prepended with an underscore to prevent conflict
-with the ES6 <code>super</code> keyword.</p>
-<pre class="code prettyprint"><code>Lateralus.Component.extend({
-  initialize: function () {
-    // The same as Lateralus.Component.prototype.initialize.apply(this, arguments);
-    this._super(&#39;initialize&#39;, arguments);
-  }
-});</code></pre>
-<p><strong>Note</strong>: This method has been deprecated due to limitations in JavaScript
-and will be removed soon.</p>
-
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">methodName</code>
-                        <span class="type">String</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">args</code>
-                        <span class="type">Arguments</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>the <code>arguments</code> array from the calling function.</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[opt_base]</code>
-                        <span class="type">Function</span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>A static reference to the constructor of the
-calling method.  This parameter is necessary for <code>extended</code> chains longer
-than two objects to prevent endless recursive loops.</p>
-
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">Any</span>:
-                    
-                    <p>Whatever the called method returned.</p>
-
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
                     <div id="method_addComponent" class="method item inherited">
     <h3 class="name"><code>addComponent</code></h3>
 
@@ -778,7 +577,7 @@ than two objects to prevent endless recursive loops.</p>
             
         
         
-        <a href="../files/scripts_lateralus.mixins.js.html#l21"><code>scripts&#x2F;lateralus.mixins.js:21</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l29"><code>scripts&#x2F;lateralus.mixins.js:29</code></a>
         
         </p>
 
@@ -972,7 +771,7 @@ instance, if there is one.</p>
             
         
         
-        <a href="../files/scripts_lateralus.component.js.html#l300"><code>scripts&#x2F;lateralus.component.js:300</code></a>
+        <a href="../files/scripts_lateralus.component.js.html#l272"><code>scripts&#x2F;lateralus.component.js:272</code></a>
         
         </p>
 
@@ -1083,7 +882,7 @@ of methods to bind to.</p>
             
         
         
-        <a href="../files/scripts_lateralus.mixins.js.html#l103"><code>scripts&#x2F;lateralus.mixins.js:103</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l110"><code>scripts&#x2F;lateralus.mixins.js:110</code></a>
         
         </p>
 
@@ -1101,6 +900,9 @@ API</a>.  <code>emit</code> facilitates this loose
 coupling by firing an event that bubbles throughout the app, depending on
 what calls it:</p>
 <ul>
+<li>If this is called by <code><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a></code>, this
+just triggers an event on that <code><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a></code>
+instance.</li>
 <li>If this is called by a <code><a href="../classes/Lateralus.Component.html" class="crosslink">Lateralus.Component</a></code>, this triggers an event on that
 <code><a href="../classes/Lateralus.Component.html" class="crosslink">Lateralus.Component</a></code> as well as the
 central <code><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a></code> instance.</li>
@@ -1205,7 +1007,7 @@ and the central <code><a href="../classes/Lateralus.html" class="crosslink">Late
             
         
         
-        <a href="../files/scripts_lateralus.component.js.html#l234"><code>scripts&#x2F;lateralus.component.js:234</code></a>
+        <a href="../files/scripts_lateralus.component.js.html#l217"><code>scripts&#x2F;lateralus.component.js:217</code></a>
         
         </p>
 
@@ -1348,7 +1150,7 @@ to <code>protoProps.View</code> when it is instantiated.  This does nothing if
             
         
         
-        <a href="../files/scripts_lateralus.mixins.js.html#l138"><code>scripts&#x2F;lateralus.mixins.js:138</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l152"><code>scripts&#x2F;lateralus.mixins.js:152</code></a>
         
         </p>
 
@@ -1453,7 +1255,7 @@ to <code>protoProps.View</code> when it is instantiated.  This does nothing if
             
         
         
-        <a href="../files/scripts_lateralus.component.js.html#l270"><code>scripts&#x2F;lateralus.component.js:270</code></a>
+        <a href="../files/scripts_lateralus.component.js.html#l242"><code>scripts&#x2F;lateralus.component.js:242</code></a>
         
         </p>
 
@@ -1537,7 +1339,7 @@ to <code>protoProps.View</code> when it is instantiated.  This does nothing if
             
         
         
-        <a href="../files/scripts_lateralus.component.js.html#l330"><code>scripts&#x2F;lateralus.component.js:330</code></a>
+        <a href="../files/scripts_lateralus.component.js.html#l302"><code>scripts&#x2F;lateralus.component.js:302</code></a>
         
         </p>
 
@@ -1608,7 +1410,7 @@ to <code>protoProps.View</code> when it is instantiated.  This does nothing if
             
         
         
-        <a href="../files/scripts_lateralus.component.js.html#l339"><code>scripts&#x2F;lateralus.component.js:339</code></a>
+        <a href="../files/scripts_lateralus.component.js.html#l311"><code>scripts&#x2F;lateralus.component.js:311</code></a>
         
         </p>
 
@@ -1653,55 +1455,6 @@ Lateralus.</p>
                 <h2 class="off-left">Properties</h2>
 
                 
-                    <div id="property___super__" class="property item private">
-    <h3 class="name"><code>__super__</code></h3>
-    <span class="type"><a href="../classes/Lateralus.Component.html" class="crosslink">Lateralus.Component</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-        <span class="flag final">final</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/scripts_lateralus.component.js.html#l70"><code>scripts&#x2F;lateralus.component.js:70</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>A reference to the class which this <code><a href="../classes/Lateralus.Component.html" class="crosslink">Lateralus.Component</a></code> extends.</p>
-
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
                     <div id="property_componentCounters" class="property item private inherited">
     <h3 class="name"><code>componentCounters</code></h3>
     <span class="type">Object(number)</span>
@@ -1724,7 +1477,7 @@ Lateralus.</p>
             
         
         
-        <a href="../files/scripts_lateralus.mixins.js.html#l63"><code>scripts&#x2F;lateralus.mixins.js:63</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l71"><code>scripts&#x2F;lateralus.mixins.js:71</code></a>
         
         </p>
 
@@ -1767,7 +1520,7 @@ object.</p>
             
         
         
-        <a href="../files/scripts_lateralus.mixins.js.html#l55"><code>scripts&#x2F;lateralus.mixins.js:55</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l63"><code>scripts&#x2F;lateralus.mixins.js:63</code></a>
         
         </p>
 
@@ -1815,7 +1568,7 @@ property directly, it is managed by Lateralus.</p>
             
         
         
-        <a href="../files/scripts_lateralus.component.js.html#l168"><code>scripts&#x2F;lateralus.component.js:168</code></a>
+        <a href="../files/scripts_lateralus.component.js.html#l151"><code>scripts&#x2F;lateralus.component.js:151</code></a>
         
         </p>
 
@@ -1879,7 +1632,7 @@ responding to events that are specific to this <code><a href="../classes/Lateral
             
         
         
-        <a href="../files/scripts_lateralus.component.js.html#l157"><code>scripts&#x2F;lateralus.component.js:157</code></a>
+        <a href="../files/scripts_lateralus.component.js.html#l140"><code>scripts&#x2F;lateralus.component.js:140</code></a>
         
         </p>
 
@@ -1928,7 +1681,7 @@ responding to events that are specific to this <code><a href="../classes/Lateral
             
         
         
-        <a href="../files/scripts_lateralus.component.js.html#l61"><code>scripts&#x2F;lateralus.component.js:61</code></a>
+        <a href="../files/scripts_lateralus.component.js.html#l58"><code>scripts&#x2F;lateralus.component.js:58</code></a>
         
         </p>
 
@@ -1976,7 +1729,7 @@ instance.</p>
             
         
         
-        <a href="../files/scripts_lateralus.component.js.html#l199"><code>scripts&#x2F;lateralus.component.js:199</code></a>
+        <a href="../files/scripts_lateralus.component.js.html#l182"><code>scripts&#x2F;lateralus.component.js:182</code></a>
         
         </p>
 
@@ -2042,7 +1795,7 @@ this is useful for responding to app-wide events.</p>
             
         
         
-        <a href="../files/scripts_lateralus.component.js.html#l80"><code>scripts&#x2F;lateralus.component.js:80</code></a>
+        <a href="../files/scripts_lateralus.component.js.html#l67"><code>scripts&#x2F;lateralus.component.js:67</code></a>
         
         </p>
 
@@ -2094,7 +1847,7 @@ within <code>mixins</code> will be merged into this <code><a href="../classes/La
             
         
         
-        <a href="../files/scripts_lateralus.component.js.html#l290"><code>scripts&#x2F;lateralus.component.js:290</code></a>
+        <a href="../files/scripts_lateralus.component.js.html#l262"><code>scripts&#x2F;lateralus.component.js:262</code></a>
         
         </p>
 
@@ -2139,7 +1892,7 @@ within <code>mixins</code> will be merged into this <code><a href="../classes/La
             
         
         
-        <a href="../files/scripts_lateralus.component.js.html#l95"><code>scripts&#x2F;lateralus.component.js:95</code></a>
+        <a href="../files/scripts_lateralus.component.js.html#l82"><code>scripts&#x2F;lateralus.component.js:82</code></a>
         
         </p>
 
@@ -2187,7 +1940,7 @@ to the parent <code><a href="../classes/Lateralus.Component.html" class="crossli
             
         
         
-        <a href="../files/scripts_lateralus.component.js.html#l139"><code>scripts&#x2F;lateralus.component.js:139</code></a>
+        <a href="../files/scripts_lateralus.component.js.html#l124"><code>scripts&#x2F;lateralus.component.js:124</code></a>
         
         </p>
 
@@ -2235,7 +1988,7 @@ is defined, this is an instance of that constructor.</p>
             
         
         
-        <a href="../files/scripts_lateralus.component.js.html#l106"><code>scripts&#x2F;lateralus.component.js:106</code></a>
+        <a href="../files/scripts_lateralus.component.js.html#l93"><code>scripts&#x2F;lateralus.component.js:93</code></a>
         
         </p>
 

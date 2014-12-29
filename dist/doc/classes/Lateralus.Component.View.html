@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.0.7</em>
+            <em>API Docs for: 0.1.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -104,7 +104,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../files/scripts_lateralus.component.view.js.html#l279"><code>scripts&#x2F;lateralus.component.view.js:279</code></a>
+            Defined in: <a href="../files/scripts_lateralus.component.view.js.html#l257"><code>scripts&#x2F;lateralus.component.view.js:257</code></a>
         </div>
     
 
@@ -205,20 +205,6 @@
                     <h3>Properties</h3>
 
                     <ul class="index-list properties extends">
-                        
-                            <li class="index-item property private">
-                                <a href="#property___proto">__proto</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property___super__">__super__</a>
-
-                                
-                                
-                            </li>
                         
                             <li class="index-item property protected">
                                 <a href="#property_attachDefaultOptions">attachDefaultOptions</a>
@@ -321,7 +307,7 @@
             
         
         
-        <a href="../files/scripts_lateralus.component.view.js.html#l158"><code>scripts&#x2F;lateralus.component.view.js:158</code></a>
+        <a href="../files/scripts_lateralus.component.view.js.html#l138"><code>scripts&#x2F;lateralus.component.view.js:138</code></a>
         
         </p>
 
@@ -439,7 +425,7 @@ subview when it is instantiated.</p>
             
         
         
-        <a href="../files/scripts_lateralus.component.view.js.html#l238"><code>scripts&#x2F;lateralus.component.view.js:238</code></a>
+        <a href="../files/scripts_lateralus.component.view.js.html#l216"><code>scripts&#x2F;lateralus.component.view.js:216</code></a>
         
         </p>
 
@@ -499,7 +485,7 @@ that references the corresponding DOM element.</p>
             
         
         
-        <a href="../files/scripts_lateralus.component.view.js.html#l260"><code>scripts&#x2F;lateralus.component.view.js:260</code></a>
+        <a href="../files/scripts_lateralus.component.view.js.html#l238"><code>scripts&#x2F;lateralus.component.view.js:238</code></a>
         
         </p>
 
@@ -561,7 +547,7 @@ the DOM and cleanly dispose of any references.</p>
             
         
         
-        <a href="../files/scripts_lateralus.component.view.js.html#l196"><code>scripts&#x2F;lateralus.component.view.js:196</code></a>
+        <a href="../files/scripts_lateralus.component.view.js.html#l174"><code>scripts&#x2F;lateralus.component.view.js:174</code></a>
         
         </p>
 
@@ -646,7 +632,7 @@ Otherwise, an empty object is returned.</p>
             
         
         
-        <a href="../files/scripts_lateralus.component.view.js.html#l105"><code>scripts&#x2F;lateralus.component.view.js:105</code></a>
+        <a href="../files/scripts_lateralus.component.view.js.html#l81"><code>scripts&#x2F;lateralus.component.view.js:81</code></a>
         
         </p>
 
@@ -661,9 +647,13 @@ Otherwise, an empty object is returned.</p>
 called directly.</p>
 <p><code><a href="../classes/Lateralus.Component.View.html" class="crosslink">Lateralus.Component.View</a></code> subclasses that
 override <code>initialize</code> must call this base method:</p>
-<pre class="code prettyprint"><code>var ExtendedComponentView = Lateralus.Component.View.extend({
+<pre class="code prettyprint"><code>var Base = Lateralus.Component.View;
+var baseProto = Base.prototype;
+
+var ExtendedComponentView = Base.extend({
   initialize: function () {
-    this._super(&#39;initialize&#39;, arguments);
+    baseProto.initialize.apply(this, arguments);
+    // Other logic...
   }
 });</code></pre>
 
@@ -735,7 +725,7 @@ override <code>initialize</code> must call this base method:</p>
             
         
         
-        <a href="../files/scripts_lateralus.component.view.js.html#l217"><code>scripts&#x2F;lateralus.component.view.js:217</code></a>
+        <a href="../files/scripts_lateralus.component.view.js.html#l195"><code>scripts&#x2F;lateralus.component.view.js:195</code></a>
         
         </p>
 
@@ -845,104 +835,6 @@ Lateralus.</p>
                 <h2 class="off-left">Properties</h2>
 
                 
-                    <div id="property___proto" class="property item private">
-    <h3 class="name"><code>__proto</code></h3>
-    <span class="type">Object</span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-        <span class="flag final">final</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/scripts_lateralus.component.view.js.html#l73"><code>scripts&#x2F;lateralus.component.view.js:73</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>A reference to the object that proceeds this one on the prototype chain.</p>
-
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property___super__" class="property item private">
-    <h3 class="name"><code>__super__</code></h3>
-    <span class="type"><a href="../classes/Lateralus.Component.View.html" class="crosslink">Lateralus.Component.View</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-        <span class="flag final">final</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/scripts_lateralus.component.view.js.html#l63"><code>scripts&#x2F;lateralus.component.view.js:63</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>A reference to the class which this <code><a href="../classes/Lateralus.Component.View.html" class="crosslink">Lateralus.Component.View</a></code> extends.</p>
-
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
                     <div id="property_attachDefaultOptions" class="property item protected">
     <h3 class="name"><code>attachDefaultOptions</code></h3>
     <span class="type">Object</span>
@@ -968,7 +860,7 @@ Lateralus.</p>
             
         
         
-        <a href="../files/scripts_lateralus.component.view.js.html#l146"><code>scripts&#x2F;lateralus.component.view.js:146</code></a>
+        <a href="../files/scripts_lateralus.component.view.js.html#l126"><code>scripts&#x2F;lateralus.component.view.js:126</code></a>
         
         </p>
 
@@ -1017,7 +909,7 @@ constructor</a>.</p>
             
         
         
-        <a href="../files/scripts_lateralus.component.view.js.html#l130"><code>scripts&#x2F;lateralus.component.view.js:130</code></a>
+        <a href="../files/scripts_lateralus.component.view.js.html#l110"><code>scripts&#x2F;lateralus.component.view.js:110</code></a>
         
         </p>
 
@@ -1068,7 +960,7 @@ initialized.</p>
             
         
         
-        <a href="../files/scripts_lateralus.component.view.js.html#l93"><code>scripts&#x2F;lateralus.component.view.js:93</code></a>
+        <a href="../files/scripts_lateralus.component.view.js.html#l69"><code>scripts&#x2F;lateralus.component.view.js:69</code></a>
         
         </p>
 
@@ -1115,7 +1007,7 @@ belongs.</p>
             
         
         
-        <a href="../files/scripts_lateralus.component.view.js.html#l82"><code>scripts&#x2F;lateralus.component.view.js:82</code></a>
+        <a href="../files/scripts_lateralus.component.view.js.html#l58"><code>scripts&#x2F;lateralus.component.view.js:58</code></a>
         
         </p>
 
@@ -1163,7 +1055,7 @@ reference to the parent <code><a href="../classes/Lateralus.Component.View.html"
             
         
         
-        <a href="../files/scripts_lateralus.component.view.js.html#l173"><code>scripts&#x2F;lateralus.component.view.js:173</code></a>
+        <a href="../files/scripts_lateralus.component.view.js.html#l153"><code>scripts&#x2F;lateralus.component.view.js:153</code></a>
         
         </p>
 

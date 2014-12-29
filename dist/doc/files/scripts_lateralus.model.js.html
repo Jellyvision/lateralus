@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.0.7</em>
+            <em>API Docs for: 0.1.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -98,13 +98,15 @@
     <pre class="code prettyprint linenums">
 define([
 
-  &#x27;backbone&#x27;
+  &#x27;underscore&#x27;
+  ,&#x27;backbone&#x27;
 
   ,&#x27;./lateralus.mixins&#x27;
 
 ], function (
 
-  Backbone
+  _
+  ,Backbone
 
   ,mixins
 
@@ -131,32 +133,19 @@ define([
    * @param {Lateralus} lateralus
    * @constructor
    */
-  fn.constructor = function ( lateralus) {
+  fn.constructor = function (lateralus) {
     this.lateralus = lateralus;
     Backbone.Model.call(this);
   };
 
-  /**
-   * This is the same as the &#x60;{{#crossLink
-   * &quot;Lateralus.mixins/emit&quot;}}{{/crossLink}}&#x60; mixin method.  See the
-   * documentation for that.
-   * @method emit
-   */
-  fn.emit = mixins.emit;
-
-  /**
-   * This is the same as the &#x60;{{#crossLink
-   * &quot;Lateralus.mixins/listenFor&quot;}}{{/crossLink}}&#x60; mixin method.  See the
-   * documentation for that.
-   * @method listenFor
-   */
-  fn.listenFor = mixins.listenFor;
+  _.extend(fn, mixins);
 
   /**
    * This class builds on the ideas and APIs of
    * [&#x60;Backbone.Model&#x60;](http://backbonejs.org/#Model).
    * @class Lateralus.Model
    * @extends {Backbone.Model}
+   * @uses Lateralus.mixins
    */
   var LateralusModel = Backbone.Model.extend(fn);
 

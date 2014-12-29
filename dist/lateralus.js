@@ -1,5 +1,5 @@
-/* Lateralus v.0.0.7 | https://github.com/Jellyvision/lateralus */
-define('lateralus.mixins',[
+/* Lateralus v.0.1.0 | https://github.com/Jellyvision/lateralus */
+define('lateralus/lateralus.mixins',[
 
   'underscore'
 
@@ -18,6 +18,14 @@ define('lateralus.mixins',[
    * @requires http://backbonejs.org/#Events
    */
   var mixins = {};
+
+  /**
+   * @param {Object} obj
+   * @return {boolean}
+   */
+  function isLateralus (obj) {
+    return obj.toString() === 'lateralus';
+  }
 
   /**
    * Add a subcomponent to a `{{#crossLink "Lateralus"}}{{/crossLink}}` or
@@ -72,12 +80,11 @@ define('lateralus.mixins',[
     }
 
     // If thisIsLateralus is false, `this` is a Lateralus.Component instance.
-    var thisIsLateralus = this.toString() === 'lateralus';
+    var thisIsLateralus = isLateralus(this);
 
     var lateralusReference = thisIsLateralus ? this : this.lateralus;
     var component = new Component(
       lateralusReference
-      ,Component.__super__
       ,options
       ,viewOptions || {}
       ,thisIsLateralus ? null : this
@@ -109,6 +116,9 @@ define('lateralus.mixins',[
    * coupling by firing an event that bubbles throughout the app, depending on
    * what calls it:
    *
+   * * If this is called by `{{#crossLink "Lateralus"}}{{/crossLink}}`, this
+   * just triggers an event on that `{{#crossLink "Lateralus"}}{{/crossLink}}`
+   * instance.
    * * If this is called by a `{{#crossLink
    * "Lateralus.Component"}}{{/crossLink}}`, this triggers an event on that
    * `{{#crossLink "Lateralus.Component"}}{{/crossLink}}` as well as the
@@ -129,6 +139,10 @@ define('lateralus.mixins',[
     var args = _.toArray(arguments);
     this.trigger.apply(this, args);
 
+    if (isLateralus(this)) {
+      return;
+    }
+
     if (this.component) {
       this.component.trigger.apply(this.component, args);
     }
@@ -144,7 +158,7 @@ define('lateralus.mixins',[
    * @param {Function} callback The function handler to bind.
    */
   mixins.listenFor = function (event, callback) {
-    var thisIsLateralus = this.toString() === 'lateralus';
+    var thisIsLateralus = isLateralus(this);
     if (thisIsLateralus) {
       this.on(event, callback);
     } else {
@@ -152,67 +166,20 @@ define('lateralus.mixins',[
     }
   };
 
-  //jshint maxlen:100
-  /**
-   * Call a method of the next object on the prototype chain where it is
-   * present.  This method is prepended with an underscore to prevent conflict
-   * with the ES6 `super` keyword.
-   *
-   *     Lateralus.Component.extend({
-   *       initialize: function () {
-   *         // The same as Lateralus.Component.prototype.initialize.apply(this, arguments);
-   *         this._super('initialize', arguments);
-   *       }
-   *     });
-   *
-   * **Note**: This method has been deprecated due to limitations in JavaScript
-   * and will be removed soon.
-   * @method _super
-   * @param {string} methodName
-   * @param {arguments} args the `arguments` array from the calling function.
-   * @param {Function} [opt_base] A static reference to the constructor of the
-   * calling method.  This parameter is necessary for `extended` chains longer
-   * than two objects to prevent endless recursive loops.
-   * @return {any} Whatever the called method returned.
-   * @deprecated
-   */
-  mixins._super = function (methodName, args, opt_base) {
-    if (opt_base) {
-      return opt_base.__super__[methodName].apply(this, args);
-    }
-
-    var fn = this.__super__[methodName];
-    var lookup = this.__proto;
-
-    // Ensure that the method being called is at least one step up the
-    // prototype chain from where _super was called.
-    if (fn === this[methodName]) {
-      while (lookup) {
-        fn = lookup[methodName];
-
-        if (typeof fn === 'function' && fn !== this[methodName]) {
-          break;
-        } else {
-          lookup = lookup.__proto;
-        }
-      }
-    }
-
-    return fn.apply(this, args);
-  };
-
   return mixins;
 });
 
-define('lateralus.model',[
+define('lateralus/lateralus.model',[
 
-  'backbone'
+  'underscore'
+  ,'backbone'
 
   ,'./lateralus.mixins'
 
 ], function (
 
-  Backbone
+  _
+  ,Backbone
 
   ,mixins
 
@@ -239,39 +206,26 @@ define('lateralus.model',[
    * @param {Lateralus} lateralus
    * @constructor
    */
-  fn.constructor = function ( lateralus) {
+  fn.constructor = function (lateralus) {
     this.lateralus = lateralus;
     Backbone.Model.call(this);
   };
 
-  /**
-   * This is the same as the `{{#crossLink
-   * "Lateralus.mixins/emit"}}{{/crossLink}}` mixin method.  See the
-   * documentation for that.
-   * @method emit
-   */
-  fn.emit = mixins.emit;
-
-  /**
-   * This is the same as the `{{#crossLink
-   * "Lateralus.mixins/listenFor"}}{{/crossLink}}` mixin method.  See the
-   * documentation for that.
-   * @method listenFor
-   */
-  fn.listenFor = mixins.listenFor;
+  _.extend(fn, mixins);
 
   /**
    * This class builds on the ideas and APIs of
    * [`Backbone.Model`](http://backbonejs.org/#Model).
    * @class Lateralus.Model
    * @extends {Backbone.Model}
+   * @uses Lateralus.mixins
    */
   var LateralusModel = Backbone.Model.extend(fn);
 
   return LateralusModel;
 });
 
-define('lateralus.component.view',[
+define('lateralus/lateralus.component.view',[
 
   'jquery'
   ,'underscore'
@@ -318,39 +272,15 @@ define('lateralus.component.view',[
    * constructor.
    * @private
    * @param {Lateralus} lateralus
-   * @param {Backbone.View} __super__ The constructor that this subclass is
-   * extending.
-   * @param {Backbone.View} __proto The prototype that this subclass is
-   * extending.
    * @param {Lateralus.Component} component
    * @param {Object} [options] Gets passed to
    * [`Backbone.View#initialize'](http://backbonejs.org/#Collection-constructor).
    * @param {Lateralus.Component.View} [opt_parentView]
+   * @uses Lateralus.mixins
    * @constructor
    */
-  fn.constructor = function (
-      lateralus, __super__, __proto, component, options, opt_parentView) {
+  fn.constructor = function (lateralus, component, options, opt_parentView) {
     this.lateralus = lateralus;
-
-    // Build an explicit prototype chain reference for _super method
-    /**
-     * A reference to the class which this `{{#crossLink
-     * "Lateralus.Component.View"}}{{/crossLink}}` extends.
-     * @property __super__
-     * @private
-     * @type {Lateralus.Component.View}
-     * @final
-     */
-    this.__super__ = __super__;
-
-    /**
-     * A reference to the object that proceeds this one on the prototype chain.
-     * @property __proto
-     * @private
-     * @type {Object}
-     * @final
-     */
-    this.__proto = __proto;
 
     /**
      * If this is a subview of another `{{#crossLink
@@ -383,9 +313,13 @@ define('lateralus.component.view',[
    * `{{#crossLink "Lateralus.Component.View"}}{{/crossLink}}` subclasses that
    * override `initialize` must call this base method:
    *
-   *     var ExtendedComponentView = Lateralus.Component.View.extend({
+   *     var Base = Lateralus.Component.View;
+   *     var baseProto = Base.prototype;
+   *
+   *     var ExtendedComponentView = Base.extend({
    *       initialize: function () {
-   *         this._super('initialize', arguments);
+   *         baseProto.initialize.apply(this, arguments);
+   *         // Other logic...
    *       }
    *     });
    * @method initialize
@@ -454,8 +388,6 @@ define('lateralus.component.view',[
 
     var subview = new Subview(
       this.lateralus
-      ,Subview.__super__
-      ,Subview.prototype.__proto
       ,this.component
       ,subviewOptions
       ,this
@@ -557,150 +489,73 @@ define('lateralus.component.view',[
    */
   var ComponentView = Backbone.View.extend(fn);
 
-  /**
-   * Overrides [`Backbone.View#extend`](http://backbonejs.org/#View-extend) to
-   * set up explicit prototype chain references for `{{#crossLink
-   * "Lateralus.mixins/_super"}}{{/crossLink}}` calls.
-   * @return {Object}
-   */
-  ComponentView.extend = function () {
-    var extendedObject = Backbone.View.extend.apply(this, arguments);
-    extendedObject.prototype.__proto = this.prototype;
-    return extendedObject;
-  };
-
   return ComponentView;
 });
 
-define('lateralus.component.model',[
+define('lateralus/lateralus.component.model',[
 
-  'backbone'
+  'underscore'
+  ,'backbone'
 
-  ,'./lateralus.mixins'
+  ,'./lateralus.model'
 
 ], function (
 
-  Backbone
+  _
+  ,Backbone
 
-  ,mixins
+  ,LateralusModel
 
 ) {
   
 
-  var fn = {};
-
-  /**
-   * @method toString
-   * @protected
-   * @return {string} The name of this Model.  This is used internally by
-   * Lateralus.
-   */
-  fn.toString = function () {
-    return this.component.toString() + '-model';
-  };
-
-  // jshint maxlen:100
-  /**
-   * The constructor for this class should not be called by application code,
-   * it is used by the `{{#crossLink "Lateralus.Component"}}{{/crossLink}}`
-   * constructor.
-   * @private
-   * @param {Lateralus} lateralus
-   * @param {Backbone.Model} __super__ The constructor that this subclass is
-   * extending.
-   * @param {Backbone.Model} __proto The prototype that this subclass is
-   * extending.
-   * @param {Lateralus.Component} component
-   * @param {Object} [attributes] Gets passed to
-   * [`Backbone.Model#initialize'](http://backbonejs.org/#Model-constructor).
-   * @param {Object} [options] Gets passed to
-   * [`Backbone.Model#initialize'](http://backbonejs.org/#Model-constructor).
-   * @constructor
-   */
-  fn.constructor = function (
-      lateralus, __super__, __proto, component, attributes, options) {
-    this.lateralus = lateralus;
-
-    // Build an explicit prototype chain reference for _super method
+  var ComponentModel = LateralusModel.extend({
     /**
-     * A reference to the class which this `{{#crossLink
-     * "Lateralus.Component.Model"}}{{/crossLink}}` extends.
-     * @property __super__
+     * @method toString
+     * @protected
+     * @return {string} The name of this Model.  This is used internally by
+     * Lateralus.
+     */
+    toString: function () {
+      return this.component.toString() + '-model';
+    }
+
+    // jshint maxlen:100
+    /**
+     * The constructor for this class should not be called by application code,
+     * it is used by the `{{#crossLink "Lateralus.Component"}}{{/crossLink}}`
+     * constructor.
      * @private
-     * @type {Lateralus.Component.Model}
-     * @final
+     * @param {Lateralus} lateralus
+     * @param {Lateralus.Component} component
+     * @param {Object} [attributes] Gets passed to
+     * [`Backbone.Model#initialize'](http://backbonejs.org/#Model-constructor).
+     * @param {Object} [options] Gets passed to
+     * [`Backbone.Model#initialize'](http://backbonejs.org/#Model-constructor).
+     * @class Lateralus.Component.Model
+     * @extends Lateralus.Model
+     * @constructor
      */
-    this.__super__ = __super__;
+    ,constructor: function (lateralus, component, attributes, options) {
+      this.lateralus = lateralus;
 
-    /**
-     * A reference to the object that proceeds this one on the prototype chain.
-     * @property __proto
-     * @private
-     * @type {Object}
-     * @final
-     */
-    this.__proto = __proto;
-
-    /**
-     * A reference to the `{{#crossLink "Lateralus.Component"}}{{/crossLink}}`
-     * to which this `{{#crossLink "Lateralus.Component.Model"}}{{/crossLink}}`
-     * belongs.
-     * @property component
-     * @type {Lateralus.Component}
-     * @final
-     */
-    this.component = component;
-    Backbone.Model.call(this, attributes, options);
-  };
-
-  /**
-   * This is the same as the `{{#crossLink
-   * "Lateralus.mixins/emit"}}{{/crossLink}}` mixin method.  See the
-   * documentation for that.
-   * @method emit
-   */
-  fn.emit = mixins.emit;
-
-  /**
-   * This is the same as the `{{#crossLink
-   * "Lateralus.mixins/listenFor"}}{{/crossLink}}` mixin method.  See the
-   * documentation for that.
-   * @method listenFor
-   */
-  fn.listenFor = mixins.listenFor;
-
-  /**
-   * This is the same as the `{{#crossLink
-   * "Lateralus.mixins/_super"}}{{/crossLink}}` mixin method.  See the
-   * documentation for that.
-   * @method _super
-   */
-  fn._super = mixins._super;
-
-  /**
-   * This class builds on the ideas and APIs of
-   * [`Backbone.Model`](http://backbonejs.org/#Model).
-   * @class Lateralus.Component.Model
-   * @extends {Backbone.Model}
-   */
-  var ComponentModel = Backbone.Model.extend(fn);
-
-  /**
-   * Overrides [`Backbone.Model#extend`](http://backbonejs.org/#Model-extend) to
-   * set up explicit prototype chain references for `{{#crossLink
-   * "Lateralus.mixins/_super"}}{{/crossLink}}` calls.
-   * @return {Object}
-   */
-  ComponentModel.extend = function () {
-    var extendedObject = Backbone.Model.extend.apply(this, arguments);
-    extendedObject.prototype.__proto = this.prototype;
-    return extendedObject;
-  };
+      /**
+       * A reference to the `{{#crossLink
+       * "Lateralus.Component"}}{{/crossLink}}` to which this `{{#crossLink
+       * "Lateralus.Component.Model"}}{{/crossLink}}` belongs.
+       * @property component
+       * @type {Lateralus.Component}
+       * @final
+       */
+      this.component = component;
+      Backbone.Model.call(this, attributes, options);
+    }
+  });
 
   return ComponentModel;
 });
 
-define('lateralus.component',[
+define('lateralus/lateralus.component',[
 
   'underscore'
   ,'backbone'
@@ -734,8 +589,6 @@ define('lateralus.component',[
    *     console.log(component instanceof Lateralus.Component); // true
    * @class Lateralus.Component
    * @param {Lateralus} lateralus
-   * @param {Lateralus.Component} __super__ The constructor that this subclass
-   * is extending.
    * @param {Object} options Values to attach to this `{{#crossLink
    * "Lateralus.Component"}}{{/crossLink}}` instance.  This object also get
    * passed to the `{{#crossLink
@@ -757,8 +610,7 @@ define('lateralus.component',[
    * @protected
    * @constructor
    */
-  function Component (
-      lateralus, __super__, options, viewOptions, opt_parentComponent) {
+  function Component (lateralus, options, viewOptions, opt_parentComponent) {
 
     /**
      * A reference to the central `{{#crossLink "Lateralus"}}{{/crossLink}}`
@@ -768,16 +620,6 @@ define('lateralus.component',[
      * @final
      */
     this.lateralus = lateralus;
-
-    /**
-     * A reference to the class which this `{{#crossLink
-     * "Lateralus.Component"}}{{/crossLink}}` extends.
-     * @property __super__
-     * @private
-     * @type {Lateralus.Component}
-     * @final
-     */
-    this.__super__ = __super__;
 
     /**
      * If a `{{#crossLink "Lateralus.Component"}}{{/crossLink}}` has `mixins`
@@ -828,8 +670,6 @@ define('lateralus.component',[
       if (this.Model && !viewOptions.model) {
         this.model = new this.Model(
           lateralus
-          ,this.Model.__super__
-          ,this.Model.prototype.__proto
           ,this
           ,options.modelAttributes
           ,options.modelOptions
@@ -847,8 +687,6 @@ define('lateralus.component',[
        */
       this.view = new this.View(
           lateralus
-          ,this.View.__super__
-          ,this.View.prototype.__proto
           ,this
           ,augmentedViewOptions
         );
@@ -949,19 +787,8 @@ define('lateralus.component',[
   Component.extend = function (protoProps) {
     var extendedComponent = Backbone.Model.extend.call(this, protoProps);
 
-    var threwError = false;
-
-    _.each([
-          'name'
-        ], function (prop) {
-      if (typeof protoProps[prop] === 'undefined') {
-        threwError = true;
-        throw prop + ' was not provided to Component.extend.';
-      }
-    });
-
-    if (threwError) {
-      throw 'Component.extend failed.  See previous error message(s).';
+    if (!protoProps.name) {
+      throw new Error('A name was not provided to Component.extend.');
     }
 
     _.extend(extendedComponent, protoProps);
@@ -1050,7 +877,7 @@ define('lateralus.component',[
   return Component;
 });
 
-define('lateralus',[
+define('lateralus/lateralus',[
 
   'underscore'
   ,'backbone'
@@ -1084,6 +911,7 @@ define('lateralus',[
    * @param {Element} el The DOM element that contains the entire Lateralus
    * app.
    * @class Lateralus
+   * @uses Lateralus.mixins
    * @constructor
    */
   function Lateralus (el) {
@@ -1112,7 +940,9 @@ define('lateralus',[
     this.model = new LateralusModel(this);
   }
 
-  _.extend(Lateralus.prototype, Backbone.Events);
+  var fn = Lateralus.prototype;
+
+  _.extend(fn, Backbone.Events);
 
   /**
    * Set up the prototype chain between two objects.
@@ -1146,21 +976,7 @@ define('lateralus',[
     return Lateralus.inherit(child, Lateralus);
   };
 
-  /**
-   * This is the same as the `{{#crossLink
-   * "Lateralus.mixins/addComponent"}}{{/crossLink}}` mixin method.  See the
-   * documentation for that.
-   * @method addComponent
-   */
-  Lateralus.prototype.addComponent = mixins.addComponent;
-
-  /**
-   * This is the same as the `{{#crossLink
-   * "Lateralus.mixins/listenFor"}}{{/crossLink}}` mixin method.  See the
-   * documentation for that.
-   * @method listenFor
-   */
-  Lateralus.prototype.listenFor = mixins.listenFor;
+  _.extend(fn, mixins);
 
   _.each([
 
@@ -1186,7 +1002,7 @@ define('lateralus',[
     ,'error'
 
   ], function (consoleMethodName) {
-    Lateralus.prototype[consoleMethodName] = function () {
+    fn[consoleMethodName] = function () {
       if (typeof console !== 'undefined' && console[consoleMethodName]) {
         console[consoleMethodName].apply(console, arguments);
       }
@@ -1199,7 +1015,7 @@ define('lateralus',[
    * @return {string} This is `"lateralus"`.
    * @final
    */
-  Lateralus.prototype.toString = function () {
+  fn.toString = function () {
     return 'lateralus';
   };
 
@@ -1207,4 +1023,6 @@ define('lateralus',[
 
   return Lateralus;
 });
+
+define('lateralus', ['lateralus/lateralus'], function (main) { return main; });
 

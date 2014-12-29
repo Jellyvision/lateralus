@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.0.7</em>
+            <em>API Docs for: 0.1.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -117,6 +117,14 @@ define([
   var mixins = {};
 
   /**
+   * @param {Object} obj
+   * @return {boolean}
+   */
+  function isLateralus (obj) {
+    return obj.toString() === &#x27;lateralus&#x27;;
+  }
+
+  /**
    * Add a subcomponent to a &#x60;{{#crossLink &quot;Lateralus&quot;}}{{/crossLink}}&#x60; or
    * &#x60;{{#crossLink &quot;Lateralus.Component&quot;}}{{/crossLink}}&#x60; instance.
    *
@@ -169,12 +177,11 @@ define([
     }
 
     // If thisIsLateralus is false, &#x60;this&#x60; is a Lateralus.Component instance.
-    var thisIsLateralus = this.toString() === &#x27;lateralus&#x27;;
+    var thisIsLateralus = isLateralus(this);
 
     var lateralusReference = thisIsLateralus ? this : this.lateralus;
     var component = new Component(
       lateralusReference
-      ,Component.__super__
       ,options
       ,viewOptions || {}
       ,thisIsLateralus ? null : this
@@ -206,6 +213,9 @@ define([
    * coupling by firing an event that bubbles throughout the app, depending on
    * what calls it:
    *
+   * * If this is called by &#x60;{{#crossLink &quot;Lateralus&quot;}}{{/crossLink}}&#x60;, this
+   * just triggers an event on that &#x60;{{#crossLink &quot;Lateralus&quot;}}{{/crossLink}}&#x60;
+   * instance.
    * * If this is called by a &#x60;{{#crossLink
    * &quot;Lateralus.Component&quot;}}{{/crossLink}}&#x60;, this triggers an event on that
    * &#x60;{{#crossLink &quot;Lateralus.Component&quot;}}{{/crossLink}}&#x60; as well as the
@@ -226,6 +236,10 @@ define([
     var args = _.toArray(arguments);
     this.trigger.apply(this, args);
 
+    if (isLateralus(this)) {
+      return;
+    }
+
     if (this.component) {
       this.component.trigger.apply(this.component, args);
     }
@@ -241,61 +255,12 @@ define([
    * @param {Function} callback The function handler to bind.
    */
   mixins.listenFor = function (event, callback) {
-    var thisIsLateralus = this.toString() === &#x27;lateralus&#x27;;
+    var thisIsLateralus = isLateralus(this);
     if (thisIsLateralus) {
       this.on(event, callback);
     } else {
       this.listenTo(this.lateralus, event, callback);
     }
-  };
-
-  //jshint maxlen:100
-  /**
-   * Call a method of the next object on the prototype chain where it is
-   * present.  This method is prepended with an underscore to prevent conflict
-   * with the ES6 &#x60;super&#x60; keyword.
-   *
-   *     Lateralus.Component.extend({
-   *       initialize: function () {
-   *         // The same as Lateralus.Component.prototype.initialize.apply(this, arguments);
-   *         this._super(&#x27;initialize&#x27;, arguments);
-   *       }
-   *     });
-   *
-   * **Note**: This method has been deprecated due to limitations in JavaScript
-   * and will be removed soon.
-   * @method _super
-   * @param {string} methodName
-   * @param {arguments} args the &#x60;arguments&#x60; array from the calling function.
-   * @param {Function} [opt_base] A static reference to the constructor of the
-   * calling method.  This parameter is necessary for &#x60;extended&#x60; chains longer
-   * than two objects to prevent endless recursive loops.
-   * @return {any} Whatever the called method returned.
-   * @deprecated
-   */
-  mixins._super = function (methodName, args, opt_base) {
-    if (opt_base) {
-      return opt_base.__super__[methodName].apply(this, args);
-    }
-
-    var fn = this.__super__[methodName];
-    var lookup = this.__proto;
-
-    // Ensure that the method being called is at least one step up the
-    // prototype chain from where _super was called.
-    if (fn === this[methodName]) {
-      while (lookup) {
-        fn = lookup[methodName];
-
-        if (typeof fn === &#x27;function&#x27; &amp;&amp; fn !== this[methodName]) {
-          break;
-        } else {
-          lookup = lookup.__proto;
-        }
-      }
-    }
-
-    return fn.apply(this, args);
   };
 
   return mixins;

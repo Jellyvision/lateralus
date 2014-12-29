@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.0.7</em>
+            <em>API Docs for: 0.1.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -143,39 +143,15 @@ define([
    * constructor.
    * @private
    * @param {Lateralus} lateralus
-   * @param {Backbone.View} __super__ The constructor that this subclass is
-   * extending.
-   * @param {Backbone.View} __proto The prototype that this subclass is
-   * extending.
    * @param {Lateralus.Component} component
    * @param {Object} [options] Gets passed to
    * [&#x60;Backbone.View#initialize&#x27;](http://backbonejs.org/#Collection-constructor).
    * @param {Lateralus.Component.View} [opt_parentView]
+   * @uses Lateralus.mixins
    * @constructor
    */
-  fn.constructor = function (
-      lateralus, __super__, __proto, component, options, opt_parentView) {
+  fn.constructor = function (lateralus, component, options, opt_parentView) {
     this.lateralus = lateralus;
-
-    // Build an explicit prototype chain reference for _super method
-    /**
-     * A reference to the class which this &#x60;{{#crossLink
-     * &quot;Lateralus.Component.View&quot;}}{{/crossLink}}&#x60; extends.
-     * @property __super__
-     * @private
-     * @type {Lateralus.Component.View}
-     * @final
-     */
-    this.__super__ = __super__;
-
-    /**
-     * A reference to the object that proceeds this one on the prototype chain.
-     * @property __proto
-     * @private
-     * @type {Object}
-     * @final
-     */
-    this.__proto = __proto;
 
     /**
      * If this is a subview of another &#x60;{{#crossLink
@@ -208,9 +184,13 @@ define([
    * &#x60;{{#crossLink &quot;Lateralus.Component.View&quot;}}{{/crossLink}}&#x60; subclasses that
    * override &#x60;initialize&#x60; must call this base method:
    *
-   *     var ExtendedComponentView = Lateralus.Component.View.extend({
+   *     var Base = Lateralus.Component.View;
+   *     var baseProto = Base.prototype;
+   *
+   *     var ExtendedComponentView = Base.extend({
    *       initialize: function () {
-   *         this._super(&#x27;initialize&#x27;, arguments);
+   *         baseProto.initialize.apply(this, arguments);
+   *         // Other logic...
    *       }
    *     });
    * @method initialize
@@ -279,8 +259,6 @@ define([
 
     var subview = new Subview(
       this.lateralus
-      ,Subview.__super__
-      ,Subview.prototype.__proto
       ,this.component
       ,subviewOptions
       ,this
@@ -381,18 +359,6 @@ define([
    * @extends {Backbone.View}
    */
   var ComponentView = Backbone.View.extend(fn);
-
-  /**
-   * Overrides [&#x60;Backbone.View#extend&#x60;](http://backbonejs.org/#View-extend) to
-   * set up explicit prototype chain references for &#x60;{{#crossLink
-   * &quot;Lateralus.mixins/_super&quot;}}{{/crossLink}}&#x60; calls.
-   * @return {Object}
-   */
-  ComponentView.extend = function () {
-    var extendedObject = Backbone.View.extend.apply(this, arguments);
-    extendedObject.prototype.__proto = this.prototype;
-    return extendedObject;
-  };
 
   return ComponentView;
 });

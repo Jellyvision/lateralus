@@ -1,6 +1,6 @@
 {
   "name": "generator-lateralus",
-  "version": "0.0.7",
+  "version": "0.1.0",
   "description": "A Yeoman generator for Lateralus",
   "license": "MIT",
   "main": "app/index.js",

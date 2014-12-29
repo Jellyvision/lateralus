@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.0.7</em>
+            <em>API Docs for: 0.1.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -130,6 +130,7 @@ define([
    * @param {Element} el The DOM element that contains the entire Lateralus
    * app.
    * @class Lateralus
+   * @uses Lateralus.mixins
    * @constructor
    */
   function Lateralus (el) {
@@ -158,7 +159,9 @@ define([
     this.model = new LateralusModel(this);
   }
 
-  _.extend(Lateralus.prototype, Backbone.Events);
+  var fn = Lateralus.prototype;
+
+  _.extend(fn, Backbone.Events);
 
   /**
    * Set up the prototype chain between two objects.
@@ -192,21 +195,7 @@ define([
     return Lateralus.inherit(child, Lateralus);
   };
 
-  /**
-   * This is the same as the &#x60;{{#crossLink
-   * &quot;Lateralus.mixins/addComponent&quot;}}{{/crossLink}}&#x60; mixin method.  See the
-   * documentation for that.
-   * @method addComponent
-   */
-  Lateralus.prototype.addComponent = mixins.addComponent;
-
-  /**
-   * This is the same as the &#x60;{{#crossLink
-   * &quot;Lateralus.mixins/listenFor&quot;}}{{/crossLink}}&#x60; mixin method.  See the
-   * documentation for that.
-   * @method listenFor
-   */
-  Lateralus.prototype.listenFor = mixins.listenFor;
+  _.extend(fn, mixins);
 
   _.each([
 
@@ -232,7 +221,7 @@ define([
     ,&#x27;error&#x27;
 
   ], function (consoleMethodName) {
-    Lateralus.prototype[consoleMethodName] = function () {
+    fn[consoleMethodName] = function () {
       if (typeof console !== &#x27;undefined&#x27; &amp;&amp; console[consoleMethodName]) {
         console[consoleMethodName].apply(console, arguments);
       }
@@ -245,7 +234,7 @@ define([
    * @return {string} This is &#x60;&quot;lateralus&quot;&#x60;.
    * @final
    */
-  Lateralus.prototype.toString = function () {
+  fn.toString = function () {
     return &#x27;lateralus&#x27;;
   };
 

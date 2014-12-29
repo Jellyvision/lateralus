@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.0.7</em>
+            <em>API Docs for: 0.1.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -95,6 +95,15 @@
                         <h1>Lateralus.Model Class</h1>
 <div class="box meta">
     
+        <div class="uses">
+            Uses
+            <ul class="inline commas">
+                
+                    <li><a href="Lateralus.mixins.html">Lateralus.mixins</a></li>
+                
+            </ul>
+        </div>
+    
 
     
         <div class="extends">
@@ -104,7 +113,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../files/scripts_lateralus.model.js.html#l57"><code>scripts&#x2F;lateralus.model.js:57</code></a>
+            Defined in: <a href="../files/scripts_lateralus.model.js.html#l45"><code>scripts&#x2F;lateralus.model.js:45</code></a>
         </div>
     
 
@@ -131,6 +140,8 @@
             <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
         
         
+            <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
+        
         
         
     </ul>
@@ -145,14 +156,21 @@
 
                     <ul class="index-list methods extends">
                         
-                            <li class="index-item method">
+                            <li class="index-item method inherited">
+                                <a href="#method_addComponent">addComponent</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method inherited">
                                 <a href="#method_emit">emit</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method">
+                            <li class="index-item method inherited">
                                 <a href="#method_listenFor">listenFor</a>
 
                                 
@@ -171,6 +189,28 @@
             
 
             
+                <div class="index-section properties">
+                    <h3>Properties</h3>
+
+                    <ul class="index-list properties extends">
+                        
+                            <li class="index-item property private inherited">
+                                <a href="#property_componentCounters">componentCounters</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property inherited">
+                                <a href="#property_components">components</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
 
             
 
@@ -182,11 +222,224 @@
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method_emit" class="method item">
+                    <div id="method_addComponent" class="method item inherited">
+    <h3 class="name"><code>addComponent</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>Component</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[viewOptions]</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[options]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/Lateralus.Component.html" class="crosslink">Lateralus.Component</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="../classes/Lateralus.mixins.html#method_addComponent">Lateralus.mixins</a>:
+            
+        
+        
+        <a href="../files/scripts_lateralus.mixins.js.html#l29"><code>scripts&#x2F;lateralus.mixins.js:29</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p><p>Add a subcomponent to a <code><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a></code> or
+<code><a href="../classes/Lateralus.Component.html" class="crosslink">Lateralus.Component</a></code> instance.</p></p>
+<pre class="code prettyprint"><code>var App = Lateralus.beget(function () {
+  Lateralus.apply(this, arguments);
+});
+
+var app = new App(document.getElementById(&#39;app&#39;));
+var component = app.addComponent(Lateralus.Component);
+var subcomponent = component.addComponent(Lateralus.Component);</code></pre>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">Component</code>
+                        <span class="type"><a href="../classes/Lateralus.Component.html" class="crosslink">Lateralus.Component</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>A constructor, not an instance.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[viewOptions]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The <code>options</code> object to be passed along to
+the <code>Component</code> parameter&#39;s <a href="../classes/Lateralus.Component.View.html" class="crosslink">Lateralus.Component.View</a> instance.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[options]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Gets passed to the new <a href="../classes/Lateralus.Component.html" class="crosslink">Lateralus.Component</a> instance.</p>
+
+                    </div>
+
+                    
+                        <ul class="params-list">
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[modelAttributes]</code>
+                                    <span class="type">Object</span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Any attributes to pre-populate
+the <code>Lateralus.Component/Model:property</code>
+instance with, if there is one.</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[modelOptions]</code>
+                                    <span class="type">Object</span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Any parameters to pass to the
+<code>Lateralus.Component/Model:property</code>
+instance, if there is one.</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/Lateralus.Component.html" class="crosslink">Lateralus.Component</a></span>:
+                    
+                    <p>The component that was added.</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_emit" class="method item inherited">
     <h3 class="name"><code>emit</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>eventName</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[args]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
     
@@ -206,15 +459,12 @@
     <div class="meta">
         
             
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="../classes/Lateralus.mixins.html#method_emit">Lateralus.mixins</a>:
             
         
         
-        <a href="../files/scripts_lateralus.model.js.html#l41"><code>scripts&#x2F;lateralus.model.js:41</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l110"><code>scripts&#x2F;lateralus.mixins.js:110</code></a>
         
         </p>
 
@@ -225,11 +475,70 @@
     </div>
 
     <div class="description">
-        <p>This is the same as the <code><a href="../classes/Lateralus.mixins.html#method_emit" class="crosslink">emit</a></code> mixin method.  See the
-documentation for that.</p>
+        <p>Components should never communicate directly with one another in order to
+maintain a loosely-coupled architecture.  Instead, they should just
+broadcast general messages with the <a href="http://backbonejs.org/#Events"><code>Backbone.Events</code>
+API</a>.  <code>emit</code> facilitates this loose
+coupling by firing an event that bubbles throughout the app, depending on
+what calls it:</p>
+<ul>
+<li>If this is called by <code><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a></code>, this
+just triggers an event on that <code><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a></code>
+instance.</li>
+<li>If this is called by a <code><a href="../classes/Lateralus.Component.html" class="crosslink">Lateralus.Component</a></code>, this triggers an event on that
+<code><a href="../classes/Lateralus.Component.html" class="crosslink">Lateralus.Component</a></code> as well as the
+central <code><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a></code> instance.</li>
+<li>If this is called by a <code><a href="../classes/Lateralus.Component.View.html" class="crosslink">Lateralus.Component.View</a></code>, this triggers an event on
+that <code><a href="../classes/Lateralus.Component.View.html" class="crosslink">Lateralus.Component.View</a></code>, the
+<code><a href="../classes/Lateralus.Component.html" class="crosslink">Lateralus.Component</a></code> to which it belongs,
+and the central <code><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a></code> instance.</li>
+</ul>
+<p>This method has the same method signature as
+<a href="http://backbonejs.org/#Events-trigger"><code>Backbone.Events.trigger</code></a>.</p>
 
     </div>
 
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">eventName</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The name of the event.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[args]</code>
+                        <span class="type">...any</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Any arguments to pass along to the listeners.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     
@@ -238,11 +547,27 @@ documentation for that.</p>
 </div>
 
                 
-                    <div id="method_listenFor" class="method item">
+                    <div id="method_listenFor" class="method item inherited">
     <h3 class="name"><code>listenFor</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>event</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>callback</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
     
@@ -262,15 +587,12 @@ documentation for that.</p>
     <div class="meta">
         
             
-                
-                <p>
-                
-                Defined in
-                
+                <p>Inherited from
+                <a href="../classes/Lateralus.mixins.html#method_listenFor">Lateralus.mixins</a>:
             
         
         
-        <a href="../files/scripts_lateralus.model.js.html#l49"><code>scripts&#x2F;lateralus.model.js:49</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l152"><code>scripts&#x2F;lateralus.mixins.js:152</code></a>
         
         </p>
 
@@ -281,11 +603,50 @@ documentation for that.</p>
     </div>
 
     <div class="description">
-        <p>This is the same as the <code><a href="../classes/Lateralus.mixins.html#method_listenFor" class="crosslink">listenFor</a></code> mixin method.  See the
-documentation for that.</p>
+        <p>Listen for an event that is triggered on the central <a href="../classes/Lateralus.html" class="crosslink">Lateralus</a> instance and bind a function handler.</p>
 
     </div>
 
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">event</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The name of the event to listen for.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">callback</code>
+                        <span class="type">Function</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The function handler to bind.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     
@@ -332,7 +693,7 @@ documentation for that.</p>
             
         
         
-        <a href="../files/scripts_lateralus.model.js.html#l18"><code>scripts&#x2F;lateralus.model.js:18</code></a>
+        <a href="../files/scripts_lateralus.model.js.html#l20"><code>scripts&#x2F;lateralus.model.js:20</code></a>
         
         </p>
 
@@ -372,6 +733,100 @@ Lateralus.</p>
             </div>
         
 
+        
+            <div id="properties" class="api-class-tabpanel">
+                <h2 class="off-left">Properties</h2>
+
+                
+                    <div id="property_componentCounters" class="property item private inherited">
+    <h3 class="name"><code>componentCounters</code></h3>
+    <span class="type">Object(number)</span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="../classes/Lateralus.mixins.html#property_componentCounters">Lateralus.mixins</a>:
+            
+        
+        
+        <a href="../files/scripts_lateralus.mixins.js.html#l71"><code>scripts&#x2F;lateralus.mixins.js:71</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>An internal counter registry of the subcomponents belonging to this
+object.</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_components" class="property item inherited">
+    <h3 class="name"><code>components</code></h3>
+    <span class="type">Object(Lateralus.Component)</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="../classes/Lateralus.mixins.html#property_components">Lateralus.mixins</a>:
+            
+        
+        
+        <a href="../files/scripts_lateralus.mixins.js.html#l63"><code>scripts&#x2F;lateralus.mixins.js:63</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>The subcomponents belonging to this object.  Do not modify this
+property directly, it is managed by Lateralus.</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+            </div>
         
 
         
