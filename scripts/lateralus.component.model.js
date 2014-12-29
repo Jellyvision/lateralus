@@ -32,10 +32,6 @@ define([
    * constructor.
    * @private
    * @param {Lateralus} lateralus
-   * @param {Backbone.Model} __super__ The constructor that this subclass is
-   * extending.
-   * @param {Backbone.Model} __proto The prototype that this subclass is
-   * extending.
    * @param {Lateralus.Component} component
    * @param {Object} [attributes] Gets passed to
    * [`Backbone.Model#initialize'](http://backbonejs.org/#Model-constructor).
@@ -43,29 +39,8 @@ define([
    * [`Backbone.Model#initialize'](http://backbonejs.org/#Model-constructor).
    * @constructor
    */
-  fn.constructor = function (
-      lateralus, __super__, __proto, component, attributes, options) {
+  fn.constructor = function (lateralus, component, attributes, options) {
     this.lateralus = lateralus;
-
-    // Build an explicit prototype chain reference for _super method
-    /**
-     * A reference to the class which this `{{#crossLink
-     * "Lateralus.Component.Model"}}{{/crossLink}}` extends.
-     * @property __super__
-     * @private
-     * @type {Lateralus.Component.Model}
-     * @final
-     */
-    this.__super__ = __super__;
-
-    /**
-     * A reference to the object that proceeds this one on the prototype chain.
-     * @property __proto
-     * @private
-     * @type {Object}
-     * @final
-     */
-    this.__proto = __proto;
 
     /**
      * A reference to the `{{#crossLink "Lateralus.Component"}}{{/crossLink}}`
@@ -110,18 +85,6 @@ define([
    * @extends {Backbone.Model}
    */
   var ComponentModel = Backbone.Model.extend(fn);
-
-  /**
-   * Overrides [`Backbone.Model#extend`](http://backbonejs.org/#Model-extend) to
-   * set up explicit prototype chain references for `{{#crossLink
-   * "Lateralus.mixins/_super"}}{{/crossLink}}` calls.
-   * @return {Object}
-   */
-  ComponentModel.extend = function () {
-    var extendedObject = Backbone.Model.extend.apply(this, arguments);
-    extendedObject.prototype.__proto = this.prototype;
-    return extendedObject;
-  };
 
   return ComponentModel;
 });

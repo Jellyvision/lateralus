@@ -32,8 +32,6 @@ define([
    *     console.log(component instanceof Lateralus.Component); // true
    * @class Lateralus.Component
    * @param {Lateralus} lateralus
-   * @param {Lateralus.Component} __super__ The constructor that this subclass
-   * is extending.
    * @param {Object} options Values to attach to this `{{#crossLink
    * "Lateralus.Component"}}{{/crossLink}}` instance.  This object also get
    * passed to the `{{#crossLink
@@ -55,8 +53,7 @@ define([
    * @protected
    * @constructor
    */
-  function Component (
-      lateralus, __super__, options, viewOptions, opt_parentComponent) {
+  function Component (lateralus, options, viewOptions, opt_parentComponent) {
 
     /**
      * A reference to the central `{{#crossLink "Lateralus"}}{{/crossLink}}`
@@ -66,16 +63,6 @@ define([
      * @final
      */
     this.lateralus = lateralus;
-
-    /**
-     * A reference to the class which this `{{#crossLink
-     * "Lateralus.Component"}}{{/crossLink}}` extends.
-     * @property __super__
-     * @private
-     * @type {Lateralus.Component}
-     * @final
-     */
-    this.__super__ = __super__;
 
     /**
      * If a `{{#crossLink "Lateralus.Component"}}{{/crossLink}}` has `mixins`
@@ -126,8 +113,6 @@ define([
       if (this.Model && !viewOptions.model) {
         this.model = new this.Model(
           lateralus
-          ,this.Model.__super__
-          ,this.Model.prototype.__proto
           ,this
           ,options.modelAttributes
           ,options.modelOptions
@@ -145,8 +130,6 @@ define([
        */
       this.view = new this.View(
           lateralus
-          ,this.View.__super__
-          ,this.View.prototype.__proto
           ,this
           ,augmentedViewOptions
         );
@@ -247,19 +230,8 @@ define([
   Component.extend = function (protoProps) {
     var extendedComponent = Backbone.Model.extend.call(this, protoProps);
 
-    var threwError = false;
-
-    _.each([
-          'name'
-        ], function (prop) {
-      if (typeof protoProps[prop] === 'undefined') {
-        threwError = true;
-        throw prop + ' was not provided to Component.extend.';
-      }
-    });
-
-    if (threwError) {
-      throw 'Component.extend failed.  See previous error message(s).';
+    if (!protoProps.name) {
+      throw new Error('A name was not provided to Component.extend.');
     }
 
     _.extend(extendedComponent, protoProps);

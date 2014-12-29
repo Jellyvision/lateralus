@@ -45,39 +45,14 @@ define([
    * constructor.
    * @private
    * @param {Lateralus} lateralus
-   * @param {Backbone.View} __super__ The constructor that this subclass is
-   * extending.
-   * @param {Backbone.View} __proto The prototype that this subclass is
-   * extending.
    * @param {Lateralus.Component} component
    * @param {Object} [options] Gets passed to
    * [`Backbone.View#initialize'](http://backbonejs.org/#Collection-constructor).
    * @param {Lateralus.Component.View} [opt_parentView]
    * @constructor
    */
-  fn.constructor = function (
-      lateralus, __super__, __proto, component, options, opt_parentView) {
+  fn.constructor = function (lateralus, component, options, opt_parentView) {
     this.lateralus = lateralus;
-
-    // Build an explicit prototype chain reference for _super method
-    /**
-     * A reference to the class which this `{{#crossLink
-     * "Lateralus.Component.View"}}{{/crossLink}}` extends.
-     * @property __super__
-     * @private
-     * @type {Lateralus.Component.View}
-     * @final
-     */
-    this.__super__ = __super__;
-
-    /**
-     * A reference to the object that proceeds this one on the prototype chain.
-     * @property __proto
-     * @private
-     * @type {Object}
-     * @final
-     */
-    this.__proto = __proto;
 
     /**
      * If this is a subview of another `{{#crossLink
@@ -181,8 +156,6 @@ define([
 
     var subview = new Subview(
       this.lateralus
-      ,Subview.__super__
-      ,Subview.prototype.__proto
       ,this.component
       ,subviewOptions
       ,this
@@ -283,18 +256,6 @@ define([
    * @extends {Backbone.View}
    */
   var ComponentView = Backbone.View.extend(fn);
-
-  /**
-   * Overrides [`Backbone.View#extend`](http://backbonejs.org/#View-extend) to
-   * set up explicit prototype chain references for `{{#crossLink
-   * "Lateralus.mixins/_super"}}{{/crossLink}}` calls.
-   * @return {Object}
-   */
-  ComponentView.extend = function () {
-    var extendedObject = Backbone.View.extend.apply(this, arguments);
-    extendedObject.prototype.__proto = this.prototype;
-    return extendedObject;
-  };
 
   return ComponentView;
 });

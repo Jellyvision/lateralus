@@ -76,7 +76,6 @@ define([
     var lateralusReference = thisIsLateralus ? this : this.lateralus;
     var component = new Component(
       lateralusReference
-      ,Component.__super__
       ,options
       ,viewOptions || {}
       ,thisIsLateralus ? null : this
@@ -149,55 +148,6 @@ define([
     } else {
       this.listenTo(this.lateralus, event, callback);
     }
-  };
-
-  //jshint maxlen:100
-  /**
-   * Call a method of the next object on the prototype chain where it is
-   * present.  This method is prepended with an underscore to prevent conflict
-   * with the ES6 `super` keyword.
-   *
-   *     Lateralus.Component.extend({
-   *       initialize: function () {
-   *         // The same as Lateralus.Component.prototype.initialize.apply(this, arguments);
-   *         this._super('initialize', arguments);
-   *       }
-   *     });
-   *
-   * **Note**: This method has been deprecated due to limitations in JavaScript
-   * and will be removed soon.
-   * @method _super
-   * @param {string} methodName
-   * @param {arguments} args the `arguments` array from the calling function.
-   * @param {Function} [opt_base] A static reference to the constructor of the
-   * calling method.  This parameter is necessary for `extended` chains longer
-   * than two objects to prevent endless recursive loops.
-   * @return {any} Whatever the called method returned.
-   * @deprecated
-   */
-  mixins._super = function (methodName, args, opt_base) {
-    if (opt_base) {
-      return opt_base.__super__[methodName].apply(this, args);
-    }
-
-    var fn = this.__super__[methodName];
-    var lookup = this.__proto;
-
-    // Ensure that the method being called is at least one step up the
-    // prototype chain from where _super was called.
-    if (fn === this[methodName]) {
-      while (lookup) {
-        fn = lookup[methodName];
-
-        if (typeof fn === 'function' && fn !== this[methodName]) {
-          break;
-        } else {
-          lookup = lookup.__proto;
-        }
-      }
-    }
-
-    return fn.apply(this, args);
   };
 
   return mixins;
