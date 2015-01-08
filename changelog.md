@@ -1,4 +1,8 @@
-# 0.0.8
+# 0.2.0
+
+  * Add Component.prototype.dispose.
+
+# 0.1.0
 
   * Consolidate ComponentModel and LateralusModel.
   * Properly mix in mixins module to all other modules.

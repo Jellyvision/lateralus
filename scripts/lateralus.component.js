@@ -300,6 +300,55 @@ define([
   };
 
   /**
+   * @param {any} property
+   * @param {Object} object
+   */
+  function removePropertyFromObject (property, object) {
+    var propertyName;
+    for (propertyName in object) {
+      if (object[propertyName] === property) {
+        delete object[propertyName];
+      }
+    }
+  }
+
+  /**
+   * Remove this `{{#crossLink "Lateralus.Component"}}{{/crossLink}}` from
+   * memory.
+   * @method dispose
+   * @chainable
+   */
+  Component.prototype.dispose = function () {
+    if (this.view) {
+      this.view.dispose();
+    }
+
+    if (this.components) {
+      _.invoke(this.components, 'dispose');
+    }
+
+    var parentComponent = this.parentComponent;
+    if (parentComponent) {
+      removePropertyFromObject(this, parentComponent.components);
+    }
+
+    if (_.contains(this.lateralus.components, this)) {
+      removePropertyFromObject(this, this.lateralus);
+    }
+
+    this.stopListening();
+
+    var propName;
+    for (propName in this) {
+      if (this.hasOwnProperty(propName)) {
+        delete this[propName];
+      }
+    }
+
+    return this;
+  };
+
+  /**
    * Meant to be overridden by subclasses.
    * @method toJSON
    * @return {Object}
