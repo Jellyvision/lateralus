@@ -121,6 +121,25 @@ define([
 
     _.extend(this, _.defaults(_.clone(opts), this.attachDefaultOptions));
     this.renderTemplate();
+
+    /**
+     * A function to be called in the JavaScript thread that follows the one
+     * that ran `{{#crossLink
+     * "Lateralus.Component.View/initialize:method"}}{{/crossLink}}`.  This can
+     * be necessary for situations where setup logic needs to happen after a
+     * View has been rendered.
+     *
+     * `{{#crossLink
+     * "Lateralus.Component.View/initialize:method"}}{{/crossLink}}` runs
+     * before the View has been rendered to the DOM, `{{#crossLink
+     * "Lateralus.Component.View/deferredInitialize:method"}}{{/crossLink}}`
+     * runs immediately after it has been rendered.
+     * @method initialize
+     * @protected
+     */
+    if (this.deferredInitialize) {
+      _.defer(_.bind(this.deferredInitialize, this));
+    }
   };
 
   /**

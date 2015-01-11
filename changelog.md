@@ -1,6 +1,7 @@
 # 0.2.0
 
   * Add Component.prototype.dispose.
+  * Add Component.View deferredInitialize hook.
 
 # 0.1.0
 
