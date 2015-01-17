@@ -43,8 +43,7 @@ define([
      * @constructor
      */
     ,constructor: function (attributes, options) {
-      var lateralusReferences = this.collection || options;
-      this.lateralus = lateralusReferences.lateralus;
+      this.lateralus = options.lateralus;
 
       /**
        * A reference to the `{{#crossLink
@@ -54,7 +53,7 @@ define([
        * @type {Lateralus.Component}
        * @final
        */
-      this.component = lateralusReferences.component;
+      this.component = options.component;
       Backbone.Model.call(this, attributes, options);
     }
   });

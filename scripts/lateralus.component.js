@@ -327,6 +327,7 @@ define([
    * @param {Object} [options]
    * @return {Lateralus.Component.Model} An instance of the provided Model
    * constructor.
+   * @method initModel
    */
   fn.initModel = function (Model, attributes, options) {
     var augmentedOptions = _.extend(options || {}, {
@@ -344,6 +345,7 @@ define([
    * @param {Object} [options]
    * @return {Lateralus.Component.Collection} Am instance of the provided
    * Collection constructor.
+   * @method initCollection
    */
   fn.initCollection = function (Collection, models, options) {
     var augmentedOptions = _.extend(options || {}, {
