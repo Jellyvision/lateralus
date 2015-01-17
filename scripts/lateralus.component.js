@@ -230,41 +230,6 @@ define([
   }
 
   /**
-   * @param {Lateralus.Component.Model} Model A constructor, not an instance.
-   * @param {Object} [attributes]
-   * @param {Object} [options]
-   * @return {Lateralus.Component.Model} An instance of the provided Model
-   * constructor.
-   * @method initModel
-   */
-  fn.initModel = function (Model, attributes, options) {
-    var augmentedOptions = _.extend(options || {}, {
-      component: this
-      ,lateralus: this.lateralus
-    });
-
-    return new Model(attributes, augmentedOptions);
-  };
-
-  /**
-   * @param {Lateralus.Component.Collection} Collection A constructor, not an
-   * instance.
-   * @param {Array.<Lateralus.Model>} [models]
-   * @param {Object} [options]
-   * @return {Lateralus.Component.Collection} Am instance of the provided
-   * Collection constructor.
-   * @method initCollection
-   */
-  fn.initCollection = function (Collection, models, options) {
-    var augmentedOptions = _.extend(options || {}, {
-      component: this
-      ,lateralus: this.lateralus
-    });
-
-    return new Collection(models, augmentedOptions);
-  };
-
-  /**
    * Remove this `{{#crossLink "Lateralus.Component"}}{{/crossLink}}` from
    * memory.
    * @method dispose

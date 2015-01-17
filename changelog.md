@@ -2,7 +2,7 @@
 
   * Convert Component#delegateEvents to mixins.delegateLateralusEvents.
   * Remove Component.events map support.
-  * Add Component#initModel and #initCollection.
+  * Add mixin.initModel and mixin.initCollection.
   * Add Component.Collection.
   * Add Component.prototype.dispose.
   * Add Component.View deferredInitialize hook.
