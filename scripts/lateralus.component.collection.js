@@ -30,7 +30,8 @@ define([
   // jshint maxlen:100
   /**
    * The constructor for this class should not be called by application code,
-   * it is used by the `{{#crossLink "Lateralus"}}{{/crossLink}}` constructor.
+   * should only be called by `{{#crossLink
+   * "Lateralus.Component.initCollection:method"}}{{/crossLink}}`.
    * @private
    * @param {Array.<Lateralus.Component.Model>} models
    * @param {Object} options
