@@ -1,5 +1,6 @@
 # 0.2.0
 
+  * Add Component#initModel and #initCollection.
   * Add Component.Collection.
   * Add Component.prototype.dispose.
   * Add Component.View deferredInitialize hook.
