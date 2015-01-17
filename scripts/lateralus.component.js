@@ -217,6 +217,8 @@ define([
     }
   }
 
+  var fn = Component.prototype;
+
   Component.View = ComponentView;
   Component.Model = ComponentModel;
   Component.Collection = ComponentCollection;
@@ -254,7 +256,7 @@ define([
    * @method mixin
    * @param {Object} mixin The object to mix in to this one.
    */
-  Component.prototype.mixin = function (mixin) {
+  fn.mixin = function (mixin) {
     _.extend(this, _.omit(mixin, 'initialize'));
 
     if (typeof mixin.initialize === 'function') {
@@ -264,7 +266,7 @@ define([
 
   // Prototype members
   //
-  _.extend(Component.prototype, Backbone.Events, mixins);
+  _.extend(fn, Backbone.Events, mixins);
 
   /**
    * The name of this component.  This is used internally by Lateralus.
@@ -272,7 +274,7 @@ define([
    * @property name
    * @type string
    */
-  Component.prototype.name = 'component';
+  fn.name = 'component';
 
   var delegateEventSplitter = /^(\S+)\s*(.*)$/;
 
@@ -287,7 +289,7 @@ define([
    * @chainable
    * @private
    */
-  Component.prototype.delegateEvents = function (events, emitter) {
+  fn.delegateEvents = function (events, emitter) {
     for (var key in events) {
       var method = events[key];
       if (!_.isFunction(method)) {
@@ -327,7 +329,7 @@ define([
    * @return {Lateralus.Component.Collection} A instance of the provided
    * Collection type.
    */
-  Component.prototype.initCollection = function (Collection, models, options) {
+  fn.initCollection = function (Collection, models, options) {
     var augmentedOptions = _.extend(options || {}, {
       component: this
       ,lateralus: this.lateralus
@@ -342,7 +344,7 @@ define([
    * @method dispose
    * @chainable
    */
-  Component.prototype.dispose = function () {
+  fn.dispose = function () {
     if (this.view) {
       this.view.dispose();
     }
@@ -377,7 +379,7 @@ define([
    * @method toJSON
    * @return {Object}
    */
-  Component.prototype.toJSON = function () {
+  fn.toJSON = function () {
     return {};
   };
 
@@ -386,7 +388,7 @@ define([
    * @return {string} The name of this Component.  This is used internally by
    * Lateralus.
    */
-  Component.prototype.toString = function () {
+  fn.toString = function () {
     return this.name;
   };
 

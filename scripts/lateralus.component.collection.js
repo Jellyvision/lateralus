@@ -15,6 +15,8 @@ define([
 ) {
   'use strict';
 
+  var Base = Backbone.Collection;
+  var baseProto = Base.prototype;
   var fn = {};
 
   /**
@@ -27,7 +29,6 @@ define([
     return this.lateralus.toString() + '-collection';
   };
 
-  // jshint maxlen:100
   /**
    * The constructor for this class should not be called by application code,
    * should only be called by `{{#crossLink
@@ -42,7 +43,7 @@ define([
   fn.constructor = function (models, options) {
     this.lateralus = options.lateralus;
     this.component = options.component;
-    Backbone.Collection.apply(this, arguments);
+    Base.apply(this, arguments);
   };
 
   /**
@@ -54,8 +55,7 @@ define([
       ,component: this.component
     });
 
-    return Backbone.Collection.prototype.set.call(
-      this, models, augmentedOptions);
+    return baseProto.set.call(this, models, augmentedOptions);
   };
 
   _.extend(fn, mixins);
@@ -67,7 +67,7 @@ define([
    * @extends {Backbone.Collection}
    * @uses Lateralus.mixins
    */
-  var LateralusCollection = Backbone.Collection.extend(fn);
+  var LateralusCollection = Base.extend(fn);
 
   return LateralusCollection;
 });
