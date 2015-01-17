@@ -32,18 +32,19 @@ define([
      * it is used by the `{{#crossLink "Lateralus.Component"}}{{/crossLink}}`
      * constructor.
      * @private
-     * @param {Lateralus} lateralus
-     * @param {Lateralus.Component} component
      * @param {Object} [attributes] Gets passed to
      * [`Backbone.Model#initialize'](http://backbonejs.org/#Model-constructor).
      * @param {Object} [options] Gets passed to
      * [`Backbone.Model#initialize'](http://backbonejs.org/#Model-constructor).
+     * @param {Lateralus} [options.lateralus]
+     * @param {Lateralus.Component} [options.component]
      * @class Lateralus.Component.Model
      * @extends Lateralus.Model
      * @constructor
      */
-    ,constructor: function (lateralus, component, attributes, options) {
-      this.lateralus = lateralus;
+    ,constructor: function (attributes, options) {
+      var lateralusReferences = this.collection || options;
+      this.lateralus = lateralusReferences.lateralus;
 
       /**
        * A reference to the `{{#crossLink
@@ -53,7 +54,7 @@ define([
        * @type {Lateralus.Component}
        * @final
        */
-      this.component = component;
+      this.component = lateralusReferences.component;
       Backbone.Model.call(this, attributes, options);
     }
   });

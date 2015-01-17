@@ -5,6 +5,7 @@ define([
   ,'./lateralus.mixins'
   ,'./lateralus.component.view'
   ,'./lateralus.component.model'
+  ,'./lateralus.component.collection'
 
 ], function (
 
@@ -13,6 +14,7 @@ define([
   ,mixins
   ,ComponentView
   ,ComponentModel
+  ,ComponentCollection
 
 ) {
   'use strict';
@@ -111,10 +113,14 @@ define([
       // A model instance provided to addComponent takes precendence over the
       // prototype property.
       if (this.Model && !viewOptions.model) {
+
+        options.modelOptions = _.extend(options.modelOptions || {}, {
+          lateralus: lateralus
+          ,component: this
+        });
+
         this.model = new this.Model(
-          lateralus
-          ,this
-          ,options.modelAttributes
+          options.modelAttributes
           ,options.modelOptions
         );
 
@@ -213,6 +219,7 @@ define([
 
   Component.View = ComponentView;
   Component.Model = ComponentModel;
+  Component.Collection = ComponentCollection;
 
   /**
    * Create a `{{#crossLink "Lateralus.Component"}}{{/crossLink}}` subclass.
@@ -311,6 +318,23 @@ define([
       }
     }
   }
+
+  /**
+   * @param {Lateralus.Component.Collection} Collection A constructor, not an
+   * instance.
+   * @param {Array.<Lateralus.Model>} models
+   * @param {Object} options
+   * @return {Lateralus.Component.Collection} A instance of the provided
+   * Collection type.
+   */
+  Component.prototype.initCollection = function (Collection, models, options) {
+    var augmentedOptions = _.extend(options || {}, {
+      component: this
+      ,lateralus: this.lateralus
+    });
+
+    return new Collection(models, augmentedOptions);
+  };
 
   /**
    * Remove this `{{#crossLink "Lateralus.Component"}}{{/crossLink}}` from
