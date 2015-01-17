@@ -156,37 +156,6 @@ define([
 
     /**
      * A map of functions or string references to functions that will handle
-     * [events](http://backbonejs.org/#Events) dispatched to this `{{#crossLink
-     * "Lateralus.Component"}}{{/crossLink}}` instance.  This is useful for
-     * responding to events that are specific to this `{{#crossLink
-     * "Lateralus.Component"}}{{/crossLink}}` and don't affect others.
-     *
-     *     var ExtendedComponent = Lateralus.Component.extend({
-     *       name: 'extended'
-     *
-     *       ,events: {
-     *         dataAdded: 'onDataAdded'
-     *
-     *         ,dataRemoved: function () {
-     *           // ...
-     *         }
-     *       }
-     *
-     *       ,onDataAdded: function () {
-     *         // ...
-     *       }
-     *     });
-     * @protected
-     * @property events
-     * @type {Object|undefined}
-     * @default undefined
-     */
-    if (this.events) {
-      this.delegateEvents(this.events, this);
-    }
-
-    /**
-     * A map of functions or string references to functions that will handle
      * [events](http://backbonejs.org/#Events) dispatched to the central
      * `{{#crossLink "Lateralus"}}{{/crossLink}}` instance.  Distinct from
      * `{{#crossLink "Lateralus.Component/events:property"}}{{/crossLink}}`,
@@ -285,11 +254,10 @@ define([
    * @method delegateEvents
    * @param { Object(string|Function) } events The map of methods of names
    * of methods to bind to.
-   * @param {Lateralus|Lateralus.Component} emitter The Object to listen to.
    * @chainable
    * @private
    */
-  fn.delegateEvents = function (events, emitter) {
+  fn.delegateEvents = function (events) {
     for (var key in events) {
       var method = events[key];
       if (!_.isFunction(method)) {
@@ -301,7 +269,7 @@ define([
       }
 
       var match = key.match(delegateEventSplitter);
-      this.listenTo(emitter, match[1], _.bind(method, this));
+      this.listenTo(this.lateralus, match[1], _.bind(method, this));
 
     }
 

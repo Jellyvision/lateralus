@@ -1,5 +1,6 @@
 # 0.2.0
 
+  * Remove Component.events map support.
   * Add Component#initModel and #initCollection.
   * Add Component.Collection.
   * Add Component.prototype.dispose.
