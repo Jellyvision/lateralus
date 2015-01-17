@@ -54,6 +54,8 @@ define([
        * @final
        */
       this.component = options.component;
+
+      this.delegateLateralusEvents();
       Backbone.Model.call(this, attributes, options);
     }
   });

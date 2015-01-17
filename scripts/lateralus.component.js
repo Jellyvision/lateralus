@@ -154,36 +154,7 @@ define([
       this.initialize(options);
     }
 
-    /**
-     * A map of functions or string references to functions that will handle
-     * [events](http://backbonejs.org/#Events) dispatched to the central
-     * `{{#crossLink "Lateralus"}}{{/crossLink}}` instance.  Distinct from
-     * `{{#crossLink "Lateralus.Component/events:property"}}{{/crossLink}}`,
-     * this is useful for responding to app-wide events.
-     *
-     *     var ExtendedComponent = Lateralus.Component.extend({
-     *       name: 'extended'
-     *
-     *       ,lateralusEvents: {
-     *         anotherComponentChanged: 'onAnotherComponentChanged'
-     *
-     *         ,anotherComponentDestroyed: function () {
-     *           // ...
-     *         }
-     *       }
-     *
-     *       ,onAnotherComponentChanged: function () {
-     *         // ...
-     *       }
-     *     });
-     * @protected
-     * @property lateralusEvents
-     * @type {Object|undefined}
-     * @default undefined
-     */
-    if (this.lateralusEvents) {
-      this.delegateEvents(this.lateralusEvents, this.lateralus);
-    }
+    this.delegateLateralusEvents();
   }
 
   var fn = Component.prototype;
@@ -244,37 +215,6 @@ define([
    * @type string
    */
   fn.name = 'component';
-
-  var delegateEventSplitter = /^(\S+)\s*(.*)$/;
-
-  /**
-   * Functions similarly to
-   * [Backbone.View#delegateEvents](http://backbonejs.org/#View-delegateEvents).
-   * Take a map of events and bind them to an event-emitting object.
-   * @method delegateEvents
-   * @param { Object(string|Function) } events The map of methods of names
-   * of methods to bind to.
-   * @chainable
-   * @private
-   */
-  fn.delegateEvents = function (events) {
-    for (var key in events) {
-      var method = events[key];
-      if (!_.isFunction(method)) {
-        method = this[events[key]];
-      }
-
-      if (!method) {
-        new Error('Method "' + method + '" not found for ' + this.toString());
-      }
-
-      var match = key.match(delegateEventSplitter);
-      this.listenTo(this.lateralus, match[1], _.bind(method, this));
-
-    }
-
-    return this;
-  };
 
   /**
    * @param {any} property

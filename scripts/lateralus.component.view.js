@@ -75,6 +75,8 @@ define([
      * @final
      */
     this.component = component;
+
+    this.delegateLateralusEvents();
     Backbone.View.call(this, options);
   };
 

@@ -43,6 +43,7 @@ define([
   fn.constructor = function (models, options) {
     this.lateralus = options.lateralus;
     this.component = options.component;
+    this.delegateLateralusEvents();
     Base.apply(this, arguments);
   };
 

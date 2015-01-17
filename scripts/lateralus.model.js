@@ -37,6 +37,7 @@ define([
    */
   fn.constructor = function (lateralus) {
     this.lateralus = lateralus;
+    this.delegateLateralusEvents();
     Backbone.Model.call(this);
   };
 
