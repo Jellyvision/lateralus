@@ -30,18 +30,25 @@ var LateralusComponentGenerator = yeoman.generators.Base.extend({
           'app/scripts/components/';
       this.destinationRoot(destRoot + this.componentName);
 
-      var mainTemplate = Mustache.render(this.src.read('main.js'), renderData);
+      var mainTemplate = Mustache.render(
+        this.src.read('main.js'), renderData);
       this.dest.write('main.js', mainTemplate);
 
-      var modelTemplate =
-        Mustache.render(this.src.read('model.js'), renderData);
+      var modelTemplate = Mustache.render(
+        this.src.read('model.js'), renderData);
       this.dest.write('model.js', modelTemplate);
 
-      var viewTemplate = Mustache.render(this.src.read('view.js'), renderData);
+      var viewTemplate = Mustache.render(
+        this.src.read('view.js'), renderData);
       this.dest.write('view.js', viewTemplate);
 
-      this.src.copy('template.mustache', 'template.mustache');
-      this.src.copy('styles/main.sass', 'styles/main.sass');
+      var templateTemplate = Mustache.render(
+        this.src.read('template.mustache'), renderData);
+      this.dest.write('template.mustache', templateTemplate);
+
+      var sassTemplate = Mustache.render(
+        this.src.read('styles/main.sass'), renderData);
+      this.dest.write('styles/main.sass', sassTemplate);
     }
   }
 });
