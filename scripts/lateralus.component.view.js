@@ -47,7 +47,7 @@ define([
    * @param {Lateralus} lateralus
    * @param {Lateralus.Component} component
    * @param {Object} [options] Gets passed to
-   * [`Backbone.View#initialize'](http://backbonejs.org/#Collection-constructor).
+   * [Backbone.View#initialize](http://backbonejs.org/#Collection-constructor).
    * @param {Lateralus.Component.View} [opt_parentView]
    * @uses Lateralus.mixins
    * @constructor
@@ -115,7 +115,7 @@ define([
      * initialized.
      * @property className
      * @type {string|undefined}
-     * @default {undefined}
+     * @default undefined
      */
     if (this.className) {
       this.$el.addClass(this.className);
@@ -164,7 +164,7 @@ define([
    * compartmentalized within a single component.
    * @method addSubview
    * @param {Lateralus.Component.View} Subview A constructor, not an instance.
-   * @param {Object} [subviewOptions] `Backbone.View` [constructor
+   * @param {Object} [subviewOptions] Backbone.View [constructor
    * options](http://backbonejs.org/#View-constructor) to pass along to the
    * subview when it is instantiated.
    * @return {Lateralus.Component.View} The instantiated subview.

@@ -29,10 +29,15 @@ define([
 
   // jshint maxlen:100
   /**
-   * The constructor for this class should not be called by application code,
-   * it is used by the `{{#crossLink "Lateralus"}}{{/crossLink}}` constructor.
+   * This class builds on the ideas and APIs of
+   * [`Backbone.Model`](http://backbonejs.org/#Model).  The constructor for
+   * this class should not be called by application code, it is used by the
+   * `{{#crossLink "Lateralus"}}{{/crossLink}}` constructor.
    * @private
+   * @class Lateralus.Model
    * @param {Lateralus} lateralus
+   * @extends {Backbone.Model}
+   * @uses Lateralus.mixins
    * @constructor
    */
   fn.constructor = function (lateralus) {
@@ -43,13 +48,6 @@ define([
 
   _.extend(fn, mixins);
 
-  /**
-   * This class builds on the ideas and APIs of
-   * [`Backbone.Model`](http://backbonejs.org/#Model).
-   * @class Lateralus.Model
-   * @extends {Backbone.Model}
-   * @uses Lateralus.mixins
-   */
   var LateralusModel = Backbone.Model.extend(fn);
 
   return LateralusModel;
