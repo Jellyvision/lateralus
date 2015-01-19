@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.1.0</em>
+            <em>API Docs for: 0.2.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -42,6 +42,8 @@
             <ul id="api-classes" class="apis classes">
             
                 <li><a href="../classes/Lateralus.html">Lateralus</a></li>
+            
+                <li><a href="../classes/Lateralus.Collection.html">Lateralus.Collection</a></li>
             
                 <li><a href="../classes/Lateralus.Component.html">Lateralus.Component</a></li>
             
@@ -130,18 +132,18 @@ define([
      * it is used by the &#x60;{{#crossLink &quot;Lateralus.Component&quot;}}{{/crossLink}}&#x60;
      * constructor.
      * @private
-     * @param {Lateralus} lateralus
-     * @param {Lateralus.Component} component
      * @param {Object} [attributes] Gets passed to
-     * [&#x60;Backbone.Model#initialize&#x27;](http://backbonejs.org/#Model-constructor).
-     * @param {Object} [options] Gets passed to
-     * [&#x60;Backbone.Model#initialize&#x27;](http://backbonejs.org/#Model-constructor).
+     * [Backbone.Model#initialize](http://backbonejs.org/#Model-constructor).
+     * @param {Object} options Gets passed to
+     * [Backbone.Model#initialize](http://backbonejs.org/#Model-constructor).
+     * @param {Lateralus} options.lateralus
+     * @param {Lateralus.Component} options.component
      * @class Lateralus.Component.Model
      * @extends Lateralus.Model
      * @constructor
      */
-    ,constructor: function (lateralus, component, attributes, options) {
-      this.lateralus = lateralus;
+    ,constructor: function (attributes, options) {
+      this.lateralus = options.lateralus;
 
       /**
        * A reference to the &#x60;{{#crossLink
@@ -151,7 +153,9 @@ define([
        * @type {Lateralus.Component}
        * @final
        */
-      this.component = component;
+      this.component = options.component;
+
+      this.delegateLateralusEvents();
       Backbone.Model.call(this, attributes, options);
     }
   });

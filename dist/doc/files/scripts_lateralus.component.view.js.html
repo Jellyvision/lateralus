@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.1.0</em>
+            <em>API Docs for: 0.2.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -42,6 +42,8 @@
             <ul id="api-classes" class="apis classes">
             
                 <li><a href="../classes/Lateralus.html">Lateralus</a></li>
+            
+                <li><a href="../classes/Lateralus.Collection.html">Lateralus.Collection</a></li>
             
                 <li><a href="../classes/Lateralus.Component.html">Lateralus.Component</a></li>
             
@@ -145,7 +147,7 @@ define([
    * @param {Lateralus} lateralus
    * @param {Lateralus.Component} component
    * @param {Object} [options] Gets passed to
-   * [&#x60;Backbone.View#initialize&#x27;](http://backbonejs.org/#Collection-constructor).
+   * [Backbone.View#initialize](http://backbonejs.org/#Collection-constructor).
    * @param {Lateralus.Component.View} [opt_parentView]
    * @uses Lateralus.mixins
    * @constructor
@@ -173,6 +175,8 @@ define([
      * @final
      */
     this.component = component;
+
+    this.delegateLateralusEvents();
     Backbone.View.call(this, options);
   };
 
@@ -211,7 +215,7 @@ define([
      * initialized.
      * @property className
      * @type {string|undefined}
-     * @default {undefined}
+     * @default undefined
      */
     if (this.className) {
       this.$el.addClass(this.className);
@@ -219,6 +223,25 @@ define([
 
     _.extend(this, _.defaults(_.clone(opts), this.attachDefaultOptions));
     this.renderTemplate();
+
+    /**
+     * A function to be called in the JavaScript thread that follows the one
+     * that ran &#x60;{{#crossLink
+     * &quot;Lateralus.Component.View/initialize:method&quot;}}{{/crossLink}}&#x60;.  This can
+     * be necessary for situations where setup logic needs to happen after a
+     * View has been rendered.
+     *
+     * In other words, &#x60;{{#crossLink
+     * &quot;Lateralus.Component.View/initialize:method&quot;}}{{/crossLink}}&#x60; runs
+     * before the View has been rendered to the DOM, and &#x60;{{#crossLink
+     * &quot;Lateralus.Component.View/deferredInitialize:method&quot;}}{{/crossLink}}&#x60;
+     * runs immediately after it has been rendered.
+     * @method initialize
+     * @protected
+     */
+    if (this.deferredInitialize) {
+      _.defer(_.bind(this.deferredInitialize, this));
+    }
   };
 
   /**
@@ -241,7 +264,7 @@ define([
    * compartmentalized within a single component.
    * @method addSubview
    * @param {Lateralus.Component.View} Subview A constructor, not an instance.
-   * @param {Object} [subviewOptions] &#x60;Backbone.View&#x60; [constructor
+   * @param {Object} [subviewOptions] Backbone.View [constructor
    * options](http://backbonejs.org/#View-constructor) to pass along to the
    * subview when it is instantiated.
    * @return {Lateralus.Component.View} The instantiated subview.

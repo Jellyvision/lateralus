@@ -1,4 +1,4 @@
-/* Lateralus v.0.1.0 | https://github.com/Jellyvision/lateralus */
+/* Lateralus v.0.2.0 | https://github.com/Jellyvision/lateralus */
 define('lateralus/lateralus.mixins',[
 
   'underscore'
@@ -166,6 +166,119 @@ define('lateralus/lateralus.mixins',[
     }
   };
 
+  var delegateEventSplitter = /^(\S+)\s*(.*)$/;
+
+  /**
+   * Bind `{{#crossLink "Lateralus.mixins:lateralusEvents"}}{{/crossLink}}`, if
+   * it is defined.
+   * @method delegateLateralusEvents
+   * @chainable
+   * @protected
+   */
+  mixins.delegateLateralusEvents = function () {
+    /**
+     * A map of functions or string references to functions that will handle
+     * [events](http://backbonejs.org/#Events) dispatched to the central
+     * `{{#crossLink "Lateralus"}}{{/crossLink}}` instance.
+     *
+     *     var ExtendedComponent = Lateralus.Component.extend({
+     *       name: 'extended'
+     *
+     *       ,lateralusEvents: {
+     *         anotherComponentChanged: 'onAnotherComponentChanged'
+     *
+     *         ,anotherComponentDestroyed: function () {
+     *           // ...
+     *         }
+     *       }
+     *
+     *       ,onAnotherComponentChanged: function () {
+     *         // ...
+     *       }
+     *     });
+     * @protected
+     * @property lateralusEvents
+     * @type {Object|undefined}
+     * @default undefined
+     */
+    var lateralusEvents = this.lateralusEvents;
+
+    if (!lateralusEvents) {
+      return;
+    }
+
+    for (var key in lateralusEvents) {
+      var method = lateralusEvents[key];
+      if (!_.isFunction(method)) {
+        method = this[lateralusEvents[key]];
+      }
+
+      if (!method) {
+        new Error('Method "' + method + '" not found for ' + this.toString());
+      }
+
+      var match = key.match(delegateEventSplitter);
+      var eventName = match[1];
+      var boundMethod = _.bind(method, this);
+
+      if (isLateralus(this)) {
+        this.on(eventName, boundMethod);
+      } else {
+        this.listenTo(this.lateralus, eventName, boundMethod);
+      }
+
+    }
+
+    return this;
+  };
+
+  /**
+   * Helper function for initModel and initCollection.
+   * @param {Object=} initialObject
+   * @return {{ lateralus: Lateralus, component: Lateralus.Component= }}
+   * component is not defined if `this` is the Lateralus instance.
+   */
+  function getAugmentedOptionsObject (initialObject) {
+    // jshint validthis:true
+    var thisIsLateralus = isLateralus(this);
+    var augmentedOptions = _.extend(initialObject || {}, {
+      lateralus: thisIsLateralus ? this : this.lateralus
+    });
+
+    if (!thisIsLateralus) {
+      augmentedOptions.component = this.component || this;
+    }
+
+    return augmentedOptions;
+  }
+
+  /**
+   * @param {Lateralus.Component.Model} Model A constructor, not an instance.
+   * @param {Object} [attributes]
+   * @param {Object} [options]
+   * @return {Lateralus.Component.Model} An instance of the provided Model
+   * constructor.
+   * @method initModel
+   */
+  mixins.initModel = function (Model, attributes, options) {
+    var augmentedOptions = getAugmentedOptionsObject.call(this, options);
+    return new Model(attributes, augmentedOptions);
+  };
+
+  /**
+   * @param {Lateralus.Component.Collection} Collection A constructor, not an
+   * instance.
+   * @param {Array.(Lateralus.Model)} [models]
+   * @param {Object} [options]
+   * @return {Lateralus.Component.Collection} Am instance of the provided
+   * Collection constructor.
+   * @method initCollection
+   */
+  mixins.initCollection = function (Collection, models, options) {
+    var augmentedOptions = getAugmentedOptionsObject.call(this, options);
+    return new Collection(models, augmentedOptions);
+  };
+
   return mixins;
 });
 
@@ -200,26 +313,25 @@ define('lateralus/lateralus.model',[
 
   // jshint maxlen:100
   /**
-   * The constructor for this class should not be called by application code,
-   * it is used by the `{{#crossLink "Lateralus"}}{{/crossLink}}` constructor.
+   * This class builds on the ideas and APIs of
+   * [`Backbone.Model`](http://backbonejs.org/#Model).  The constructor for
+   * this class should not be called by application code, it is used by the
+   * `{{#crossLink "Lateralus"}}{{/crossLink}}` constructor.
    * @private
+   * @class Lateralus.Model
    * @param {Lateralus} lateralus
+   * @extends {Backbone.Model}
+   * @uses Lateralus.mixins
    * @constructor
    */
   fn.constructor = function (lateralus) {
     this.lateralus = lateralus;
+    this.delegateLateralusEvents();
     Backbone.Model.call(this);
   };
 
   _.extend(fn, mixins);
 
-  /**
-   * This class builds on the ideas and APIs of
-   * [`Backbone.Model`](http://backbonejs.org/#Model).
-   * @class Lateralus.Model
-   * @extends {Backbone.Model}
-   * @uses Lateralus.mixins
-   */
   var LateralusModel = Backbone.Model.extend(fn);
 
   return LateralusModel;
@@ -274,7 +386,7 @@ define('lateralus/lateralus.component.view',[
    * @param {Lateralus} lateralus
    * @param {Lateralus.Component} component
    * @param {Object} [options] Gets passed to
-   * [`Backbone.View#initialize'](http://backbonejs.org/#Collection-constructor).
+   * [Backbone.View#initialize](http://backbonejs.org/#Collection-constructor).
    * @param {Lateralus.Component.View} [opt_parentView]
    * @uses Lateralus.mixins
    * @constructor
@@ -302,6 +414,8 @@ define('lateralus/lateralus.component.view',[
      * @final
      */
     this.component = component;
+
+    this.delegateLateralusEvents();
     Backbone.View.call(this, options);
   };
 
@@ -340,7 +454,7 @@ define('lateralus/lateralus.component.view',[
      * initialized.
      * @property className
      * @type {string|undefined}
-     * @default {undefined}
+     * @default undefined
      */
     if (this.className) {
       this.$el.addClass(this.className);
@@ -348,6 +462,25 @@ define('lateralus/lateralus.component.view',[
 
     _.extend(this, _.defaults(_.clone(opts), this.attachDefaultOptions));
     this.renderTemplate();
+
+    /**
+     * A function to be called in the JavaScript thread that follows the one
+     * that ran `{{#crossLink
+     * "Lateralus.Component.View/initialize:method"}}{{/crossLink}}`.  This can
+     * be necessary for situations where setup logic needs to happen after a
+     * View has been rendered.
+     *
+     * In other words, `{{#crossLink
+     * "Lateralus.Component.View/initialize:method"}}{{/crossLink}}` runs
+     * before the View has been rendered to the DOM, and `{{#crossLink
+     * "Lateralus.Component.View/deferredInitialize:method"}}{{/crossLink}}`
+     * runs immediately after it has been rendered.
+     * @method initialize
+     * @protected
+     */
+    if (this.deferredInitialize) {
+      _.defer(_.bind(this.deferredInitialize, this));
+    }
   };
 
   /**
@@ -370,7 +503,7 @@ define('lateralus/lateralus.component.view',[
    * compartmentalized within a single component.
    * @method addSubview
    * @param {Lateralus.Component.View} Subview A constructor, not an instance.
-   * @param {Object} [subviewOptions] `Backbone.View` [constructor
+   * @param {Object} [subviewOptions] Backbone.View [constructor
    * options](http://backbonejs.org/#View-constructor) to pass along to the
    * subview when it is instantiated.
    * @return {Lateralus.Component.View} The instantiated subview.
@@ -526,18 +659,18 @@ define('lateralus/lateralus.component.model',[
      * it is used by the `{{#crossLink "Lateralus.Component"}}{{/crossLink}}`
      * constructor.
      * @private
-     * @param {Lateralus} lateralus
-     * @param {Lateralus.Component} component
      * @param {Object} [attributes] Gets passed to
-     * [`Backbone.Model#initialize'](http://backbonejs.org/#Model-constructor).
-     * @param {Object} [options] Gets passed to
-     * [`Backbone.Model#initialize'](http://backbonejs.org/#Model-constructor).
+     * [Backbone.Model#initialize](http://backbonejs.org/#Model-constructor).
+     * @param {Object} options Gets passed to
+     * [Backbone.Model#initialize](http://backbonejs.org/#Model-constructor).
+     * @param {Lateralus} options.lateralus
+     * @param {Lateralus.Component} options.component
      * @class Lateralus.Component.Model
      * @extends Lateralus.Model
      * @constructor
      */
-    ,constructor: function (lateralus, component, attributes, options) {
-      this.lateralus = lateralus;
+    ,constructor: function (attributes, options) {
+      this.lateralus = options.lateralus;
 
       /**
        * A reference to the `{{#crossLink
@@ -547,12 +680,89 @@ define('lateralus/lateralus.component.model',[
        * @type {Lateralus.Component}
        * @final
        */
-      this.component = component;
+      this.component = options.component;
+
+      this.delegateLateralusEvents();
       Backbone.Model.call(this, attributes, options);
     }
   });
 
   return ComponentModel;
+});
+
+define('lateralus/lateralus.component.collection',[
+
+  'underscore'
+  ,'backbone'
+
+  ,'./lateralus.mixins'
+
+], function (
+
+  _
+  ,Backbone
+
+  ,mixins
+
+) {
+  
+
+  var Base = Backbone.Collection;
+  var baseProto = Base.prototype;
+  var fn = {};
+
+  /**
+   * @method toString
+   * @protected
+   * @return {string} The name of this Collection.  This is used internally by
+   * Lateralus.
+   */
+  fn.toString = function () {
+    return this.lateralus.toString() + '-collection';
+  };
+
+  /**
+   * The constructor for this class should not be called by application code,
+   * should only be called by `{{#crossLink
+   * "Lateralus.Component.initCollection:method"}}{{/crossLink}}`.
+   * @private
+   * @param {Array.(Lateralus.Component.Model)} models
+   * @param {Object} options
+   * @param {Lateralus} options.lateralus
+   * @param {Lateralus.Component} options.component
+   * @constructor
+   */
+  fn.constructor = function (models, options) {
+    this.lateralus = options.lateralus;
+    this.component = options.component;
+    this.delegateLateralusEvents();
+    Base.apply(this, arguments);
+  };
+
+  /**
+   * @override
+   */
+  fn.set = function (models, options) {
+    var augmentedOptions = _.extend(options || {}, {
+      lateralus: this.lateralus
+      ,component: this.component
+    });
+
+    return baseProto.set.call(this, models, augmentedOptions);
+  };
+
+  _.extend(fn, mixins);
+
+  /**
+   * This class builds on the ideas and APIs of
+   * [`Backbone.Collection`](http://backbonejs.org/#Collection).
+   * @class Lateralus.Collection
+   * @extends {Backbone.Collection}
+   * @uses Lateralus.mixins
+   */
+  var LateralusCollection = Base.extend(fn);
+
+  return LateralusCollection;
 });
 
 define('lateralus/lateralus.component',[
@@ -562,6 +772,7 @@ define('lateralus/lateralus.component',[
   ,'./lateralus.mixins'
   ,'./lateralus.component.view'
   ,'./lateralus.component.model'
+  ,'./lateralus.component.collection'
 
 ], function (
 
@@ -570,6 +781,7 @@ define('lateralus/lateralus.component',[
   ,mixins
   ,ComponentView
   ,ComponentModel
+  ,ComponentCollection
 
 ) {
   
@@ -668,10 +880,14 @@ define('lateralus/lateralus.component',[
       // A model instance provided to addComponent takes precendence over the
       // prototype property.
       if (this.Model && !viewOptions.model) {
+
+        options.modelOptions = _.extend(options.modelOptions || {}, {
+          lateralus: lateralus
+          ,component: this
+        });
+
         this.model = new this.Model(
-          lateralus
-          ,this
-          ,options.modelAttributes
+          options.modelAttributes
           ,options.modelOptions
         );
 
@@ -705,71 +921,14 @@ define('lateralus/lateralus.component',[
       this.initialize(options);
     }
 
-    /**
-     * A map of functions or string references to functions that will handle
-     * [events](http://backbonejs.org/#Events) dispatched to this `{{#crossLink
-     * "Lateralus.Component"}}{{/crossLink}}` instance.  This is useful for
-     * responding to events that are specific to this `{{#crossLink
-     * "Lateralus.Component"}}{{/crossLink}}` and don't affect others.
-     *
-     *     var ExtendedComponent = Lateralus.Component.extend({
-     *       name: 'extended'
-     *
-     *       ,events: {
-     *         dataAdded: 'onDataAdded'
-     *
-     *         ,dataRemoved: function () {
-     *           // ...
-     *         }
-     *       }
-     *
-     *       ,onDataAdded: function () {
-     *         // ...
-     *       }
-     *     });
-     * @protected
-     * @property events
-     * @type {Object|undefined}
-     * @default undefined
-     */
-    if (this.events) {
-      this.delegateEvents(this.events, this);
-    }
-
-    /**
-     * A map of functions or string references to functions that will handle
-     * [events](http://backbonejs.org/#Events) dispatched to the central
-     * `{{#crossLink "Lateralus"}}{{/crossLink}}` instance.  Distinct from
-     * `{{#crossLink "Lateralus.Component/events:property"}}{{/crossLink}}`,
-     * this is useful for responding to app-wide events.
-     *
-     *     var ExtendedComponent = Lateralus.Component.extend({
-     *       name: 'extended'
-     *
-     *       ,lateralusEvents: {
-     *         anotherComponentChanged: 'onAnotherComponentChanged'
-     *
-     *         ,anotherComponentDestroyed: function () {
-     *           // ...
-     *         }
-     *       }
-     *
-     *       ,onAnotherComponentChanged: function () {
-     *         // ...
-     *       }
-     *     });
-     * @protected
-     * @property lateralusEvents
-     * @type {Object|undefined}
-     * @default undefined
-     */
-    if (this.lateralusEvents) {
-      this.delegateEvents(this.lateralusEvents, this.lateralus);
-    }
+    this.delegateLateralusEvents();
   }
+
+  var fn = Component.prototype;
 
   Component.View = ComponentView;
   Component.Model = ComponentModel;
+  Component.Collection = ComponentCollection;
 
   /**
    * Create a `{{#crossLink "Lateralus.Component"}}{{/crossLink}}` subclass.
@@ -804,7 +963,7 @@ define('lateralus/lateralus.component',[
    * @method mixin
    * @param {Object} mixin The object to mix in to this one.
    */
-  Component.prototype.mixin = function (mixin) {
+  fn.mixin = function (mixin) {
     _.extend(this, _.omit(mixin, 'initialize'));
 
     if (typeof mixin.initialize === 'function') {
@@ -814,7 +973,7 @@ define('lateralus/lateralus.component',[
 
   // Prototype members
   //
-  _.extend(Component.prototype, Backbone.Events, mixins);
+  _.extend(fn, Backbone.Events, mixins);
 
   /**
    * The name of this component.  This is used internally by Lateralus.
@@ -822,35 +981,52 @@ define('lateralus/lateralus.component',[
    * @property name
    * @type string
    */
-  Component.prototype.name = 'component';
-
-  var delegateEventSplitter = /^(\S+)\s*(.*)$/;
+  fn.name = 'component';
 
   /**
-   * Functions similarly to
-   * [Backbone.View#delegateEvents](http://backbonejs.org/#View-delegateEvents).
-   * Take a map of events and bind them to an event-emitting object.
-   * @method delegateEvents
-   * @param { Object(string|Function) } events The map of methods of names
-   * of methods to bind to.
-   * @param {Lateralus|Lateralus.Component} emitter The Object to listen to.
-   * @chainable
-   * @private
+   * @param {any} property
+   * @param {Object} object
    */
-  Component.prototype.delegateEvents = function (events, emitter) {
-    for (var key in events) {
-      var method = events[key];
-      if (!_.isFunction(method)) {
-        method = this[events[key]];
+  function removePropertyFromObject (property, object) {
+    var propertyName;
+    for (propertyName in object) {
+      if (object[propertyName] === property) {
+        delete object[propertyName];
       }
+    }
+  }
 
-      if (!method) {
-        new Error('Method "' + method + '" not found for ' + this.toString());
+  /**
+   * Remove this `{{#crossLink "Lateralus.Component"}}{{/crossLink}}` from
+   * memory.
+   * @method dispose
+   * @chainable
+   */
+  fn.dispose = function () {
+    if (this.view) {
+      this.view.dispose();
+    }
+
+    if (this.components) {
+      _.invoke(this.components, 'dispose');
+    }
+
+    var parentComponent = this.parentComponent;
+    if (parentComponent) {
+      removePropertyFromObject(this, parentComponent.components);
+    }
+
+    if (_.contains(this.lateralus.components, this)) {
+      removePropertyFromObject(this, this.lateralus);
+    }
+
+    this.stopListening();
+
+    var propName;
+    for (propName in this) {
+      if (this.hasOwnProperty(propName)) {
+        delete this[propName];
       }
-
-      var match = key.match(delegateEventSplitter);
-      this.listenTo(emitter, match[1], _.bind(method, this));
-
     }
 
     return this;
@@ -861,7 +1037,7 @@ define('lateralus/lateralus.component',[
    * @method toJSON
    * @return {Object}
    */
-  Component.prototype.toJSON = function () {
+  fn.toJSON = function () {
     return {};
   };
 
@@ -870,7 +1046,7 @@ define('lateralus/lateralus.component',[
    * @return {string} The name of this Component.  This is used internally by
    * Lateralus.
    */
-  Component.prototype.toString = function () {
+  fn.toString = function () {
     return this.name;
   };
 

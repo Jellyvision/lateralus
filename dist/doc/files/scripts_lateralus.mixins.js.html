@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.1.0</em>
+            <em>API Docs for: 0.2.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -42,6 +42,8 @@
             <ul id="api-classes" class="apis classes">
             
                 <li><a href="../classes/Lateralus.html">Lateralus</a></li>
+            
+                <li><a href="../classes/Lateralus.Collection.html">Lateralus.Collection</a></li>
             
                 <li><a href="../classes/Lateralus.Component.html">Lateralus.Component</a></li>
             
@@ -261,6 +263,119 @@ define([
     } else {
       this.listenTo(this.lateralus, event, callback);
     }
+  };
+
+  var delegateEventSplitter = /^(\S+)\s*(.*)$/;
+
+  /**
+   * Bind &#x60;{{#crossLink &quot;Lateralus.mixins:lateralusEvents&quot;}}{{/crossLink}}&#x60;, if
+   * it is defined.
+   * @method delegateLateralusEvents
+   * @chainable
+   * @protected
+   */
+  mixins.delegateLateralusEvents = function () {
+    /**
+     * A map of functions or string references to functions that will handle
+     * [events](http://backbonejs.org/#Events) dispatched to the central
+     * &#x60;{{#crossLink &quot;Lateralus&quot;}}{{/crossLink}}&#x60; instance.
+     *
+     *     var ExtendedComponent = Lateralus.Component.extend({
+     *       name: &#x27;extended&#x27;
+     *
+     *       ,lateralusEvents: {
+     *         anotherComponentChanged: &#x27;onAnotherComponentChanged&#x27;
+     *
+     *         ,anotherComponentDestroyed: function () {
+     *           // ...
+     *         }
+     *       }
+     *
+     *       ,onAnotherComponentChanged: function () {
+     *         // ...
+     *       }
+     *     });
+     * @protected
+     * @property lateralusEvents
+     * @type {Object|undefined}
+     * @default undefined
+     */
+    var lateralusEvents = this.lateralusEvents;
+
+    if (!lateralusEvents) {
+      return;
+    }
+
+    for (var key in lateralusEvents) {
+      var method = lateralusEvents[key];
+      if (!_.isFunction(method)) {
+        method = this[lateralusEvents[key]];
+      }
+
+      if (!method) {
+        new Error(&#x27;Method &quot;&#x27; + method + &#x27;&quot; not found for &#x27; + this.toString());
+      }
+
+      var match = key.match(delegateEventSplitter);
+      var eventName = match[1];
+      var boundMethod = _.bind(method, this);
+
+      if (isLateralus(this)) {
+        this.on(eventName, boundMethod);
+      } else {
+        this.listenTo(this.lateralus, eventName, boundMethod);
+      }
+
+    }
+
+    return this;
+  };
+
+  /**
+   * Helper function for initModel and initCollection.
+   * @param {Object=} initialObject
+   * @return {{ lateralus: Lateralus, component: Lateralus.Component= }}
+   * component is not defined if &#x60;this&#x60; is the Lateralus instance.
+   */
+  function getAugmentedOptionsObject (initialObject) {
+    // jshint validthis:true
+    var thisIsLateralus = isLateralus(this);
+    var augmentedOptions = _.extend(initialObject || {}, {
+      lateralus: thisIsLateralus ? this : this.lateralus
+    });
+
+    if (!thisIsLateralus) {
+      augmentedOptions.component = this.component || this;
+    }
+
+    return augmentedOptions;
+  }
+
+  /**
+   * @param {Lateralus.Component.Model} Model A constructor, not an instance.
+   * @param {Object} [attributes]
+   * @param {Object} [options]
+   * @return {Lateralus.Component.Model} An instance of the provided Model
+   * constructor.
+   * @method initModel
+   */
+  mixins.initModel = function (Model, attributes, options) {
+    var augmentedOptions = getAugmentedOptionsObject.call(this, options);
+    return new Model(attributes, augmentedOptions);
+  };
+
+  /**
+   * @param {Lateralus.Component.Collection} Collection A constructor, not an
+   * instance.
+   * @param {Array.(Lateralus.Model)} [models]
+   * @param {Object} [options]
+   * @return {Lateralus.Component.Collection} Am instance of the provided
+   * Collection constructor.
+   * @method initCollection
+   */
+  mixins.initCollection = function (Collection, models, options) {
+    var augmentedOptions = getAugmentedOptionsObject.call(this, options);
+    return new Collection(models, augmentedOptions);
   };
 
   return mixins;

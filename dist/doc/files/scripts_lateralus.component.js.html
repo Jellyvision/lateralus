@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.1.0</em>
+            <em>API Docs for: 0.2.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -42,6 +42,8 @@
             <ul id="api-classes" class="apis classes">
             
                 <li><a href="../classes/Lateralus.html">Lateralus</a></li>
+            
+                <li><a href="../classes/Lateralus.Collection.html">Lateralus.Collection</a></li>
             
                 <li><a href="../classes/Lateralus.Component.html">Lateralus.Component</a></li>
             
@@ -103,6 +105,7 @@ define([
   ,&#x27;./lateralus.mixins&#x27;
   ,&#x27;./lateralus.component.view&#x27;
   ,&#x27;./lateralus.component.model&#x27;
+  ,&#x27;./lateralus.component.collection&#x27;
 
 ], function (
 
@@ -111,6 +114,7 @@ define([
   ,mixins
   ,ComponentView
   ,ComponentModel
+  ,ComponentCollection
 
 ) {
   &#x27;use strict&#x27;;
@@ -209,10 +213,14 @@ define([
       // A model instance provided to addComponent takes precendence over the
       // prototype property.
       if (this.Model &amp;&amp; !viewOptions.model) {
+
+        options.modelOptions = _.extend(options.modelOptions || {}, {
+          lateralus: lateralus
+          ,component: this
+        });
+
         this.model = new this.Model(
-          lateralus
-          ,this
-          ,options.modelAttributes
+          options.modelAttributes
           ,options.modelOptions
         );
 
@@ -246,71 +254,14 @@ define([
       this.initialize(options);
     }
 
-    /**
-     * A map of functions or string references to functions that will handle
-     * [events](http://backbonejs.org/#Events) dispatched to this &#x60;{{#crossLink
-     * &quot;Lateralus.Component&quot;}}{{/crossLink}}&#x60; instance.  This is useful for
-     * responding to events that are specific to this &#x60;{{#crossLink
-     * &quot;Lateralus.Component&quot;}}{{/crossLink}}&#x60; and don&#x27;t affect others.
-     *
-     *     var ExtendedComponent = Lateralus.Component.extend({
-     *       name: &#x27;extended&#x27;
-     *
-     *       ,events: {
-     *         dataAdded: &#x27;onDataAdded&#x27;
-     *
-     *         ,dataRemoved: function () {
-     *           // ...
-     *         }
-     *       }
-     *
-     *       ,onDataAdded: function () {
-     *         // ...
-     *       }
-     *     });
-     * @protected
-     * @property events
-     * @type {Object|undefined}
-     * @default undefined
-     */
-    if (this.events) {
-      this.delegateEvents(this.events, this);
-    }
-
-    /**
-     * A map of functions or string references to functions that will handle
-     * [events](http://backbonejs.org/#Events) dispatched to the central
-     * &#x60;{{#crossLink &quot;Lateralus&quot;}}{{/crossLink}}&#x60; instance.  Distinct from
-     * &#x60;{{#crossLink &quot;Lateralus.Component/events:property&quot;}}{{/crossLink}}&#x60;,
-     * this is useful for responding to app-wide events.
-     *
-     *     var ExtendedComponent = Lateralus.Component.extend({
-     *       name: &#x27;extended&#x27;
-     *
-     *       ,lateralusEvents: {
-     *         anotherComponentChanged: &#x27;onAnotherComponentChanged&#x27;
-     *
-     *         ,anotherComponentDestroyed: function () {
-     *           // ...
-     *         }
-     *       }
-     *
-     *       ,onAnotherComponentChanged: function () {
-     *         // ...
-     *       }
-     *     });
-     * @protected
-     * @property lateralusEvents
-     * @type {Object|undefined}
-     * @default undefined
-     */
-    if (this.lateralusEvents) {
-      this.delegateEvents(this.lateralusEvents, this.lateralus);
-    }
+    this.delegateLateralusEvents();
   }
+
+  var fn = Component.prototype;
 
   Component.View = ComponentView;
   Component.Model = ComponentModel;
+  Component.Collection = ComponentCollection;
 
   /**
    * Create a &#x60;{{#crossLink &quot;Lateralus.Component&quot;}}{{/crossLink}}&#x60; subclass.
@@ -345,7 +296,7 @@ define([
    * @method mixin
    * @param {Object} mixin The object to mix in to this one.
    */
-  Component.prototype.mixin = function (mixin) {
+  fn.mixin = function (mixin) {
     _.extend(this, _.omit(mixin, &#x27;initialize&#x27;));
 
     if (typeof mixin.initialize === &#x27;function&#x27;) {
@@ -355,7 +306,7 @@ define([
 
   // Prototype members
   //
-  _.extend(Component.prototype, Backbone.Events, mixins);
+  _.extend(fn, Backbone.Events, mixins);
 
   /**
    * The name of this component.  This is used internally by Lateralus.
@@ -363,35 +314,52 @@ define([
    * @property name
    * @type string
    */
-  Component.prototype.name = &#x27;component&#x27;;
-
-  var delegateEventSplitter = /^(\S+)\s*(.*)$/;
+  fn.name = &#x27;component&#x27;;
 
   /**
-   * Functions similarly to
-   * [Backbone.View#delegateEvents](http://backbonejs.org/#View-delegateEvents).
-   * Take a map of events and bind them to an event-emitting object.
-   * @method delegateEvents
-   * @param { Object(string|Function) } events The map of methods of names
-   * of methods to bind to.
-   * @param {Lateralus|Lateralus.Component} emitter The Object to listen to.
-   * @chainable
-   * @private
+   * @param {any} property
+   * @param {Object} object
    */
-  Component.prototype.delegateEvents = function (events, emitter) {
-    for (var key in events) {
-      var method = events[key];
-      if (!_.isFunction(method)) {
-        method = this[events[key]];
+  function removePropertyFromObject (property, object) {
+    var propertyName;
+    for (propertyName in object) {
+      if (object[propertyName] === property) {
+        delete object[propertyName];
       }
+    }
+  }
 
-      if (!method) {
-        new Error(&#x27;Method &quot;&#x27; + method + &#x27;&quot; not found for &#x27; + this.toString());
+  /**
+   * Remove this &#x60;{{#crossLink &quot;Lateralus.Component&quot;}}{{/crossLink}}&#x60; from
+   * memory.
+   * @method dispose
+   * @chainable
+   */
+  fn.dispose = function () {
+    if (this.view) {
+      this.view.dispose();
+    }
+
+    if (this.components) {
+      _.invoke(this.components, &#x27;dispose&#x27;);
+    }
+
+    var parentComponent = this.parentComponent;
+    if (parentComponent) {
+      removePropertyFromObject(this, parentComponent.components);
+    }
+
+    if (_.contains(this.lateralus.components, this)) {
+      removePropertyFromObject(this, this.lateralus);
+    }
+
+    this.stopListening();
+
+    var propName;
+    for (propName in this) {
+      if (this.hasOwnProperty(propName)) {
+        delete this[propName];
       }
-
-      var match = key.match(delegateEventSplitter);
-      this.listenTo(emitter, match[1], _.bind(method, this));
-
     }
 
     return this;
@@ -402,7 +370,7 @@ define([
    * @method toJSON
    * @return {Object}
    */
-  Component.prototype.toJSON = function () {
+  fn.toJSON = function () {
     return {};
   };
 
@@ -411,7 +379,7 @@ define([
    * @return {string} The name of this Component.  This is used internally by
    * Lateralus.
    */
-  Component.prototype.toString = function () {
+  fn.toString = function () {
     return this.name;
   };
 

@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.1.0</em>
+            <em>API Docs for: 0.2.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -42,6 +42,8 @@
             <ul id="api-classes" class="apis classes">
             
                 <li><a href="../classes/Lateralus.html">Lateralus</a></li>
+            
+                <li><a href="../classes/Lateralus.Collection.html">Lateralus.Collection</a></li>
             
                 <li><a href="../classes/Lateralus.Component.html">Lateralus.Component</a></li>
             
@@ -104,7 +106,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../files/scripts_lateralus.component.view.js.html#l257"><code>scripts&#x2F;lateralus.component.view.js:257</code></a>
+            Defined in: <a href="../files/scripts_lateralus.component.view.js.html#l278"><code>scripts&#x2F;lateralus.component.view.js:278</code></a>
         </div>
     
 
@@ -170,6 +172,13 @@
                         
                             <li class="index-item method protected">
                                 <a href="#method_getTemplateRenderData">getTemplateRenderData</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method protected">
+                                <a href="#method_initialize">initialize</a>
 
                                 
                                 
@@ -307,7 +316,7 @@
             
         
         
-        <a href="../files/scripts_lateralus.component.view.js.html#l138"><code>scripts&#x2F;lateralus.component.view.js:138</code></a>
+        <a href="../files/scripts_lateralus.component.view.js.html#l159"><code>scripts&#x2F;lateralus.component.view.js:159</code></a>
         
         </p>
 
@@ -358,7 +367,7 @@ compartmentalized within a single component.</p>
                     
 
                     <div class="param-description">
-                        <p><code>Backbone.View</code> <a href="http://backbonejs.org/#View-constructor">constructor
+                        <p>Backbone.View <a href="http://backbonejs.org/#View-constructor">constructor
 options</a> to pass along to the
 subview when it is instantiated.</p>
 
@@ -425,7 +434,7 @@ subview when it is instantiated.</p>
             
         
         
-        <a href="../files/scripts_lateralus.component.view.js.html#l216"><code>scripts&#x2F;lateralus.component.view.js:216</code></a>
+        <a href="../files/scripts_lateralus.component.view.js.html#l237"><code>scripts&#x2F;lateralus.component.view.js:237</code></a>
         
         </p>
 
@@ -485,7 +494,7 @@ that references the corresponding DOM element.</p>
             
         
         
-        <a href="../files/scripts_lateralus.component.view.js.html#l238"><code>scripts&#x2F;lateralus.component.view.js:238</code></a>
+        <a href="../files/scripts_lateralus.component.view.js.html#l259"><code>scripts&#x2F;lateralus.component.view.js:259</code></a>
         
         </p>
 
@@ -547,7 +556,7 @@ the DOM and cleanly dispose of any references.</p>
             
         
         
-        <a href="../files/scripts_lateralus.component.view.js.html#l174"><code>scripts&#x2F;lateralus.component.view.js:174</code></a>
+        <a href="../files/scripts_lateralus.component.view.js.html#l195"><code>scripts&#x2F;lateralus.component.view.js:195</code></a>
         
         </p>
 
@@ -632,7 +641,7 @@ Otherwise, an empty object is returned.</p>
             
         
         
-        <a href="../files/scripts_lateralus.component.view.js.html#l81"><code>scripts&#x2F;lateralus.component.view.js:81</code></a>
+        <a href="../files/scripts_lateralus.component.view.js.html#l83"><code>scripts&#x2F;lateralus.component.view.js:83</code></a>
         
         </p>
 
@@ -693,6 +702,69 @@ var ExtendedComponentView = Base.extend({
 </div>
 
                 
+                    <div id="method_initialize" class="method item protected">
+    <h3 class="name"><code>initialize</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/scripts_lateralus.component.view.js.html#l127"><code>scripts&#x2F;lateralus.component.view.js:127</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>A function to be called in the JavaScript thread that follows the one
+that ran <code><a href="../classes/Lateralus.Component.View.html#method_initialize" class="crosslink">initialize</a></code>.  This can
+be necessary for situations where setup logic needs to happen after a
+View has been rendered.</p>
+<p>In other words, <code><a href="../classes/Lateralus.Component.View.html#method_initialize" class="crosslink">initialize</a></code> runs
+before the View has been rendered to the DOM, and <code>Lateralus.Component.View/deferredInitialize:method</code>
+runs immediately after it has been rendered.</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
                     <div id="method_renderTemplate" class="method item">
     <h3 class="name"><code>renderTemplate</code></h3>
 
@@ -725,7 +797,7 @@ var ExtendedComponentView = Base.extend({
             
         
         
-        <a href="../files/scripts_lateralus.component.view.js.html#l195"><code>scripts&#x2F;lateralus.component.view.js:195</code></a>
+        <a href="../files/scripts_lateralus.component.view.js.html#l216"><code>scripts&#x2F;lateralus.component.view.js:216</code></a>
         
         </p>
 
@@ -860,7 +932,7 @@ Lateralus.</p>
             
         
         
-        <a href="../files/scripts_lateralus.component.view.js.html#l126"><code>scripts&#x2F;lateralus.component.view.js:126</code></a>
+        <a href="../files/scripts_lateralus.component.view.js.html#l147"><code>scripts&#x2F;lateralus.component.view.js:147</code></a>
         
         </p>
 
@@ -909,7 +981,7 @@ constructor</a>.</p>
             
         
         
-        <a href="../files/scripts_lateralus.component.view.js.html#l110"><code>scripts&#x2F;lateralus.component.view.js:110</code></a>
+        <a href="../files/scripts_lateralus.component.view.js.html#l112"><code>scripts&#x2F;lateralus.component.view.js:112</code></a>
         
         </p>
 
@@ -926,7 +998,7 @@ initialized.</p>
     </div>
 
     
-        <p><strong>Default:</strong> {undefined}</p>
+        <p><strong>Default:</strong> undefined</p>
     
 
     
@@ -1055,7 +1127,7 @@ reference to the parent <code><a href="../classes/Lateralus.Component.View.html"
             
         
         
-        <a href="../files/scripts_lateralus.component.view.js.html#l153"><code>scripts&#x2F;lateralus.component.view.js:153</code></a>
+        <a href="../files/scripts_lateralus.component.view.js.html#l174"><code>scripts&#x2F;lateralus.component.view.js:174</code></a>
         
         </p>
 

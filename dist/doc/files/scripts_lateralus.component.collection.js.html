@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>scripts/lateralus.js - Lateralus</title>
+    <title>scripts/lateralus.component.collection.js - Lateralus</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -94,7 +94,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: scripts/lateralus.js</h1>
+                        <h1 class="file-heading">File: scripts/lateralus.component.collection.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -102,147 +102,75 @@ define([
 
   &#x27;underscore&#x27;
   ,&#x27;backbone&#x27;
+
   ,&#x27;./lateralus.mixins&#x27;
-  ,&#x27;./lateralus.model&#x27;
-  ,&#x27;./lateralus.component&#x27;
 
 ], function (
 
   _
   ,Backbone
+
   ,mixins
-  ,LateralusModel
-  ,Component
 
 ) {
   &#x27;use strict&#x27;;
 
+  var Base = Backbone.Collection;
+  var baseProto = Base.prototype;
+  var fn = {};
+
   /**
-   * You should not need to call the Lateralus constructor directly, use
-   * &#x60;{{#crossLink &quot;Lateralus/beget&quot;}}{{/crossLink}}&#x60; instead.  To create a new
-   * Lateralus app:
-   *
-   *     var App = Lateralus.beget(function () {
-   *       // Don&#x27;t forget to call the Lateralus constructor!
-   *       Lateralus.apply(this, arguments);
-   *     });
-   *
-   *     var app = new App(document.getElementById(&#x27;app&#x27;));
+   * @method toString
    * @protected
-   * @param {Element} el The DOM element that contains the entire Lateralus
-   * app.
-   * @class Lateralus
-   * @uses Lateralus.mixins
-   * @constructor
+   * @return {string} The name of this Collection.  This is used internally by
+   * Lateralus.
    */
-  function Lateralus (el) {
-    /**
-     * The DOM node that contains this &#x60;{{#crossLink
-     * &quot;Lateralus&quot;}}{{/crossLink}}&#x60; instance.
-     * @property el
-     * @type {HTMLElement}
-     */
-    this.el = el;
-
-    /**
-     * The jQuery Object that contains &#x60;{{#crossLink
-     * &quot;Lateralus/el:property&quot;}}{{/crossLink}}&#x60;.
-     * @property $el
-     * @type {jQuery}
-     */
-    this.$el = $(el);
-
-    /**
-     * Maintains the state of the central &#x60;{{#crossLink
-     * &quot;Lateralus&quot;}}{{/crossLink}}&#x60; instance.
-     * @property model
-     * @type {Lateralus.Model}
-     */
-    this.model = new LateralusModel(this);
-  }
-
-  var fn = Lateralus.prototype;
-
-  _.extend(fn, Backbone.Events);
-
-  /**
-   * Set up the prototype chain between two objects.
-   * @static
-   * @method inherit
-   * @param {Function} child
-   * @param {Function} parent
-   * @return {Function} A reference to the passed-in &#x60;child&#x60; parameter.
-   */
-  Lateralus.inherit = function inherit (child, parent) {
-    function Proxy () {}
-    Proxy.prototype = parent.prototype;
-    child.prototype = new Proxy();
-    return child;
+  fn.toString = function () {
+    return this.lateralus.toString() + &#x27;-collection&#x27;;
   };
 
   /**
-   * Create a &#x60;{{#crossLink &quot;Lateralus&quot;}}{{/crossLink}}&#x60; application instance.
-   *
-   *     var App = Lateralus.beget(function () {
-   *       Lateralus.apply(this, arguments);
-   *     });
-   * @static
-   * @method beget
-   * @param {Function} child
-   * @return {Function} The created &#x60;{{#crossLink &quot;Lateralus&quot;}}{{/crossLink}}&#x60;
-   * subclass.
+   * The constructor for this class should not be called by application code,
+   * should only be called by &#x60;{{#crossLink
+   * &quot;Lateralus.Component.initCollection:method&quot;}}{{/crossLink}}&#x60;.
+   * @private
+   * @param {Array.(Lateralus.Component.Model)} models
+   * @param {Object} options
+   * @param {Lateralus} options.lateralus
+   * @param {Lateralus.Component} options.component
+   * @constructor
    */
-  Lateralus.beget = function (child) {
-    child.displayName = child.name || &#x27;begetConstructor&#x27;;
-    return Lateralus.inherit(child, Lateralus);
+  fn.constructor = function (models, options) {
+    this.lateralus = options.lateralus;
+    this.component = options.component;
+    this.delegateLateralusEvents();
+    Base.apply(this, arguments);
+  };
+
+  /**
+   * @override
+   */
+  fn.set = function (models, options) {
+    var augmentedOptions = _.extend(options || {}, {
+      lateralus: this.lateralus
+      ,component: this.component
+    });
+
+    return baseProto.set.call(this, models, augmentedOptions);
   };
 
   _.extend(fn, mixins);
 
-  _.each([
-
-    /**
-     * Cross-browser friendly wrapper for &#x60;console.log&#x60;.
-     * @method log
-     * @param {...any} Any parameters to pass along to &#x60;console.log&#x60;.
-     */
-    &#x27;log&#x27;
-
-    /**
-     * Cross-browser friendly wrapper for &#x60;console.warn&#x60;.
-     * @method warn
-     * @param {...any} Any parameters to pass along to &#x60;console.warn&#x60;.
-     */
-    ,&#x27;warn&#x27;
-
-    /**
-     * Cross-browser friendly wrapper for &#x60;console.error&#x60;.
-     * @method error
-     * @param {...any} Any parameters to pass along to &#x60;console.error&#x60;.
-     */
-    ,&#x27;error&#x27;
-
-  ], function (consoleMethodName) {
-    fn[consoleMethodName] = function () {
-      if (typeof console !== &#x27;undefined&#x27; &amp;&amp; console[consoleMethodName]) {
-        console[consoleMethodName].apply(console, arguments);
-      }
-    };
-  });
-
   /**
-   * Do not override this method, it is used internally.
-   * @method toString
-   * @return {string} This is &#x60;&quot;lateralus&quot;&#x60;.
-   * @final
+   * This class builds on the ideas and APIs of
+   * [&#x60;Backbone.Collection&#x60;](http://backbonejs.org/#Collection).
+   * @class Lateralus.Collection
+   * @extends {Backbone.Collection}
+   * @uses Lateralus.mixins
    */
-  fn.toString = function () {
-    return &#x27;lateralus&#x27;;
-  };
+  var LateralusCollection = Base.extend(fn);
 
-  Lateralus.Component = Component;
-
-  return Lateralus;
+  return LateralusCollection;
 });
 
     </pre>
