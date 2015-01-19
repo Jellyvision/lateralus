@@ -231,6 +231,26 @@ define([
   };
 
   /**
+   * Helper function for initModel and initCollection.
+   * @param {Object=} initialObject
+   * @return {{ lateralus: Lateralus, component: Lateralus.Component= }}
+   * component is not defined if `this` is the Lateralus instance.
+   */
+  function getAugmentedOptionsObject (initialObject) {
+    // jshint validthis:true
+    var thisIsLateralus = isLateralus(this);
+    var augmentedOptions = _.extend(initialObject || {}, {
+      lateralus: thisIsLateralus ? this : this.lateralus
+    });
+
+    if (!thisIsLateralus) {
+      augmentedOptions.component = this.component || this;
+    }
+
+    return augmentedOptions;
+  }
+
+  /**
    * @param {Lateralus.Component.Model} Model A constructor, not an instance.
    * @param {Object} [attributes]
    * @param {Object} [options]
@@ -239,16 +259,7 @@ define([
    * @method initModel
    */
   mixins.initModel = function (Model, attributes, options) {
-    var thisIsLateralus = isLateralus(this);
-
-    var augmentedOptions = _.extend(options || {}, {
-      lateralus: thisIsLateralus ? this : this.lateralus
-    });
-
-    if (!thisIsLateralus) {
-      augmentedOptions.component = this.component || this;
-    }
-
+    var augmentedOptions = getAugmentedOptionsObject.call(this, options);
     return new Model(attributes, augmentedOptions);
   };
 
@@ -262,16 +273,7 @@ define([
    * @method initCollection
    */
   mixins.initCollection = function (Collection, models, options) {
-    var thisIsLateralus = isLateralus(this);
-
-    var augmentedOptions = _.extend(options || {}, {
-      lateralus: thisIsLateralus ? this : this.lateralus
-    });
-
-    if (!thisIsLateralus) {
-      augmentedOptions.component = this.component || this;
-    }
-
+    var augmentedOptions = getAugmentedOptionsObject.call(this, options);
     return new Collection(models, augmentedOptions);
   };
 
