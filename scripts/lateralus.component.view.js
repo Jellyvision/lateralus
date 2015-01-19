@@ -131,9 +131,9 @@ define([
      * be necessary for situations where setup logic needs to happen after a
      * View has been rendered.
      *
-     * `{{#crossLink
+     * In other words, `{{#crossLink
      * "Lateralus.Component.View/initialize:method"}}{{/crossLink}}` runs
-     * before the View has been rendered to the DOM, `{{#crossLink
+     * before the View has been rendered to the DOM, and `{{#crossLink
      * "Lateralus.Component.View/deferredInitialize:method"}}{{/crossLink}}`
      * runs immediately after it has been rendered.
      * @method initialize

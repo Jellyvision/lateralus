@@ -178,7 +178,7 @@ define([
     /**
      * A map of functions or string references to functions that will handle
      * [events](http://backbonejs.org/#Events) dispatched to the central
-     * `{{#crossLink "Lateralus"}}{{/crossLink}}` instance.     *
+     * `{{#crossLink "Lateralus"}}{{/crossLink}}` instance.
      *     var ExtendedComponent = Lateralus.Component.extend({
      *       name: 'extended'
      *

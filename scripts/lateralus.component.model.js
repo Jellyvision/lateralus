@@ -34,10 +34,10 @@ define([
      * @private
      * @param {Object} [attributes] Gets passed to
      * [`Backbone.Model#initialize'](http://backbonejs.org/#Model-constructor).
-     * @param {Object} [options] Gets passed to
+     * @param {Object} options Gets passed to
      * [`Backbone.Model#initialize'](http://backbonejs.org/#Model-constructor).
-     * @param {Lateralus} [options.lateralus]
-     * @param {Lateralus.Component} [options.component]
+     * @param {Lateralus} options.lateralus
+     * @param {Lateralus.Component} options.component
      * @class Lateralus.Component.Model
      * @extends Lateralus.Model
      * @constructor
