@@ -34,7 +34,7 @@ define([
    * should only be called by `{{#crossLink
    * "Lateralus.Component.initCollection:method"}}{{/crossLink}}`.
    * @private
-   * @param {Array.<Lateralus.Component.Model>} models
+   * @param {Array.(Lateralus.Component.Model)} models
    * @param {Object} options
    * @param {Lateralus} options.lateralus
    * @param {Lateralus.Component} options.component

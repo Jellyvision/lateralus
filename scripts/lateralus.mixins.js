@@ -255,7 +255,7 @@ define([
   /**
    * @param {Lateralus.Component.Collection} Collection A constructor, not an
    * instance.
-   * @param {Array.<Lateralus.Model>} [models]
+   * @param {Array.(Lateralus.Model)} [models]
    * @param {Object} [options]
    * @return {Lateralus.Component.Collection} Am instance of the provided
    * Collection constructor.
