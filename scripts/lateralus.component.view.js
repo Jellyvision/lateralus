@@ -229,7 +229,27 @@ define([
 
     this.$el.children().remove();
     this.$el.html(
-        Mustache.render(this.template, this.getTemplateRenderData()));
+      Mustache.render(
+        this.template
+        ,this.getTemplateRenderData()
+
+        /**
+         * An optional map of template partials to be passed to the
+         * `Mustache.render` call for this View.
+         *
+         *     Lateralus.Component.View.extend({
+         *       templatePartials: {
+         *         myNamePartial: 'Hello my name is {{name}}.'
+         *       }
+         *     });
+         *
+         * @property templatePartials
+         * @type {Object(String)|undefined}
+         * @default undefined
+         */
+        ,this.templatePartials
+      )
+    );
 
     this.bindToDOM();
   };
