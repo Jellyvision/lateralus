@@ -1,3 +1,7 @@
+# 0.3.0
+
+  * Add support for templatePartials map.
+
 # 0.2.0
 
   * Convert Component#delegateEvents to mixins.delegateLateralusEvents.
