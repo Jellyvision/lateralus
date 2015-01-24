@@ -59,6 +59,8 @@ define([
      * @type {Lateralus.Model}
      */
     this.model = new LateralusModel(this);
+
+    this.delegateLateralusEvents();
   }
 
   var fn = Lateralus.prototype;
