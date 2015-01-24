@@ -188,22 +188,6 @@ define([
     return extendedComponent;
   };
 
-  /**
-   * Merge the properties of another object into this `{{#crossLink
-   * "Lateralus.Component"}}{{/crossLink}}`.  If `mixin` has a function called
-   * `initialize`, it is called in the context of this `{{#crossLink
-   * "Lateralus.Component"}}{{/crossLink}}`.
-   * @method mixin
-   * @param {Object} mixin The object to mix in to this one.
-   */
-  fn.mixin = function (mixin) {
-    _.extend(this, _.omit(mixin, 'initialize'));
-
-    if (typeof mixin.initialize === 'function') {
-      mixin.initialize.call(this);
-    }
-  };
-
   // Prototype members
   //
   _.extend(fn, Backbone.Events, mixins);

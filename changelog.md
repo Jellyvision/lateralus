@@ -1,5 +1,6 @@
 # 0.3.0
 
+  * Move "mixin" method to the mixins object.
   * Add support for templatePartials map.
 
 # 0.2.0

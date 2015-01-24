@@ -278,5 +278,20 @@ define([
     return new Collection(models, augmentedOptions);
   };
 
+  /**
+   * Merge the properties of another object into this object.  If the `mixin`
+   * configuration object has a method called `initialize`, it is called in the
+   * context of the object calling this function.
+   * @method mixin
+   * @param {Object} mixin The object to mix in to this one.
+   */
+  mixins.mixin = function (mixin) {
+    _.extend(this, _.omit(mixin, 'initialize'));
+
+    if (typeof mixin.initialize === 'function') {
+      mixin.initialize.call(this);
+    }
+  };
+
   return mixins;
 });
