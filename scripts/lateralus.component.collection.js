@@ -20,16 +20,6 @@ define([
   var fn = {};
 
   /**
-   * @method toString
-   * @protected
-   * @return {string} The name of this Collection.  This is used internally by
-   * Lateralus.
-   */
-  fn.toString = function () {
-    return this.lateralus.toString() + '-collection';
-  };
-
-  /**
    * The constructor for this class should not be called by application code,
    * should only be called by `{{#crossLink
    * "Lateralus.Component.initCollection:method"}}{{/crossLink}}`.
@@ -69,6 +59,16 @@ define([
    * @uses Lateralus.mixins
    */
   var LateralusCollection = Base.extend(fn);
+
+  /**
+   * @method toString
+   * @protected
+   * @return {string} The name of this Collection.  This is used internally by
+   * Lateralus.
+   */
+  LateralusCollection.prototype.toString = function () {
+    return this.lateralus.toString() + '-collection';
+  };
 
   return LateralusCollection;
 });

@@ -16,16 +16,6 @@ define([
   'use strict';
 
   var ComponentModel = LateralusModel.extend({
-    /**
-     * @method toString
-     * @protected
-     * @return {string} The name of this Model.  This is used internally by
-     * Lateralus.
-     */
-    toString: function () {
-      return this.component.toString() + '-model';
-    }
-
     // jshint maxlen:100
     /**
      * The constructor for this class should not be called by application code,
@@ -42,7 +32,7 @@ define([
      * @extends Lateralus.Model
      * @constructor
      */
-    ,constructor: function (attributes, options) {
+    constructor: function (attributes, options) {
       this.lateralus = options.lateralus;
 
       /**
@@ -59,6 +49,16 @@ define([
       Backbone.Model.call(this, attributes, options);
     }
   });
+
+  /**
+   * @method toString
+   * @protected
+   * @return {string} The name of this Model.  This is used internally by
+   * Lateralus.
+   */
+  ComponentModel.prototype.toString = function () {
+    return this.component.toString() + '-model';
+  };
 
   return ComponentModel;
 });

@@ -28,16 +28,6 @@ define([
    */
   fn.template = null;
 
-  /**
-   * @method toString
-   * @protected
-   * @return {string} The name of this View.  This is used internally by
-   * Lateralus.
-   */
-  fn.toString = function () {
-    return this.component.toString() + '-view';
-  };
-
   // jshint maxlen:100
   /**
    * The constructor for this class should not be called by application code,
@@ -302,6 +292,16 @@ define([
    * @extends {Backbone.View}
    */
   var ComponentView = Backbone.View.extend(fn);
+
+  /**
+   * @method toString
+   * @protected
+   * @return {string} The name of this View.  This is used internally by
+   * Lateralus.
+   */
+  ComponentView.prototype.toString = function () {
+    return this.component.toString() + '-view';
+  };
 
   return ComponentView;
 });

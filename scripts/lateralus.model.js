@@ -17,16 +17,6 @@ define([
 
   var fn = {};
 
-  /**
-   * @method toString
-   * @protected
-   * @return {string} The name of this Model.  This is used internally by
-   * Lateralus.
-   */
-  fn.toString = function () {
-    return this.lateralus.toString() + '-model';
-  };
-
   // jshint maxlen:100
   /**
    * This class builds on the ideas and APIs of
@@ -49,6 +39,16 @@ define([
   _.extend(fn, mixins);
 
   var LateralusModel = Backbone.Model.extend(fn);
+
+  /**
+   * @method toString
+   * @protected
+   * @return {string} The name of this Model.  This is used internally by
+   * Lateralus.
+   */
+  LateralusModel.prototype.toString = function () {
+    return this.lateralus.toString() + '-model';
+  };
 
   return LateralusModel;
 });
