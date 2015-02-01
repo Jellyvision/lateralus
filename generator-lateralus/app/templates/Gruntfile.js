@@ -1,4 +1,3 @@
-// jshint maxlen:100
 'use strict';
 var LIVERELOAD_PORT = 35731;
 var SERVER_PORT = 9000;
@@ -104,10 +103,8 @@ module.exports = function (grunt) {
       options: {
         sassDir: '<%= yeoman.app %>/styles',
         cssDir: '.tmp/styles',
-        imagesDir: '<%= yeoman.app %>/images',
-        javascriptsDir: '<%= yeoman.app %>/scripts',
-        fontsDir: '<%= yeoman.app %>/styles/fonts',
-        importPath: '<%= yeoman.app %>/bower_components',
+        imagesDir: '<%= yeoman.app %>/img',
+        importPath: '<%= yeoman.app %>',
         relativeAssets: true
       },
       dist: {},
@@ -119,7 +116,8 @@ module.exports = function (grunt) {
     },
     requirejs: {
       dist: {
-        // Options: https://github.com/jrburke/r.js/blob/master/build/example.build.js
+        // Options:
+        // https://github.com/jrburke/r.js/blob/master/build/example.build.js
         options: {
           baseUrl: '<%= yeoman.app %>',
           optimize: 'none',
@@ -131,7 +129,7 @@ module.exports = function (grunt) {
           preserveLicenseComments: false,
           useStrict: true,
           wrap: true,
-          mainConfigFile: 'app/scripts/main.js',
+          mainConfigFile: '<%= yeoman.app %>/scripts/main.js',
           name: 'scripts/main'
           //uglify2: {} // https://github.com/mishoo/UglifyJS2
         }
@@ -199,10 +197,7 @@ module.exports = function (grunt) {
           cwd: '<%= yeoman.app %>',
           dest: '<%= yeoman.dist %>',
           src: [
-            '*.{ico,txt}',
-            'images/{,*/}*.{webp,gif}',
-            'styles/fonts/{,*/}*.*',
-            'bower_components/sass-bootstrap/fonts/*.*'
+            'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*'
           ]
         }]
       }
@@ -211,11 +206,42 @@ module.exports = function (grunt) {
       all: {
         rjsConfig: '<%= yeoman.app %>/scripts/main.js'
       }
+    },
+    'gh-pages': {
+      options: {
+        base: 'dist',
+        message: 'Automated deploy commit.'
+      },
+      src: '**/*'
+    },
+    bump: {
+      options: {
+        files: ['package.json', 'bower.json'],
+        commit: false,
+        createTag: false,
+        tagName: '%VERSION%',
+        tagMessage: 'Version %VERSION%',
+        push: false
+      }
+    },
+    rev: {
+      dist: {
+        files: {
+          src: [
+            '<%= yeoman.dist %>/scripts/{,*/}*.js',
+            '<%= yeoman.dist %>/styles/{,*/}*.css'
+          ]
+        }
+      }
     }
   });
 
   grunt.registerTask('server', function (target) {
-    grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
+
+    // jshint maxlen: 90
+    grunt.log.warn(
+      'The `server` task has been deprecated. Use `grunt serve` to start a server.');
+
     grunt.task.run(['serve' + (target ? ':' + target : '')]);
   });
 
@@ -244,7 +270,13 @@ module.exports = function (grunt) {
     'cssmin',
     'uglify',
     'copy',
+    'rev',
     'usemin'
+  ]);
+
+  grunt.registerTask('deploy', [
+    'build',
+    'gh-pages'
   ]);
 
   grunt.registerTask('default', [

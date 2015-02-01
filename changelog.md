@@ -1,5 +1,9 @@
 # 0.3.0
 
+  * Improve generator-lateralus.  Added Grunt tasks:
+    * grunt-gh-pages
+    * grunt-bump
+    * grunt-rev
   * Move "mixin" method to the mixins object.
   * Add support for templatePartials map.
 
