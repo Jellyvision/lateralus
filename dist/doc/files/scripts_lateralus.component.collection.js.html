@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.2.0</em>
+            <em>API Docs for: 0.3.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -120,16 +120,6 @@ define([
   var fn = {};
 
   /**
-   * @method toString
-   * @protected
-   * @return {string} The name of this Collection.  This is used internally by
-   * Lateralus.
-   */
-  fn.toString = function () {
-    return this.lateralus.toString() + &#x27;-collection&#x27;;
-  };
-
-  /**
    * The constructor for this class should not be called by application code,
    * should only be called by &#x60;{{#crossLink
    * &quot;Lateralus.Component.initCollection:method&quot;}}{{/crossLink}}&#x60;.
@@ -169,6 +159,16 @@ define([
    * @uses Lateralus.mixins
    */
   var LateralusCollection = Base.extend(fn);
+
+  /**
+   * @method toString
+   * @protected
+   * @return {string} The name of this Collection.  This is used internally by
+   * Lateralus.
+   */
+  LateralusCollection.prototype.toString = function () {
+    return this.lateralus.toString() + &#x27;-collection&#x27;;
+  };
 
   return LateralusCollection;
 });

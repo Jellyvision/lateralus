@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.2.0</em>
+            <em>API Docs for: 0.3.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -116,16 +116,6 @@ define([
   &#x27;use strict&#x27;;
 
   var ComponentModel = LateralusModel.extend({
-    /**
-     * @method toString
-     * @protected
-     * @return {string} The name of this Model.  This is used internally by
-     * Lateralus.
-     */
-    toString: function () {
-      return this.component.toString() + &#x27;-model&#x27;;
-    }
-
     // jshint maxlen:100
     /**
      * The constructor for this class should not be called by application code,
@@ -142,7 +132,7 @@ define([
      * @extends Lateralus.Model
      * @constructor
      */
-    ,constructor: function (attributes, options) {
+    constructor: function (attributes, options) {
       this.lateralus = options.lateralus;
 
       /**
@@ -159,6 +149,16 @@ define([
       Backbone.Model.call(this, attributes, options);
     }
   });
+
+  /**
+   * @method toString
+   * @protected
+   * @return {string} The name of this Model.  This is used internally by
+   * Lateralus.
+   */
+  ComponentModel.prototype.toString = function () {
+    return this.component.toString() + &#x27;-model&#x27;;
+  };
 
   return ComponentModel;
 });

@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.2.0</em>
+            <em>API Docs for: 0.3.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -127,16 +127,6 @@ define([
    * @default {null}
    */
   fn.template = null;
-
-  /**
-   * @method toString
-   * @protected
-   * @return {string} The name of this View.  This is used internally by
-   * Lateralus.
-   */
-  fn.toString = function () {
-    return this.component.toString() + &#x27;-view&#x27;;
-  };
 
   // jshint maxlen:100
   /**
@@ -329,7 +319,27 @@ define([
 
     this.$el.children().remove();
     this.$el.html(
-        Mustache.render(this.template, this.getTemplateRenderData()));
+      Mustache.render(
+        this.template
+        ,this.getTemplateRenderData()
+
+        /**
+         * An optional map of template partials to be passed to the
+         * &#x60;Mustache.render&#x60; call for this View.
+         *
+         *     Lateralus.Component.View.extend({
+         *       templatePartials: {
+         *         myNamePartial: &#x27;Hello my name is {{name}}.&#x27;
+         *       }
+         *     });
+         *
+         * @property templatePartials
+         * @type {Object(String)|undefined}
+         * @default undefined
+         */
+        ,this.templatePartials
+      )
+    );
 
     this.bindToDOM();
   };
@@ -382,6 +392,16 @@ define([
    * @extends {Backbone.View}
    */
   var ComponentView = Backbone.View.extend(fn);
+
+  /**
+   * @method toString
+   * @protected
+   * @return {string} The name of this View.  This is used internally by
+   * Lateralus.
+   */
+  ComponentView.prototype.toString = function () {
+    return this.component.toString() + &#x27;-view&#x27;;
+  };
 
   return ComponentView;
 });

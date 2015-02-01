@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.2.0</em>
+            <em>API Docs for: 0.3.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -286,22 +286,6 @@ define([
     _.extend(extendedComponent, protoProps);
 
     return extendedComponent;
-  };
-
-  /**
-   * Merge the properties of another object into this &#x60;{{#crossLink
-   * &quot;Lateralus.Component&quot;}}{{/crossLink}}&#x60;.  If &#x60;mixin&#x60; has a function called
-   * &#x60;initialize&#x60;, it is called in the context of this &#x60;{{#crossLink
-   * &quot;Lateralus.Component&quot;}}{{/crossLink}}&#x60;.
-   * @method mixin
-   * @param {Object} mixin The object to mix in to this one.
-   */
-  fn.mixin = function (mixin) {
-    _.extend(this, _.omit(mixin, &#x27;initialize&#x27;));
-
-    if (typeof mixin.initialize === &#x27;function&#x27;) {
-      mixin.initialize.call(this);
-    }
   };
 
   // Prototype members

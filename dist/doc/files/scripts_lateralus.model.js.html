@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.2.0</em>
+            <em>API Docs for: 0.3.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -117,16 +117,6 @@ define([
 
   var fn = {};
 
-  /**
-   * @method toString
-   * @protected
-   * @return {string} The name of this Model.  This is used internally by
-   * Lateralus.
-   */
-  fn.toString = function () {
-    return this.lateralus.toString() + &#x27;-model&#x27;;
-  };
-
   // jshint maxlen:100
   /**
    * This class builds on the ideas and APIs of
@@ -149,6 +139,16 @@ define([
   _.extend(fn, mixins);
 
   var LateralusModel = Backbone.Model.extend(fn);
+
+  /**
+   * @method toString
+   * @protected
+   * @return {string} The name of this Model.  This is used internally by
+   * Lateralus.
+   */
+  LateralusModel.prototype.toString = function () {
+    return this.lateralus.toString() + &#x27;-model&#x27;;
+  };
 
   return LateralusModel;
 });

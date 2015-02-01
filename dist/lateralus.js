@@ -1,4 +1,4 @@
-/* Lateralus v.0.2.0 | https://github.com/Jellyvision/lateralus */
+/* Lateralus v.0.3.0 | https://github.com/Jellyvision/lateralus */
 define('lateralus/lateralus.mixins',[
 
   'underscore'
@@ -279,6 +279,21 @@ define('lateralus/lateralus.mixins',[
     return new Collection(models, augmentedOptions);
   };
 
+  /**
+   * Merge the properties of another object into this object.  If the `mixin`
+   * configuration object has a method called `initialize`, it is called in the
+   * context of the object calling this function.
+   * @method mixin
+   * @param {Object} mixin The object to mix in to this one.
+   */
+  mixins.mixin = function (mixin) {
+    _.extend(this, _.omit(mixin, 'initialize'));
+
+    if (typeof mixin.initialize === 'function') {
+      mixin.initialize.call(this);
+    }
+  };
+
   return mixins;
 });
 
@@ -300,16 +315,6 @@ define('lateralus/lateralus.model',[
   
 
   var fn = {};
-
-  /**
-   * @method toString
-   * @protected
-   * @return {string} The name of this Model.  This is used internally by
-   * Lateralus.
-   */
-  fn.toString = function () {
-    return this.lateralus.toString() + '-model';
-  };
 
   // jshint maxlen:100
   /**
@@ -333,6 +338,16 @@ define('lateralus/lateralus.model',[
   _.extend(fn, mixins);
 
   var LateralusModel = Backbone.Model.extend(fn);
+
+  /**
+   * @method toString
+   * @protected
+   * @return {string} The name of this Model.  This is used internally by
+   * Lateralus.
+   */
+  LateralusModel.prototype.toString = function () {
+    return this.lateralus.toString() + '-model';
+  };
 
   return LateralusModel;
 });
@@ -366,16 +381,6 @@ define('lateralus/lateralus.component.view',[
    * @default {null}
    */
   fn.template = null;
-
-  /**
-   * @method toString
-   * @protected
-   * @return {string} The name of this View.  This is used internally by
-   * Lateralus.
-   */
-  fn.toString = function () {
-    return this.component.toString() + '-view';
-  };
 
   // jshint maxlen:100
   /**
@@ -568,7 +573,27 @@ define('lateralus/lateralus.component.view',[
 
     this.$el.children().remove();
     this.$el.html(
-        Mustache.render(this.template, this.getTemplateRenderData()));
+      Mustache.render(
+        this.template
+        ,this.getTemplateRenderData()
+
+        /**
+         * An optional map of template partials to be passed to the
+         * `Mustache.render` call for this View.
+         *
+         *     Lateralus.Component.View.extend({
+         *       templatePartials: {
+         *         myNamePartial: 'Hello my name is {{name}}.'
+         *       }
+         *     });
+         *
+         * @property templatePartials
+         * @type {Object(String)|undefined}
+         * @default undefined
+         */
+        ,this.templatePartials
+      )
+    );
 
     this.bindToDOM();
   };
@@ -622,6 +647,16 @@ define('lateralus/lateralus.component.view',[
    */
   var ComponentView = Backbone.View.extend(fn);
 
+  /**
+   * @method toString
+   * @protected
+   * @return {string} The name of this View.  This is used internally by
+   * Lateralus.
+   */
+  ComponentView.prototype.toString = function () {
+    return this.component.toString() + '-view';
+  };
+
   return ComponentView;
 });
 
@@ -643,16 +678,6 @@ define('lateralus/lateralus.component.model',[
   
 
   var ComponentModel = LateralusModel.extend({
-    /**
-     * @method toString
-     * @protected
-     * @return {string} The name of this Model.  This is used internally by
-     * Lateralus.
-     */
-    toString: function () {
-      return this.component.toString() + '-model';
-    }
-
     // jshint maxlen:100
     /**
      * The constructor for this class should not be called by application code,
@@ -669,7 +694,7 @@ define('lateralus/lateralus.component.model',[
      * @extends Lateralus.Model
      * @constructor
      */
-    ,constructor: function (attributes, options) {
+    constructor: function (attributes, options) {
       this.lateralus = options.lateralus;
 
       /**
@@ -686,6 +711,16 @@ define('lateralus/lateralus.component.model',[
       Backbone.Model.call(this, attributes, options);
     }
   });
+
+  /**
+   * @method toString
+   * @protected
+   * @return {string} The name of this Model.  This is used internally by
+   * Lateralus.
+   */
+  ComponentModel.prototype.toString = function () {
+    return this.component.toString() + '-model';
+  };
 
   return ComponentModel;
 });
@@ -710,16 +745,6 @@ define('lateralus/lateralus.component.collection',[
   var Base = Backbone.Collection;
   var baseProto = Base.prototype;
   var fn = {};
-
-  /**
-   * @method toString
-   * @protected
-   * @return {string} The name of this Collection.  This is used internally by
-   * Lateralus.
-   */
-  fn.toString = function () {
-    return this.lateralus.toString() + '-collection';
-  };
 
   /**
    * The constructor for this class should not be called by application code,
@@ -761,6 +786,16 @@ define('lateralus/lateralus.component.collection',[
    * @uses Lateralus.mixins
    */
   var LateralusCollection = Base.extend(fn);
+
+  /**
+   * @method toString
+   * @protected
+   * @return {string} The name of this Collection.  This is used internally by
+   * Lateralus.
+   */
+  LateralusCollection.prototype.toString = function () {
+    return this.lateralus.toString() + '-collection';
+  };
 
   return LateralusCollection;
 });
@@ -955,22 +990,6 @@ define('lateralus/lateralus.component',[
     return extendedComponent;
   };
 
-  /**
-   * Merge the properties of another object into this `{{#crossLink
-   * "Lateralus.Component"}}{{/crossLink}}`.  If `mixin` has a function called
-   * `initialize`, it is called in the context of this `{{#crossLink
-   * "Lateralus.Component"}}{{/crossLink}}`.
-   * @method mixin
-   * @param {Object} mixin The object to mix in to this one.
-   */
-  fn.mixin = function (mixin) {
-    _.extend(this, _.omit(mixin, 'initialize'));
-
-    if (typeof mixin.initialize === 'function') {
-      mixin.initialize.call(this);
-    }
-  };
-
   // Prototype members
   //
   _.extend(fn, Backbone.Events, mixins);
@@ -1114,6 +1133,8 @@ define('lateralus/lateralus',[
      * @type {Lateralus.Model}
      */
     this.model = new LateralusModel(this);
+
+    this.delegateLateralusEvents();
   }
 
   var fn = Lateralus.prototype;

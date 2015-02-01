@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.2.0</em>
+            <em>API Docs for: 0.3.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -376,6 +376,21 @@ define([
   mixins.initCollection = function (Collection, models, options) {
     var augmentedOptions = getAugmentedOptionsObject.call(this, options);
     return new Collection(models, augmentedOptions);
+  };
+
+  /**
+   * Merge the properties of another object into this object.  If the &#x60;mixin&#x60;
+   * configuration object has a method called &#x60;initialize&#x60;, it is called in the
+   * context of the object calling this function.
+   * @method mixin
+   * @param {Object} mixin The object to mix in to this one.
+   */
+  mixins.mixin = function (mixin) {
+    _.extend(this, _.omit(mixin, &#x27;initialize&#x27;));
+
+    if (typeof mixin.initialize === &#x27;function&#x27;) {
+      mixin.initialize.call(this);
+    }
   };
 
   return mixins;
