@@ -4,6 +4,8 @@
 
 Lateralus is a single page web application framework.  It is designed around the idea that UIs should be divided into discreet, reusable, loosely-coupled components.  These components should communicate only indirectly and be easily swappable or removable.  Lateralus provides patterns and utilities to cleanly isolate individual components of your app.
 
+**[Link: A simple demo app built with Lateralus](https://github.com/Jellyvision/marker)**
+
 ## Dependencies (Core framework)
 
   * RequireJS
@@ -17,20 +19,28 @@ Lateralus is a single page web application framework.  It is designed around the
 
 ### Installation
 
+To install Lateralus into an existing app:
+
 ````
 bower install --save lateralus
 ````
 
 ### Generate the boilerplate
 
-For your convenience, Lateralus comes bundled with a Yeoman generator for quickly scaffolding apps and components from scratch.  You can install the generator from this directory:
+For your convenience, Lateralus comes bundled with a Yeoman generator for quickly scaffolding apps and components from scratch.  This is particularly handy for starting a new project with Lateralus.  First, clone this repo:
 
 ````bash
-cd generator-lateralus
+git clone https://github.com/Jellyvision/lateralus.git
+````
+
+Then link up the generator:
+
+````bash
+cd lateralus/generator-lateralus
 npm link
 ````
 
-To scaffold a new Lateralus app:
+The generator is now set up.  To scaffold a new Lateralus app:
 
 ````bash
 mkdir -p path/to/app
@@ -42,6 +52,8 @@ yo lateralus
 # Create a new component
 yo lateralus:component my-component
 ````
+
+New Lateralus apps are scaffolded with a `ContainerComponent`.  It is suggested that you use this as the single parent component of your app.
 
 ### Loading the files
 
@@ -57,7 +69,7 @@ require.config({
 });
 ````
 
-You will also need to lead each component as a package.  For example:
+You will also need to load each component as a package.  For example:
 
 ````javascript
 require.config({
@@ -84,6 +96,8 @@ require(['lateralus'], function (Lateralus) {
   var app = new App(document.getElementById('app'));
 });
 ````
+
+`app` is a reference to a running Lateralus application.
 
 ### Working with components
 
@@ -112,18 +126,20 @@ Lateralus's functionality is divided up into several primary Objects under the `
   * `Lateralus.Component`
   * `Lateralus.Component.View`
   * `Lateralus.Component.Model`
+  * `Lateralus.Component.Collection`
+  * A Sass file
 
 ### Lateralus
 
 Contains static utility methods, such as `Lateralus.inherit`.
 
-### Lateralus.Component
+### [Lateralus.Component](http://jellyvision.github.io/lateralus/dist/doc/classes/Lateralus.Component.html)
 
-The primary Object used within the framework to define UI components.  Typically, a component encompasses a `Lateralus.Component.View` and a template (though these are not required).
+The primary class used within the framework to define UI components.  Typically, a component encompasses a `Lateralus.Component.View` and a template (though these are not required).
 
-A component is distinct from a view.  A view is a graphical, interactive representation of a model.  A component represents all of the interrelated parts of significant, individual part of the UI.  This includes one or more Views and templates, a Model, and anything else a UI component needs to function.  A component is a higher-level abstraction than a View.
+A component is distinct from a view.  A view is a graphical, interactive representation of a model.  A component represents all of the interrelated parts of significant, individual part of the UI.  This usually includes one or more Views, a template, a Model, and anything else a UI component needs to function.  A component is a higher-level abstraction than a View.
 
-This is the basic directory structure for a component:
+This is the standard directory structure for a typical component:
 
 ````
 my-component/
@@ -135,7 +151,7 @@ my-component/
   template.mustache
 ````
 
-`main.js` is the main entry point for the component and defines the `Lateralus.Component` instance.  `view.js` defines the primary `Lateralus.Component.View` instance, and `template.mustache` is the primary DOM template.  All components should adhere to this directory structure, but they are free to extend it and add new files and require them as necessary.
+`main.js` is the main entry point for the component and defines the `Lateralus.Component` instance.  `view.js` defines the primary `Lateralus.Component.View` instance, and `template.mustache` is the primary DOM template.  All components should adhere to this directory structure, but you are also free change the directory structure to suit your needs.  If you do this, you will need to update the dependency paths in your component's AMD modules.
 
 Boilerplate for a standard `Lateralus.Component` module:
 
@@ -159,11 +175,13 @@ define(['lateralus', './view', 'text!./template.mustache'],
 
 This is set up for you by the Lateralus Yeoman generator.  `Lateralus.Component` instances have a reference to the central `Lateralus` instance as `this.lateralus`.
 
+**Note:** The `styles/main.sass` file is not `@import`ed for you automatically in your main Sass file, you will need to do that manually when you set up a new component.
+
 ### Templates
 
-Lateralus uses [Mustache.js](https://github.com/janl/mustache.js/) for its templating engine.  All components have at least one template associated with them as `this.template`.
+Lateralus uses [Mustache.js](https://github.com/janl/mustache.js/) for its templating engine.  Components that render something have at least one template associated with them as `this.template`.
 
-### Lateralus.Component.View
+### [Lateralus.Component.View](http://jellyvision.github.io/lateralus/dist/doc/classes/Lateralus.Component.View.html)
 
 This Object extends [`Backbone.View`](http://backbonejs.org/#View) with Lateralus-specific functionality.  Here's a basic `Lateralus.Component.View` subclass module:
 
@@ -204,6 +222,15 @@ The view will automatically have properties `this.$container` and `this.$header`
 
 `Lateralus.Component.View` transparently renders its template for you.  `this.renderTemplate` is called by `Lateralus.Component.View.prototype.initialize` (which is why you should generally call `baseProto.initialize` as demonstrated above), but you are free to do further rendering with `this.render`.  `this.render` should be used for partial updates, whereas `this.renderTemplate` should be used to completely replace the contents of the View's `$el` with whatever is in `this.template`.
 
-### Lateralus.Component.Model
+### [Lateralus.Component.Model](http://jellyvision.github.io/lateralus/dist/doc/classes/Lateralus.Model.html)
 
 Similarly to `Lateralus.Component.View`, this object extends its Backbone counterpart &mdash; `Backbone.Model`.  This doesn't add much in the way of new functionality, but it does have a reference to the central `Lateralus` instance and can therefore `emit` and `listenFor` messages.
+
+
+### [Lateralus.Component.Collection](http://jellyvision.github.io/lateralus/dist/doc/classes/Lateralus.Collection.html)
+
+Just like `Lateralus.Component.Model`, this works consistently with `Backbone.Collection`, but in a way that is compatible with Lateralus.
+
+### Component styles
+
+Each component can (and should) have its own `.sass` file (the generator sets this up at `[component-name]/styles/sass.main`).  It is recommended that all rules be nested under the `[component-name]-view` CSS class, as that class is dynamically added to all `Lateralus.Component.View` instances.  This provides clean and easy component-based style isolation.
