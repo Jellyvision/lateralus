@@ -20,9 +20,11 @@ var LateralusComponentGenerator = yeoman.generators.Base.extend({
         return;
       }
 
-      var prefix = this.config.get('namespaceFiles') ?
-        this.componentName + '-' :
-        '';
+      var config = this.config.getAll();
+      var namespaceFiles = config.namespaceFiles;
+      var centralizeStyles = config.centralizeStyles;
+
+      var prefix = namespaceFiles ? this.componentName + '-' : '';
 
       var renderData = {
         componentName: this.componentName
@@ -48,10 +50,20 @@ var LateralusComponentGenerator = yeoman.generators.Base.extend({
         var targetFileName;
         if (fileName === 'main.js') {
           targetFileName = this.componentName + '.js';
+
         } else if (fileName === 'styles/main.sass') {
-          targetFileName =
-            '../../../styles/components/' + this.componentName + '.sass';
+
+          if (centralizeStyles) {
+            targetFileName =
+              '../../../styles/components/' + this.componentName + '.sass';
+          } else {
+
+            targetFileName = namespaceFiles ?
+              'styles/' + this.componentName + '.sass' :
+              fileName;
+          }
         } else {
+
           targetFileName = prefix + fileName;
         }
 
