@@ -45,9 +45,15 @@ var LateralusComponentGenerator = yeoman.generators.Base.extend({
         var renderedTemplate = Mustache.render(
           this.src.read(fileName), renderData);
 
-        var targetFileName = fileName === 'main.js' ?
-          this.componentName + '.js' :
-          prefix + fileName;
+        var targetFileName;
+        if (fileName === 'main.js') {
+          targetFileName = this.componentName + '.js';
+        } else if (fileName === 'styles/main.sass') {
+          targetFileName =
+            '../../../styles/components/' + this.componentName + '.sass';
+        } else {
+          targetFileName = prefix + fileName;
+        }
 
         this.dest.write(targetFileName, renderedTemplate);
       }.bind(this));
