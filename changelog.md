@@ -1,3 +1,7 @@
+# 0.4.0
+
+  * Add globalPartials map.
+
 # 0.3.1
 
   * Add missing jQuery reference.

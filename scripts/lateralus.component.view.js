@@ -203,6 +203,24 @@ define([
     return renderData;
   };
 
+  fn.getTemplatePartials = function () {
+    /**
+     * An optional map of template partials to be passed to the
+     * `Mustache.render` call for this View.
+     *
+     *     Lateralus.Component.View.extend({
+     *       templatePartials: {
+     *         myNamePartial: 'Hello my name is {{name}}.'
+     *       }
+     *     });
+     *
+     * @property templatePartials
+     * @type {Object(String)|undefined}
+     * @default undefined
+     */
+    return _.extend(this.templatePartials || {}, this.lateralus.globalPartials);
+  };
+
   /**
    * Meant to be called by `{{#crossLink
    * "Lateralus.Component.View/initialize"}}{{/crossLink}}` and infrequently
@@ -222,22 +240,7 @@ define([
       Mustache.render(
         this.template
         ,this.getTemplateRenderData()
-
-        /**
-         * An optional map of template partials to be passed to the
-         * `Mustache.render` call for this View.
-         *
-         *     Lateralus.Component.View.extend({
-         *       templatePartials: {
-         *         myNamePartial: 'Hello my name is {{name}}.'
-         *       }
-         *     });
-         *
-         * @property templatePartials
-         * @type {Object(String)|undefined}
-         * @default undefined
-         */
-        ,this.templatePartials
+        ,this.getTemplatePartials()
       )
     );
 
