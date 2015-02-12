@@ -1,4 +1,4 @@
-/* Lateralus v.0.3.0 | https://github.com/Jellyvision/lateralus */
+/* Lateralus v.0.3.1 | https://github.com/Jellyvision/lateralus */
 define('lateralus/lateralus.mixins',[
 
   'underscore'
@@ -1074,7 +1074,8 @@ define('lateralus/lateralus.component',[
 
 define('lateralus/lateralus',[
 
-  'underscore'
+  'jquery'
+  ,'underscore'
   ,'backbone'
   ,'./lateralus.mixins'
   ,'./lateralus.model'
@@ -1082,7 +1083,8 @@ define('lateralus/lateralus',[
 
 ], function (
 
-  _
+  $
+  ,_
   ,Backbone
   ,mixins
   ,LateralusModel

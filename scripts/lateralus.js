@@ -1,6 +1,7 @@
 define([
 
-  'underscore'
+  'jquery'
+  ,'underscore'
   ,'backbone'
   ,'./lateralus.mixins'
   ,'./lateralus.model'
@@ -8,7 +9,8 @@ define([
 
 ], function (
 
-  _
+  $
+  ,_
   ,Backbone
   ,mixins
   ,LateralusModel

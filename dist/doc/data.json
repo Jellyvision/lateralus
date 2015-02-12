@@ -1,7 +1,7 @@
 {
     "project": {
         "name": "Lateralus",
-        "version": "0.3.0",
+        "version": "0.3.1",
         "logo": "http://cdn.jellyvision.com/wp-content/themes/jellyvision/img/header-logo.png"
     },
     "files": {
@@ -206,7 +206,7 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "scripts/lateralus.js",
-            "line": 20,
+            "line": 22,
             "description": "You should not need to call the Lateralus constructor directly, use\n`{{#crossLink \"Lateralus/beget\"}}{{/crossLink}}` instead.  To create a new\nLateralus app:\n\n    var App = Lateralus.beget(function () {\n      // Don't forget to call the Lateralus constructor!\n      Lateralus.apply(this, arguments);\n    });\n\n    var app = new App(document.getElementById('app'));",
             "access": "protected",
             "tagname": "",
@@ -712,7 +712,7 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 39,
+            "line": 41,
             "description": "The DOM node that contains this `{{#crossLink\n\"Lateralus\"}}{{/crossLink}}` instance.",
             "itemtype": "property",
             "name": "el",
@@ -721,7 +721,7 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 47,
+            "line": 49,
             "description": "The jQuery Object that contains `{{#crossLink\n\"Lateralus/el:property\"}}{{/crossLink}}`.",
             "itemtype": "property",
             "name": "$el",
@@ -730,7 +730,7 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 55,
+            "line": 57,
             "description": "Maintains the state of the central `{{#crossLink\n\"Lateralus\"}}{{/crossLink}}` instance.",
             "itemtype": "property",
             "name": "model",
@@ -739,7 +739,7 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 70,
+            "line": 72,
             "description": "Set up the prototype chain between two objects.",
             "static": 1,
             "itemtype": "method",
@@ -764,7 +764,7 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 85,
+            "line": 87,
             "description": "Create a `{{#crossLink \"Lateralus\"}}{{/crossLink}}` application instance.\n\n    var App = Lateralus.beget(function () {\n      Lateralus.apply(this, arguments);\n    });",
             "static": 1,
             "itemtype": "method",
@@ -784,7 +784,7 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 106,
+            "line": 108,
             "description": "Cross-browser friendly wrapper for `console.log`.",
             "itemtype": "method",
             "name": "log",
@@ -799,7 +799,7 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 113,
+            "line": 115,
             "description": "Cross-browser friendly wrapper for `console.warn`.",
             "itemtype": "method",
             "name": "warn",
@@ -814,7 +814,7 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 120,
+            "line": 122,
             "description": "Cross-browser friendly wrapper for `console.error`.",
             "itemtype": "method",
             "name": "error",
@@ -829,7 +829,7 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 135,
+            "line": 137,
             "description": "Do not override this method, it is used internally.",
             "itemtype": "method",
             "name": "toString",

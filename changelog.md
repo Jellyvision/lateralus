@@ -1,3 +1,7 @@
+# 0.3.1
+
+  * Add missing jQuery reference.
+
 # 0.3.0
 
   * Improve generator-lateralus.  Added Grunt tasks:
