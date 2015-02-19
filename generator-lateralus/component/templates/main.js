@@ -2,9 +2,9 @@ define([
 
   'lateralus'
 
-  ,'./model'
-  ,'./view'
-  ,'text!./template.mustache'
+  ,'./{{prefix}}model'
+  ,'./{{prefix}}view'
+  ,'text!./{{prefix}}template.mustache'
 
 ], function (
 

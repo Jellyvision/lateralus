@@ -126,7 +126,7 @@ define([
      * before the View has been rendered to the DOM, and `{{#crossLink
      * "Lateralus.Component.View/deferredInitialize:method"}}{{/crossLink}}`
      * runs immediately after it has been rendered.
-     * @method initialize
+     * @method deferredInitialize
      * @protected
      */
     if (this.deferredInitialize) {
