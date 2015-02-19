@@ -1,6 +1,7 @@
 # 0.4.0
 
   * Add globalPartials map.
+  * Make generator-lateralus configurable.
 
 # 0.3.1
 
