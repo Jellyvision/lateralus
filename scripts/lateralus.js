@@ -63,6 +63,14 @@ define([
     this.model = new LateralusModel(this);
 
     /**
+     * An optional map of template render data to be passed to the
+     * `Mustache.render` call for all Views belonging to this Lateralus app.
+     * @property globalRenderData
+     * @type {Object(String)}
+     */
+    this.globalRenderData = {};
+
+    /**
      * An optional map of template partials to be passed to the
      * `Mustache.render` call for all Views belonging to this Lateralus app.
      * @property globalPartials

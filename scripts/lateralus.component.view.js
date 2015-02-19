@@ -200,6 +200,8 @@ define([
       _.extend(renderData, this.model.toJSON());
     }
 
+    _.extend(renderData, this.lateralus.globalRenderData);
+
     return renderData;
   };
 

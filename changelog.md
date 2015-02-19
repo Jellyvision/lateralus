@@ -1,5 +1,6 @@
 # 0.4.0
 
+  * Add globalRenderData map.
   * Add globalPartials map.
   * Make generator-lateralus configurable.
 
