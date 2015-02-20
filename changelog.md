@@ -1,6 +1,7 @@
 # 0.4.0
 
   * Emit events for all Lateralus.Model attribute changes.
+  * Expose LateralusModel as Lateralus.Model.
   * Add globalRenderData map.
   * Add globalPartials map.
   * Make generator-lateralus configurable.

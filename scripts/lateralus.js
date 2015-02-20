@@ -161,6 +161,7 @@ define([
   };
 
   Lateralus.Component = Component;
+  Lateralus.Model = LateralusModel;
 
   return Lateralus;
 });
