@@ -1,6 +1,7 @@
 # 0.4.0
 
   * Emit events for all Lateralus.Model attribute changes.
+  * Add modelEvents map support to delegateLateralusEvents.
   * Expose LateralusModel as Lateralus.Model.
   * Add globalRenderData map.
   * Add globalPartials map.

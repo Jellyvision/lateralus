@@ -204,6 +204,22 @@ define([
        */
         lateralusEvents: this.lateralus
 
+      /**
+       * A map of functions or string references to functions that will handle
+       * [events](http://backbonejs.org/#Events) emitted by `this.model`.
+       *
+       *     var ExtendedComponent = Lateralus.View.extend({
+       *       modelEvents: {
+       *         changed:someProperty: function (model, someProperty) {
+       *           // ...
+       *         }
+       *       }
+       *     });
+       * @protected
+       * @property modelEvents
+       * @type {Object|undefined}
+       * @default undefined
+       */
         ,modelEvents: this.model
       }, function (subject, mapName) {
 
