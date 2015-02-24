@@ -66,6 +66,12 @@ define([
      */
     this.component = component;
 
+    if (options.model) {
+      // Attach the model a bit early here so that the modelEvents map is
+      // properly bound in the delegateLateralusEvents call below.
+      this.model = options.model;
+    }
+
     this.delegateLateralusEvents();
     Backbone.View.call(this, options);
   };

@@ -175,58 +175,66 @@ define([
    * @protected
    */
   mixins.delegateLateralusEvents = function () {
-    /**
-     * A map of functions or string references to functions that will handle
-     * [events](http://backbonejs.org/#Events) dispatched to the central
-     * `{{#crossLink "Lateralus"}}{{/crossLink}}` instance.
-     *
-     *     var ExtendedComponent = Lateralus.Component.extend({
-     *       name: 'extended'
-     *
-     *       ,lateralusEvents: {
-     *         anotherComponentChanged: 'onAnotherComponentChanged'
-     *
-     *         ,anotherComponentDestroyed: function () {
-     *           // ...
-     *         }
-     *       }
-     *
-     *       ,onAnotherComponentChanged: function () {
-     *         // ...
-     *       }
-     *     });
-     * @protected
-     * @property lateralusEvents
-     * @type {Object|undefined}
-     * @default undefined
-     */
-    var lateralusEvents = this.lateralusEvents;
 
-    if (!lateralusEvents) {
-      return;
-    }
+    _.each({
+      /**
+       * A map of functions or string references to functions that will handle
+       * [events](http://backbonejs.org/#Events) dispatched to the central
+       * `{{#crossLink "Lateralus"}}{{/crossLink}}` instance.
+       *
+       *     var ExtendedComponent = Lateralus.Component.extend({
+       *       name: 'extended'
+       *
+       *       ,lateralusEvents: {
+       *         anotherComponentChanged: 'onAnotherComponentChanged'
+       *
+       *         ,anotherComponentDestroyed: function () {
+       *           // ...
+       *         }
+       *       }
+       *
+       *       ,onAnotherComponentChanged: function () {
+       *         // ...
+       *       }
+       *     });
+       * @protected
+       * @property lateralusEvents
+       * @type {Object|undefined}
+       * @default undefined
+       */
+        lateralusEvents: this.lateralus
 
-    for (var key in lateralusEvents) {
-      var method = lateralusEvents[key];
-      if (!_.isFunction(method)) {
-        method = this[lateralusEvents[key]];
+        ,modelEvents: this.model
+      }, function (subject, mapName) {
+
+      if (!subject) {
+        return;
       }
 
-      if (!method) {
-        new Error('Method "' + method + '" not found for ' + this.toString());
+      var eventMap = this[mapName];
+
+      for (var key in eventMap) {
+        var method = eventMap[key];
+        if (!_.isFunction(method)) {
+          method = this[eventMap[key]];
+        }
+
+        if (!method) {
+          new Error('Method "' + method + '" not found for ' + this.toString());
+        }
+
+        var match = key.match(delegateEventSplitter);
+        var eventName = match[1];
+        var boundMethod = _.bind(method, this);
+
+        if (isLateralus(this) && isLateralus(subject)) {
+          this.on(eventName, boundMethod);
+        } else {
+          this.listenTo(subject, eventName, boundMethod);
+        }
+
       }
-
-      var match = key.match(delegateEventSplitter);
-      var eventName = match[1];
-      var boundMethod = _.bind(method, this);
-
-      if (isLateralus(this)) {
-        this.on(eventName, boundMethod);
-      } else {
-        this.listenTo(this.lateralus, eventName, boundMethod);
-      }
-
-    }
+    }, this);
 
     return this;
   };
