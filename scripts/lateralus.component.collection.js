@@ -62,7 +62,6 @@ define([
 
   /**
    * @method toString
-   * @protected
    * @return {string} The name of this Collection.  This is used internally by
    * Lateralus.
    */

@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.1</em>
+            <em>API Docs for: 0.4.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -106,7 +106,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../files/scripts_lateralus.component.view.js.html#l288"><code>scripts&#x2F;lateralus.component.view.js:288</code></a>
+            Defined in: <a href="../files/scripts_lateralus.component.view.js.html#l295"><code>scripts&#x2F;lateralus.component.view.js:295</code></a>
         </div>
     
 
@@ -164,27 +164,27 @@
                             </li>
                         
                             <li class="index-item method">
+                                <a href="#method_deferredInitialize">deferredInitialize</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
                                 <a href="#method_dispose">dispose</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method protected">
+                            <li class="index-item method">
                                 <a href="#method_getTemplateRenderData">getTemplateRenderData</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method protected">
-                                <a href="#method_initialize">initialize</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method protected">
+                            <li class="index-item method">
                                 <a href="#method_initialize">initialize</a>
 
                                 
@@ -198,7 +198,7 @@
                                 
                             </li>
                         
-                            <li class="index-item method protected">
+                            <li class="index-item method">
                                 <a href="#method_toString">toString</a>
 
                                 
@@ -215,7 +215,7 @@
 
                     <ul class="index-list properties extends">
                         
-                            <li class="index-item property protected">
+                            <li class="index-item property">
                                 <a href="#property_attachDefaultOptions">attachDefaultOptions</a>
 
                                 
@@ -323,7 +323,7 @@
             
         
         
-        <a href="../files/scripts_lateralus.component.view.js.html#l149"><code>scripts&#x2F;lateralus.component.view.js:149</code></a>
+        <a href="../files/scripts_lateralus.component.view.js.html#l152"><code>scripts&#x2F;lateralus.component.view.js:152</code></a>
         
         </p>
 
@@ -441,7 +441,7 @@ subview when it is instantiated.</p>
             
         
         
-        <a href="../files/scripts_lateralus.component.view.js.html#l247"><code>scripts&#x2F;lateralus.component.view.js:247</code></a>
+        <a href="../files/scripts_lateralus.component.view.js.html#l254"><code>scripts&#x2F;lateralus.component.view.js:254</code></a>
         
         </p>
 
@@ -456,6 +456,67 @@ subview when it is instantiated.</p>
 that have a class that looks like <em><code>$this</code></em> and create a property on this
 instance with the same name.  The attached property is a jQuery object
 that references the corresponding DOM element.</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_deferredInitialize" class="method item">
+    <h3 class="name"><code>deferredInitialize</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/scripts_lateralus.component.view.js.html#l122"><code>scripts&#x2F;lateralus.component.view.js:122</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>A function to be called in the JavaScript thread that follows the one
+that ran <code><a href="../classes/Lateralus.Component.View.html#method_initialize" class="crosslink">initialize</a></code>.  This can
+be necessary for situations where setup logic needs to happen after a
+View has been rendered.</p>
+<p>In other words, <code><a href="../classes/Lateralus.Component.View.html#method_initialize" class="crosslink">initialize</a></code> runs
+before the View has been rendered to the DOM, and <code><a href="../classes/Lateralus.Component.View.html#method_deferredInitialize" class="crosslink">deferredInitialize</a></code>
+runs immediately after it has been rendered.</p>
 
     </div>
 
@@ -501,7 +562,7 @@ that references the corresponding DOM element.</p>
             
         
         
-        <a href="../files/scripts_lateralus.component.view.js.html#l269"><code>scripts&#x2F;lateralus.component.view.js:269</code></a>
+        <a href="../files/scripts_lateralus.component.view.js.html#l276"><code>scripts&#x2F;lateralus.component.view.js:276</code></a>
         
         </p>
 
@@ -525,7 +586,7 @@ the DOM and cleanly dispose of any references.</p>
 </div>
 
                 
-                    <div id="method_getTemplateRenderData" class="method item protected">
+                    <div id="method_getTemplateRenderData" class="method item">
     <h3 class="name"><code>getTemplateRenderData</code></h3>
 
     
@@ -540,8 +601,6 @@ the DOM and cleanly dispose of any references.</p>
 
     
 
-    
-        <span class="flag protected">protected</span>
     
 
     
@@ -563,7 +622,7 @@ the DOM and cleanly dispose of any references.</p>
             
         
         
-        <a href="../files/scripts_lateralus.component.view.js.html#l185"><code>scripts&#x2F;lateralus.component.view.js:185</code></a>
+        <a href="../files/scripts_lateralus.component.view.js.html#l188"><code>scripts&#x2F;lateralus.component.view.js:188</code></a>
         
         </p>
 
@@ -604,7 +663,7 @@ Otherwise, an empty object is returned.</p>
 </div>
 
                 
-                    <div id="method_initialize" class="method item protected">
+                    <div id="method_initialize" class="method item">
     <h3 class="name"><code>initialize</code></h3>
 
     
@@ -626,8 +685,6 @@ Otherwise, an empty object is returned.</p>
     
 
     
-        <span class="flag protected">protected</span>
-    
 
     
 
@@ -648,7 +705,7 @@ Otherwise, an empty object is returned.</p>
             
         
         
-        <a href="../files/scripts_lateralus.component.view.js.html#l73"><code>scripts&#x2F;lateralus.component.view.js:73</code></a>
+        <a href="../files/scripts_lateralus.component.view.js.html#l79"><code>scripts&#x2F;lateralus.component.view.js:79</code></a>
         
         </p>
 
@@ -709,69 +766,6 @@ var ExtendedComponentView = Base.extend({
 </div>
 
                 
-                    <div id="method_initialize" class="method item protected">
-    <h3 class="name"><code>initialize</code></h3>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-
-    
-
-    
-        <span class="flag protected">protected</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/scripts_lateralus.component.view.js.html#l117"><code>scripts&#x2F;lateralus.component.view.js:117</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>A function to be called in the JavaScript thread that follows the one
-that ran <code><a href="../classes/Lateralus.Component.View.html#method_initialize" class="crosslink">initialize</a></code>.  This can
-be necessary for situations where setup logic needs to happen after a
-View has been rendered.</p>
-<p>In other words, <code><a href="../classes/Lateralus.Component.View.html#method_initialize" class="crosslink">initialize</a></code> runs
-before the View has been rendered to the DOM, and <code>Lateralus.Component.View/deferredInitialize:method</code>
-runs immediately after it has been rendered.</p>
-
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
                     <div id="method_renderTemplate" class="method item">
     <h3 class="name"><code>renderTemplate</code></h3>
 
@@ -804,7 +798,7 @@ runs immediately after it has been rendered.</p>
             
         
         
-        <a href="../files/scripts_lateralus.component.view.js.html#l206"><code>scripts&#x2F;lateralus.component.view.js:206</code></a>
+        <a href="../files/scripts_lateralus.component.view.js.html#l228"><code>scripts&#x2F;lateralus.component.view.js:228</code></a>
         
         </p>
 
@@ -831,7 +825,7 @@ partial renders.</p>
 </div>
 
                 
-                    <div id="method_toString" class="method item protected">
+                    <div id="method_toString" class="method item">
     <h3 class="name"><code>toString</code></h3>
 
     
@@ -846,8 +840,6 @@ partial renders.</p>
 
     
 
-    
-        <span class="flag protected">protected</span>
     
 
     
@@ -869,7 +861,7 @@ partial renders.</p>
             
         
         
-        <a href="../files/scripts_lateralus.component.view.js.html#l296"><code>scripts&#x2F;lateralus.component.view.js:296</code></a>
+        <a href="../files/scripts_lateralus.component.view.js.html#l303"><code>scripts&#x2F;lateralus.component.view.js:303</code></a>
         
         </p>
 
@@ -914,14 +906,12 @@ Lateralus.</p>
                 <h2 class="off-left">Properties</h2>
 
                 
-                    <div id="property_attachDefaultOptions" class="property item protected">
+                    <div id="property_attachDefaultOptions" class="property item">
     <h3 class="name"><code>attachDefaultOptions</code></h3>
     <span class="type">Object</span>
 
     
 
-    
-        <span class="flag protected">protected</span>
     
 
     
@@ -939,7 +929,7 @@ Lateralus.</p>
             
         
         
-        <a href="../files/scripts_lateralus.component.view.js.html#l137"><code>scripts&#x2F;lateralus.component.view.js:137</code></a>
+        <a href="../files/scripts_lateralus.component.view.js.html#l141"><code>scripts&#x2F;lateralus.component.view.js:141</code></a>
         
         </p>
 
@@ -988,7 +978,7 @@ constructor</a>.</p>
             
         
         
-        <a href="../files/scripts_lateralus.component.view.js.html#l102"><code>scripts&#x2F;lateralus.component.view.js:102</code></a>
+        <a href="../files/scripts_lateralus.component.view.js.html#l107"><code>scripts&#x2F;lateralus.component.view.js:107</code></a>
         
         </p>
 
@@ -1134,7 +1124,7 @@ reference to the parent <code><a href="../classes/Lateralus.Component.View.html"
             
         
         
-        <a href="../files/scripts_lateralus.component.view.js.html#l164"><code>scripts&#x2F;lateralus.component.view.js:164</code></a>
+        <a href="../files/scripts_lateralus.component.view.js.html#l167"><code>scripts&#x2F;lateralus.component.view.js:167</code></a>
         
         </p>
 
@@ -1180,7 +1170,7 @@ is managed by Lateralus.</p>
             
         
         
-        <a href="../files/scripts_lateralus.component.view.js.html#l226"><code>scripts&#x2F;lateralus.component.view.js:226</code></a>
+        <a href="../files/scripts_lateralus.component.view.js.html#l211"><code>scripts&#x2F;lateralus.component.view.js:211</code></a>
         
         </p>
 

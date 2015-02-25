@@ -2,7 +2,7 @@ define([
 
   'lateralus'
 
-  ,'text!./template.mustache'
+  ,'text!./{{prefix}}template.mustache'
 
 ], function (
 

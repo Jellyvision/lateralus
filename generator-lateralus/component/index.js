@@ -20,9 +20,16 @@ var LateralusComponentGenerator = yeoman.generators.Base.extend({
         return;
       }
 
+      var config = this.config.getAll();
+      var namespaceFiles = config.namespaceFiles;
+      var centralizeStyles = config.centralizeStyles;
+
+      var prefix = namespaceFiles ? this.componentName + '-' : '';
+
       var renderData = {
         componentName: this.componentName
         ,componentClassName: _s.classify(this.componentName)
+        ,prefix: prefix
       };
 
       var destRoot = this.isLateralus ?
@@ -39,7 +46,28 @@ var LateralusComponentGenerator = yeoman.generators.Base.extend({
       ].forEach(function (fileName) {
         var renderedTemplate = Mustache.render(
           this.src.read(fileName), renderData);
-        this.dest.write(fileName, renderedTemplate);
+
+        var targetFileName;
+        if (fileName === 'main.js') {
+          targetFileName = this.componentName + '.js';
+
+        } else if (fileName === 'styles/main.sass') {
+
+          if (centralizeStyles) {
+            targetFileName =
+              '../../../styles/components/' + this.componentName + '.sass';
+          } else {
+
+            targetFileName = namespaceFiles ?
+              'styles/' + this.componentName + '.sass' :
+              fileName;
+          }
+        } else {
+
+          targetFileName = prefix + fileName;
+        }
+
+        this.dest.write(targetFileName, renderedTemplate);
       }.bind(this));
     }
   }

@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.1</em>
+            <em>API Docs for: 0.4.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -165,7 +165,7 @@
                                 
                             </li>
                         
-                            <li class="index-item method protected inherited">
+                            <li class="index-item method inherited">
                                 <a href="#method_delegateLateralusEvents">delegateLateralusEvents</a>
 
                                 
@@ -207,7 +207,7 @@
                                 
                             </li>
                         
-                            <li class="index-item method protected">
+                            <li class="index-item method">
                                 <a href="#method_toString">toString</a>
 
                                 
@@ -238,8 +238,15 @@
                                 
                             </li>
                         
-                            <li class="index-item property protected inherited">
+                            <li class="index-item property inherited">
                                 <a href="#property_lateralusEvents">lateralusEvents</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property inherited">
+                                <a href="#property_modelEvents">modelEvents</a>
 
                                 
                                 
@@ -456,7 +463,7 @@ instance, if there is one.</p>
 </div>
 
                 
-                    <div id="method_delegateLateralusEvents" class="method item protected inherited">
+                    <div id="method_delegateLateralusEvents" class="method item inherited">
     <h3 class="name"><code>delegateLateralusEvents</code></h3>
 
     
@@ -467,8 +474,6 @@ instance, if there is one.</p>
 
     
 
-    
-        <span class="flag protected">protected</span>
     
 
     
@@ -696,7 +701,7 @@ and the central <code><a href="../classes/Lateralus.html" class="crosslink">Late
             
         
         
-        <a href="../files/scripts_lateralus.mixins.js.html#l267"><code>scripts&#x2F;lateralus.mixins.js:267</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l289"><code>scripts&#x2F;lateralus.mixins.js:289</code></a>
         
         </p>
 
@@ -845,7 +850,7 @@ Collection constructor.</p>
             
         
         
-        <a href="../files/scripts_lateralus.mixins.js.html#l254"><code>scripts&#x2F;lateralus.mixins.js:254</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l276"><code>scripts&#x2F;lateralus.mixins.js:276</code></a>
         
         </p>
 
@@ -1085,7 +1090,7 @@ constructor.</p>
             
         
         
-        <a href="../files/scripts_lateralus.mixins.js.html#l281"><code>scripts&#x2F;lateralus.mixins.js:281</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l303"><code>scripts&#x2F;lateralus.mixins.js:303</code></a>
         
         </p>
 
@@ -1134,7 +1139,7 @@ context of the object calling this function.</p>
 </div>
 
                 
-                    <div id="method_toString" class="method item protected">
+                    <div id="method_toString" class="method item">
     <h3 class="name"><code>toString</code></h3>
 
     
@@ -1149,8 +1154,6 @@ context of the object calling this function.</p>
 
     
 
-    
-        <span class="flag protected">protected</span>
     
 
     
@@ -1305,14 +1308,12 @@ property directly, it is managed by Lateralus.</p>
 </div>
 
                 
-                    <div id="property_lateralusEvents" class="property item protected inherited">
+                    <div id="property_lateralusEvents" class="property item inherited">
     <h3 class="name"><code>lateralusEvents</code></h3>
     <span class="type">Object | Undefined</span>
 
     
 
-    
-        <span class="flag protected">protected</span>
     
 
     
@@ -1327,7 +1328,7 @@ property directly, it is managed by Lateralus.</p>
             
         
         
-        <a href="../files/scripts_lateralus.mixins.js.html#l178"><code>scripts&#x2F;lateralus.mixins.js:178</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l179"><code>scripts&#x2F;lateralus.mixins.js:179</code></a>
         
         </p>
 
@@ -1337,9 +1338,9 @@ property directly, it is managed by Lateralus.</p>
     </div>
 
     <div class="description">
-        <p>A map of functions or string references to functions that will handle
-<a href="http://backbonejs.org/#Events">events</a> dispatched to the central
-<code><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a></code> instance.</p>
+        <p>A map of functions or string references to functions that will
+handle <a href="http://backbonejs.org/#Events">events</a> dispatched to the
+central <code><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a></code> instance.</p>
 <pre class="code prettyprint"><code>var ExtendedComponent = Lateralus.Component.extend({
   name: &#39;extended&#39;
 
@@ -1353,6 +1354,59 @@ property directly, it is managed by Lateralus.</p>
 
   ,onAnotherComponentChanged: function () {
     // ...
+  }
+});</code></pre>
+
+    </div>
+
+    
+        <p><strong>Default:</strong> undefined</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_modelEvents" class="property item inherited">
+    <h3 class="name"><code>modelEvents</code></h3>
+    <span class="type">Object | Undefined</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="../classes/Lateralus.mixins.html#property_modelEvents">Lateralus.mixins</a>:
+            
+        
+        
+        <a href="../files/scripts_lateralus.mixins.js.html#l205"><code>scripts&#x2F;lateralus.mixins.js:205</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>A map of functions or string references to functions that will
+handle <a href="http://backbonejs.org/#Events">events</a> emitted by
+<code>this.model</code>.</p>
+<pre class="code prettyprint"><code>var ExtendedComponent = Lateralus.View.extend({
+  modelEvents: {
+    changed:someProperty: function (model, someProperty) {
+      // ...
+    }
   }
 });</code></pre>
 

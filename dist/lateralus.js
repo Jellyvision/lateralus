@@ -1,4 +1,4 @@
-/* Lateralus v.0.3.1 | https://github.com/Jellyvision/lateralus */
+/* Lateralus v.0.4.0 | https://github.com/Jellyvision/lateralus */
 define('lateralus/lateralus.mixins',[
 
   'underscore'
@@ -173,61 +173,83 @@ define('lateralus/lateralus.mixins',[
    * it is defined.
    * @method delegateLateralusEvents
    * @chainable
-   * @protected
    */
   mixins.delegateLateralusEvents = function () {
-    /**
-     * A map of functions or string references to functions that will handle
-     * [events](http://backbonejs.org/#Events) dispatched to the central
-     * `{{#crossLink "Lateralus"}}{{/crossLink}}` instance.
-     *
-     *     var ExtendedComponent = Lateralus.Component.extend({
-     *       name: 'extended'
-     *
-     *       ,lateralusEvents: {
-     *         anotherComponentChanged: 'onAnotherComponentChanged'
-     *
-     *         ,anotherComponentDestroyed: function () {
-     *           // ...
-     *         }
-     *       }
-     *
-     *       ,onAnotherComponentChanged: function () {
-     *         // ...
-     *       }
-     *     });
-     * @protected
-     * @property lateralusEvents
-     * @type {Object|undefined}
-     * @default undefined
-     */
-    var lateralusEvents = this.lateralusEvents;
 
-    if (!lateralusEvents) {
-      return;
-    }
+    _.each({
+        /**
+         * A map of functions or string references to functions that will
+         * handle [events](http://backbonejs.org/#Events) dispatched to the
+         * central `{{#crossLink "Lateralus"}}{{/crossLink}}` instance.
+         *
+         *     var ExtendedComponent = Lateralus.Component.extend({
+         *       name: 'extended'
+         *
+         *       ,lateralusEvents: {
+         *         anotherComponentChanged: 'onAnotherComponentChanged'
+         *
+         *         ,anotherComponentDestroyed: function () {
+         *           // ...
+         *         }
+         *       }
+         *
+         *       ,onAnotherComponentChanged: function () {
+         *         // ...
+         *       }
+         *     });
+         * @property lateralusEvents
+         * @type {Object|undefined}
+         * @default undefined
+         */
+        lateralusEvents: this.lateralus || this
 
-    for (var key in lateralusEvents) {
-      var method = lateralusEvents[key];
-      if (!_.isFunction(method)) {
-        method = this[lateralusEvents[key]];
+        /**
+         * A map of functions or string references to functions that will
+         * handle [events](http://backbonejs.org/#Events) emitted by
+         * `this.model`.
+         *
+         *     var ExtendedComponent = Lateralus.View.extend({
+         *       modelEvents: {
+         *         changed:someProperty: function (model, someProperty) {
+         *           // ...
+         *         }
+         *       }
+         *     });
+         * @property modelEvents
+         * @type {Object|undefined}
+         * @default undefined
+         */
+        ,modelEvents: this.model
+      }, function (subject, mapName) {
+
+      if (!subject) {
+        return;
       }
 
-      if (!method) {
-        new Error('Method "' + method + '" not found for ' + this.toString());
+      var eventMap = this[mapName];
+
+      for (var key in eventMap) {
+        var method = eventMap[key];
+        if (!_.isFunction(method)) {
+          method = this[eventMap[key]];
+        }
+
+        if (!method) {
+          new Error('Method "' + method + '" not found for ' + this.toString());
+        }
+
+        var match = key.match(delegateEventSplitter);
+        var eventName = match[1];
+        var boundMethod = _.bind(method, this);
+
+        if (isLateralus(this) && isLateralus(subject)) {
+          this.on(eventName, boundMethod);
+        } else {
+          this.listenTo(subject, eventName, boundMethod);
+        }
+
       }
-
-      var match = key.match(delegateEventSplitter);
-      var eventName = match[1];
-      var boundMethod = _.bind(method, this);
-
-      if (isLateralus(this)) {
-        this.on(eventName, boundMethod);
-      } else {
-        this.listenTo(this.lateralus, eventName, boundMethod);
-      }
-
-    }
+    }, this);
 
     return this;
   };
@@ -332,7 +354,24 @@ define('lateralus/lateralus.model',[
   fn.constructor = function (lateralus) {
     this.lateralus = lateralus;
     this.delegateLateralusEvents();
+    this.on('change', _.bind(this.onChange, this));
     Backbone.Model.call(this);
+  };
+
+  /**
+   * For every key that is changed on this model, a corresponding `change:`
+   * event is `{{#crossLink "Lateralus.mixins/emit:method"}}{{/crossLink}}`ed.
+   * For example, `set`ting the `"foo"` attribute will `{{#crossLink
+   * "Lateralus.mixins/emit:method"}}{{/crossLink}}` `change:foo` and provide
+   * the changed value.
+   * @method onChange
+   */
+  fn.onChange = function () {
+    var changed = this.changed;
+
+    _.each(_.keys(changed), function (changedKey) {
+      this.emit('change:' + changedKey, changed[changedKey]);
+    }, this);
   };
 
   _.extend(fn, mixins);
@@ -341,7 +380,6 @@ define('lateralus/lateralus.model',[
 
   /**
    * @method toString
-   * @protected
    * @return {string} The name of this Model.  This is used internally by
    * Lateralus.
    */
@@ -420,6 +458,12 @@ define('lateralus/lateralus.component.view',[
      */
     this.component = component;
 
+    if (options.model) {
+      // Attach the model a bit early here so that the modelEvents map is
+      // properly bound in the delegateLateralusEvents call below.
+      this.model = options.model;
+    }
+
     this.delegateLateralusEvents();
     Backbone.View.call(this, options);
   };
@@ -444,7 +488,6 @@ define('lateralus/lateralus.component.view',[
    * @method initialize
    * @param {Object} [opts] Any properties or methods to attach to this
    * `{{#crossLink "Lateralus.Component.View"}}{{/crossLink}}` instance.
-   * @protected
    */
   fn.initialize = function (opts) {
     // this.toString references the central Component constructor, so don't
@@ -480,8 +523,7 @@ define('lateralus/lateralus.component.view',[
      * before the View has been rendered to the DOM, and `{{#crossLink
      * "Lateralus.Component.View/deferredInitialize:method"}}{{/crossLink}}`
      * runs immediately after it has been rendered.
-     * @method initialize
-     * @protected
+     * @method deferredInitialize
      */
     if (this.deferredInitialize) {
       _.defer(_.bind(this.deferredInitialize, this));
@@ -496,7 +538,6 @@ define('lateralus/lateralus.component.view',[
    * constructor](http://backbonejs.org/#View-constructor).
    * @property attachDefaultOptions
    * @type {Object}
-   * @protected
    */
   fn.attachDefaultOptions = {};
 
@@ -542,7 +583,6 @@ define('lateralus/lateralus.component.view',[
    * "Lateralus.Component.View/renderTemplate"}}{{/crossLink}}`.  The method
    * can be overridden.
    * @method getTemplateRenderData
-   * @protected
    * @return {Object} The [raw `Backbone.Model`
    * data](http://backbonejs.org/#Model-toJSON), if this View has a Model.
    * Otherwise, an empty object is returned.
@@ -554,7 +594,27 @@ define('lateralus/lateralus.component.view',[
       _.extend(renderData, this.model.toJSON());
     }
 
+    _.extend(renderData, this.lateralus.globalRenderData);
+
     return renderData;
+  };
+
+  fn.getTemplatePartials = function () {
+    /**
+     * An optional map of template partials to be passed to the
+     * `Mustache.render` call for this View.
+     *
+     *     Lateralus.Component.View.extend({
+     *       templatePartials: {
+     *         myNamePartial: 'Hello my name is {{name}}.'
+     *       }
+     *     });
+     *
+     * @property templatePartials
+     * @type {Object(String)|undefined}
+     * @default undefined
+     */
+    return _.extend(this.templatePartials || {}, this.lateralus.globalPartials);
   };
 
   /**
@@ -576,22 +636,7 @@ define('lateralus/lateralus.component.view',[
       Mustache.render(
         this.template
         ,this.getTemplateRenderData()
-
-        /**
-         * An optional map of template partials to be passed to the
-         * `Mustache.render` call for this View.
-         *
-         *     Lateralus.Component.View.extend({
-         *       templatePartials: {
-         *         myNamePartial: 'Hello my name is {{name}}.'
-         *       }
-         *     });
-         *
-         * @property templatePartials
-         * @type {Object(String)|undefined}
-         * @default undefined
-         */
-        ,this.templatePartials
+        ,this.getTemplatePartials()
       )
     );
 
@@ -649,7 +694,6 @@ define('lateralus/lateralus.component.view',[
 
   /**
    * @method toString
-   * @protected
    * @return {string} The name of this View.  This is used internally by
    * Lateralus.
    */
@@ -714,7 +758,6 @@ define('lateralus/lateralus.component.model',[
 
   /**
    * @method toString
-   * @protected
    * @return {string} The name of this Model.  This is used internally by
    * Lateralus.
    */
@@ -789,7 +832,6 @@ define('lateralus/lateralus.component.collection',[
 
   /**
    * @method toString
-   * @protected
    * @return {string} The name of this Collection.  This is used internally by
    * Lateralus.
    */
@@ -854,7 +896,6 @@ define('lateralus/lateralus.component',[
    * this component, if any.
    * @uses http://backbonejs.org/#Events
    * @uses Lateralus.mixins
-   * @protected
    * @constructor
    */
   function Component (lateralus, options, viewOptions, opt_parentComponent) {
@@ -1104,7 +1145,6 @@ define('lateralus/lateralus',[
    *     });
    *
    *     var app = new App(document.getElementById('app'));
-   * @protected
    * @param {Element} el The DOM element that contains the entire Lateralus
    * app.
    * @class Lateralus
@@ -1135,6 +1175,22 @@ define('lateralus/lateralus',[
      * @type {Lateralus.Model}
      */
     this.model = new LateralusModel(this);
+
+    /**
+     * An optional map of template render data to be passed to the
+     * `Mustache.render` call for all Views belonging to this Lateralus app.
+     * @property globalRenderData
+     * @type {Object(String)}
+     */
+    this.globalRenderData = {};
+
+    /**
+     * An optional map of template partials to be passed to the
+     * `Mustache.render` call for all Views belonging to this Lateralus app.
+     * @property globalPartials
+     * @type {Object(String)}
+     */
+    this.globalPartials = {};
 
     this.delegateLateralusEvents();
   }
@@ -1219,6 +1275,7 @@ define('lateralus/lateralus',[
   };
 
   Lateralus.Component = Component;
+  Lateralus.Model = LateralusModel;
 
   return Lateralus;
 });
