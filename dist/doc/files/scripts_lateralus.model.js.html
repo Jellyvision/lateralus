@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.1</em>
+            <em>API Docs for: 0.4.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -133,7 +133,24 @@ define([
   fn.constructor = function (lateralus) {
     this.lateralus = lateralus;
     this.delegateLateralusEvents();
+    this.on(&#x27;change&#x27;, _.bind(this.onChange, this));
     Backbone.Model.call(this);
+  };
+
+  /**
+   * For every key that is changed on this model, a corresponding &#x60;change:&#x60;
+   * event is &#x60;{{#crossLink &quot;Lateralus.mixins/emit:method&quot;}}{{/crossLink}}&#x60;ed.
+   * For example, &#x60;set&#x60;ting the &#x60;&quot;foo&quot;&#x60; attribute will &#x60;{{#crossLink
+   * &quot;Lateralus.mixins/emit:method&quot;}}{{/crossLink}}&#x60; &#x60;change:foo&#x60; and provide
+   * the changed value.
+   * @method onChange
+   */
+  fn.onChange = function () {
+    var changed = this.changed;
+
+    _.each(_.keys(changed), function (changedKey) {
+      this.emit(&#x27;change:&#x27; + changedKey, changed[changedKey]);
+    }, this);
   };
 
   _.extend(fn, mixins);
@@ -142,7 +159,6 @@ define([
 
   /**
    * @method toString
-   * @protected
    * @return {string} The name of this Model.  This is used internally by
    * Lateralus.
    */

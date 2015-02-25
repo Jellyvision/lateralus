@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.3.1</em>
+            <em>API Docs for: 0.4.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -166,6 +166,12 @@ define([
      */
     this.component = component;
 
+    if (options.model) {
+      // Attach the model a bit early here so that the modelEvents map is
+      // properly bound in the delegateLateralusEvents call below.
+      this.model = options.model;
+    }
+
     this.delegateLateralusEvents();
     Backbone.View.call(this, options);
   };
@@ -190,7 +196,6 @@ define([
    * @method initialize
    * @param {Object} [opts] Any properties or methods to attach to this
    * &#x60;{{#crossLink &quot;Lateralus.Component.View&quot;}}{{/crossLink}}&#x60; instance.
-   * @protected
    */
   fn.initialize = function (opts) {
     // this.toString references the central Component constructor, so don&#x27;t
@@ -226,8 +231,7 @@ define([
      * before the View has been rendered to the DOM, and &#x60;{{#crossLink
      * &quot;Lateralus.Component.View/deferredInitialize:method&quot;}}{{/crossLink}}&#x60;
      * runs immediately after it has been rendered.
-     * @method initialize
-     * @protected
+     * @method deferredInitialize
      */
     if (this.deferredInitialize) {
       _.defer(_.bind(this.deferredInitialize, this));
@@ -242,7 +246,6 @@ define([
    * constructor](http://backbonejs.org/#View-constructor).
    * @property attachDefaultOptions
    * @type {Object}
-   * @protected
    */
   fn.attachDefaultOptions = {};
 
@@ -288,7 +291,6 @@ define([
    * &quot;Lateralus.Component.View/renderTemplate&quot;}}{{/crossLink}}&#x60;.  The method
    * can be overridden.
    * @method getTemplateRenderData
-   * @protected
    * @return {Object} The [raw &#x60;Backbone.Model&#x60;
    * data](http://backbonejs.org/#Model-toJSON), if this View has a Model.
    * Otherwise, an empty object is returned.
@@ -300,7 +302,27 @@ define([
       _.extend(renderData, this.model.toJSON());
     }
 
+    _.extend(renderData, this.lateralus.globalRenderData);
+
     return renderData;
+  };
+
+  fn.getTemplatePartials = function () {
+    /**
+     * An optional map of template partials to be passed to the
+     * &#x60;Mustache.render&#x60; call for this View.
+     *
+     *     Lateralus.Component.View.extend({
+     *       templatePartials: {
+     *         myNamePartial: &#x27;Hello my name is {{name}}.&#x27;
+     *       }
+     *     });
+     *
+     * @property templatePartials
+     * @type {Object(String)|undefined}
+     * @default undefined
+     */
+    return _.extend(this.templatePartials || {}, this.lateralus.globalPartials);
   };
 
   /**
@@ -322,22 +344,7 @@ define([
       Mustache.render(
         this.template
         ,this.getTemplateRenderData()
-
-        /**
-         * An optional map of template partials to be passed to the
-         * &#x60;Mustache.render&#x60; call for this View.
-         *
-         *     Lateralus.Component.View.extend({
-         *       templatePartials: {
-         *         myNamePartial: &#x27;Hello my name is {{name}}.&#x27;
-         *       }
-         *     });
-         *
-         * @property templatePartials
-         * @type {Object(String)|undefined}
-         * @default undefined
-         */
-        ,this.templatePartials
+        ,this.getTemplatePartials()
       )
     );
 
@@ -395,7 +402,6 @@ define([
 
   /**
    * @method toString
-   * @protected
    * @return {string} The name of this View.  This is used internally by
    * Lateralus.
    */
