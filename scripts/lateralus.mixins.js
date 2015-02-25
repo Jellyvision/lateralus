@@ -177,49 +177,50 @@ define([
   mixins.delegateLateralusEvents = function () {
 
     _.each({
-      /**
-       * A map of functions or string references to functions that will handle
-       * [events](http://backbonejs.org/#Events) dispatched to the central
-       * `{{#crossLink "Lateralus"}}{{/crossLink}}` instance.
-       *
-       *     var ExtendedComponent = Lateralus.Component.extend({
-       *       name: 'extended'
-       *
-       *       ,lateralusEvents: {
-       *         anotherComponentChanged: 'onAnotherComponentChanged'
-       *
-       *         ,anotherComponentDestroyed: function () {
-       *           // ...
-       *         }
-       *       }
-       *
-       *       ,onAnotherComponentChanged: function () {
-       *         // ...
-       *       }
-       *     });
-       * @protected
-       * @property lateralusEvents
-       * @type {Object|undefined}
-       * @default undefined
-       */
+        /**
+         * A map of functions or string references to functions that will
+         * handle [events](http://backbonejs.org/#Events) dispatched to the
+         * central `{{#crossLink "Lateralus"}}{{/crossLink}}` instance.
+         *
+         *     var ExtendedComponent = Lateralus.Component.extend({
+         *       name: 'extended'
+         *
+         *       ,lateralusEvents: {
+         *         anotherComponentChanged: 'onAnotherComponentChanged'
+         *
+         *         ,anotherComponentDestroyed: function () {
+         *           // ...
+         *         }
+         *       }
+         *
+         *       ,onAnotherComponentChanged: function () {
+         *         // ...
+         *       }
+         *     });
+         * @protected
+         * @property lateralusEvents
+         * @type {Object|undefined}
+         * @default undefined
+         */
         lateralusEvents: this.lateralus || this
 
-      /**
-       * A map of functions or string references to functions that will handle
-       * [events](http://backbonejs.org/#Events) emitted by `this.model`.
-       *
-       *     var ExtendedComponent = Lateralus.View.extend({
-       *       modelEvents: {
-       *         changed:someProperty: function (model, someProperty) {
-       *           // ...
-       *         }
-       *       }
-       *     });
-       * @protected
-       * @property modelEvents
-       * @type {Object|undefined}
-       * @default undefined
-       */
+        /**
+         * A map of functions or string references to functions that will
+         * handle [events](http://backbonejs.org/#Events) emitted by
+         * `this.model`.
+         *
+         *     var ExtendedComponent = Lateralus.View.extend({
+         *       modelEvents: {
+         *         changed:someProperty: function (model, someProperty) {
+         *           // ...
+         *         }
+         *       }
+         *     });
+         * @protected
+         * @property modelEvents
+         * @type {Object|undefined}
+         * @default undefined
+         */
         ,modelEvents: this.model
       }, function (subject, mapName) {
 
