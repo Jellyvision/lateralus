@@ -202,7 +202,7 @@ define([
        * @type {Object|undefined}
        * @default undefined
        */
-        lateralusEvents: this.lateralus
+        lateralusEvents: this.lateralus || this
 
       /**
        * A map of functions or string references to functions that will handle
