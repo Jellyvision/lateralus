@@ -52,7 +52,6 @@ define([
    * this component, if any.
    * @uses http://backbonejs.org/#Events
    * @uses Lateralus.mixins
-   * @protected
    * @constructor
    */
   function Component (lateralus, options, viewOptions, opt_parentComponent) {

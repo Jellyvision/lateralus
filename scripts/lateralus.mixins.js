@@ -172,7 +172,6 @@ define([
    * it is defined.
    * @method delegateLateralusEvents
    * @chainable
-   * @protected
    */
   mixins.delegateLateralusEvents = function () {
 
@@ -197,7 +196,6 @@ define([
          *         // ...
          *       }
          *     });
-         * @protected
          * @property lateralusEvents
          * @type {Object|undefined}
          * @default undefined
@@ -216,7 +214,6 @@ define([
          *         }
          *       }
          *     });
-         * @protected
          * @property modelEvents
          * @type {Object|undefined}
          * @default undefined

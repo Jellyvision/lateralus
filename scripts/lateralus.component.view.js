@@ -96,7 +96,6 @@ define([
    * @method initialize
    * @param {Object} [opts] Any properties or methods to attach to this
    * `{{#crossLink "Lateralus.Component.View"}}{{/crossLink}}` instance.
-   * @protected
    */
   fn.initialize = function (opts) {
     // this.toString references the central Component constructor, so don't
@@ -133,7 +132,6 @@ define([
      * "Lateralus.Component.View/deferredInitialize:method"}}{{/crossLink}}`
      * runs immediately after it has been rendered.
      * @method deferredInitialize
-     * @protected
      */
     if (this.deferredInitialize) {
       _.defer(_.bind(this.deferredInitialize, this));
@@ -148,7 +146,6 @@ define([
    * constructor](http://backbonejs.org/#View-constructor).
    * @property attachDefaultOptions
    * @type {Object}
-   * @protected
    */
   fn.attachDefaultOptions = {};
 
@@ -194,7 +191,6 @@ define([
    * "Lateralus.Component.View/renderTemplate"}}{{/crossLink}}`.  The method
    * can be overridden.
    * @method getTemplateRenderData
-   * @protected
    * @return {Object} The [raw `Backbone.Model`
    * data](http://backbonejs.org/#Model-toJSON), if this View has a Model.
    * Otherwise, an empty object is returned.
@@ -306,7 +302,6 @@ define([
 
   /**
    * @method toString
-   * @protected
    * @return {string} The name of this View.  This is used internally by
    * Lateralus.
    */

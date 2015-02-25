@@ -59,7 +59,6 @@ define([
 
   /**
    * @method toString
-   * @protected
    * @return {string} The name of this Model.  This is used internally by
    * Lateralus.
    */

@@ -30,7 +30,6 @@ define([
    *     });
    *
    *     var app = new App(document.getElementById('app'));
-   * @protected
    * @param {Element} el The DOM element that contains the entire Lateralus
    * app.
    * @class Lateralus

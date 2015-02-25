@@ -6,6 +6,7 @@
   * Add globalRenderData map.
   * Add globalPartials map.
   * Make generator-lateralus configurable.
+  * Drop @protected JSDoc annotation from most members that have it.
 
 # 0.3.1
 
