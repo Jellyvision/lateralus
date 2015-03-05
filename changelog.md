@@ -1,3 +1,7 @@
+# 0.5.0
+
+  * Add Lateralus.Router.
+
 # 0.4.0
 
   * Emit events for all Lateralus.Model attribute changes.
