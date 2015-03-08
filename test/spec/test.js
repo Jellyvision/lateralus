@@ -32,4 +32,21 @@ define([
     });
   });
 
+  describe('Initialization', function () {
+    var App = Lateralus.beget(function () {
+      Lateralus.apply(this, arguments);
+    });
+
+    var el = document.createElement('div');
+    var app = new App(el);
+
+    it('Has root element', function () {
+      assert.equal(app.el, el);
+    });
+
+    it('Has jQuery reference to root element', function () {
+      assert.equal(app.$el[0], el);
+    });
+  });
+
 });
