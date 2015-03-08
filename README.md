@@ -234,3 +234,19 @@ Just like `Lateralus.Component.Model`, this works consistently with `Backbone.Co
 ### Component styles
 
 Each component can (and should) have its own `.sass` file (the generator sets this up at `[component-name]/styles/sass.main`).  It is recommended that all rules be nested under the `[component-name]-view` CSS class, as that class is dynamically added to all `Lateralus.Component.View` instances.  This provides clean and easy component-based style isolation.
+
+## Running tests
+
+You can run the Lateralus unit tests both in your browser as well as in a command line environment.  To run the tests in your browser:
+
+````
+grunt debug
+````
+
+To run them in a headless browser at the command line:
+
+````
+grunt test
+````
+
+The tests are also run by the default `grunt` task.
