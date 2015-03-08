@@ -76,8 +76,47 @@ module.exports = function (grunt) {
           src: ['dist/lateralus.js', 'dist/lateralus.min.js']
         }
       }
-    }
+    },
+    open: {
+      debug: {
+        path: 'http://localhost:3000/test'
+      }
+    },
+    /* jshint camelcase:false */
+    mocha_require_phantom: {
+      options: {
+        base: '.',
+        main: 'test/main',
+        requireLib: 'bower_components/requirejs/require.js',
+        files: ['test/spec/*.js']
+      },
+      debug: {
+        options: {
+          keepAlive: true
+        }
+      },
+      auto: {
+        options: {
+          keepAlive: false
+        }
+      }
+    },
   });
 
-  grunt.registerTask('default', ['clean', 'yuidoc', 'requirejs', 'usebanner']);
+  grunt.registerTask('test', [
+    'mocha_require_phantom:auto',
+  ]);
+
+  grunt.registerTask('debug', [
+    'open:debug',
+    'mocha_require_phantom:debug'
+  ]);
+
+  grunt.registerTask('default', [
+    'test',
+    'clean',
+    'yuidoc',
+    'requirejs',
+    'usebanner'
+  ]);
 };

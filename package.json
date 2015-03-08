@@ -22,5 +22,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/jellyvision/lateralus.git"
+  },
+  "devDependencies": {
+    "grunt-mocha-require-phantom": "^0.4.0",
+    "grunt-open": "^0.2.3"
   }
 }
