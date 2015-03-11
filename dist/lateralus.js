@@ -1,4 +1,4 @@
-/* Lateralus v.0.4.0 | https://github.com/Jellyvision/lateralus */
+/* Lateralus v.0.5.0 | https://github.com/Jellyvision/lateralus */
 define('lateralus/lateralus.mixins',[
 
   'underscore'
@@ -256,7 +256,7 @@ define('lateralus/lateralus.mixins',[
 
   /**
    * Helper function for initModel and initCollection.
-   * @param {Object=} initialObject
+   * @param {Object} [initialObject]
    * @return {{ lateralus: Lateralus, component: Lateralus.Component= }}
    * component is not defined if `this` is the Lateralus instance.
    */
@@ -347,15 +347,16 @@ define('lateralus/lateralus.model',[
    * @private
    * @class Lateralus.Model
    * @param {Lateralus} lateralus
+   * @param {Object} [options]
    * @extends {Backbone.Model}
    * @uses Lateralus.mixins
    * @constructor
    */
-  fn.constructor = function (lateralus) {
+  fn.constructor = function (lateralus, options) {
     this.lateralus = lateralus;
     this.delegateLateralusEvents();
     this.on('change', _.bind(this.onChange, this));
-    Backbone.Model.call(this);
+    Backbone.Model.call(this, options);
   };
 
   /**
@@ -367,11 +368,17 @@ define('lateralus/lateralus.model',[
    * @method onChange
    */
   fn.onChange = function () {
-    var changed = this.changed;
+    var changed = this.changedAttributes();
 
     _.each(_.keys(changed), function (changedKey) {
       this.emit('change:' + changedKey, changed[changedKey]);
+
+      // Delete this property from the internal "changed" object before
+      // Backbone typically would to prevent "stacking" changed properties
+      // across onChange calls, thereby causing redundant handler calls.
+      delete this.changed[changedKey];
     }, this);
+
   };
 
   _.extend(fn, mixins);
@@ -388,6 +395,61 @@ define('lateralus/lateralus.model',[
   };
 
   return LateralusModel;
+});
+
+define('lateralus/lateralus.router',[
+
+  'underscore'
+  ,'backbone'
+
+  ,'./lateralus.mixins'
+
+], function (
+
+  _
+  ,Backbone
+
+  ,mixins
+
+) {
+  
+
+  var fn = {};
+
+  // jshint maxlen:100
+  /**
+   * This class builds on the ideas and APIs of
+   * [`Backbone.Router`](http://backbonejs.org/#Router).  The constructor for
+   * this class should not be called by application code.  Instead, use
+   * `{{#crossLink "Lateralus/initRouter"}}{{/crossLink}}`.
+   * @private
+   * @class Lateralus.Router
+   * @param {Lateralus} lateralus
+   * @extends {Backbone.Router}
+   * @uses Lateralus.mixins
+   * @constructor
+   */
+  fn.constructor = function (lateralus) {
+    this.lateralus = lateralus;
+    this.delegateLateralusEvents();
+    Backbone.Router.call(this);
+  };
+
+
+  _.extend(fn, mixins);
+
+  var LateralusRouter = Backbone.Router.extend(fn);
+
+  /**
+   * @method toString
+   * @return {string} The name of this Router.  This is used internally by
+   * Lateralus.
+   */
+  LateralusRouter.prototype.toString = function () {
+    return this.lateralus.toString() + '-router';
+  };
+
+  return LateralusRouter;
 });
 
 define('lateralus/lateralus.component.view',[
@@ -1120,6 +1182,7 @@ define('lateralus/lateralus',[
   ,'backbone'
   ,'./lateralus.mixins'
   ,'./lateralus.model'
+  ,'./lateralus.router'
   ,'./lateralus.component'
 
 ], function (
@@ -1129,6 +1192,7 @@ define('lateralus/lateralus',[
   ,Backbone
   ,mixins
   ,LateralusModel
+  ,LateralusRouter
   ,Component
 
 ) {
@@ -1265,6 +1329,18 @@ define('lateralus/lateralus',[
   });
 
   /**
+   * @param {Lateralus.Router} Router A constructor, not an instance.
+   * @param {Object} [options] To be passed to the [Router
+   * `initialize`](http://backbonejs.org/#Router-constructor) method.
+   * @return {Lateralus.Router} An instance of the provided Router
+   * constructor.
+   * @method initRouter
+   */
+  fn.initRouter = function (Router, options) {
+    return new Router(this, options);
+  };
+
+  /**
    * Do not override this method, it is used internally.
    * @method toString
    * @return {string} This is `"lateralus"`.
@@ -1276,6 +1352,7 @@ define('lateralus/lateralus',[
 
   Lateralus.Component = Component;
   Lateralus.Model = LateralusModel;
+  Lateralus.Router = LateralusRouter;
 
   return Lateralus;
 });

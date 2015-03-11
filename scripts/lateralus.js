@@ -5,6 +5,7 @@ define([
   ,'backbone'
   ,'./lateralus.mixins'
   ,'./lateralus.model'
+  ,'./lateralus.router'
   ,'./lateralus.component'
 
 ], function (
@@ -14,6 +15,7 @@ define([
   ,Backbone
   ,mixins
   ,LateralusModel
+  ,LateralusRouter
   ,Component
 
 ) {
@@ -150,6 +152,18 @@ define([
   });
 
   /**
+   * @param {Lateralus.Router} Router A constructor, not an instance.
+   * @param {Object} [options] To be passed to the [Router
+   * `initialize`](http://backbonejs.org/#Router-constructor) method.
+   * @return {Lateralus.Router} An instance of the provided Router
+   * constructor.
+   * @method initRouter
+   */
+  fn.initRouter = function (Router, options) {
+    return new Router(this, options);
+  };
+
+  /**
    * Do not override this method, it is used internally.
    * @method toString
    * @return {string} This is `"lateralus"`.
@@ -161,6 +175,7 @@ define([
 
   Lateralus.Component = Component;
   Lateralus.Model = LateralusModel;
+  Lateralus.Router = LateralusRouter;
 
   return Lateralus;
 });

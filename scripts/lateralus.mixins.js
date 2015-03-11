@@ -255,7 +255,7 @@ define([
 
   /**
    * Helper function for initModel and initCollection.
-   * @param {Object=} initialObject
+   * @param {Object} [initialObject]
    * @return {{ lateralus: Lateralus, component: Lateralus.Component= }}
    * component is not defined if `this` is the Lateralus instance.
    */
