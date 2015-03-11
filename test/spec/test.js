@@ -119,4 +119,27 @@ define([
     });
   });
 
+  describe('Preventing redundant global model change events', function () {
+    var count = 0;
+    var App = Lateralus.beget(function () {
+      Lateralus.apply(this, arguments);
+      this.model.set('prop1', 'foo');
+    });
+
+    _.extend(App.prototype, {
+      lateralusEvents: {
+        'change:prop1': function () {
+          count++;
+          this.model.set('prop2', 'bar');
+        }
+      }
+    });
+
+    new App(document.createElement('div'));
+
+    it('Only called the global handler once', function () {
+      assert.equal(count, 1);
+    });
+  });
+
 });

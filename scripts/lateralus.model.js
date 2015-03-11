@@ -47,11 +47,17 @@ define([
    * @method onChange
    */
   fn.onChange = function () {
-    var changed = this.changed;
+    var changed = this.changedAttributes();
 
     _.each(_.keys(changed), function (changedKey) {
       this.emit('change:' + changedKey, changed[changedKey]);
+
+      // Delete this property from the internal "changed" object before
+      // Backbone typically would to prevent "stacking" changed properties
+      // across onChange calls, thereby causing redundant handler calls.
+      delete this.changed[changedKey];
     }, this);
+
   };
 
   _.extend(fn, mixins);
