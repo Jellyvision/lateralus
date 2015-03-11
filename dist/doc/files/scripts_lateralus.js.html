@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.4.0</em>
+            <em>API Docs for: 0.5.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -54,6 +54,8 @@
                 <li><a href="../classes/Lateralus.mixins.html">Lateralus.mixins</a></li>
             
                 <li><a href="../classes/Lateralus.Model.html">Lateralus.Model</a></li>
+            
+                <li><a href="../classes/Lateralus.Router.html">Lateralus.Router</a></li>
             
             </ul>
 
@@ -105,6 +107,7 @@ define([
   ,&#x27;backbone&#x27;
   ,&#x27;./lateralus.mixins&#x27;
   ,&#x27;./lateralus.model&#x27;
+  ,&#x27;./lateralus.router&#x27;
   ,&#x27;./lateralus.component&#x27;
 
 ], function (
@@ -114,6 +117,7 @@ define([
   ,Backbone
   ,mixins
   ,LateralusModel
+  ,LateralusRouter
   ,Component
 
 ) {
@@ -250,6 +254,18 @@ define([
   });
 
   /**
+   * @param {Lateralus.Router} Router A constructor, not an instance.
+   * @param {Object} [options] To be passed to the [Router
+   * &#x60;initialize&#x60;](http://backbonejs.org/#Router-constructor) method.
+   * @return {Lateralus.Router} An instance of the provided Router
+   * constructor.
+   * @method initRouter
+   */
+  fn.initRouter = function (Router, options) {
+    return new Router(this, options);
+  };
+
+  /**
    * Do not override this method, it is used internally.
    * @method toString
    * @return {string} This is &#x60;&quot;lateralus&quot;&#x60;.
@@ -261,6 +277,7 @@ define([
 
   Lateralus.Component = Component;
   Lateralus.Model = LateralusModel;
+  Lateralus.Router = LateralusRouter;
 
   return Lateralus;
 });

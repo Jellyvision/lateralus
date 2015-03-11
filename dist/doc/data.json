@@ -1,7 +1,7 @@
 {
     "project": {
         "name": "Lateralus",
-        "version": "0.4.0",
+        "version": "0.5.0",
         "logo": "http://cdn.jellyvision.com/wp-content/themes/jellyvision/img/header-logo.png"
     },
     "files": {
@@ -64,6 +64,15 @@
             "modules": {},
             "classes": {
                 "Lateralus.Model": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "scripts/lateralus.router.js": {
+            "name": "scripts/lateralus.router.js",
+            "modules": {},
+            "classes": {
+                "Lateralus.Router": 1
             },
             "fors": {},
             "namespaces": {}
@@ -204,7 +213,7 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "scripts/lateralus.js",
-            "line": 22,
+            "line": 24,
             "description": "You should not need to call the Lateralus constructor directly, use\n`{{#crossLink \"Lateralus/beget\"}}{{/crossLink}}` instead.  To create a new\nLateralus app:\n\n    var App = Lateralus.beget(function () {\n      // Don't forget to call the Lateralus constructor!\n      Lateralus.apply(this, arguments);\n    });\n\n    var app = new App(document.getElementById('app'));",
             "params": [
                 {
@@ -229,7 +238,8 @@
                 "Lateralus.Collection",
                 "Lateralus.Component",
                 "Lateralus",
-                "Lateralus.Model"
+                "Lateralus.Model",
+                "Lateralus.Router"
             ],
             "file": "scripts/lateralus.mixins.js",
             "line": 12,
@@ -256,9 +266,41 @@
                     "name": "lateralus",
                     "description": "",
                     "type": "Lateralus"
+                },
+                {
+                    "name": "options",
+                    "description": "",
+                    "type": "Object",
+                    "optional": true
                 }
             ],
             "extends": "{Backbone.Model}",
+            "uses": [
+                "Lateralus.mixins"
+            ],
+            "is_constructor": 1
+        },
+        "Lateralus.Router": {
+            "name": "Lateralus.Router",
+            "shortname": "Lateralus.Router",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "scripts/lateralus.router.js",
+            "line": 21,
+            "description": "This class builds on the ideas and APIs of\n[`Backbone.Router`](http://backbonejs.org/#Router).  The constructor for\nthis class should not be called by application code.  Instead, use\n`{{#crossLink \"Lateralus/initRouter\"}}{{/crossLink}}`.",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "lateralus",
+                    "description": "",
+                    "type": "Lateralus"
+                }
+            ],
+            "extends": "{Backbone.Router}",
             "uses": [
                 "Lateralus.mixins"
             ],
@@ -694,7 +736,7 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 40,
+            "line": 42,
             "description": "The DOM node that contains this `{{#crossLink\n\"Lateralus\"}}{{/crossLink}}` instance.",
             "itemtype": "property",
             "name": "el",
@@ -703,7 +745,7 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 48,
+            "line": 50,
             "description": "The jQuery Object that contains `{{#crossLink\n\"Lateralus/el:property\"}}{{/crossLink}}`.",
             "itemtype": "property",
             "name": "$el",
@@ -712,7 +754,7 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 56,
+            "line": 58,
             "description": "Maintains the state of the central `{{#crossLink\n\"Lateralus\"}}{{/crossLink}}` instance.",
             "itemtype": "property",
             "name": "model",
@@ -721,7 +763,7 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 64,
+            "line": 66,
             "description": "An optional map of template render data to be passed to the\n`Mustache.render` call for all Views belonging to this Lateralus app.",
             "itemtype": "property",
             "name": "globalRenderData",
@@ -730,7 +772,7 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 72,
+            "line": 74,
             "description": "An optional map of template partials to be passed to the\n`Mustache.render` call for all Views belonging to this Lateralus app.",
             "itemtype": "property",
             "name": "globalPartials",
@@ -739,7 +781,7 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 87,
+            "line": 89,
             "description": "Set up the prototype chain between two objects.",
             "static": 1,
             "itemtype": "method",
@@ -764,7 +806,7 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 102,
+            "line": 104,
             "description": "Create a `{{#crossLink \"Lateralus\"}}{{/crossLink}}` application instance.\n\n    var App = Lateralus.beget(function () {\n      Lateralus.apply(this, arguments);\n    });",
             "static": 1,
             "itemtype": "method",
@@ -784,7 +826,7 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 123,
+            "line": 125,
             "description": "Cross-browser friendly wrapper for `console.log`.",
             "itemtype": "method",
             "name": "log",
@@ -799,7 +841,7 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 130,
+            "line": 132,
             "description": "Cross-browser friendly wrapper for `console.warn`.",
             "itemtype": "method",
             "name": "warn",
@@ -814,7 +856,7 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 137,
+            "line": 139,
             "description": "Cross-browser friendly wrapper for `console.error`.",
             "itemtype": "method",
             "name": "error",
@@ -829,7 +871,31 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 152,
+            "line": 154,
+            "params": [
+                {
+                    "name": "Router",
+                    "description": "A constructor, not an instance.",
+                    "type": "Lateralus.Router"
+                },
+                {
+                    "name": "options",
+                    "description": "To be passed to the [Router\n`initialize`](http://backbonejs.org/#Router-constructor) method.",
+                    "type": "Object",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "An instance of the provided Router\nconstructor.",
+                "type": "Lateralus.Router"
+            },
+            "itemtype": "method",
+            "name": "initRouter",
+            "class": "Lateralus"
+        },
+        {
+            "file": "scripts/lateralus.js",
+            "line": 166,
             "description": "Do not override this method, it is used internally.",
             "itemtype": "method",
             "name": "toString",
@@ -999,7 +1065,8 @@
                 {
                     "name": "initialObject",
                     "description": "",
-                    "type": "Object="
+                    "type": "Object",
+                    "optional": true
                 }
             ],
             "return": {
@@ -1085,7 +1152,7 @@
         },
         {
             "file": "scripts/lateralus.model.js",
-            "line": 40,
+            "line": 41,
             "description": "For every key that is changed on this model, a corresponding `change:`\nevent is `{{#crossLink \"Lateralus.mixins/emit:method\"}}{{/crossLink}}`ed.\nFor example, `set`ting the `\"foo\"` attribute will `{{#crossLink\n\"Lateralus.mixins/emit:method\"}}{{/crossLink}}` `change:foo` and provide\nthe changed value.",
             "itemtype": "method",
             "name": "onChange",
@@ -1093,7 +1160,7 @@
         },
         {
             "file": "scripts/lateralus.model.js",
-            "line": 60,
+            "line": 67,
             "itemtype": "method",
             "name": "toString",
             "return": {
@@ -1101,6 +1168,17 @@
                 "type": "String"
             },
             "class": "Lateralus.Model"
+        },
+        {
+            "file": "scripts/lateralus.router.js",
+            "line": 44,
+            "itemtype": "method",
+            "name": "toString",
+            "return": {
+                "description": "The name of this Router.  This is used internally by\nLateralus.",
+                "type": "String"
+            },
+            "class": "Lateralus.Router"
         }
     ],
     "warnings": [

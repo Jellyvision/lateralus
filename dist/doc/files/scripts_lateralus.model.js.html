@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.4.0</em>
+            <em>API Docs for: 0.5.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -54,6 +54,8 @@
                 <li><a href="../classes/Lateralus.mixins.html">Lateralus.mixins</a></li>
             
                 <li><a href="../classes/Lateralus.Model.html">Lateralus.Model</a></li>
+            
+                <li><a href="../classes/Lateralus.Router.html">Lateralus.Router</a></li>
             
             </ul>
 
@@ -126,15 +128,16 @@ define([
    * @private
    * @class Lateralus.Model
    * @param {Lateralus} lateralus
+   * @param {Object} [options]
    * @extends {Backbone.Model}
    * @uses Lateralus.mixins
    * @constructor
    */
-  fn.constructor = function (lateralus) {
+  fn.constructor = function (lateralus, options) {
     this.lateralus = lateralus;
     this.delegateLateralusEvents();
     this.on(&#x27;change&#x27;, _.bind(this.onChange, this));
-    Backbone.Model.call(this);
+    Backbone.Model.call(this, options);
   };
 
   /**
@@ -146,11 +149,17 @@ define([
    * @method onChange
    */
   fn.onChange = function () {
-    var changed = this.changed;
+    var changed = this.changedAttributes();
 
     _.each(_.keys(changed), function (changedKey) {
       this.emit(&#x27;change:&#x27; + changedKey, changed[changedKey]);
+
+      // Delete this property from the internal &quot;changed&quot; object before
+      // Backbone typically would to prevent &quot;stacking&quot; changed properties
+      // across onChange calls, thereby causing redundant handler calls.
+      delete this.changed[changedKey];
     }, this);
+
   };
 
   _.extend(fn, mixins);
