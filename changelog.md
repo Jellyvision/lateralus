@@ -1,6 +1,8 @@
 # 0.5.0
 
   * Add Lateralus.Router.
+  * Set up testing infrastructure and some tests/
+  * Prevent redundant global model change events.
 
 # 0.4.0
 
