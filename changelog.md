@@ -1,3 +1,7 @@
+# 0.6.0
+
+  * Add Lateralus.prototype.dispose.
+
 # 0.5.0
 
   * Add Lateralus.Router.

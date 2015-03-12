@@ -3,12 +3,14 @@ define([
 
   'chai'
   ,'underscore'
+  ,'backbone'
   ,'lateralus'
 
 ], function (
 
   chai
   ,_
+  ,Backbone
   ,Lateralus
 
 ) {
@@ -48,6 +50,34 @@ define([
 
     it('App has jQuery reference to root element', function () {
       assert.equal(app.$el[0], el);
+    });
+  });
+
+  describe('Lateralus teardown', function () {
+    var App = Lateralus.beget(function () {
+      Lateralus.apply(this, arguments);
+    });
+
+    var app = new App(document.createElement('div'));
+    var model = new Backbone.Model();
+    app.listenTo(model, 'test', _.noop);
+    var component = app.addComponent(Lateralus.Component);
+    app.dispose();
+
+    it('Stopped listening to other objects', function () {
+      assert.typeOf(model._events.test, 'undefined');
+    });
+
+    it('Component is disposed', function () {
+      assert.equal(_.keys(component).length, 0);
+    });
+
+    it('Has all properties removed', function () {
+      assert.equal(_.keys(app).length, 0);
+    });
+
+    it('Has fun alias', function () {
+      assert.equal(app.dispose, app.spiralOut);
     });
   });
 

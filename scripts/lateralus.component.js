@@ -237,13 +237,7 @@ define([
     }
 
     this.stopListening();
-
-    var propName;
-    for (propName in this) {
-      if (this.hasOwnProperty(propName)) {
-        delete this[propName];
-      }
-    }
+    _(this).lateralusEmptyObject();
 
     return this;
   };
