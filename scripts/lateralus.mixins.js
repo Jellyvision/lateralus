@@ -182,8 +182,9 @@ define([
   var delegateEventSplitter = /^(\S+)\s*(.*)$/;
 
   /**
-   * Bind `{{#crossLink "Lateralus.mixins:lateralusEvents"}}{{/crossLink}}`, if
-   * it is defined.
+   * Bind `{{#crossLink
+   * "Lateralus.mixins/lateralusEvents:property"}}{{/crossLink}}`, if it is
+   * defined.
    * @method delegateLateralusEvents
    * @chainable
    */
