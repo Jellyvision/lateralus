@@ -149,6 +149,30 @@ define([
     });
   });
 
+  describe('mixin.amplify', function () {
+    var App = Lateralus.beget(function () {
+      Lateralus.apply(this, arguments);
+    });
+
+    var testWasAmplified = false;
+    _.extend(App.prototype, {
+      lateralusEvents: {
+        'test': function () {
+          testWasAmplified = true;
+        }
+      }
+    });
+
+    var app = new App(document.createElement('div'));
+
+    it('Broadcasts a Backbone.Model\'s events globally', function () {
+      var model = new Backbone.Model();
+      app.amplify(model, 'test');
+      model.trigger('test');
+      assert.isTrue(testWasAmplified);
+    });
+  });
+
   describe('Preventing redundant global model change events', function () {
     var count = 0;
     var App = Lateralus.beget(function () {

@@ -1,5 +1,6 @@
 # 0.6.0
 
+  * Add mixins.amplify.
   * Add Lateralus.prototype.dispose.
 
 # 0.5.0
