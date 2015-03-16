@@ -18,6 +18,19 @@ define([
 
   var assert = chai.assert;
 
+  /**
+   * @param {Function} [extraConstructorCode]
+   */
+  function getLateraralusApp (extraConstructorCode) {
+    return Lateralus.beget(function () {
+      Lateralus.apply(this, arguments);
+
+      if (extraConstructorCode) {
+        extraConstructorCode.call(this);
+      }
+    });
+  }
+
   describe('Bootup', function () {
     it('Framework defines Lateralus constructor', function () {
       assert.isFunction(Lateralus);
@@ -37,10 +50,7 @@ define([
   });
 
   describe('Initialization', function () {
-    var App = Lateralus.beget(function () {
-      Lateralus.apply(this, arguments);
-    });
-
+    var App = getLateraralusApp();
     var el = document.createElement('div');
     var app = new App(el);
 
@@ -54,10 +64,7 @@ define([
   });
 
   describe('Lateralus teardown', function () {
-    var App = Lateralus.beget(function () {
-      Lateralus.apply(this, arguments);
-    });
-
+    var App = getLateraralusApp();
     var app = new App(document.createElement('div'));
     var model = new Backbone.Model();
     app.listenTo(model, 'test', _.noop);
@@ -82,10 +89,7 @@ define([
   });
 
   describe('lateralusEvents', function () {
-    var App = Lateralus.beget(function () {
-      Lateralus.apply(this, arguments);
-    });
-
+    var App = getLateraralusApp();
     var testWasCalled = false;
 
     _.extend(App.prototype, {
@@ -150,10 +154,7 @@ define([
   });
 
   describe('mixin.amplify', function () {
-    var App = Lateralus.beget(function () {
-      Lateralus.apply(this, arguments);
-    });
-
+    var App = getLateraralusApp();
     var testWasAmplified = false;
     _.extend(App.prototype, {
       lateralusEvents: {
@@ -175,8 +176,7 @@ define([
 
   describe('Preventing redundant global model change events', function () {
     var count = 0;
-    var App = Lateralus.beget(function () {
-      Lateralus.apply(this, arguments);
+    var App = getLateraralusApp(function () {
       this.model.set('prop1', 'foo');
     });
 
