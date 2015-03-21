@@ -153,6 +153,22 @@ define([
     });
   });
 
+  describe('Lateralus.inherit', function () {
+    function Parent () {}
+    function Child () {}
+    Parent.prototype.foo = function () {};
+    Lateralus.inherit(Child, Parent);
+    var child = new Child();
+
+    it('Sets up prototype chain between Parent and Child', function () {
+      assert.instanceOf(child, Parent);
+    });
+
+    it('Passes Parent methods to child', function () {
+      assert.equal(child.foo, Parent.prototype.foo);
+    });
+  });
+
   describe('mixin.amplify', function () {
     var App = getLateraralusApp();
     var testWasAmplified = false;
