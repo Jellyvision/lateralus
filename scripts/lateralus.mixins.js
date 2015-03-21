@@ -10,8 +10,8 @@ define([
   'use strict';
 
   /**
-   * These method are mixed into `{{#crossLink
-   * "Lateralus.Component"}}{{/crossLink}}` and `{{#crossLink
+   * These method are mixed into `{{#crossLink "Lateralus"}}{{/crossLink}}`,
+   * `{{#crossLink "Lateralus.Component"}}{{/crossLink}}`, and `{{#crossLink
    * "Lateralus.Component.View"}}{{/crossLink}}`.
    * @class Lateralus.mixins
    * @requires http://backbonejs.org/#Events
