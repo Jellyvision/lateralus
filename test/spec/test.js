@@ -169,6 +169,27 @@ define([
     });
   });
 
+  describe('Lateralus#initRouter', function () {
+    var App = getLateraralusApp();
+    var app = new App();
+
+    var ExtendedRouter = Lateralus.Router.extend({
+      initialize: function (options) {
+        this.gotOptions = !!options;
+      }
+    });
+
+    var router = app.initRouter(ExtendedRouter, {});
+
+    it('Instantiates a Lateralus.Router', function () {
+      assert.instanceOf(router, Lateralus.Router);
+    });
+
+    it('Passes options to instantiated Lateralus.Router', function () {
+      assert.isTrue(router.gotOptions);
+    });
+  });
+
   describe('mixin.amplify', function () {
     var App = getLateraralusApp();
     var testWasAmplified = false;
