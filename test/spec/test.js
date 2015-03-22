@@ -32,7 +32,7 @@ define([
   }
 
   describe('Lateralus', function () {
-    describe('Static', function () {
+    describe('Static properties', function () {
       it('Has Lateralus constructor', function () {
         assert.isFunction(Lateralus);
       });
@@ -66,20 +66,29 @@ define([
       });
     });
 
-    describe('Prototype', function () {
-      describe('constructor', function () {
+    describe('Instance properties', function () {
+      describe('el', function () {
         var App = getLateraralusApp();
         var el = document.createElement('div');
         var app = new App(el);
 
-        it('App has root element', function () {
+        it('Is root element', function () {
           assert.equal(app.el, el);
         });
+      });
 
-        it('App has jQuery reference to root element', function () {
+      describe('$el', function () {
+        var App = getLateraralusApp();
+        var el = document.createElement('div');
+        var app = new App(el);
+
+        it('Is jQuery reference to root element', function () {
           assert.equal(app.$el[0], el);
         });
       });
+    });
+
+    describe('Prototype', function () {
       describe('initRouter()', function () {
         var App = getLateraralusApp();
         var app = new App();
