@@ -211,6 +211,32 @@ define([
         });
       });
 
+      describe('addComponent()', function () {
+        var App = getLateraralusApp();
+        var app = new App(document.createElement('div'));
+
+        // Need to capture the original value here because it() calls are
+        // lazily evaluated.
+        var originalComponentCounter = app.componentCounters;
+        it('Does not start out with this.componentCounters', function () {
+          assert.isUndefined(originalComponentCounter);
+        });
+
+        var component = app.addComponent(Lateralus.Component);
+
+        it('Initializes the proper key on this.componentCounters', function () {
+          assert.equal(app.componentCounters.component, 0);
+        });
+
+        it('Installs a component', function () {
+          assert.instanceOf(app.components.component0, Lateralus.Component);
+        });
+
+        it('Installs the returned component', function () {
+          assert.equal(app.components.component0, component);
+        });
+      });
+
       describe('amplify()', function () {
         var App = getLateraralusApp();
         var testWasAmplified = false;
