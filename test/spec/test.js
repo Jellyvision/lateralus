@@ -31,214 +31,227 @@ define([
     });
   }
 
-  describe('Bootup', function () {
-    it('Framework defines Lateralus constructor', function () {
-      assert.isFunction(Lateralus);
-    });
-
-    it('Framework defines Lateralus.Component', function () {
-      assert.isFunction(Lateralus.Component);
-    });
-
-    it('Framework defines Lateralus.Model', function () {
-      assert.isFunction(Lateralus.Model);
-    });
-
-    it('Framework defines Lateralus.Router', function () {
-      assert.isFunction(Lateralus.Router);
-    });
-  });
-
-  describe('Initialization', function () {
-    var App = getLateraralusApp();
-    var el = document.createElement('div');
-    var app = new App(el);
-
-    it('App has root element', function () {
-      assert.equal(app.el, el);
-    });
-
-    it('App has jQuery reference to root element', function () {
-      assert.equal(app.$el[0], el);
-    });
-  });
-
-  describe('Lateralus teardown', function () {
-    var App = getLateraralusApp();
-    var app = new App(document.createElement('div'));
-    var model = new Backbone.Model();
-    app.listenTo(model, 'test', _.noop);
-    var component = app.addComponent(Lateralus.Component);
-    app.dispose();
-
-    it('Stopped listening to other objects', function () {
-      assert.typeOf(model._events.test, 'undefined');
-    });
-
-    it('Component is disposed', function () {
-      assert.equal(_.keys(component).length, 0);
-    });
-
-    it('Has all properties removed', function () {
-      assert.equal(_.keys(app).length, 0);
-    });
-
-    it('Has fun alias', function () {
-      assert.equal(app.dispose, app.spiralOut);
-    });
-  });
-
-  describe('lateralusEvents', function () {
-    var App = getLateraralusApp();
-    var testWasCalled = false;
-
-    _.extend(App.prototype, {
-      lateralusEvents: {
-        test: function () {
-          testWasCalled = true;
-        }
-      }
-    });
-
-    var app = new App(document.createElement('div'));
-
-    it('Captures top-level events', function () {
-      app.emit('test');
-      assert.isTrue(testWasCalled);
-    });
-
-    testWasCalled = false;
-
-    it('Captures Lateralus.Model-level events', function () {
-      app.model.emit('test');
-      assert.isTrue(testWasCalled);
-    });
-
-    testWasCalled = false;
-
-    it('Captures Component-level events', function () {
-      var component = app.addComponent(Lateralus.Component);
-      component.emit('test');
-      assert.isTrue(testWasCalled);
-      component.dispose();
-    });
-
-    testWasCalled = false;
-
-    it('Captures Component.View-level events', function () {
-      var ExtendedComponent = Lateralus.Component.extend({
-        name: 'extended'
-        ,View: Lateralus.Component.View
+  describe('Lateralus', function () {
+    describe('Static', function () {
+      it('Has Lateralus constructor', function () {
+        assert.isFunction(Lateralus);
       });
 
-      var component = app.addComponent(ExtendedComponent);
-      component.view.emit('test');
-      assert.isTrue(testWasCalled);
-      component.dispose();
-    });
-
-    testWasCalled = false;
-
-    it('Captures Component.Model-level events', function () {
-      var ExtendedComponent = Lateralus.Component.extend({
-        name: 'extended'
-        ,View: Lateralus.Component.View
-        ,Model: Lateralus.Component.Model
+      it('Has Lateralus.Component', function () {
+        assert.isFunction(Lateralus.Component);
       });
 
-      var component = app.addComponent(ExtendedComponent);
-      component.view.model.emit('test');
-      assert.isTrue(testWasCalled);
-      component.dispose();
+      it('Has Lateralus.Model', function () {
+        assert.isFunction(Lateralus.Model);
+      });
+
+      it('Has Lateralus.Router', function () {
+        assert.isFunction(Lateralus.Router);
+      });
+
+      describe('inherit()', function () {
+        function Parent () {}
+        function Child () {}
+        Parent.prototype.foo = function () {};
+        Lateralus.inherit(Child, Parent);
+        var child = new Child();
+
+        it('Sets up prototype chain between Parent and Child', function () {
+          assert.instanceOf(child, Parent);
+        });
+
+        it('Passes Parent methods to child', function () {
+          assert.equal(child.foo, Parent.prototype.foo);
+        });
+      });
+    });
+
+    describe('Prototype', function () {
+      describe('constructor', function () {
+        var App = getLateraralusApp();
+        var el = document.createElement('div');
+        var app = new App(el);
+
+        it('App has root element', function () {
+          assert.equal(app.el, el);
+        });
+
+        it('App has jQuery reference to root element', function () {
+          assert.equal(app.$el[0], el);
+        });
+      });
+      describe('initRouter()', function () {
+        var App = getLateraralusApp();
+        var app = new App();
+
+        var ExtendedRouter = Lateralus.Router.extend({
+          initialize: function (options) {
+            this.gotOptions = !!options;
+          }
+        });
+
+        var router = app.initRouter(ExtendedRouter, {});
+
+        it('Instantiates a Lateralus.Router', function () {
+          assert.instanceOf(router, Lateralus.Router);
+        });
+
+        it('Passes options to instantiated Lateralus.Router', function () {
+          assert.isTrue(router.gotOptions);
+        });
+      });
+
+      describe('dispose()', function () {
+        var App = getLateraralusApp();
+        var app = new App(document.createElement('div'));
+        var model = new Backbone.Model();
+        app.listenTo(model, 'test', _.noop);
+        var component = app.addComponent(Lateralus.Component);
+        app.dispose();
+
+        it('Stopped listening to other objects', function () {
+          assert.typeOf(model._events.test, 'undefined');
+        });
+
+        it('Component is disposed', function () {
+          assert.equal(_.keys(component).length, 0);
+        });
+
+        it('Has all properties removed', function () {
+          assert.equal(_.keys(app).length, 0);
+        });
+
+        it('Has fun alias', function () {
+          assert.equal(app.dispose, app.spiralOut);
+        });
+      });
+
+      describe('toString()', function () {
+        var App = getLateraralusApp();
+        var app = new App();
+
+        it('Returns "lateralus"', function () {
+          assert.equal(app.toString(), 'lateralus');
+        });
+      });
+    });
+
+    describe('Mixins', function () {
+      describe('lateralusEvents', function () {
+        var App = getLateraralusApp();
+        var testWasCalled = false;
+
+        _.extend(App.prototype, {
+          lateralusEvents: {
+            test: function () {
+              testWasCalled = true;
+            }
+          }
+        });
+
+        var app = new App(document.createElement('div'));
+
+        it('Captures top-level events', function () {
+          app.emit('test');
+          assert.isTrue(testWasCalled);
+        });
+
+        testWasCalled = false;
+
+        it('Captures Lateralus.Model-level events', function () {
+          app.model.emit('test');
+          assert.isTrue(testWasCalled);
+        });
+
+        testWasCalled = false;
+
+        it('Captures Component-level events', function () {
+          var component = app.addComponent(Lateralus.Component);
+          component.emit('test');
+          assert.isTrue(testWasCalled);
+          component.dispose();
+        });
+
+        testWasCalled = false;
+
+        it('Captures Component.View-level events', function () {
+          var ExtendedComponent = Lateralus.Component.extend({
+            name: 'extended'
+            ,View: Lateralus.Component.View
+          });
+
+          var component = app.addComponent(ExtendedComponent);
+          component.view.emit('test');
+          assert.isTrue(testWasCalled);
+          component.dispose();
+        });
+
+        testWasCalled = false;
+
+        it('Captures Component.Model-level events', function () {
+          var ExtendedComponent = Lateralus.Component.extend({
+            name: 'extended'
+            ,View: Lateralus.Component.View
+            ,Model: Lateralus.Component.Model
+          });
+
+          var component = app.addComponent(ExtendedComponent);
+          component.view.model.emit('test');
+          assert.isTrue(testWasCalled);
+          component.dispose();
+        });
+      });
+
+      describe('amplify()', function () {
+        var App = getLateraralusApp();
+        var testWasAmplified = false;
+        _.extend(App.prototype, {
+          lateralusEvents: {
+            'test': function () {
+              testWasAmplified = true;
+            }
+          }
+        });
+
+        var app = new App(document.createElement('div'));
+
+        it('Broadcasts a Backbone.Model\'s events globally', function () {
+          var model = new Backbone.Model();
+          app.amplify(model, 'test');
+          model.trigger('test');
+          assert.isTrue(testWasAmplified);
+        });
+      });
     });
   });
 
-  describe('Lateralus.inherit', function () {
-    function Parent () {}
-    function Child () {}
-    Parent.prototype.foo = function () {};
-    Lateralus.inherit(Child, Parent);
-    var child = new Child();
+  describe('Lateralus.Model', function () {
+    describe('Prototype', function () {
+      describe('onChange()', function () {
+        var count = 0;
+        var App = getLateraralusApp(function () {
+          this.model.set('prop1', 'foo');
+        });
 
-    it('Sets up prototype chain between Parent and Child', function () {
-      assert.instanceOf(child, Parent);
-    });
+        _.extend(App.prototype, {
+          lateralusEvents: {
+            'change:prop1': function () {
+              count++;
+              this.model.set('prop2', 'bar');
+            }
+          }
+        });
 
-    it('Passes Parent methods to child', function () {
-      assert.equal(child.foo, Parent.prototype.foo);
-    });
-  });
+        new App(document.createElement('div'));
 
-  describe('Lateralus#initRouter', function () {
-    var App = getLateraralusApp();
-    var app = new App();
-
-    var ExtendedRouter = Lateralus.Router.extend({
-      initialize: function (options) {
-        this.gotOptions = !!options;
-      }
-    });
-
-    var router = app.initRouter(ExtendedRouter, {});
-
-    it('Instantiates a Lateralus.Router', function () {
-      assert.instanceOf(router, Lateralus.Router);
-    });
-
-    it('Passes options to instantiated Lateralus.Router', function () {
-      assert.isTrue(router.gotOptions);
-    });
-  });
-
-  describe('Lateraralus#toString', function () {
-    var App = getLateraralusApp();
-    var app = new App();
-
-    it('Returns "lateralus"', function () {
-      assert.equal(app.toString(), 'lateralus');
-    });
-  });
-
-  describe('mixin.amplify', function () {
-    var App = getLateraralusApp();
-    var testWasAmplified = false;
-    _.extend(App.prototype, {
-      lateralusEvents: {
-        'test': function () {
-          testWasAmplified = true;
-        }
-      }
-    });
-
-    var app = new App(document.createElement('div'));
-
-    it('Broadcasts a Backbone.Model\'s events globally', function () {
-      var model = new Backbone.Model();
-      app.amplify(model, 'test');
-      model.trigger('test');
-      assert.isTrue(testWasAmplified);
-    });
-  });
-
-  describe('Preventing redundant global model change events', function () {
-    var count = 0;
-    var App = getLateraralusApp(function () {
-      this.model.set('prop1', 'foo');
-    });
-
-    _.extend(App.prototype, {
-      lateralusEvents: {
-        'change:prop1': function () {
-          count++;
-          this.model.set('prop2', 'bar');
-        }
-      }
-    });
-
-    new App(document.createElement('div'));
-
-    it('Only called the global handler once', function () {
-      assert.equal(count, 1);
+        // NOTE: This test was originally written because of a bug wherein
+        // global change: handlers were called redundantly.  It is important
+        // that count is 1 and not 2:
+        // https://github.com/Jellyvision/lateralus/commit/8975b1d3ce52eaad994a7136789d469f181688a6
+        it('Calls the global change: handler once', function () {
+          assert.equal(count, 1);
+        });
+      });
     });
   });
 
