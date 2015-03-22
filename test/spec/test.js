@@ -190,6 +190,15 @@ define([
     });
   });
 
+  describe('Lateraralus#toString', function () {
+    var App = getLateraralusApp();
+    var app = new App();
+
+    it('Returns "lateralus"', function () {
+      assert.equal(app.toString(), 'lateralus');
+    });
+  });
+
   describe('mixin.amplify', function () {
     var App = getLateraralusApp();
     var testWasAmplified = false;
