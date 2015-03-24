@@ -274,6 +274,39 @@ define([
         });
       });
     });
+
+    describe('delegateLateralusEvents()', function () {
+      var App = getLateraralusApp();
+      var lateralusEventsTestWasCalled = false;
+      var modelEventsTestWasCalled = false;
+
+      _.extend(App.prototype, {
+        lateralusEvents: {
+          lateralusTest: function () {
+            lateralusEventsTestWasCalled = true;
+          }
+        }
+
+        ,modelEvents: {
+          modelTest: function () {
+            modelEventsTestWasCalled = true;
+          }
+        }
+      });
+
+      var app = new App();
+      app.emit('lateralusTest');
+
+      it('Wires up lateralusEvents', function () {
+        assert.isTrue(lateralusEventsTestWasCalled);
+      });
+
+      app.model.emit('modelTest');
+
+      it('Wires up modelEvents', function () {
+        assert.isTrue(modelEventsTestWasCalled);
+      });
+    });
   });
 
   describe('Lateralus.Model', function () {
