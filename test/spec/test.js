@@ -257,6 +257,22 @@ define([
           assert.isTrue(testWasAmplified);
         });
       });
+
+      describe('listenFor()', function () {
+        var App = getLateraralusApp();
+        var app = new App();
+        var testWasCalled = false;
+
+        app.listenFor('test', function () {
+          testWasCalled = true;
+        });
+
+        app.emit('test');
+
+        it('Responds to top-level events', function () {
+          assert.isTrue(testWasCalled);
+        });
+      });
     });
   });
 
