@@ -48,6 +48,15 @@ define([
           assert.equal(count, 1);
         });
       });
+
+      describe('toString()', function () {
+        var App = getLateraralusApp();
+        var app = new App();
+
+        it('Returns internal name', function () {
+          assert.equal(app.model.toString(), 'lateralus-model');
+        });
+      });
     });
   });
 });

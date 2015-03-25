@@ -129,7 +129,7 @@ define([
         var App = getLateraralusApp();
         var app = new App();
 
-        it('Returns "lateralus"', function () {
+        it('Returns internal name', function () {
           assert.equal(app.toString(), 'lateralus');
         });
       });
