@@ -297,5 +297,15 @@ define([
         assert.isTrue(modelEventsTestWasCalled);
       });
     });
+
+    describe('initModel()', function () {
+      var App = getLateraralusApp();
+      var app = new App();
+      var model = app.initModel(Lateralus.Model, { foo: true }, { bar: true });
+
+      it('Inherits from Base class', function () {
+        assert.instanceOf(model, Lateralus.Model);
+      });
+    });
   });
 });
