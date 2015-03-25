@@ -38,7 +38,8 @@ mocha.setup({
 
 require([
 
-  '../../test/spec/test'
+  '../../test/spec/lateralus'
+  ,'../../test/spec/lateralus.model'
 
 ], function (
 
