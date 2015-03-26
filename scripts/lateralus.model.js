@@ -26,16 +26,17 @@ define([
    * @private
    * @class Lateralus.Model
    * @param {Lateralus} lateralus
+   * @param {Object} [attributes]
    * @param {Object} [options]
    * @extends {Backbone.Model}
    * @uses Lateralus.mixins
    * @constructor
    */
-  fn.constructor = function (lateralus, options) {
+  fn.constructor = function (lateralus, attributes, options) {
     this.lateralus = lateralus;
     this.delegateLateralusEvents();
     this.on('change', _.bind(this.onChange, this));
-    Backbone.Model.call(this, options);
+    Backbone.Model.call(this, attributes, options);
   };
 
   /**

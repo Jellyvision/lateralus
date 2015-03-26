@@ -298,7 +298,7 @@ define([
    */
   mixins.initModel = function (Model, attributes, options) {
     if (isLateralus(this)) {
-      return new Model(this, options);
+      return new Model(this, attributes, options);
     }
 
     var augmentedOptions = getAugmentedOptionsObject.call(this, options);

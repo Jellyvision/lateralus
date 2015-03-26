@@ -72,6 +72,7 @@ define([
      */
     this.$el = $(el);
 
+    // TODO: Initialize this.model with this.initModel.
     /**
      * Maintains the state of the central `{{#crossLink
      * "Lateralus"}}{{/crossLink}}` instance.

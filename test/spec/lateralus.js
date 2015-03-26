@@ -301,10 +301,30 @@ define([
     describe('initModel()', function () {
       var App = getLateraralusApp();
       var app = new App();
-      var model = app.initModel(Lateralus.Model, { foo: true }, { bar: true });
 
-      it('Inherits from Base class', function () {
+      var recievedOptions;
+      var ExtendedModel = Lateralus.Model.extend({
+        initialize: function (attributes, options) {
+          recievedOptions = options;
+        }
+      });
+
+      var model = app.initModel(ExtendedModel, { foo: true }, { bar: true });
+
+      it('Inherits from base class', function () {
         assert.instanceOf(model, Lateralus.Model);
+      });
+
+      it('Recieves a passed-in attribute', function () {
+        assert.isTrue(model.get('foo'));
+      });
+
+      it('Recieves passed-in options', function () {
+        assert.isTrue(recievedOptions.bar);
+      });
+
+      it('Has a reference to central Lateralus Object', function () {
+        assert.equal(app, model.lateralus);
       });
     });
   });
