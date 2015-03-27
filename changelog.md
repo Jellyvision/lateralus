@@ -2,6 +2,7 @@
 
   * Add mixins.amplify.
   * Add Lateralus.prototype.dispose.
+  * Lateralus.Component#dispose triggers "beforeDispose" event.
 
 # 0.5.0
 

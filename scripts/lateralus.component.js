@@ -219,6 +219,8 @@ define([
    * @chainable
    */
   fn.dispose = function () {
+    this.trigger('beforeDispose');
+
     if (this.view) {
       this.view.dispose();
     }
