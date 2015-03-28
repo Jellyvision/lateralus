@@ -214,7 +214,8 @@ define([
 
   /**
    * Remove this `{{#crossLink "Lateralus.Component"}}{{/crossLink}}` from
-   * memory.
+   * memory.  Also remove any nested components added by `{{#crossLink
+   * "Lateralus.mixins/addComponent"}}{{/crossLink}}`.
    * @method dispose
    * @chainable
    */
