@@ -10,8 +10,8 @@ define([
   'use strict';
 
   /**
-   * These method are mixed into `{{#crossLink
-   * "Lateralus.Component"}}{{/crossLink}}` and `{{#crossLink
+   * These method are mixed into `{{#crossLink "Lateralus"}}{{/crossLink}}`,
+   * `{{#crossLink "Lateralus.Component"}}{{/crossLink}}`, and `{{#crossLink
    * "Lateralus.Component.View"}}{{/crossLink}}`.
    * @class Lateralus.mixins
    * @requires http://backbonejs.org/#Events
@@ -150,6 +150,20 @@ define([
   };
 
   /**
+   * Listen to an event-emitting Object and amplify one of its events across
+   * the {{#crossLink "Lateralus"}}{{/crossLink}} application.  Useful for
+   * making plain Backbone Objects (i.e., non-Lateralus Objects) communicate
+   * important information in a broader way.
+   * @method amplify
+   * @param {Backbone.Events} emitter The object that `trigger`s events that
+   * should be amplified globally across the app.
+   * @param {string} eventName The event to amplify globally across the app.
+   */
+  mixins.amplify = function (emitter, eventName) {
+    this.listenTo(emitter, eventName, _.bind(this.emit, this, eventName));
+  };
+
+  /**
    * Listen for an event that is triggered on the central {{#crossLink
    * "Lateralus"}}{{/crossLink}} instance and bind a function handler.
    * @method listenFor
@@ -168,8 +182,9 @@ define([
   var delegateEventSplitter = /^(\S+)\s*(.*)$/;
 
   /**
-   * Bind `{{#crossLink "Lateralus.mixins:lateralusEvents"}}{{/crossLink}}`, if
-   * it is defined.
+   * Bind `{{#crossLink
+   * "Lateralus.mixins/lateralusEvents:property"}}{{/crossLink}}`, if it is
+   * defined.
    * @method delegateLateralusEvents
    * @chainable
    */
@@ -282,6 +297,10 @@ define([
    * @method initModel
    */
   mixins.initModel = function (Model, attributes, options) {
+    if (isLateralus(this)) {
+      return new Model(this, attributes, options);
+    }
+
     var augmentedOptions = getAugmentedOptionsObject.call(this, options);
     return new Model(attributes, augmentedOptions);
   };

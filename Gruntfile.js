@@ -121,8 +121,7 @@ module.exports = function (grunt) {
       options: {
         base: '.',
         main: 'test/main',
-        requireLib: 'bower_components/requirejs/require.js',
-        files: ['test/spec/*.js']
+        requireLib: 'bower_components/requirejs/require.js'
       },
       debug: {
         options: {

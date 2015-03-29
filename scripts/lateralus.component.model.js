@@ -3,20 +3,19 @@ define([
   'underscore'
   ,'backbone'
 
-  ,'./lateralus.model'
+  ,'./lateralus.mixins'
 
 ], function (
 
   _
   ,Backbone
 
-  ,LateralusModel
+  ,mixins
 
 ) {
   'use strict';
 
-  var ComponentModel = LateralusModel.extend({
-    // jshint maxlen:100
+  var fn = {
     /**
      * The constructor for this class should not be called by application code,
      * it is used by the `{{#crossLink "Lateralus.Component"}}{{/crossLink}}`
@@ -29,7 +28,8 @@ define([
      * @param {Lateralus} options.lateralus
      * @param {Lateralus.Component} options.component
      * @class Lateralus.Component.Model
-     * @extends Lateralus.Model
+     * @extends Backbone.Model
+     * @uses Lateralus.mixins
      * @constructor
      */
     constructor: function (attributes, options) {
@@ -48,7 +48,11 @@ define([
       this.delegateLateralusEvents();
       Backbone.Model.call(this, attributes, options);
     }
-  });
+  };
+
+  _.extend(fn, mixins);
+
+  var ComponentModel = Backbone.Model.extend(fn);
 
   /**
    * @method toString

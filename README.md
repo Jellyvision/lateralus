@@ -1,5 +1,7 @@
 # Lateralus
 
+[![Code Climate](https://codeclimate.com/github/Jellyvision/lateralus/badges/gpa.svg)](https://codeclimate.com/github/Jellyvision/lateralus)
+
 ![Lateralus logo](img/logo.png)
 
 Lateralus is a single page web application framework.  It is designed around the idea that UIs should be divided into discreet, reusable, loosely-coupled components.  These components should communicate only indirectly and be easily swappable or removable.  Lateralus provides patterns and utilities to cleanly isolate individual components of your app.

@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.5.0</em>
+            <em>API Docs for: 0.6.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -128,16 +128,17 @@ define([
    * @private
    * @class Lateralus.Model
    * @param {Lateralus} lateralus
+   * @param {Object} [attributes]
    * @param {Object} [options]
    * @extends {Backbone.Model}
    * @uses Lateralus.mixins
    * @constructor
    */
-  fn.constructor = function (lateralus, options) {
+  fn.constructor = function (lateralus, attributes, options) {
     this.lateralus = lateralus;
     this.delegateLateralusEvents();
     this.on(&#x27;change&#x27;, _.bind(this.onChange, this));
-    Backbone.Model.call(this, options);
+    Backbone.Model.call(this, attributes, options);
   };
 
   /**

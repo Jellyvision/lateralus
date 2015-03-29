@@ -21,6 +21,23 @@ define([
 ) {
   'use strict';
 
+  // UNDERSCORE MIXINS
+  _.mixin({
+
+    /**
+     * Remove all properties from an Object.
+     * @param {Object} obj
+     */
+    lateralusEmptyObject: function (obj) {
+      var propName;
+      for (propName in obj) {
+        if (obj.hasOwnProperty(propName)) {
+          delete obj[propName];
+        }
+      }
+    }
+  });
+
   /**
    * You should not need to call the Lateralus constructor directly, use
    * `{{#crossLink "Lateralus/beget"}}{{/crossLink}}` instead.  To create a new
@@ -55,6 +72,7 @@ define([
      */
     this.$el = $(el);
 
+    // TODO: Initialize this.model with this.initModel.
     /**
      * Maintains the state of the central `{{#crossLink
      * "Lateralus"}}{{/crossLink}}` instance.
@@ -162,6 +180,20 @@ define([
   fn.initRouter = function (Router, options) {
     return new Router(this, options);
   };
+
+  /**
+   * Remove this `{{#crossLink "Lateralus"}}{{/crossLink}}` app from memory.
+   * @method dispose
+   */
+  fn.dispose = function () {
+    if (this.components) {
+      _.invoke(this.components, 'dispose');
+    }
+
+    this.stopListening();
+    _(this).lateralusEmptyObject();
+  };
+  fn.spiralOut = fn.dispose;
 
   /**
    * Do not override this method, it is used internally.

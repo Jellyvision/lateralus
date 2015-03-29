@@ -214,11 +214,14 @@ define([
 
   /**
    * Remove this `{{#crossLink "Lateralus.Component"}}{{/crossLink}}` from
-   * memory.
+   * memory.  Also remove any nested components added by `{{#crossLink
+   * "Lateralus.mixins/addComponent"}}{{/crossLink}}`.
    * @method dispose
    * @chainable
    */
   fn.dispose = function () {
+    this.trigger('beforeDispose');
+
     if (this.view) {
       this.view.dispose();
     }
@@ -237,13 +240,7 @@ define([
     }
 
     this.stopListening();
-
-    var propName;
-    for (propName in this) {
-      if (this.hasOwnProperty(propName)) {
-        delete this[propName];
-      }
-    }
+    _(this).lateralusEmptyObject();
 
     return this;
   };

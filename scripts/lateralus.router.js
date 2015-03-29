@@ -33,7 +33,7 @@ define([
   fn.constructor = function (lateralus) {
     this.lateralus = lateralus;
     this.delegateLateralusEvents();
-    Backbone.Router.call(this);
+    Backbone.Router.apply(this, arguments);
   };
 
 

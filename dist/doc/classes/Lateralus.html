@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.5.0</em>
+            <em>API Docs for: 0.6.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -113,7 +113,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../files/scripts_lateralus.js.html#l24"><code>scripts&#x2F;lateralus.js:24</code></a>
+            Defined in: <a href="../files/scripts_lateralus.js.html#l41"><code>scripts&#x2F;lateralus.js:41</code></a>
         </div>
     
 
@@ -182,7 +182,7 @@ var app = new App(document.getElementById(&#39;app&#39;));</code></pre>
             
         
         
-        <a href="../files/scripts_lateralus.js.html#l24"><code>scripts&#x2F;lateralus.js:24</code></a>
+        <a href="../files/scripts_lateralus.js.html#l41"><code>scripts&#x2F;lateralus.js:41</code></a>
         
         </p>
 
@@ -262,6 +262,13 @@ app.</p>
                                 
                             </li>
                         
+                            <li class="index-item method inherited">
+                                <a href="#method_amplify">amplify</a>
+
+                                
+                                
+                            </li>
+                        
                             <li class="index-item method">
                                 <a href="#method_beget">beget</a>
 
@@ -273,6 +280,13 @@ app.</p>
                         
                             <li class="index-item method inherited">
                                 <a href="#method_delegateLateralusEvents">delegateLateralusEvents</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_dispose">dispose</a>
 
                                 
                                 
@@ -641,6 +655,118 @@ instance, if there is one.</p>
 </div>
 
                 
+                    <div id="method_amplify" class="method item inherited">
+    <h3 class="name"><code>amplify</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>emitter</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>eventName</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="../classes/Lateralus.mixins.html#method_amplify">Lateralus.mixins</a>:
+            
+        
+        
+        <a href="../files/scripts_lateralus.mixins.js.html#l152"><code>scripts&#x2F;lateralus.mixins.js:152</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Listen to an event-emitting Object and amplify one of its events across
+the <a href="../classes/Lateralus.html" class="crosslink">Lateralus</a> application.  Useful for
+making plain Backbone Objects (i.e., non-Lateralus Objects) communicate
+important information in a broader way.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">emitter</code>
+                        <span class="type">Backbone.Events</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The object that <code>trigger</code>s events that
+should be amplified globally across the app.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">eventName</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The event to amplify globally across the app.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
                     <div id="method_beget" class="method item">
     <h3 class="name"><code>beget</code></h3>
 
@@ -689,7 +815,7 @@ instance, if there is one.</p>
             
         
         
-        <a href="../files/scripts_lateralus.js.html#l104"><code>scripts&#x2F;lateralus.js:104</code></a>
+        <a href="../files/scripts_lateralus.js.html#l122"><code>scripts&#x2F;lateralus.js:122</code></a>
         
         </p>
 
@@ -784,7 +910,7 @@ subclass.</p>
             
         
         
-        <a href="../files/scripts_lateralus.mixins.js.html#l170"><code>scripts&#x2F;lateralus.mixins.js:170</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l184"><code>scripts&#x2F;lateralus.mixins.js:184</code></a>
         
         </p>
 
@@ -795,8 +921,63 @@ subclass.</p>
     </div>
 
     <div class="description">
-        <p>Bind <code>Lateralus.mixins:lateralusEvents</code>, if
-it is defined.</p>
+        <p>Bind <code><a href="../classes/Lateralus.mixins.html#property_lateralusEvents" class="crosslink">lateralusEvents</a></code>, if it is
+defined.</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_dispose" class="method item">
+    <h3 class="name"><code>dispose</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/scripts_lateralus.js.html#l184"><code>scripts&#x2F;lateralus.js:184</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Remove this <code><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a></code> app from memory.</p>
 
     </div>
 
@@ -978,7 +1159,7 @@ and the central <code><a href="../classes/Lateralus.html" class="crosslink">Late
             
         
         
-        <a href="../files/scripts_lateralus.js.html#l139"><code>scripts&#x2F;lateralus.js:139</code></a>
+        <a href="../files/scripts_lateralus.js.html#l157"><code>scripts&#x2F;lateralus.js:157</code></a>
         
         </p>
 
@@ -1079,7 +1260,7 @@ and the central <code><a href="../classes/Lateralus.html" class="crosslink">Late
             
         
         
-        <a href="../files/scripts_lateralus.js.html#l89"><code>scripts&#x2F;lateralus.js:89</code></a>
+        <a href="../files/scripts_lateralus.js.html#l107"><code>scripts&#x2F;lateralus.js:107</code></a>
         
         </p>
 
@@ -1209,7 +1390,7 @@ and the central <code><a href="../classes/Lateralus.html" class="crosslink">Late
             
         
         
-        <a href="../files/scripts_lateralus.mixins.js.html#l289"><code>scripts&#x2F;lateralus.mixins.js:289</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l308"><code>scripts&#x2F;lateralus.mixins.js:308</code></a>
         
         </p>
 
@@ -1358,7 +1539,7 @@ Collection constructor.</p>
             
         
         
-        <a href="../files/scripts_lateralus.mixins.js.html#l276"><code>scripts&#x2F;lateralus.mixins.js:276</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l291"><code>scripts&#x2F;lateralus.mixins.js:291</code></a>
         
         </p>
 
@@ -1503,7 +1684,7 @@ constructor.</p>
             
         
         
-        <a href="../files/scripts_lateralus.js.html#l154"><code>scripts&#x2F;lateralus.js:154</code></a>
+        <a href="../files/scripts_lateralus.js.html#l172"><code>scripts&#x2F;lateralus.js:172</code></a>
         
         </p>
 
@@ -1627,7 +1808,7 @@ constructor.</p>
             
         
         
-        <a href="../files/scripts_lateralus.mixins.js.html#l152"><code>scripts&#x2F;lateralus.mixins.js:152</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l166"><code>scripts&#x2F;lateralus.mixins.js:166</code></a>
         
         </p>
 
@@ -1732,7 +1913,7 @@ constructor.</p>
             
         
         
-        <a href="../files/scripts_lateralus.js.html#l125"><code>scripts&#x2F;lateralus.js:125</code></a>
+        <a href="../files/scripts_lateralus.js.html#l143"><code>scripts&#x2F;lateralus.js:143</code></a>
         
         </p>
 
@@ -1818,7 +1999,7 @@ constructor.</p>
             
         
         
-        <a href="../files/scripts_lateralus.mixins.js.html#l303"><code>scripts&#x2F;lateralus.mixins.js:303</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l322"><code>scripts&#x2F;lateralus.mixins.js:322</code></a>
         
         </p>
 
@@ -1905,7 +2086,7 @@ context of the object calling this function.</p>
             
         
         
-        <a href="../files/scripts_lateralus.js.html#l166"><code>scripts&#x2F;lateralus.js:166</code></a>
+        <a href="../files/scripts_lateralus.js.html#l198"><code>scripts&#x2F;lateralus.js:198</code></a>
         
         </p>
 
@@ -1984,7 +2165,7 @@ context of the object calling this function.</p>
             
         
         
-        <a href="../files/scripts_lateralus.js.html#l132"><code>scripts&#x2F;lateralus.js:132</code></a>
+        <a href="../files/scripts_lateralus.js.html#l150"><code>scripts&#x2F;lateralus.js:150</code></a>
         
         </p>
 
@@ -2062,7 +2243,7 @@ context of the object calling this function.</p>
             
         
         
-        <a href="../files/scripts_lateralus.js.html#l50"><code>scripts&#x2F;lateralus.js:50</code></a>
+        <a href="../files/scripts_lateralus.js.html#l67"><code>scripts&#x2F;lateralus.js:67</code></a>
         
         </p>
 
@@ -2195,7 +2376,7 @@ property directly, it is managed by Lateralus.</p>
             
         
         
-        <a href="../files/scripts_lateralus.js.html#l42"><code>scripts&#x2F;lateralus.js:42</code></a>
+        <a href="../files/scripts_lateralus.js.html#l59"><code>scripts&#x2F;lateralus.js:59</code></a>
         
         </p>
 
@@ -2240,7 +2421,7 @@ property directly, it is managed by Lateralus.</p>
             
         
         
-        <a href="../files/scripts_lateralus.js.html#l74"><code>scripts&#x2F;lateralus.js:74</code></a>
+        <a href="../files/scripts_lateralus.js.html#l92"><code>scripts&#x2F;lateralus.js:92</code></a>
         
         </p>
 
@@ -2286,7 +2467,7 @@ property directly, it is managed by Lateralus.</p>
             
         
         
-        <a href="../files/scripts_lateralus.js.html#l66"><code>scripts&#x2F;lateralus.js:66</code></a>
+        <a href="../files/scripts_lateralus.js.html#l84"><code>scripts&#x2F;lateralus.js:84</code></a>
         
         </p>
 
@@ -2329,7 +2510,7 @@ property directly, it is managed by Lateralus.</p>
             
         
         
-        <a href="../files/scripts_lateralus.mixins.js.html#l179"><code>scripts&#x2F;lateralus.mixins.js:179</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l194"><code>scripts&#x2F;lateralus.mixins.js:194</code></a>
         
         </p>
 
@@ -2393,7 +2574,7 @@ central <code><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a
             
         
         
-        <a href="../files/scripts_lateralus.js.html#l58"><code>scripts&#x2F;lateralus.js:58</code></a>
+        <a href="../files/scripts_lateralus.js.html#l76"><code>scripts&#x2F;lateralus.js:76</code></a>
         
         </p>
 
@@ -2435,7 +2616,7 @@ central <code><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a
             
         
         
-        <a href="../files/scripts_lateralus.mixins.js.html#l205"><code>scripts&#x2F;lateralus.mixins.js:205</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l220"><code>scripts&#x2F;lateralus.mixins.js:220</code></a>
         
         </p>
 

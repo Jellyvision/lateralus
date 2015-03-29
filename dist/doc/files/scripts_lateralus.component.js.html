@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.5.0</em>
+            <em>API Docs for: 0.6.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -316,11 +316,14 @@ define([
 
   /**
    * Remove this &#x60;{{#crossLink &quot;Lateralus.Component&quot;}}{{/crossLink}}&#x60; from
-   * memory.
+   * memory.  Also remove any nested components added by &#x60;{{#crossLink
+   * &quot;Lateralus.mixins/addComponent&quot;}}{{/crossLink}}&#x60;.
    * @method dispose
    * @chainable
    */
   fn.dispose = function () {
+    this.trigger(&#x27;beforeDispose&#x27;);
+
     if (this.view) {
       this.view.dispose();
     }
@@ -339,13 +342,7 @@ define([
     }
 
     this.stopListening();
-
-    var propName;
-    for (propName in this) {
-      if (this.hasOwnProperty(propName)) {
-        delete this[propName];
-      }
-    }
+    _(this).lateralusEmptyObject();
 
     return this;
   };

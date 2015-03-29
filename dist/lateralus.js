@@ -1,4 +1,4 @@
-/* Lateralus v.0.5.0 | https://github.com/Jellyvision/lateralus */
+/* Lateralus v.0.6.0 | https://github.com/Jellyvision/lateralus */
 define('lateralus/lateralus.mixins',[
 
   'underscore'
@@ -11,8 +11,8 @@ define('lateralus/lateralus.mixins',[
   
 
   /**
-   * These method are mixed into `{{#crossLink
-   * "Lateralus.Component"}}{{/crossLink}}` and `{{#crossLink
+   * These method are mixed into `{{#crossLink "Lateralus"}}{{/crossLink}}`,
+   * `{{#crossLink "Lateralus.Component"}}{{/crossLink}}`, and `{{#crossLink
    * "Lateralus.Component.View"}}{{/crossLink}}`.
    * @class Lateralus.mixins
    * @requires http://backbonejs.org/#Events
@@ -151,6 +151,20 @@ define('lateralus/lateralus.mixins',[
   };
 
   /**
+   * Listen to an event-emitting Object and amplify one of its events across
+   * the {{#crossLink "Lateralus"}}{{/crossLink}} application.  Useful for
+   * making plain Backbone Objects (i.e., non-Lateralus Objects) communicate
+   * important information in a broader way.
+   * @method amplify
+   * @param {Backbone.Events} emitter The object that `trigger`s events that
+   * should be amplified globally across the app.
+   * @param {string} eventName The event to amplify globally across the app.
+   */
+  mixins.amplify = function (emitter, eventName) {
+    this.listenTo(emitter, eventName, _.bind(this.emit, this, eventName));
+  };
+
+  /**
    * Listen for an event that is triggered on the central {{#crossLink
    * "Lateralus"}}{{/crossLink}} instance and bind a function handler.
    * @method listenFor
@@ -169,8 +183,9 @@ define('lateralus/lateralus.mixins',[
   var delegateEventSplitter = /^(\S+)\s*(.*)$/;
 
   /**
-   * Bind `{{#crossLink "Lateralus.mixins:lateralusEvents"}}{{/crossLink}}`, if
-   * it is defined.
+   * Bind `{{#crossLink
+   * "Lateralus.mixins/lateralusEvents:property"}}{{/crossLink}}`, if it is
+   * defined.
    * @method delegateLateralusEvents
    * @chainable
    */
@@ -283,6 +298,10 @@ define('lateralus/lateralus.mixins',[
    * @method initModel
    */
   mixins.initModel = function (Model, attributes, options) {
+    if (isLateralus(this)) {
+      return new Model(this, attributes, options);
+    }
+
     var augmentedOptions = getAugmentedOptionsObject.call(this, options);
     return new Model(attributes, augmentedOptions);
   };
@@ -347,16 +366,17 @@ define('lateralus/lateralus.model',[
    * @private
    * @class Lateralus.Model
    * @param {Lateralus} lateralus
+   * @param {Object} [attributes]
    * @param {Object} [options]
    * @extends {Backbone.Model}
    * @uses Lateralus.mixins
    * @constructor
    */
-  fn.constructor = function (lateralus, options) {
+  fn.constructor = function (lateralus, attributes, options) {
     this.lateralus = lateralus;
     this.delegateLateralusEvents();
     this.on('change', _.bind(this.onChange, this));
-    Backbone.Model.call(this, options);
+    Backbone.Model.call(this, attributes, options);
   };
 
   /**
@@ -432,7 +452,7 @@ define('lateralus/lateralus.router',[
   fn.constructor = function (lateralus) {
     this.lateralus = lateralus;
     this.delegateLateralusEvents();
-    Backbone.Router.call(this);
+    Backbone.Router.apply(this, arguments);
   };
 
 
@@ -771,20 +791,19 @@ define('lateralus/lateralus.component.model',[
   'underscore'
   ,'backbone'
 
-  ,'./lateralus.model'
+  ,'./lateralus.mixins'
 
 ], function (
 
   _
   ,Backbone
 
-  ,LateralusModel
+  ,mixins
 
 ) {
   
 
-  var ComponentModel = LateralusModel.extend({
-    // jshint maxlen:100
+  var fn = {
     /**
      * The constructor for this class should not be called by application code,
      * it is used by the `{{#crossLink "Lateralus.Component"}}{{/crossLink}}`
@@ -797,7 +816,8 @@ define('lateralus/lateralus.component.model',[
      * @param {Lateralus} options.lateralus
      * @param {Lateralus.Component} options.component
      * @class Lateralus.Component.Model
-     * @extends Lateralus.Model
+     * @extends Backbone.Model
+     * @uses Lateralus.mixins
      * @constructor
      */
     constructor: function (attributes, options) {
@@ -816,7 +836,11 @@ define('lateralus/lateralus.component.model',[
       this.delegateLateralusEvents();
       Backbone.Model.call(this, attributes, options);
     }
-  });
+  };
+
+  _.extend(fn, mixins);
+
+  var ComponentModel = Backbone.Model.extend(fn);
 
   /**
    * @method toString
@@ -1120,11 +1144,14 @@ define('lateralus/lateralus.component',[
 
   /**
    * Remove this `{{#crossLink "Lateralus.Component"}}{{/crossLink}}` from
-   * memory.
+   * memory.  Also remove any nested components added by `{{#crossLink
+   * "Lateralus.mixins/addComponent"}}{{/crossLink}}`.
    * @method dispose
    * @chainable
    */
   fn.dispose = function () {
+    this.trigger('beforeDispose');
+
     if (this.view) {
       this.view.dispose();
     }
@@ -1143,13 +1170,7 @@ define('lateralus/lateralus.component',[
     }
 
     this.stopListening();
-
-    var propName;
-    for (propName in this) {
-      if (this.hasOwnProperty(propName)) {
-        delete this[propName];
-      }
-    }
+    _(this).lateralusEmptyObject();
 
     return this;
   };
@@ -1198,6 +1219,23 @@ define('lateralus/lateralus',[
 ) {
   
 
+  // UNDERSCORE MIXINS
+  _.mixin({
+
+    /**
+     * Remove all properties from an Object.
+     * @param {Object} obj
+     */
+    lateralusEmptyObject: function (obj) {
+      var propName;
+      for (propName in obj) {
+        if (obj.hasOwnProperty(propName)) {
+          delete obj[propName];
+        }
+      }
+    }
+  });
+
   /**
    * You should not need to call the Lateralus constructor directly, use
    * `{{#crossLink "Lateralus/beget"}}{{/crossLink}}` instead.  To create a new
@@ -1232,6 +1270,7 @@ define('lateralus/lateralus',[
      */
     this.$el = $(el);
 
+    // TODO: Initialize this.model with this.initModel.
     /**
      * Maintains the state of the central `{{#crossLink
      * "Lateralus"}}{{/crossLink}}` instance.
@@ -1339,6 +1378,20 @@ define('lateralus/lateralus',[
   fn.initRouter = function (Router, options) {
     return new Router(this, options);
   };
+
+  /**
+   * Remove this `{{#crossLink "Lateralus"}}{{/crossLink}}` app from memory.
+   * @method dispose
+   */
+  fn.dispose = function () {
+    if (this.components) {
+      _.invoke(this.components, 'dispose');
+    }
+
+    this.stopListening();
+    _(this).lateralusEmptyObject();
+  };
+  fn.spiralOut = fn.dispose;
 
   /**
    * Do not override this method, it is used internally.
