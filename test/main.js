@@ -40,7 +40,8 @@ require([
 
   '../../test/spec/lateralus'
   ,'../../test/spec/lateralus.model'
-  ,'../../test/spec/lateralus.Component'
+  ,'../../test/spec/lateralus.component'
+  ,'../../test/spec/lateralus.component.model'
 
 ], function (
 

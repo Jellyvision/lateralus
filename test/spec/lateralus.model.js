@@ -22,6 +22,19 @@ define([
   var getLateraralusApp = utils.getLateraralusApp;
 
   describe('Lateralus.Model', function () {
+    describe('constructor', function () {
+      var App = getLateraralusApp();
+      var app = new App();
+
+      it('Is an instance of Backbone.Model', function () {
+        assert.instanceOf(app.model, Backbone.Model);
+      });
+
+      it('Is an instance of Lateralus.Model', function () {
+        assert.instanceOf(app.model, Lateralus.Model);
+      });
+    });
+
     describe('Prototype', function () {
       describe('onChange()', function () {
         var count = 0;
