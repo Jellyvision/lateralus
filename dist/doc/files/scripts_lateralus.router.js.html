@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.5.0</em>
+            <em>API Docs for: 0.6.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -135,7 +135,7 @@ define([
   fn.constructor = function (lateralus) {
     this.lateralus = lateralus;
     this.delegateLateralusEvents();
-    Backbone.Router.call(this);
+    Backbone.Router.apply(this, arguments);
   };
 
 

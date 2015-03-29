@@ -4,6 +4,7 @@
   * Add Lateralus.prototype.dispose.
   * Lateralus.Component#dispose triggers "beforeDispose" event.
   * Extend Lateralus.Component.Model from Backbone.Model, not Lateralus.Model.
+  * Bug fixes.
 
 # 0.5.0
 

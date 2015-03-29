@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.5.0</em>
+            <em>API Docs for: 0.6.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -123,6 +123,23 @@ define([
 ) {
   &#x27;use strict&#x27;;
 
+  // UNDERSCORE MIXINS
+  _.mixin({
+
+    /**
+     * Remove all properties from an Object.
+     * @param {Object} obj
+     */
+    lateralusEmptyObject: function (obj) {
+      var propName;
+      for (propName in obj) {
+        if (obj.hasOwnProperty(propName)) {
+          delete obj[propName];
+        }
+      }
+    }
+  });
+
   /**
    * You should not need to call the Lateralus constructor directly, use
    * &#x60;{{#crossLink &quot;Lateralus/beget&quot;}}{{/crossLink}}&#x60; instead.  To create a new
@@ -157,6 +174,7 @@ define([
      */
     this.$el = $(el);
 
+    // TODO: Initialize this.model with this.initModel.
     /**
      * Maintains the state of the central &#x60;{{#crossLink
      * &quot;Lateralus&quot;}}{{/crossLink}}&#x60; instance.
@@ -264,6 +282,20 @@ define([
   fn.initRouter = function (Router, options) {
     return new Router(this, options);
   };
+
+  /**
+   * Remove this &#x60;{{#crossLink &quot;Lateralus&quot;}}{{/crossLink}}&#x60; app from memory.
+   * @method dispose
+   */
+  fn.dispose = function () {
+    if (this.components) {
+      _.invoke(this.components, &#x27;dispose&#x27;);
+    }
+
+    this.stopListening();
+    _(this).lateralusEmptyObject();
+  };
+  fn.spiralOut = fn.dispose;
 
   /**
    * Do not override this method, it is used internally.

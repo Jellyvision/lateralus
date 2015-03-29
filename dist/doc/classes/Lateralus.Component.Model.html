@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.5.0</em>
+            <em>API Docs for: 0.6.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -99,16 +99,25 @@
                         <h1>Lateralus.Component.Model Class</h1>
 <div class="box meta">
     
+        <div class="uses">
+            Uses
+            <ul class="inline commas">
+                
+                    <li><a href="Lateralus.mixins.html">Lateralus.mixins</a></li>
+                
+            </ul>
+        </div>
+    
 
     
         <div class="extends">
-            Extends <a href="../classes/Lateralus.Model.html" class="crosslink">Lateralus.Model</a>
+            Extends Backbone.Model
         </div>
     
 
     
         <div class="foundat">
-            Defined in: <a href="../files/scripts_lateralus.component.model.js.html#l20"><code>scripts&#x2F;lateralus.component.model.js:20</code></a>
+            Defined in: <a href="../files/scripts_lateralus.component.model.js.html#l19"><code>scripts&#x2F;lateralus.component.model.js:19</code></a>
         </div>
     
 
@@ -179,7 +188,7 @@ constructor.</p>
             
         
         
-        <a href="../files/scripts_lateralus.component.model.js.html#l20"><code>scripts&#x2F;lateralus.component.model.js:20</code></a>
+        <a href="../files/scripts_lateralus.component.model.js.html#l19"><code>scripts&#x2F;lateralus.component.model.js:19</code></a>
         
         </p>
 
@@ -308,6 +317,13 @@ constructor.</p>
                             </li>
                         
                             <li class="index-item method inherited">
+                                <a href="#method_amplify">amplify</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method inherited">
                                 <a href="#method_delegateLateralusEvents">delegateLateralusEvents</a>
 
                                 
@@ -349,14 +365,7 @@ constructor.</p>
                                 
                             </li>
                         
-                            <li class="index-item method inherited">
-                                <a href="#method_onChange">onChange</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method inherited">
+                            <li class="index-item method">
                                 <a href="#method_toString">toString</a>
 
                                 
@@ -619,6 +628,118 @@ instance, if there is one.</p>
 </div>
 
                 
+                    <div id="method_amplify" class="method item inherited">
+    <h3 class="name"><code>amplify</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>emitter</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>eventName</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="../classes/Lateralus.mixins.html#method_amplify">Lateralus.mixins</a>:
+            
+        
+        
+        <a href="../files/scripts_lateralus.mixins.js.html#l152"><code>scripts&#x2F;lateralus.mixins.js:152</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Listen to an event-emitting Object and amplify one of its events across
+the <a href="../classes/Lateralus.html" class="crosslink">Lateralus</a> application.  Useful for
+making plain Backbone Objects (i.e., non-Lateralus Objects) communicate
+important information in a broader way.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">emitter</code>
+                        <span class="type">Backbone.Events</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The object that <code>trigger</code>s events that
+should be amplified globally across the app.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">eventName</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The event to amplify globally across the app.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
                     <div id="method_delegateLateralusEvents" class="method item inherited">
     <h3 class="name"><code>delegateLateralusEvents</code></h3>
 
@@ -650,7 +771,7 @@ instance, if there is one.</p>
             
         
         
-        <a href="../files/scripts_lateralus.mixins.js.html#l170"><code>scripts&#x2F;lateralus.mixins.js:170</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l184"><code>scripts&#x2F;lateralus.mixins.js:184</code></a>
         
         </p>
 
@@ -661,8 +782,8 @@ instance, if there is one.</p>
     </div>
 
     <div class="description">
-        <p>Bind <code>Lateralus.mixins:lateralusEvents</code>, if
-it is defined.</p>
+        <p>Bind <code><a href="../classes/Lateralus.mixins.html#property_lateralusEvents" class="crosslink">lateralusEvents</a></code>, if it is
+defined.</p>
 
     </div>
 
@@ -857,7 +978,7 @@ and the central <code><a href="../classes/Lateralus.html" class="crosslink">Late
             
         
         
-        <a href="../files/scripts_lateralus.mixins.js.html#l289"><code>scripts&#x2F;lateralus.mixins.js:289</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l308"><code>scripts&#x2F;lateralus.mixins.js:308</code></a>
         
         </p>
 
@@ -1006,7 +1127,7 @@ Collection constructor.</p>
             
         
         
-        <a href="../files/scripts_lateralus.mixins.js.html#l276"><code>scripts&#x2F;lateralus.mixins.js:276</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l291"><code>scripts&#x2F;lateralus.mixins.js:291</code></a>
         
         </p>
 
@@ -1144,7 +1265,7 @@ constructor.</p>
             
         
         
-        <a href="../files/scripts_lateralus.mixins.js.html#l152"><code>scripts&#x2F;lateralus.mixins.js:152</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l166"><code>scripts&#x2F;lateralus.mixins.js:166</code></a>
         
         </p>
 
@@ -1246,7 +1367,7 @@ constructor.</p>
             
         
         
-        <a href="../files/scripts_lateralus.mixins.js.html#l303"><code>scripts&#x2F;lateralus.mixins.js:303</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l322"><code>scripts&#x2F;lateralus.mixins.js:322</code></a>
         
         </p>
 
@@ -1295,61 +1416,6 @@ context of the object calling this function.</p>
 </div>
 
                 
-                    <div id="method_onChange" class="method item inherited">
-    <h3 class="name"><code>onChange</code></h3>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                <p>Inherited from
-                <a href="../classes/Lateralus.Model.html#method_onChange">Lateralus.Model</a>:
-            
-        
-        
-        <a href="../files/scripts_lateralus.model.js.html#l41"><code>scripts&#x2F;lateralus.model.js:41</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>For every key that is changed on this model, a corresponding <code>change:</code>
-event is <code><a href="../classes/Lateralus.mixins.html#method_emit" class="crosslink">emit</a></code>ed.
-For example, <code>set</code>ting the <code>"foo"</code> attribute will <code><a href="../classes/Lateralus.mixins.html#method_emit" class="crosslink">emit</a></code> <code>change:foo</code> and provide
-the changed value.</p>
-
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
                     <div id="method_toString" class="method item">
     <h3 class="name"><code>toString</code></h3>
 
@@ -1377,16 +1443,16 @@ the changed value.</p>
 
     <div class="meta">
         
-            <p>Inherited from
-            <a href="../classes/Lateralus.Model.html#method_toString">
-                Lateralus.Model
-            </a>
             
-            but overwritten in
+                
+                <p>
+                
+                Defined in
+                
             
         
         
-        <a href="../files/scripts_lateralus.component.model.js.html#l53"><code>scripts&#x2F;lateralus.component.model.js:53</code></a>
+        <a href="../files/scripts_lateralus.component.model.js.html#l57"><code>scripts&#x2F;lateralus.component.model.js:57</code></a>
         
         </p>
 
@@ -1586,7 +1652,7 @@ property directly, it is managed by Lateralus.</p>
             
         
         
-        <a href="../files/scripts_lateralus.mixins.js.html#l179"><code>scripts&#x2F;lateralus.mixins.js:179</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l194"><code>scripts&#x2F;lateralus.mixins.js:194</code></a>
         
         </p>
 
@@ -1647,7 +1713,7 @@ central <code><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a
             
         
         
-        <a href="../files/scripts_lateralus.mixins.js.html#l205"><code>scripts&#x2F;lateralus.mixins.js:205</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l220"><code>scripts&#x2F;lateralus.mixins.js:220</code></a>
         
         </p>
 
