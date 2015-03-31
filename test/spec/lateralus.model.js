@@ -74,7 +74,7 @@ define([
       });
 
       describe('Mixins', function () {
-        describe('addComponent', function () {
+        describe('addComponent()', function () {
           var App = getLateraralusApp();
           var app = new App();
 
@@ -82,6 +82,24 @@ define([
 
           it('Adds component to the central Lateralus instance', function () {
             assert.equal(component, app.components.component0);
+          });
+        });
+
+        describe('emit()', function () {
+          var App = getLateraralusApp();
+
+          var testWasCalled = false;
+          App.prototype.lateralusEvents = {
+            test: function () {
+              testWasCalled = true;
+            }
+          };
+
+          var app = new App();
+          app.model.emit('test');
+
+          it('Emits events to Lateralus', function () {
+            assert.isTrue(testWasCalled);
           });
         });
       });
