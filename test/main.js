@@ -48,6 +48,10 @@ require([
 ) {
   'use strict';
 
+  Array.prototype.slice.apply(arguments).forEach(function (fn) {
+    fn();
+  });
+
   if (window.mochaPhantomJS) {
     window.mochaPhantomJS.run();
   } else {

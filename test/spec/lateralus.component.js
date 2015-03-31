@@ -21,24 +21,26 @@ define([
   var assert = chai.assert;
   var getLateraralusApp = utils.getLateraralusApp;
 
-  describe('Lateralus.Component', function () {
-    describe('Prototype', function () {
-      describe('dispose()', function () {
-        var App = getLateraralusApp();
-        var app = new App();
-        var component = app.addComponent(Lateralus.Component);
+  return function () {
+    describe('Lateralus.Component', function () {
+      describe('Prototype', function () {
+        describe('dispose()', function () {
+          var App = getLateraralusApp();
+          var app = new App();
+          var component = app.addComponent(Lateralus.Component);
 
-        var beforeDisposeWasHeard = false;
-        component.on('beforeDispose', function () {
-          beforeDisposeWasHeard = true;
-        });
+          var beforeDisposeWasHeard = false;
+          component.on('beforeDispose', function () {
+            beforeDisposeWasHeard = true;
+          });
 
-        component.dispose();
+          component.dispose();
 
-        it('Emitted beforeDispose event', function () {
-          assert.isTrue(beforeDisposeWasHeard);
+          it('Emitted beforeDispose event', function () {
+            assert.isTrue(beforeDisposeWasHeard);
+          });
         });
       });
     });
-  });
+  };
 });
