@@ -72,6 +72,19 @@ define([
           });
         });
       });
+
+      describe('Mixins', function () {
+        describe('addComponent', function () {
+          var App = getLateraralusApp();
+          var app = new App();
+
+          var component = app.model.addComponent(Lateralus.Component);
+
+          it('Adds component to the central Lateralus instance', function () {
+            assert.equal(component, app.components.component0);
+          });
+        });
+      });
     });
   };
 });

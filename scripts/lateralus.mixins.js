@@ -55,8 +55,17 @@ define([
   mixins.addComponent = function (Component, viewOptions, options) {
     options = options || {};
 
+    // If this object belongs to a Lateralus.Component (such as a
+    // Lateralus.Component.View or Lateralus.Component.Model), add the new
+    // subcomponent to that containing Lateralus.Component.
     if (typeof this.component !== 'undefined') {
       return this.component.addComponent.apply(this.component, arguments);
+    }
+
+    // If this object is a Lateralus.Model, add the new subcomponent to the
+    // central Lateralus instance.
+    if (this.toString() === 'lateralus-model') {
+      return this.lateralus.addComponent.apply(this.lateralus, arguments);
     }
 
     if (!this.components) {
