@@ -51,18 +51,11 @@ define([
    *     var app = new App(document.getElementById('app'));
    * @param {Element} el The DOM element that contains the entire Lateralus
    * app.
-   * @param {Object} [config]
-   * @param {LateralusModel} [config.model] A `{{#crossLink
-   * "Lateralus.Model"}}{{/crossLink}}` subclass to use for `{{#crossLink
-   * "Lateralus/model:property"}}{{/crossLink}}` instead of a standard
-   * `{{#crossLink "Lateralus.Model"}}{{/crossLink}}` instance.
    * @class Lateralus
    * @uses Lateralus.mixins
    * @constructor
    */
-  function Lateralus (el, config) {
-    var constructorConfig = config || {};
-
+  function Lateralus (el) {
     /**
      * The DOM node that contains this `{{#crossLink
      * "Lateralus"}}{{/crossLink}}` instance.
@@ -79,7 +72,7 @@ define([
      */
     this.$el = $(el);
 
-    var ModelConstructor = constructorConfig.model || LateralusModel;
+    var ModelConstructor = this.config.Model || LateralusModel;
     // TODO: Initialize this.model with this.initModel.
     /**
      * Maintains the state of the central `{{#crossLink
@@ -136,12 +129,22 @@ define([
    * @static
    * @method beget
    * @param {Function} child
+   * @param {Object} [config]
+   * @param {LateralusModel} [config.Model] A `{{#crossLink
+   * "Lateralus.Model"}}{{/crossLink}}` subclass constructor to use for
+   * `{{#crossLink "Lateralus/model:property"}}{{/crossLink}}` instead of a
+   * standard `{{#crossLink "Lateralus.Model"}}{{/crossLink}}`.
    * @return {Function} The created `{{#crossLink "Lateralus"}}{{/crossLink}}`
    * subclass.
    */
-  Lateralus.beget = function (child) {
+  Lateralus.beget = function (child, config) {
+    var lateralusConfig = config || {};
+
     child.displayName = child.name || 'begetConstructor';
-    return Lateralus.inherit(child, Lateralus);
+    var begottenConstuctor = Lateralus.inherit(child, Lateralus);
+    begottenConstuctor.prototype.config = _.clone(lateralusConfig);
+
+    return begottenConstuctor;
   };
 
   _.extend(fn, mixins);

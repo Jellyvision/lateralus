@@ -23,19 +23,6 @@ define([
 
   return function () {
     describe('Lateralus', function () {
-      describe('constructor', function () {
-        describe('Config: Custom model', function () {
-          var App = getLateraralusApp();
-          var el = document.createElement('div');
-          var ExtendedModel = Lateralus.Model.extend({});
-          var app = new App(el, { model: ExtendedModel });
-
-          it('Uses the specified Lateralus.Model', function () {
-            assert.instanceOf(app.model, ExtendedModel);
-          });
-        });
-      });
-
       describe('Static properties', function () {
         it('Has Lateralus constructor', function () {
           assert.isFunction(Lateralus);
@@ -66,6 +53,26 @@ define([
 
           it('Passes Parent methods to child', function () {
             assert.equal(child.foo, Parent.prototype.foo);
+          });
+        });
+      });
+
+      describe('Static methods', function () {
+        describe('beget()', function () {
+          describe('Config: Custom model', function () {
+            var ExtendedModel = Lateralus.Model.extend({});
+
+            var App = Lateralus.beget(function () {
+              Lateralus.apply(this, arguments);
+            }, {
+              Model: ExtendedModel
+            });
+
+            var app = new App();
+
+            it('Uses the specified Lateralus.Model', function () {
+              assert.instanceOf(app.model, ExtendedModel);
+            });
           });
         });
       });
