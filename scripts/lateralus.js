@@ -51,11 +51,18 @@ define([
    *     var app = new App(document.getElementById('app'));
    * @param {Element} el The DOM element that contains the entire Lateralus
    * app.
+   * @param {Object} [config]
+   * @param {LateralusModel} [config.model] A `{{#crossLink
+   * "Lateralus.Model"}}{{/crossLink}}` subclass to use for `{{#crossLink
+   * "Lateralus/model:property"}}{{/crossLink}}` instead of a standard
+   * `{{#crossLink "Lateralus.Model"}}{{/crossLink}}` instance.
    * @class Lateralus
    * @uses Lateralus.mixins
    * @constructor
    */
-  function Lateralus (el) {
+  function Lateralus (el, config) {
+    var constructorConfig = config || {};
+
     /**
      * The DOM node that contains this `{{#crossLink
      * "Lateralus"}}{{/crossLink}}` instance.
@@ -72,6 +79,7 @@ define([
      */
     this.$el = $(el);
 
+    var ModelConstructor = constructorConfig.model || LateralusModel;
     // TODO: Initialize this.model with this.initModel.
     /**
      * Maintains the state of the central `{{#crossLink
@@ -79,7 +87,7 @@ define([
      * @property model
      * @type {Lateralus.Model}
      */
-    this.model = new LateralusModel(this);
+    this.model = new ModelConstructor(this);
 
     /**
      * An optional map of template render data to be passed to the

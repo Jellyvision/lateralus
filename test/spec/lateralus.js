@@ -23,6 +23,19 @@ define([
 
   return function () {
     describe('Lateralus', function () {
+      describe('constructor', function () {
+        describe('Config: Custom model', function () {
+          var App = getLateraralusApp();
+          var el = document.createElement('div');
+          var ExtendedModel = Lateralus.Model.extend({});
+          var app = new App(el, { model: ExtendedModel });
+
+          it('Uses the specified Lateralus.Model', function () {
+            assert.instanceOf(app.model, ExtendedModel);
+          });
+        });
+      });
+
       describe('Static properties', function () {
         it('Has Lateralus constructor', function () {
           assert.isFunction(Lateralus);
