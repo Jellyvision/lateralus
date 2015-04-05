@@ -49,7 +49,12 @@ var LateralusComponentGenerator = yeoman.generators.Base.extend({
 
         var targetFileName;
         if (fileName === 'main.js') {
-          targetFileName = this.componentName + '.js';
+
+          if (namespaceFiles) {
+            targetFileName = this.componentName + '.js';
+          } else {
+            targetFileName = 'main.js';
+          }
 
         } else if (fileName === 'styles/main.sass') {
 
