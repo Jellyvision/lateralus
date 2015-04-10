@@ -251,6 +251,22 @@ define([
 
       var eventMap = this[mapName];
 
+      if (eventMap) {
+        // Inherit the parent object's event map, if there is one.
+        var childEventMap = eventMap;
+
+        // Temporarily delete the key so the next analogous key on the
+        // prototype chain is accessible.
+        delete this.constructor.prototype[mapName];
+
+        // Grab the inherited map.
+        var baseEventMap = this[mapName];
+
+        // Augment the child's map with the parent's.
+        this.constructor.prototype[mapName] =
+          _.defaults(childEventMap, baseEventMap);
+      }
+
       for (var key in eventMap) {
         var method = eventMap[key];
         if (!_.isFunction(method)) {
