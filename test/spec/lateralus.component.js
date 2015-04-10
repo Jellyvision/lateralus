@@ -41,6 +41,40 @@ define([
           });
         });
       });
+
+      describe('mixins', function () {
+        describe('delegateLateralusEvents', function () {
+          describe('Inheritance', function () {
+            var App = getLateraralusApp();
+            var app = new App();
+            var testWasCalled = false;
+
+            var BaseComponent = Lateralus.Component.extend({
+              name: 'base'
+              ,lateralusEvents: {
+                test: function () {
+                  testWasCalled = true;
+                }
+              }
+            });
+
+            var ChildComponent = BaseComponent.extend({
+              name: 'child'
+              ,lateralusEvents: {
+                foo: _.noop
+              }
+            });
+
+            app.addComponent(ChildComponent);
+            app.emit('test');
+
+            it('Inherited the parent component\'s lateralusEvents map',
+                function () {
+              assert.isTrue(testWasCalled);
+            });
+          });
+        });
+      });
     });
   };
 });
