@@ -174,7 +174,11 @@ define([
 
   ], function (consoleMethodName) {
     fn[consoleMethodName] = function () {
-      if (typeof console !== 'undefined' && console[consoleMethodName]) {
+      if (typeof console !== 'undefined' &&
+          console[consoleMethodName] &&
+          // .apply is undefined for console object methods in IE.
+          console[consoleMethodName].apply) {
+
         console[consoleMethodName].apply(console, arguments);
       }
     };
