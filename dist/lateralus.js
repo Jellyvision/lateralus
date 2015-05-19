@@ -1,4 +1,4 @@
-/* Lateralus v.0.6.0 | https://github.com/Jellyvision/lateralus */
+/* Lateralus v.0.7.0 | https://github.com/Jellyvision/lateralus */
 define('lateralus/lateralus.mixins',[
 
   'underscore'
@@ -56,8 +56,17 @@ define('lateralus/lateralus.mixins',[
   mixins.addComponent = function (Component, viewOptions, options) {
     options = options || {};
 
+    // If this object belongs to a Lateralus.Component (such as a
+    // Lateralus.Component.View or Lateralus.Component.Model), add the new
+    // subcomponent to that containing Lateralus.Component.
     if (typeof this.component !== 'undefined') {
       return this.component.addComponent.apply(this.component, arguments);
+    }
+
+    // If this object is a Lateralus.Model, add the new subcomponent to the
+    // central Lateralus instance.
+    if (this.toString() === 'lateralus-model') {
+      return this.lateralus.addComponent.apply(this.lateralus, arguments);
     }
 
     if (!this.components) {
@@ -242,6 +251,22 @@ define('lateralus/lateralus.mixins',[
       }
 
       var eventMap = this[mapName];
+
+      if (eventMap) {
+        // Inherit the parent object's event map, if there is one.
+        var childEventMap = eventMap;
+
+        // Temporarily delete the key so the next analogous key on the
+        // prototype chain is accessible.
+        delete this.constructor.prototype[mapName];
+
+        // Grab the inherited map.
+        var baseEventMap = this[mapName];
+
+        // Augment the child's map with the parent's.
+        this.constructor.prototype[mapName] =
+          _.defaults(childEventMap, baseEventMap);
+      }
 
       for (var key in eventMap) {
         var method = eventMap[key];
@@ -1270,6 +1295,7 @@ define('lateralus/lateralus',[
      */
     this.$el = $(el);
 
+    var ModelConstructor = this.config.Model || LateralusModel;
     // TODO: Initialize this.model with this.initModel.
     /**
      * Maintains the state of the central `{{#crossLink
@@ -1277,7 +1303,7 @@ define('lateralus/lateralus',[
      * @property model
      * @type {Lateralus.Model}
      */
-    this.model = new LateralusModel(this);
+    this.model = new ModelConstructor(this);
 
     /**
      * An optional map of template render data to be passed to the
@@ -1326,12 +1352,22 @@ define('lateralus/lateralus',[
    * @static
    * @method beget
    * @param {Function} child
+   * @param {Object} [config]
+   * @param {LateralusModel} [config.Model] A `{{#crossLink
+   * "Lateralus.Model"}}{{/crossLink}}` subclass constructor to use for
+   * `{{#crossLink "Lateralus/model:property"}}{{/crossLink}}` instead of a
+   * standard `{{#crossLink "Lateralus.Model"}}{{/crossLink}}`.
    * @return {Function} The created `{{#crossLink "Lateralus"}}{{/crossLink}}`
    * subclass.
    */
-  Lateralus.beget = function (child) {
+  Lateralus.beget = function (child, config) {
+    var lateralusConfig = config || {};
+
     child.displayName = child.name || 'begetConstructor';
-    return Lateralus.inherit(child, Lateralus);
+    var begottenConstuctor = Lateralus.inherit(child, Lateralus);
+    begottenConstuctor.prototype.config = _.clone(lateralusConfig);
+
+    return begottenConstuctor;
   };
 
   _.extend(fn, mixins);
@@ -1361,7 +1397,11 @@ define('lateralus/lateralus',[
 
   ], function (consoleMethodName) {
     fn[consoleMethodName] = function () {
-      if (typeof console !== 'undefined' && console[consoleMethodName]) {
+      if (typeof console !== 'undefined' &&
+          console[consoleMethodName] &&
+          // .apply is undefined for console object methods in IE.
+          console[consoleMethodName].apply) {
+
         console[consoleMethodName].apply(console, arguments);
       }
     };

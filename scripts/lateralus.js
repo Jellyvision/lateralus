@@ -72,6 +72,7 @@ define([
      */
     this.$el = $(el);
 
+    var ModelConstructor = this.config.Model || LateralusModel;
     // TODO: Initialize this.model with this.initModel.
     /**
      * Maintains the state of the central `{{#crossLink
@@ -79,7 +80,7 @@ define([
      * @property model
      * @type {Lateralus.Model}
      */
-    this.model = new LateralusModel(this);
+    this.model = new ModelConstructor(this);
 
     /**
      * An optional map of template render data to be passed to the
@@ -128,12 +129,22 @@ define([
    * @static
    * @method beget
    * @param {Function} child
+   * @param {Object} [config]
+   * @param {LateralusModel} [config.Model] A `{{#crossLink
+   * "Lateralus.Model"}}{{/crossLink}}` subclass constructor to use for
+   * `{{#crossLink "Lateralus/model:property"}}{{/crossLink}}` instead of a
+   * standard `{{#crossLink "Lateralus.Model"}}{{/crossLink}}`.
    * @return {Function} The created `{{#crossLink "Lateralus"}}{{/crossLink}}`
    * subclass.
    */
-  Lateralus.beget = function (child) {
+  Lateralus.beget = function (child, config) {
+    var lateralusConfig = config || {};
+
     child.displayName = child.name || 'begetConstructor';
-    return Lateralus.inherit(child, Lateralus);
+    var begottenConstuctor = Lateralus.inherit(child, Lateralus);
+    begottenConstuctor.prototype.config = _.clone(lateralusConfig);
+
+    return begottenConstuctor;
   };
 
   _.extend(fn, mixins);
@@ -163,7 +174,11 @@ define([
 
   ], function (consoleMethodName) {
     fn[consoleMethodName] = function () {
-      if (typeof console !== 'undefined' && console[consoleMethodName]) {
+      if (typeof console !== 'undefined' &&
+          console[consoleMethodName] &&
+          // .apply is undefined for console object methods in IE.
+          console[consoleMethodName].apply) {
+
         console[consoleMethodName].apply(console, arguments);
       }
     };

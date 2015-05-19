@@ -55,8 +55,17 @@ define([
   mixins.addComponent = function (Component, viewOptions, options) {
     options = options || {};
 
+    // If this object belongs to a Lateralus.Component (such as a
+    // Lateralus.Component.View or Lateralus.Component.Model), add the new
+    // subcomponent to that containing Lateralus.Component.
     if (typeof this.component !== 'undefined') {
       return this.component.addComponent.apply(this.component, arguments);
+    }
+
+    // If this object is a Lateralus.Model, add the new subcomponent to the
+    // central Lateralus instance.
+    if (this.toString() === 'lateralus-model') {
+      return this.lateralus.addComponent.apply(this.lateralus, arguments);
     }
 
     if (!this.components) {
@@ -241,6 +250,22 @@ define([
       }
 
       var eventMap = this[mapName];
+
+      if (eventMap) {
+        // Inherit the parent object's event map, if there is one.
+        var childEventMap = eventMap;
+
+        // Temporarily delete the key so the next analogous key on the
+        // prototype chain is accessible.
+        delete this.constructor.prototype[mapName];
+
+        // Grab the inherited map.
+        var baseEventMap = this[mapName];
+
+        // Augment the child's map with the parent's.
+        this.constructor.prototype[mapName] =
+          _.defaults(childEventMap, baseEventMap);
+      }
 
       for (var key in eventMap) {
         var method = eventMap[key];

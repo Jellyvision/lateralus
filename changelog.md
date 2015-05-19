@@ -1,3 +1,7 @@
+# 0.7.0
+
+  * Add capability to use a custom Lateralus.Model subclass.
+
 # 0.6.0
 
   * Add mixins.amplify.

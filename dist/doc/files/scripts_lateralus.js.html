@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.6.0</em>
+            <em>API Docs for: 0.7.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -174,6 +174,7 @@ define([
      */
     this.$el = $(el);
 
+    var ModelConstructor = this.config.Model || LateralusModel;
     // TODO: Initialize this.model with this.initModel.
     /**
      * Maintains the state of the central &#x60;{{#crossLink
@@ -181,7 +182,7 @@ define([
      * @property model
      * @type {Lateralus.Model}
      */
-    this.model = new LateralusModel(this);
+    this.model = new ModelConstructor(this);
 
     /**
      * An optional map of template render data to be passed to the
@@ -230,12 +231,22 @@ define([
    * @static
    * @method beget
    * @param {Function} child
+   * @param {Object} [config]
+   * @param {LateralusModel} [config.Model] A &#x60;{{#crossLink
+   * &quot;Lateralus.Model&quot;}}{{/crossLink}}&#x60; subclass constructor to use for
+   * &#x60;{{#crossLink &quot;Lateralus/model:property&quot;}}{{/crossLink}}&#x60; instead of a
+   * standard &#x60;{{#crossLink &quot;Lateralus.Model&quot;}}{{/crossLink}}&#x60;.
    * @return {Function} The created &#x60;{{#crossLink &quot;Lateralus&quot;}}{{/crossLink}}&#x60;
    * subclass.
    */
-  Lateralus.beget = function (child) {
+  Lateralus.beget = function (child, config) {
+    var lateralusConfig = config || {};
+
     child.displayName = child.name || &#x27;begetConstructor&#x27;;
-    return Lateralus.inherit(child, Lateralus);
+    var begottenConstuctor = Lateralus.inherit(child, Lateralus);
+    begottenConstuctor.prototype.config = _.clone(lateralusConfig);
+
+    return begottenConstuctor;
   };
 
   _.extend(fn, mixins);
@@ -265,7 +276,11 @@ define([
 
   ], function (consoleMethodName) {
     fn[consoleMethodName] = function () {
-      if (typeof console !== &#x27;undefined&#x27; &amp;&amp; console[consoleMethodName]) {
+      if (typeof console !== &#x27;undefined&#x27; &amp;&amp;
+          console[consoleMethodName] &amp;&amp;
+          // .apply is undefined for console object methods in IE.
+          console[consoleMethodName].apply) {
+
         console[consoleMethodName].apply(console, arguments);
       }
     };

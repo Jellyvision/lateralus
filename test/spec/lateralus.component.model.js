@@ -21,20 +21,22 @@ define([
   var assert = chai.assert;
   var getLateraralusApp = utils.getLateraralusApp;
 
-  describe('Lateralus.Component.Model', function () {
-    describe('constructor', function () {
-      var App = getLateraralusApp();
-      var app = new App();
-      var component = app.addComponent(Lateralus.Component);
-      var model = component.initModel(Lateralus.Component.Model);
+  return function () {
+    describe('Lateralus.Component.Model', function () {
+      describe('constructor', function () {
+        var App = getLateraralusApp();
+        var app = new App();
+        var component = app.addComponent(Lateralus.Component);
+        var model = component.initModel(Lateralus.Component.Model);
 
-      it('Is an instance of Backbone.Model', function () {
-        assert.instanceOf(model, Backbone.Model);
-      });
+        it('Is an instance of Backbone.Model', function () {
+          assert.instanceOf(model, Backbone.Model);
+        });
 
-      it('Is an instance of Lateralus.Component.Model', function () {
-        assert.instanceOf(model, Lateralus.Component.Model);
+        it('Is an instance of Lateralus.Component.Model', function () {
+          assert.instanceOf(model, Lateralus.Component.Model);
+        });
       });
     });
-  });
+  };
 });
