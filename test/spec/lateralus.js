@@ -290,6 +290,26 @@ define([
       });
 
       describe('delegateLateralusEvents()', function () {
+        describe('Lateralus.prototype is not modified', function () {
+          var App = getLateralusApp();
+          _.extend(App.prototype, {
+            lateralusEvents: {}
+          });
+
+          it('Lateralus.prototype.lateralusEvents starts off undefined',
+              function () {
+            assert.isUndefined(Lateralus.prototype.lateralusEvents);
+          });
+
+          var app = new App();
+
+          // jshint maxlen: 120
+          it('Lateralus.prototype.lateralusEvents remains undefined after delegateLateralusEvents is called',
+              function () {
+            assert.isUndefined(Lateralus.prototype.lateralusEvents);
+          });
+        });
+
         describe('Lateralus events are delegated', function () {
           var App = getLateralusApp();
           var lateralusEventsTestWasCalled = false;
