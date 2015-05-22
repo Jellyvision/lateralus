@@ -254,17 +254,19 @@ define([
       if (eventMap) {
         // Inherit the parent object's event map, if there is one.
         var childEventMap = eventMap;
+        var ctorProto = this.constructor.prototype;
 
-        // Temporarily delete the key so the next analogous key on the
-        // prototype chain is accessible.
-        delete this.constructor.prototype[mapName];
+        if (ctorProto[mapName]) {
+          // Temporarily delete the key so the next analogous key on the
+          // prototype chain is accessible.
+          delete ctorProto[mapName];
 
-        // Grab the inherited map.
-        var baseEventMap = this[mapName];
+          // Grab the inherited map.
+          var baseEventMap = this[mapName];
 
-        // Augment the child's map with the parent's.
-        this.constructor.prototype[mapName] =
-          _.defaults(childEventMap, baseEventMap);
+          // Augment the child's map with the parent's.
+          ctorProto[mapName] = _.defaults(childEventMap, baseEventMap);
+        }
       }
 
       for (var key in eventMap) {
