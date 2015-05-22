@@ -19,7 +19,7 @@ define([
   'use strict';
 
   var assert = chai.assert;
-  var getLateraralusApp = utils.getLateraralusApp;
+  var getLateralusApp = utils.getLateralusApp;
 
   return function () {
     describe('Lateralus', function () {
@@ -79,7 +79,7 @@ define([
 
       describe('Instance properties', function () {
         describe('el', function () {
-          var App = getLateraralusApp();
+          var App = getLateralusApp();
           var el = document.createElement('div');
           var app = new App(el);
 
@@ -89,7 +89,7 @@ define([
         });
 
         describe('$el', function () {
-          var App = getLateraralusApp();
+          var App = getLateralusApp();
           var el = document.createElement('div');
           var app = new App(el);
 
@@ -101,7 +101,7 @@ define([
 
       describe('Prototype', function () {
         describe('initRouter()', function () {
-          var App = getLateraralusApp();
+          var App = getLateralusApp();
           var app = new App();
 
           var ExtendedRouter = Lateralus.Router.extend({
@@ -122,7 +122,7 @@ define([
         });
 
         describe('dispose()', function () {
-          var App = getLateraralusApp();
+          var App = getLateralusApp();
           var app = new App(document.createElement('div'));
           var model = new Backbone.Model();
           app.listenTo(model, 'test', _.noop);
@@ -147,7 +147,7 @@ define([
         });
 
         describe('toString()', function () {
-          var App = getLateraralusApp();
+          var App = getLateralusApp();
           var app = new App();
 
           it('Returns internal name', function () {
@@ -158,7 +158,7 @@ define([
 
       describe('Mixins', function () {
         describe('lateralusEvents', function () {
-          var App = getLateraralusApp();
+          var App = getLateralusApp();
           var testWasCalled = false;
 
           _.extend(App.prototype, {
@@ -223,7 +223,7 @@ define([
         });
 
         describe('addComponent()', function () {
-          var App = getLateraralusApp();
+          var App = getLateralusApp();
           var app = new App(document.createElement('div'));
 
           // Need to capture the original value here because it() calls are
@@ -250,28 +250,30 @@ define([
         });
 
         describe('amplify()', function () {
-          var App = getLateraralusApp();
-          var testWasAmplified = false;
-          _.extend(App.prototype, {
-            lateralusEvents: {
-              'test': function () {
-                testWasAmplified = true;
+          describe('Basic amplify functionality', function () {
+            var App = getLateralusApp();
+            var testWasAmplified = false;
+            _.extend(App.prototype, {
+              lateralusEvents: {
+                test: function () {
+                  testWasAmplified = true;
+                }
               }
-            }
-          });
+            });
 
-          var app = new App(document.createElement('div'));
+            var app = new App(document.createElement('div'));
 
-          it('Broadcasts a Backbone.Model\'s events globally', function () {
-            var model = new Backbone.Model();
-            app.amplify(model, 'test');
-            model.trigger('test');
-            assert.isTrue(testWasAmplified);
+            it('Broadcasts a Backbone.Model\'s events globally', function () {
+              var model = new Backbone.Model();
+              app.amplify(model, 'test');
+              model.trigger('test');
+              assert.isTrue(testWasAmplified);
+            });
           });
         });
 
         describe('listenFor()', function () {
-          var App = getLateraralusApp();
+          var App = getLateralusApp();
           var app = new App();
           var testWasCalled = false;
 
@@ -288,40 +290,42 @@ define([
       });
 
       describe('delegateLateralusEvents()', function () {
-        var App = getLateraralusApp();
-        var lateralusEventsTestWasCalled = false;
-        var modelEventsTestWasCalled = false;
+        describe('Lateralus events are delegated', function () {
+          var App = getLateralusApp();
+          var lateralusEventsTestWasCalled = false;
+          var modelEventsTestWasCalled = false;
 
-        _.extend(App.prototype, {
-          lateralusEvents: {
-            lateralusTest: function () {
-              lateralusEventsTestWasCalled = true;
+          _.extend(App.prototype, {
+            lateralusEvents: {
+              lateralusTest: function () {
+                lateralusEventsTestWasCalled = true;
+              }
             }
-          }
 
-          ,modelEvents: {
-            modelTest: function () {
-              modelEventsTestWasCalled = true;
+            ,modelEvents: {
+              modelTest: function () {
+                modelEventsTestWasCalled = true;
+              }
             }
-          }
-        });
+          });
 
-        var app = new App();
-        app.emit('lateralusTest');
+          var app = new App();
+          app.emit('lateralusTest');
 
-        it('Wires up lateralusEvents', function () {
-          assert.isTrue(lateralusEventsTestWasCalled);
-        });
+          it('Wires up lateralusEvents', function () {
+            assert.isTrue(lateralusEventsTestWasCalled);
+          });
 
-        app.model.emit('modelTest');
+          app.model.emit('modelTest');
 
-        it('Wires up modelEvents', function () {
-          assert.isTrue(modelEventsTestWasCalled);
+          it('Wires up modelEvents', function () {
+            assert.isTrue(modelEventsTestWasCalled);
+          });
         });
       });
 
       describe('initModel()', function () {
-        var App = getLateraralusApp();
+        var App = getLateralusApp();
         var app = new App();
 
         var recievedOptions;

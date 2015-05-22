@@ -13,7 +13,7 @@ define([
     /**
      * @param {Function} [extraConstructorCode]
      */
-    getLateraralusApp: function (extraConstructorCode) {
+    getLateralusApp: function (extraConstructorCode) {
       return Lateralus.beget(function () {
         Lateralus.apply(this, arguments);
 

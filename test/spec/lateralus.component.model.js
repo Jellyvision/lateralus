@@ -19,12 +19,12 @@ define([
   'use strict';
 
   var assert = chai.assert;
-  var getLateraralusApp = utils.getLateraralusApp;
+  var getLateralusApp = utils.getLateralusApp;
 
   return function () {
     describe('Lateralus.Component.Model', function () {
       describe('constructor', function () {
-        var App = getLateraralusApp();
+        var App = getLateralusApp();
         var app = new App();
         var component = app.addComponent(Lateralus.Component);
         var model = component.initModel(Lateralus.Component.Model);

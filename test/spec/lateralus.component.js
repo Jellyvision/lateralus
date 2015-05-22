@@ -19,13 +19,13 @@ define([
   'use strict';
 
   var assert = chai.assert;
-  var getLateraralusApp = utils.getLateraralusApp;
+  var getLateralusApp = utils.getLateralusApp;
 
   return function () {
     describe('Lateralus.Component', function () {
       describe('Prototype', function () {
         describe('dispose()', function () {
-          var App = getLateraralusApp();
+          var App = getLateralusApp();
           var app = new App();
           var component = app.addComponent(Lateralus.Component);
 
@@ -45,7 +45,7 @@ define([
       describe('mixins', function () {
         describe('delegateLateralusEvents', function () {
           describe('Inheritance', function () {
-            var App = getLateraralusApp();
+            var App = getLateralusApp();
             var app = new App();
             var testWasCalled = false;
 
