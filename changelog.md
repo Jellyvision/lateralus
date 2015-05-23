@@ -1,3 +1,7 @@
+# 0.7.1
+
+  * Fix issue around inadvertently modifying Lateralus core prototypes.
+
 # 0.7.0
 
   * Add capability to use a custom Lateralus.Model subclass.
