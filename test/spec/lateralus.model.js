@@ -19,12 +19,12 @@ define([
   'use strict';
 
   var assert = chai.assert;
-  var getLateraralusApp = utils.getLateraralusApp;
+  var getLateralusApp = utils.getLateralusApp;
 
   return function () {
     describe('Lateralus.Model', function () {
       describe('constructor', function () {
-        var App = getLateraralusApp();
+        var App = getLateralusApp();
         var app = new App();
 
         it('Is an instance of Backbone.Model', function () {
@@ -39,7 +39,7 @@ define([
       describe('Prototype', function () {
         describe('onChange()', function () {
           var count = 0;
-          var App = getLateraralusApp(function () {
+          var App = getLateralusApp(function () {
             this.model.set('prop1', 'foo');
           });
 
@@ -64,7 +64,7 @@ define([
         });
 
         describe('toString()', function () {
-          var App = getLateraralusApp();
+          var App = getLateralusApp();
           var app = new App();
 
           it('Returns internal name', function () {
@@ -75,7 +75,7 @@ define([
 
       describe('Mixins', function () {
         describe('addComponent()', function () {
-          var App = getLateraralusApp();
+          var App = getLateralusApp();
           var app = new App();
 
           var component = app.model.addComponent(Lateralus.Component);
@@ -86,7 +86,7 @@ define([
         });
 
         describe('emit()', function () {
-          var App = getLateraralusApp();
+          var App = getLateralusApp();
 
           var testWasCalled = false;
           App.prototype.lateralusEvents = {

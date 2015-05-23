@@ -141,10 +141,10 @@ define([
     var lateralusConfig = config || {};
 
     child.displayName = child.name || 'begetConstructor';
-    var begottenConstuctor = Lateralus.inherit(child, Lateralus);
-    begottenConstuctor.prototype.config = _.clone(lateralusConfig);
+    var begottenConstructor = Lateralus.inherit(child, Lateralus);
+    begottenConstructor.prototype.config = _.clone(lateralusConfig);
 
-    return begottenConstuctor;
+    return begottenConstructor;
   };
 
   _.extend(fn, mixins);

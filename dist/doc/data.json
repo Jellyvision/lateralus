@@ -1,7 +1,7 @@
 {
     "project": {
         "name": "Lateralus",
-        "version": "0.7.0",
+        "version": "0.7.1",
         "logo": "http://cdn.jellyvision.com/wp-content/themes/jellyvision/img/header-logo.png"
     },
     "files": {
@@ -1124,7 +1124,7 @@
         },
         {
             "file": "scripts/lateralus.mixins.js",
-            "line": 296,
+            "line": 298,
             "description": "Helper function for initModel and initCollection.",
             "params": [
                 {
@@ -1142,7 +1142,7 @@
         },
         {
             "file": "scripts/lateralus.mixins.js",
-            "line": 316,
+            "line": 318,
             "params": [
                 {
                     "name": "Model",
@@ -1172,7 +1172,7 @@
         },
         {
             "file": "scripts/lateralus.mixins.js",
-            "line": 333,
+            "line": 335,
             "params": [
                 {
                     "name": "Collection",
@@ -1202,7 +1202,7 @@
         },
         {
             "file": "scripts/lateralus.mixins.js",
-            "line": 347,
+            "line": 349,
             "description": "Merge the properties of another object into this object.  If the `mixin`\nconfiguration object has a method called `initialize`, it is called in the\ncontext of the object calling this function.",
             "itemtype": "method",
             "name": "mixin",
@@ -1281,7 +1281,7 @@
         },
         {
             "message": "Missing item type\nHelper function for initModel and initCollection.",
-            "line": " scripts/lateralus.mixins.js:296"
+            "line": " scripts/lateralus.mixins.js:298"
         }
     ]
 }
