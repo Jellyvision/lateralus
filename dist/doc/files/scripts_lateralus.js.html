@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.7.0</em>
+            <em>API Docs for: 0.7.1</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -243,10 +243,10 @@ define([
     var lateralusConfig = config || {};
 
     child.displayName = child.name || &#x27;begetConstructor&#x27;;
-    var begottenConstuctor = Lateralus.inherit(child, Lateralus);
-    begottenConstuctor.prototype.config = _.clone(lateralusConfig);
+    var begottenConstructor = Lateralus.inherit(child, Lateralus);
+    begottenConstructor.prototype.config = _.clone(lateralusConfig);
 
-    return begottenConstuctor;
+    return begottenConstructor;
   };
 
   _.extend(fn, mixins);

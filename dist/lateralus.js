@@ -1,4 +1,4 @@
-/* Lateralus v.0.7.0 | https://github.com/Jellyvision/lateralus */
+/* Lateralus v.0.7.1 | https://github.com/Jellyvision/lateralus */
 define('lateralus/lateralus.mixins',[
 
   'underscore'
@@ -255,17 +255,19 @@ define('lateralus/lateralus.mixins',[
       if (eventMap) {
         // Inherit the parent object's event map, if there is one.
         var childEventMap = eventMap;
+        var ctorProto = this.constructor.prototype;
 
-        // Temporarily delete the key so the next analogous key on the
-        // prototype chain is accessible.
-        delete this.constructor.prototype[mapName];
+        if (ctorProto[mapName]) {
+          // Temporarily delete the key so the next analogous key on the
+          // prototype chain is accessible.
+          delete ctorProto[mapName];
 
-        // Grab the inherited map.
-        var baseEventMap = this[mapName];
+          // Grab the inherited map.
+          var baseEventMap = this[mapName];
 
-        // Augment the child's map with the parent's.
-        this.constructor.prototype[mapName] =
-          _.defaults(childEventMap, baseEventMap);
+          // Augment the child's map with the parent's.
+          ctorProto[mapName] = _.defaults(childEventMap, baseEventMap);
+        }
       }
 
       for (var key in eventMap) {
@@ -1364,10 +1366,10 @@ define('lateralus/lateralus',[
     var lateralusConfig = config || {};
 
     child.displayName = child.name || 'begetConstructor';
-    var begottenConstuctor = Lateralus.inherit(child, Lateralus);
-    begottenConstuctor.prototype.config = _.clone(lateralusConfig);
+    var begottenConstructor = Lateralus.inherit(child, Lateralus);
+    begottenConstructor.prototype.config = _.clone(lateralusConfig);
 
-    return begottenConstuctor;
+    return begottenConstructor;
   };
 
   _.extend(fn, mixins);
