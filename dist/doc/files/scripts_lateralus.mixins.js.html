@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.7.1</em>
+            <em>API Docs for: 0.8.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -110,6 +110,8 @@ define([
 
 ) {
   &#x27;use strict&#x27;;
+
+  var PROVIDE_PREFIX = &#x27;_provide:&#x27;;
 
   /**
    * These method are mixed into &#x60;{{#crossLink &quot;Lateralus&quot;}}{{/crossLink}}&#x60;,
@@ -290,6 +292,89 @@ define([
     }
   };
 
+  mixins.setupProviders = function () {
+    /**
+     * A map of functions that will handle &#x60;{{#crossLink
+     * &quot;Lateralus.mixins/collect&quot;}}{{/crossLink}}&#x60; calls.  Each of the
+     * functions attached to this Object should return a value.  These
+     * functions **must** be completely synchronous.
+     *
+     *     var App = Lateralus.beget(function () {
+     *       Lateralus.apply(this, arguments);
+     *     });
+     *
+     *     _.extend(App.prototype, {
+     *       provide: {
+     *         demoData: function () {
+     *           return 1;
+     *         }
+     *       }
+     *     });
+     *
+     *     var app = new App();
+     *     var ComponentSubclass = Lateralus.Component.extend({
+     *       name: &#x27;provider&#x27;
+     *       ,provide: {
+     *         demoData: function () {
+     *           return 2;
+     *         }
+     *       }
+     *     });
+     *
+     *     app.addComponent(ComponentSubclass);
+     *     console.log(app.collect(&#x27;demoData&#x27;)); // [1, 2]
+     * @property provide
+     * @type {Object|undefined}
+     */
+    if (!this.provide) {
+      return;
+    }
+
+    this.lateralusEvents = this.lateralusEvents || {};
+
+    _.each(this.provide, function (fn, key) {
+      this.lateralusEvents[PROVIDE_PREFIX + key] = function (callback, args) {
+        callback(fn.apply(this, args));
+      };
+    }, this);
+  };
+
+  /**
+   * Execute any &#x60;{{#crossLink
+   * &quot;Lateralus.mixins/provide:property&quot;}}{{/crossLink}}&#x60; handlers that have
+   * been set up in the app and return an array of the returned values.
+   * @method collect
+   * @param {string} key The name of the &#x60;{{#crossLink
+   * &quot;Lateralus.mixins/provide:property&quot;}}{{/crossLink}}&#x60; methods to run.
+   * @param {...any} [args] Any parameters to pass along to &#x60;{{#crossLink
+   * &quot;Lateralus.mixins/provide:property&quot;}}{{/crossLink}}&#x60; methods.
+   * @return {Array(any)}
+   */
+  mixins.collect = function (key) {
+    var args = _.toArray(arguments).slice(1);
+    var collectedValues = [];
+
+    this.emit(PROVIDE_PREFIX + key,
+        _.bind(collectedValues.push, collectedValues), args);
+
+    return collectedValues;
+  };
+
+  /**
+   * Execute any &#x60;{{#crossLink
+   * &quot;Lateralus.mixins/provide:property&quot;}}{{/crossLink}}&#x60; handlers that have
+   * been set up in the app and return the first value.
+   * @method collectOne
+   * @param {string} key The name of the &#x60;{{#crossLink
+   * &quot;Lateralus.mixins/provide:property&quot;}}{{/crossLink}}&#x60; methods to run.
+   * @param {...any} [args] Any parameters to pass along to &#x60;{{#crossLink
+   * &quot;Lateralus.mixins/provide:property&quot;}}{{/crossLink}}&#x60; methods.
+   * @return {any}
+   */
+  mixins.collectOne = function () {
+    return this.collect.apply(this, arguments)[0];
+  };
+
   var delegateEventSplitter = /^(\S+)\s*(.*)$/;
 
   /**
@@ -300,6 +385,7 @@ define([
    * @chainable
    */
   mixins.delegateLateralusEvents = function () {
+    this.setupProviders();
 
     _.each({
         /**
