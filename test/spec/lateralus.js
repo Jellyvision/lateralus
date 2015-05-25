@@ -287,6 +287,100 @@ define([
             assert.isTrue(testWasCalled);
           });
         });
+
+        describe('collect()', function () {
+          describe('Single providers', function () {
+            var App = getLateralusApp();
+
+            _.extend(App.prototype, {
+              provide: {
+                test: function () {
+                  return 1;
+                }
+              }
+            });
+
+            var app = new App();
+            var collectedTest = app.collect('test');
+
+            it('Collects an array', function () {
+              assert.isArray(collectedTest);
+            });
+
+            it('Collects an Array with correct values', function () {
+              assert.deepEqual(collectedTest, [1]);
+            });
+          });
+
+          describe('Multiple providers', function () {
+            var App = getLateralusApp();
+
+            _.extend(App.prototype, {
+              provide: {
+                test: function () {
+                  return 1;
+                }
+              }
+            });
+
+            var app = new App();
+            var ComponentSubclass = Lateralus.Component.extend({
+              name: 'provider'
+              ,provide: {
+                test: function () {
+                  return 2;
+                }
+              }
+            });
+
+            app.addComponent(ComponentSubclass);
+            var collectedTest = app.collect('test');
+
+            it('Collects an Array with correct values', function () {
+              assert.deepEqual(collectedTest, [1, 2]);
+            });
+          });
+
+          describe('Argument passing', function () {
+            var App = getLateralusApp();
+
+            _.extend(App.prototype, {
+              provide: {
+                test: function (arg) {
+                  return arg;
+                }
+              }
+            });
+
+            var app = new App();
+            var collectedTest = app.collect('test', 5);
+
+            it('Returns values based on provided arguments', function () {
+              assert.deepEqual(collectedTest, [5]);
+            });
+          });
+        });
+
+        describe('collectOne()', function () {
+          describe('Basic usage', function () {
+            var App = getLateralusApp();
+
+            _.extend(App.prototype, {
+              provide: {
+                test: function () {
+                  return 1;
+                }
+              }
+            });
+
+            var app = new App();
+            var collectedTest = app.collectOne('test');
+
+            it('Collects an Array with correct values', function () {
+              assert.equal(collectedTest, 1);
+            });
+          });
+        });
       });
 
       describe('delegateLateralusEvents()', function () {
@@ -300,8 +394,6 @@ define([
               function () {
             assert.isUndefined(Lateralus.prototype.lateralusEvents);
           });
-
-          var app = new App();
 
           // jshint maxlen: 120
           it('Lateralus.prototype.lateralusEvents remains undefined after delegateLateralusEvents is called',
