@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.7.1</em>
+            <em>API Docs for: 0.8.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -104,7 +104,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../files/scripts_lateralus.mixins.js.html#l12"><code>scripts&#x2F;lateralus.mixins.js:12</code></a>
+            Defined in: <a href="../files/scripts_lateralus.mixins.js.html#l14"><code>scripts&#x2F;lateralus.mixins.js:14</code></a>
         </div>
     
 
@@ -156,6 +156,20 @@
                         
                             <li class="index-item method">
                                 <a href="#method_amplify">amplify</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_collect">collect</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_collectOne">collectOne</a>
 
                                 
                                 
@@ -241,6 +255,13 @@
                                 
                             </li>
                         
+                            <li class="index-item property">
+                                <a href="#property_provide">provide</a>
+
+                                
+                                
+                            </li>
+                        
                     </ul>
                 </div>
             
@@ -313,7 +334,7 @@
             
         
         
-        <a href="../files/scripts_lateralus.mixins.js.html#l29"><code>scripts&#x2F;lateralus.mixins.js:29</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l31"><code>scripts&#x2F;lateralus.mixins.js:31</code></a>
         
         </p>
 
@@ -503,7 +524,7 @@ instance, if there is one.</p>
             
         
         
-        <a href="../files/scripts_lateralus.mixins.js.html#l161"><code>scripts&#x2F;lateralus.mixins.js:161</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l163"><code>scripts&#x2F;lateralus.mixins.js:163</code></a>
         
         </p>
 
@@ -570,6 +591,264 @@ should be amplified globally across the app.</p>
 </div>
 
                 
+                    <div id="method_collect" class="method item">
+    <h3 class="name"><code>collect</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>key</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[args]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">Array(any)</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/scripts_lateralus.mixins.js.html#l240"><code>scripts&#x2F;lateralus.mixins.js:240</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Execute any <code><a href="../classes/Lateralus.mixins.html#property_provide" class="crosslink">provide</a></code> handlers that have
+been set up in the app and return an array of the returned values.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">key</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The name of the <code><a href="../classes/Lateralus.mixins.html#property_provide" class="crosslink">provide</a></code> methods to run.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[args]</code>
+                        <span class="type">...any</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Any parameters to pass along to <code><a href="../classes/Lateralus.mixins.html#property_provide" class="crosslink">provide</a></code> methods.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Array(any)</span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_collectOne" class="method item">
+    <h3 class="name"><code>collectOne</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>key</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[args]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">Any</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/scripts_lateralus.mixins.js.html#l261"><code>scripts&#x2F;lateralus.mixins.js:261</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Execute any <code><a href="../classes/Lateralus.mixins.html#property_provide" class="crosslink">provide</a></code> handlers that have
+been set up in the app and return the first value.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">key</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The name of the <code><a href="../classes/Lateralus.mixins.html#property_provide" class="crosslink">provide</a></code> methods to run.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[args]</code>
+                        <span class="type">...any</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Any parameters to pass along to <code><a href="../classes/Lateralus.mixins.html#property_provide" class="crosslink">provide</a></code> methods.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Any</span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
                     <div id="method_delegateLateralusEvents" class="method item">
     <h3 class="name"><code>delegateLateralusEvents</code></h3>
 
@@ -604,7 +883,7 @@ should be amplified globally across the app.</p>
             
         
         
-        <a href="../files/scripts_lateralus.mixins.js.html#l193"><code>scripts&#x2F;lateralus.mixins.js:193</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l278"><code>scripts&#x2F;lateralus.mixins.js:278</code></a>
         
         </p>
 
@@ -676,7 +955,7 @@ defined.</p>
             
         
         
-        <a href="../files/scripts_lateralus.mixins.js.html#l119"><code>scripts&#x2F;lateralus.mixins.js:119</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l121"><code>scripts&#x2F;lateralus.mixins.js:121</code></a>
         
         </p>
 
@@ -817,7 +1096,7 @@ and the central <code><a href="../classes/Lateralus.html" class="crosslink">Late
             
         
         
-        <a href="../files/scripts_lateralus.mixins.js.html#l335"><code>scripts&#x2F;lateralus.mixins.js:335</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l421"><code>scripts&#x2F;lateralus.mixins.js:421</code></a>
         
         </p>
 
@@ -969,7 +1248,7 @@ Collection constructor.</p>
             
         
         
-        <a href="../files/scripts_lateralus.mixins.js.html#l318"><code>scripts&#x2F;lateralus.mixins.js:318</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l404"><code>scripts&#x2F;lateralus.mixins.js:404</code></a>
         
         </p>
 
@@ -1110,7 +1389,7 @@ constructor.</p>
             
         
         
-        <a href="../files/scripts_lateralus.mixins.js.html#l175"><code>scripts&#x2F;lateralus.mixins.js:175</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l177"><code>scripts&#x2F;lateralus.mixins.js:177</code></a>
         
         </p>
 
@@ -1215,7 +1494,7 @@ constructor.</p>
             
         
         
-        <a href="../files/scripts_lateralus.mixins.js.html#l349"><code>scripts&#x2F;lateralus.mixins.js:349</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l435"><code>scripts&#x2F;lateralus.mixins.js:435</code></a>
         
         </p>
 
@@ -1297,7 +1576,7 @@ context of the object calling this function.</p>
             
         
         
-        <a href="../files/scripts_lateralus.mixins.js.html#l80"><code>scripts&#x2F;lateralus.mixins.js:80</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l82"><code>scripts&#x2F;lateralus.mixins.js:82</code></a>
         
         </p>
 
@@ -1343,7 +1622,7 @@ object.</p>
             
         
         
-        <a href="../files/scripts_lateralus.mixins.js.html#l72"><code>scripts&#x2F;lateralus.mixins.js:72</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l74"><code>scripts&#x2F;lateralus.mixins.js:74</code></a>
         
         </p>
 
@@ -1389,7 +1668,7 @@ property directly, it is managed by Lateralus.</p>
             
         
         
-        <a href="../files/scripts_lateralus.mixins.js.html#l203"><code>scripts&#x2F;lateralus.mixins.js:203</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l289"><code>scripts&#x2F;lateralus.mixins.js:289</code></a>
         
         </p>
 
@@ -1453,7 +1732,7 @@ central <code><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a
             
         
         
-        <a href="../files/scripts_lateralus.mixins.js.html#l229"><code>scripts&#x2F;lateralus.mixins.js:229</code></a>
+        <a href="../files/scripts_lateralus.mixins.js.html#l315"><code>scripts&#x2F;lateralus.mixins.js:315</code></a>
         
         </p>
 
@@ -1478,6 +1757,77 @@ handle <a href="http://backbonejs.org/#Events">events</a> emitted by
 
     
         <p><strong>Default:</strong> undefined</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_provide" class="property item">
+    <h3 class="name"><code>provide</code></h3>
+    <span class="type">Object | Undefined</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/scripts_lateralus.mixins.js.html#l194"><code>scripts&#x2F;lateralus.mixins.js:194</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>A map of functions that will handle <code><a href="../classes/Lateralus.mixins.html#method_collect" class="crosslink">collect</a></code> calls.  Each of the
+functions attached to this Object should return a value.  These
+functions <strong>must</strong> be completely synchronous.</p>
+<pre class="code prettyprint"><code>var App = Lateralus.beget(function () {
+  Lateralus.apply(this, arguments);
+});
+
+_.extend(App.prototype, {
+  provide: {
+    demoData: function () {
+      return 1;
+    }
+  }
+});
+
+var app = new App();
+var ComponentSubclass = Lateralus.Component.extend({
+  name: &#39;provider&#39;
+  ,provide: {
+    demoData: function () {
+      return 2;
+    }
+  }
+});
+
+app.addComponent(ComponentSubclass);
+console.log(app.collect(&#39;demoData&#39;)); // [1, 2]</code></pre>
+
+    </div>
+
     
 
     

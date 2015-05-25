@@ -1,3 +1,7 @@
+# 0.8.0
+
+  * Implement provide, collect and collectOne.
+
 # 0.7.1
 
   * Fix issue around inadvertently modifying Lateralus core prototypes.
