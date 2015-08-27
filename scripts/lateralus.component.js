@@ -219,7 +219,7 @@ define([
    * @method dispose
    */
   fn.dispose = function () {
-    _(this).lateralusDispose(function () {
+    _(this).lateralusDispose(_.bind(function () {
       if (this.view) {
         this.view.dispose();
       }
@@ -236,7 +236,7 @@ define([
       if (_.contains(this.lateralus.components, this)) {
         removePropertyFromObject(this, this.lateralus);
       }
-    }.bind(this));
+    }, this));
   };
 
   /**
