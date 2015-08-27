@@ -36,6 +36,22 @@ define([
         }
       }
     }
+
+    /**
+     * Perform general-purpose memory cleanup for a Lateralus/Backbone Object.
+     * @param {Object} obj
+     * @param {Fuction=} customDisposeLogic
+     */
+    ,lateralusDispose: function (obj, customDisposeLogic) {
+      obj.trigger('beforeDispose');
+
+      if (customDisposeLogic) {
+        customDisposeLogic();
+      }
+
+      obj.stopListening();
+      _(obj).lateralusEmptyObject();
+    }
   });
 
   /**
