@@ -37,6 +37,24 @@ define([
           assert.instanceOf(model, Lateralus.Component.Model);
         });
       });
+
+      describe('Prototype', function () {
+        describe('dispose()', function () {
+          var App = getLateralusApp();
+          var app = new App();
+          var component = app.addComponent(Lateralus.Component);
+          var model = component.initModel(Lateralus.Component.Model);
+          var collection =
+            component.initCollection(Lateralus.Component.Collection);
+          collection.add(model);
+
+          model.dispose();
+
+          it('Is removed from the collection to which it belongs', function () {
+            assert.equal(0, collection.length);
+          });
+        });
+      });
     });
   };
 });

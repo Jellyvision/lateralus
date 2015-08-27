@@ -48,6 +48,20 @@ define([
       this.delegateLateralusEvents();
       Backbone.Model.call(this, attributes, options);
     }
+
+    /**
+     * Remove this `{{#crossLink "Lateralus.Component.Model"}}{{/crossLink}}`
+     * from memory.  Also remove this `{{#crossLink
+     * "Lateralus.Component.Model"}}{{/crossLink}}` from the `{{#crossLink
+     * "Lateralus.Component.Collection"}}{{/crossLink}}` to which it belongs,
+     * if any.
+     * @method dispose
+     */
+    ,dispose: function () {
+      _(this).lateralusDispose(_.bind(function () {
+        this.destroy();
+      }, this));
+    }
   };
 
   _.extend(fn, mixins);
