@@ -54,6 +54,39 @@ define([
           });
         });
       });
+
+      describe('Prototype', function () {
+        describe('remove()', function () {
+          var App = getLateralusApp();
+          var app = new App();
+          var component = app.addComponent(Lateralus.Component);
+          var model = component.initModel(Lateralus.Component.Model);
+          var collection =
+            component.initCollection(Lateralus.Component.Collection);
+          collection.add(model);
+
+          var afterAddLength = collection.length;
+          it('Adds a Lateralus.Component.Model instance', function () {
+            assert.equal(1, afterAddLength);
+          });
+
+          var beforeDisposeWasCalled = false;
+          model.on('beforeDispose', function () {
+            beforeDisposeWasCalled = true;
+          });
+
+          collection.remove(model, { dispose: true });
+
+          var afterRemoveLength = collection.length;
+          it('Removed the model', function () {
+            assert.equal(0, afterRemoveLength);
+          });
+
+          it('Called .dispose() on the model', function () {
+            assert.isTrue(beforeDisposeWasCalled);
+          });
+        });
+      });
     });
   };
 });

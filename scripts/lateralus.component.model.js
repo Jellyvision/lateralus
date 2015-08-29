@@ -59,7 +59,9 @@ define([
      */
     ,dispose: function () {
       _(this).lateralusDispose(_.bind(function () {
-        this.destroy();
+        if (this.collection) {
+          this.collection.remove(this);
+        }
       }, this));
     }
   };

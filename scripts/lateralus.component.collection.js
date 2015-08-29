@@ -49,6 +49,29 @@ define([
     return baseProto.set.call(this, models, augmentedOptions);
   };
 
+  /**
+   * Remove a `{{#crossLink "Lateralus.Component.Model"}}{{/crossLink}}` or
+   * array of `{{#crossLink "Lateralus.Component.Model"}}{{/crossLink}}`s from
+   * this collection.
+   * @param {Array.(Lateralus.Component.Model)|Lateralus.Component.Model} models
+   * @param {Object} [options] This object is also passed to
+   * [Backbone.Collection.#remove](http://backbonejs.org/#Collection-remove).
+   * @param {boolean} [options.dispose] If true, call `{{#crossLink
+   * "Lateralus.Component.Model/dispose:method"}}{{/crossLink}}` after removing
+   * `models`.
+   * @method remove
+   * @override
+   */
+  fn.remove = function (models, options) {
+    options = options || {};
+    baseProto.remove.apply(this, arguments);
+
+    if (options.dispose) {
+      models = _.isArray(models) ? models : [models];
+      _.invoke(models, 'dispose');
+    }
+  };
+
   _.extend(fn, mixins);
 
   /**
