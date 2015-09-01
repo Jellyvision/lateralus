@@ -1,7 +1,7 @@
 {
     "project": {
         "name": "Lateralus",
-        "version": "0.8.0",
+        "version": "0.9.0",
         "logo": "http://cdn.jellyvision.com/wp-content/themes/jellyvision/img/header-logo.png"
     },
     "files": {
@@ -89,7 +89,7 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "scripts/lateralus.component.collection.js",
-            "line": 54,
+            "line": 77,
             "description": "This class builds on the ideas and APIs of\n[`Backbone.Collection`](http://backbonejs.org/#Collection).",
             "extends": "{Backbone.Collection}",
             "uses": [
@@ -159,7 +159,7 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "scripts/lateralus.component.model.js",
-            "line": 19,
+            "line": 22,
             "description": "The constructor for this class should not be called by application code,\nit is used by the `{{#crossLink \"Lateralus.Component\"}}{{/crossLink}}`\nconstructor.",
             "access": "private",
             "tagname": "",
@@ -216,7 +216,7 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "scripts/lateralus.js",
-            "line": 41,
+            "line": 57,
             "description": "You should not need to call the Lateralus constructor directly, use\n`{{#crossLink \"Lateralus/beget\"}}{{/crossLink}}` instead.  To create a new\nLateralus app:\n\n    var App = Lateralus.beget(function () {\n      // Don't forget to call the Lateralus constructor!\n      Lateralus.apply(this, arguments);\n    });\n\n    var app = new App(document.getElementById('app'));",
             "params": [
                 {
@@ -284,7 +284,7 @@
                     "optional": true
                 }
             ],
-            "extends": "{Backbone.Model}",
+            "extends": "Backbone.Model",
             "uses": [
                 "Lateralus.mixins"
             ],
@@ -359,7 +359,37 @@
         },
         {
             "file": "scripts/lateralus.component.collection.js",
-            "line": 63,
+            "line": 52,
+            "description": "Remove a `{{#crossLink \"Lateralus.Component.Model\"}}{{/crossLink}}` or\narray of `{{#crossLink \"Lateralus.Component.Model\"}}{{/crossLink}}`s from\nthis collection.",
+            "params": [
+                {
+                    "name": "models",
+                    "description": "",
+                    "type": "Array.(Lateralus.Component.Model)|Lateralus.Component.Model"
+                },
+                {
+                    "name": "options",
+                    "description": "This object is also passed to\n[Backbone.Collection.#remove](http://backbonejs.org/#Collection-remove).",
+                    "type": "Object",
+                    "optional": true,
+                    "props": [
+                        {
+                            "name": "dispose",
+                            "description": "If true, call `{{#crossLink\n\"Lateralus.Component.Model/dispose:method\"}}{{/crossLink}}` after removing\n`models`.",
+                            "type": "Boolean",
+                            "optional": true
+                        }
+                    ]
+                }
+            ],
+            "itemtype": "method",
+            "name": "remove",
+            "override": "",
+            "class": "Lateralus.Collection"
+        },
+        {
+            "file": "scripts/lateralus.component.collection.js",
+            "line": 86,
             "itemtype": "method",
             "name": "toString",
             "return": {
@@ -496,12 +526,11 @@
             "description": "Remove this `{{#crossLink \"Lateralus.Component\"}}{{/crossLink}}` from\nmemory.  Also remove any nested components added by `{{#crossLink\n\"Lateralus.mixins/addComponent\"}}{{/crossLink}}`.",
             "itemtype": "method",
             "name": "dispose",
-            "chainable": 1,
             "class": "Lateralus.Component"
         },
         {
             "file": "scripts/lateralus.component.js",
-            "line": 248,
+            "line": 242,
             "description": "Meant to be overridden by subclasses.",
             "itemtype": "method",
             "name": "toJSON",
@@ -513,7 +542,7 @@
         },
         {
             "file": "scripts/lateralus.component.js",
-            "line": 257,
+            "line": 251,
             "itemtype": "method",
             "name": "toString",
             "return": {
@@ -524,7 +553,7 @@
         },
         {
             "file": "scripts/lateralus.component.model.js",
-            "line": 38,
+            "line": 41,
             "description": "A reference to the `{{#crossLink\n\"Lateralus.Component\"}}{{/crossLink}}` to which this `{{#crossLink\n\"Lateralus.Component.Model\"}}{{/crossLink}}` belongs.",
             "itemtype": "property",
             "name": "component",
@@ -534,7 +563,40 @@
         },
         {
             "file": "scripts/lateralus.component.model.js",
-            "line": 57,
+            "line": 55,
+            "description": "Lateralus-compatible override for\n[Backbone.Model#destroy](http://backbonejs.org/#Model-destroy).",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "This object is also passed to\n[Backbone.Model.#destroy](http://backbonejs.org/#Model-destroy).",
+                    "type": "Object",
+                    "optional": true,
+                    "props": [
+                        {
+                            "name": "dispose",
+                            "description": "If true, call `{{#crossLink\n\"Lateralus.Component.Model/dispose:method\"}}{{/crossLink}}` after\n`destroy` operations are complete.",
+                            "type": "Boolean",
+                            "optional": true
+                        }
+                    ]
+                }
+            ],
+            "itemtype": "method",
+            "name": "destroy",
+            "override": "",
+            "class": "Lateralus.Component.Model"
+        },
+        {
+            "file": "scripts/lateralus.component.model.js",
+            "line": 78,
+            "description": "Remove this `{{#crossLink \"Lateralus.Component.Model\"}}{{/crossLink}}`\nfrom memory.  Also remove this `{{#crossLink\n\"Lateralus.Component.Model\"}}{{/crossLink}}` from the `{{#crossLink\n\"Lateralus.Component.Collection\"}}{{/crossLink}}` to which it belongs,\nif any.",
+            "itemtype": "method",
+            "name": "dispose",
+            "class": "Lateralus.Component.Model"
+        },
+        {
+            "file": "scripts/lateralus.component.model.js",
+            "line": 99,
             "itemtype": "method",
             "name": "toString",
             "return": {
@@ -759,7 +821,25 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 59,
+            "line": 40,
+            "description": "Perform general-purpose memory cleanup for a Lateralus/Backbone Object.",
+            "params": [
+                {
+                    "name": "obj",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "customDisposeLogic",
+                    "description": "",
+                    "type": "Fuction="
+                }
+            ],
+            "class": "Lateralus"
+        },
+        {
+            "file": "scripts/lateralus.js",
+            "line": 75,
             "description": "The DOM node that contains this `{{#crossLink\n\"Lateralus\"}}{{/crossLink}}` instance.",
             "itemtype": "property",
             "name": "el",
@@ -768,7 +848,7 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 67,
+            "line": 83,
             "description": "The jQuery Object that contains `{{#crossLink\n\"Lateralus/el:property\"}}{{/crossLink}}`.",
             "itemtype": "property",
             "name": "$el",
@@ -777,7 +857,7 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 77,
+            "line": 93,
             "description": "Maintains the state of the central `{{#crossLink\n\"Lateralus\"}}{{/crossLink}}` instance.",
             "itemtype": "property",
             "name": "model",
@@ -786,7 +866,7 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 85,
+            "line": 101,
             "description": "An optional map of template render data to be passed to the\n`Mustache.render` call for all Views belonging to this Lateralus app.",
             "itemtype": "property",
             "name": "globalRenderData",
@@ -795,7 +875,7 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 93,
+            "line": 109,
             "description": "An optional map of template partials to be passed to the\n`Mustache.render` call for all Views belonging to this Lateralus app.",
             "itemtype": "property",
             "name": "globalPartials",
@@ -804,7 +884,7 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 108,
+            "line": 124,
             "description": "Set up the prototype chain between two objects.",
             "static": 1,
             "itemtype": "method",
@@ -829,7 +909,7 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 123,
+            "line": 139,
             "description": "Create a `{{#crossLink \"Lateralus\"}}{{/crossLink}}` application instance.\n\n    var App = Lateralus.beget(function () {\n      Lateralus.apply(this, arguments);\n    });",
             "static": 1,
             "itemtype": "method",
@@ -863,7 +943,7 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 154,
+            "line": 170,
             "description": "Cross-browser friendly wrapper for `console.log`.",
             "itemtype": "method",
             "name": "log",
@@ -878,7 +958,7 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 161,
+            "line": 177,
             "description": "Cross-browser friendly wrapper for `console.warn`.",
             "itemtype": "method",
             "name": "warn",
@@ -893,7 +973,7 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 168,
+            "line": 184,
             "description": "Cross-browser friendly wrapper for `console.error`.",
             "itemtype": "method",
             "name": "error",
@@ -908,7 +988,7 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 187,
+            "line": 203,
             "params": [
                 {
                     "name": "Router",
@@ -932,7 +1012,7 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 199,
+            "line": 215,
             "description": "Remove this `{{#crossLink \"Lateralus\"}}{{/crossLink}}` app from memory.",
             "itemtype": "method",
             "name": "dispose",
@@ -940,7 +1020,7 @@
         },
         {
             "file": "scripts/lateralus.js",
-            "line": 213,
+            "line": 228,
             "description": "Do not override this method, it is used internally.",
             "itemtype": "method",
             "name": "toString",
@@ -1311,6 +1391,14 @@
             "line": " scripts/lateralus.component.collection.js:40"
         },
         {
+            "message": "unknown tag: override",
+            "line": " scripts/lateralus.component.collection.js:52"
+        },
+        {
+            "message": "unknown tag: override",
+            "line": " scripts/lateralus.component.model.js:55"
+        },
+        {
             "message": "Missing item type\nThe constructor for this class should not be called by application code,\nshould only be called by `{{#crossLink\n\"Lateralus.Component.initCollection:method\"}}{{/crossLink}}`.",
             "line": " scripts/lateralus.component.collection.js:22"
         },
@@ -1333,6 +1421,10 @@
         {
             "message": "Missing item type\nRemove all properties from an Object.",
             "line": " scripts/lateralus.js:27"
+        },
+        {
+            "message": "Missing item type\nPerform general-purpose memory cleanup for a Lateralus/Backbone Object.",
+            "line": " scripts/lateralus.js:40"
         },
         {
             "message": "Missing item type",

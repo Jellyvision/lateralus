@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.8.0</em>
+            <em>API Docs for: 0.9.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -117,6 +117,9 @@ define([
 ) {
   &#x27;use strict&#x27;;
 
+  var Base = Backbone.Model;
+  var baseProto = Base.prototype;
+
   var fn = {
     /**
      * The constructor for this class should not be called by application code,
@@ -150,11 +153,50 @@ define([
       this.delegateLateralusEvents();
       Backbone.Model.call(this, attributes, options);
     }
+
+    /**
+     * Lateralus-compatible override for
+     * [Backbone.Model#destroy](http://backbonejs.org/#Model-destroy).
+     * @param {Object} [options] This object is also passed to
+     * [Backbone.Model.#destroy](http://backbonejs.org/#Model-destroy).
+     * @param {boolean} [options.dispose] If true, call &#x60;{{#crossLink
+     * &quot;Lateralus.Component.Model/dispose:method&quot;}}{{/crossLink}}&#x60; after
+     * &#x60;destroy&#x60; operations are complete.
+     * @method destroy
+     * @override
+     */
+    ,destroy: function (options) {
+      options = options || {};
+      var dispose = options.dispose;
+      options.dispose = false;
+
+      baseProto.destroy.apply(this, arguments);
+
+      if (dispose) {
+        this.dispose();
+      }
+    }
+
+    /**
+     * Remove this &#x60;{{#crossLink &quot;Lateralus.Component.Model&quot;}}{{/crossLink}}&#x60;
+     * from memory.  Also remove this &#x60;{{#crossLink
+     * &quot;Lateralus.Component.Model&quot;}}{{/crossLink}}&#x60; from the &#x60;{{#crossLink
+     * &quot;Lateralus.Component.Collection&quot;}}{{/crossLink}}&#x60; to which it belongs,
+     * if any.
+     * @method dispose
+     */
+    ,dispose: function () {
+      _(this).lateralusDispose(_.bind(function () {
+        if (this.collection) {
+          this.collection.remove(this);
+        }
+      }, this));
+    }
   };
 
   _.extend(fn, mixins);
 
-  var ComponentModel = Backbone.Model.extend(fn);
+  var ComponentModel = Base.extend(fn);
 
   /**
    * @method toString
