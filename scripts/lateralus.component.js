@@ -217,32 +217,26 @@ define([
    * memory.  Also remove any nested components added by `{{#crossLink
    * "Lateralus.mixins/addComponent"}}{{/crossLink}}`.
    * @method dispose
-   * @chainable
    */
   fn.dispose = function () {
-    this.trigger('beforeDispose');
+    _(this).lateralusDispose(_.bind(function () {
+      if (this.view) {
+        this.view.dispose();
+      }
 
-    if (this.view) {
-      this.view.dispose();
-    }
+      if (this.components) {
+        _.invoke(this.components, 'dispose');
+      }
 
-    if (this.components) {
-      _.invoke(this.components, 'dispose');
-    }
+      var parentComponent = this.parentComponent;
+      if (parentComponent) {
+        removePropertyFromObject(this, parentComponent.components);
+      }
 
-    var parentComponent = this.parentComponent;
-    if (parentComponent) {
-      removePropertyFromObject(this, parentComponent.components);
-    }
-
-    if (_.contains(this.lateralus.components, this)) {
-      removePropertyFromObject(this, this.lateralus);
-    }
-
-    this.stopListening();
-    _(this).lateralusEmptyObject();
-
-    return this;
+      if (_.contains(this.lateralus.components, this)) {
+        removePropertyFromObject(this, this.lateralus);
+      }
+    }, this));
   };
 
   /**

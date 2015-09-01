@@ -1,3 +1,10 @@
+# 0.9.0
+
+  * Add memory management utilities:
+    * Lateralus.Component.Model#destroy
+    * Lateralus.Component.Model#dispose
+    * Lateralus.Component.Collection#remove
+
 # 0.8.0
 
   * Implement provide, collect and collectOne.

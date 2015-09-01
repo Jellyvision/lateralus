@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.8.0</em>
+            <em>API Docs for: 0.9.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -149,6 +149,29 @@ define([
     });
 
     return baseProto.set.call(this, models, augmentedOptions);
+  };
+
+  /**
+   * Remove a &#x60;{{#crossLink &quot;Lateralus.Component.Model&quot;}}{{/crossLink}}&#x60; or
+   * array of &#x60;{{#crossLink &quot;Lateralus.Component.Model&quot;}}{{/crossLink}}&#x60;s from
+   * this collection.
+   * @param {Array.(Lateralus.Component.Model)|Lateralus.Component.Model} models
+   * @param {Object} [options] This object is also passed to
+   * [Backbone.Collection.#remove](http://backbonejs.org/#Collection-remove).
+   * @param {boolean} [options.dispose] If true, call &#x60;{{#crossLink
+   * &quot;Lateralus.Component.Model/dispose:method&quot;}}{{/crossLink}}&#x60; after removing
+   * &#x60;models&#x60;.
+   * @method remove
+   * @override
+   */
+  fn.remove = function (models, options) {
+    options = options || {};
+    baseProto.remove.apply(this, arguments);
+
+    if (options.dispose) {
+      models = _.isArray(models) ? models : [models];
+      _.invoke(models, &#x27;dispose&#x27;);
+    }
   };
 
   _.extend(fn, mixins);

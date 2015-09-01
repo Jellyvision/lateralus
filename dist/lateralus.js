@@ -1,4 +1,4 @@
-/* Lateralus v.0.8.0 | https://github.com/Jellyvision/lateralus */
+/* Lateralus v.0.9.0 | https://github.com/Jellyvision/lateralus */
 define('lateralus/lateralus.mixins',[
 
   'underscore'
@@ -481,7 +481,7 @@ define('lateralus/lateralus.model',[
    * @param {Lateralus} lateralus
    * @param {Object} [attributes]
    * @param {Object} [options]
-   * @extends {Backbone.Model}
+   * @extends Backbone.Model
    * @uses Lateralus.mixins
    * @constructor
    */
@@ -916,6 +916,9 @@ define('lateralus/lateralus.component.model',[
 ) {
   
 
+  var Base = Backbone.Model;
+  var baseProto = Base.prototype;
+
   var fn = {
     /**
      * The constructor for this class should not be called by application code,
@@ -949,11 +952,50 @@ define('lateralus/lateralus.component.model',[
       this.delegateLateralusEvents();
       Backbone.Model.call(this, attributes, options);
     }
+
+    /**
+     * Lateralus-compatible override for
+     * [Backbone.Model#destroy](http://backbonejs.org/#Model-destroy).
+     * @param {Object} [options] This object is also passed to
+     * [Backbone.Model.#destroy](http://backbonejs.org/#Model-destroy).
+     * @param {boolean} [options.dispose] If true, call `{{#crossLink
+     * "Lateralus.Component.Model/dispose:method"}}{{/crossLink}}` after
+     * `destroy` operations are complete.
+     * @method destroy
+     * @override
+     */
+    ,destroy: function (options) {
+      options = options || {};
+      var dispose = options.dispose;
+      options.dispose = false;
+
+      baseProto.destroy.apply(this, arguments);
+
+      if (dispose) {
+        this.dispose();
+      }
+    }
+
+    /**
+     * Remove this `{{#crossLink "Lateralus.Component.Model"}}{{/crossLink}}`
+     * from memory.  Also remove this `{{#crossLink
+     * "Lateralus.Component.Model"}}{{/crossLink}}` from the `{{#crossLink
+     * "Lateralus.Component.Collection"}}{{/crossLink}}` to which it belongs,
+     * if any.
+     * @method dispose
+     */
+    ,dispose: function () {
+      _(this).lateralusDispose(_.bind(function () {
+        if (this.collection) {
+          this.collection.remove(this);
+        }
+      }, this));
+    }
   };
 
   _.extend(fn, mixins);
 
-  var ComponentModel = Backbone.Model.extend(fn);
+  var ComponentModel = Base.extend(fn);
 
   /**
    * @method toString
@@ -1016,6 +1058,29 @@ define('lateralus/lateralus.component.collection',[
     });
 
     return baseProto.set.call(this, models, augmentedOptions);
+  };
+
+  /**
+   * Remove a `{{#crossLink "Lateralus.Component.Model"}}{{/crossLink}}` or
+   * array of `{{#crossLink "Lateralus.Component.Model"}}{{/crossLink}}`s from
+   * this collection.
+   * @param {Array.(Lateralus.Component.Model)|Lateralus.Component.Model} models
+   * @param {Object} [options] This object is also passed to
+   * [Backbone.Collection.#remove](http://backbonejs.org/#Collection-remove).
+   * @param {boolean} [options.dispose] If true, call `{{#crossLink
+   * "Lateralus.Component.Model/dispose:method"}}{{/crossLink}}` after removing
+   * `models`.
+   * @method remove
+   * @override
+   */
+  fn.remove = function (models, options) {
+    options = options || {};
+    baseProto.remove.apply(this, arguments);
+
+    if (options.dispose) {
+      models = _.isArray(models) ? models : [models];
+      _.invoke(models, 'dispose');
+    }
   };
 
   _.extend(fn, mixins);
@@ -1260,32 +1325,26 @@ define('lateralus/lateralus.component',[
    * memory.  Also remove any nested components added by `{{#crossLink
    * "Lateralus.mixins/addComponent"}}{{/crossLink}}`.
    * @method dispose
-   * @chainable
    */
   fn.dispose = function () {
-    this.trigger('beforeDispose');
+    _(this).lateralusDispose(_.bind(function () {
+      if (this.view) {
+        this.view.dispose();
+      }
 
-    if (this.view) {
-      this.view.dispose();
-    }
+      if (this.components) {
+        _.invoke(this.components, 'dispose');
+      }
 
-    if (this.components) {
-      _.invoke(this.components, 'dispose');
-    }
+      var parentComponent = this.parentComponent;
+      if (parentComponent) {
+        removePropertyFromObject(this, parentComponent.components);
+      }
 
-    var parentComponent = this.parentComponent;
-    if (parentComponent) {
-      removePropertyFromObject(this, parentComponent.components);
-    }
-
-    if (_.contains(this.lateralus.components, this)) {
-      removePropertyFromObject(this, this.lateralus);
-    }
-
-    this.stopListening();
-    _(this).lateralusEmptyObject();
-
-    return this;
+      if (_.contains(this.lateralus.components, this)) {
+        removePropertyFromObject(this, this.lateralus);
+      }
+    }, this));
   };
 
   /**
@@ -1346,6 +1405,22 @@ define('lateralus/lateralus',[
           delete obj[propName];
         }
       }
+    }
+
+    /**
+     * Perform general-purpose memory cleanup for a Lateralus/Backbone Object.
+     * @param {Object} obj
+     * @param {Fuction=} customDisposeLogic
+     */
+    ,lateralusDispose: function (obj, customDisposeLogic) {
+      obj.trigger('beforeDispose');
+
+      if (customDisposeLogic) {
+        customDisposeLogic();
+      }
+
+      obj.stopListening();
+      _(obj).lateralusEmptyObject();
     }
   });
 
@@ -1512,12 +1587,11 @@ define('lateralus/lateralus',[
    * @method dispose
    */
   fn.dispose = function () {
-    if (this.components) {
-      _.invoke(this.components, 'dispose');
-    }
-
-    this.stopListening();
-    _(this).lateralusEmptyObject();
+    _(this).lateralusDispose(_.bind(function () {
+      if (this.components) {
+        _.invoke(this.components, 'dispose');
+      }
+    }, this));
   };
   fn.spiralOut = fn.dispose;
 

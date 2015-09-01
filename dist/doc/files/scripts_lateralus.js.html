@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.8.0</em>
+            <em>API Docs for: 0.9.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -137,6 +137,22 @@ define([
           delete obj[propName];
         }
       }
+    }
+
+    /**
+     * Perform general-purpose memory cleanup for a Lateralus/Backbone Object.
+     * @param {Object} obj
+     * @param {Fuction=} customDisposeLogic
+     */
+    ,lateralusDispose: function (obj, customDisposeLogic) {
+      obj.trigger(&#x27;beforeDispose&#x27;);
+
+      if (customDisposeLogic) {
+        customDisposeLogic();
+      }
+
+      obj.stopListening();
+      _(obj).lateralusEmptyObject();
     }
   });
 
@@ -303,12 +319,11 @@ define([
    * @method dispose
    */
   fn.dispose = function () {
-    if (this.components) {
-      _.invoke(this.components, &#x27;dispose&#x27;);
-    }
-
-    this.stopListening();
-    _(this).lateralusEmptyObject();
+    _(this).lateralusDispose(_.bind(function () {
+      if (this.components) {
+        _.invoke(this.components, &#x27;dispose&#x27;);
+      }
+    }, this));
   };
   fn.spiralOut = fn.dispose;
 

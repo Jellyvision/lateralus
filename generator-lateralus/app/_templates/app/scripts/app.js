@@ -16,7 +16,7 @@ define([
   /**
    * @param {Element} el
    * @extends {Lateralus}
-   * @constuctor
+   * @constructor
    */
   var {{appCtor}} = Lateralus.beget(function () {
     Lateralus.apply(this, arguments);

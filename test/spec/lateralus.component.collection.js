@@ -22,24 +22,25 @@ define([
   var getLateralusApp = utils.getLateralusApp;
 
   return function () {
-    describe('Lateralus.Component.Model', function () {
+    describe('Lateralus.Component.Collection', function () {
       describe('constructor', function () {
         var App = getLateralusApp();
         var app = new App();
         var component = app.addComponent(Lateralus.Component);
-        var model = component.initModel(Lateralus.Component.Model);
+        var collection =
+          component.initCollection(Lateralus.Component.Collection);
 
-        it('Is an instance of Backbone.Model', function () {
-          assert.instanceOf(model, Backbone.Model);
+        it('Is an instance of Backbone.Collection', function () {
+          assert.instanceOf(collection, Backbone.Collection);
         });
 
-        it('Is an instance of Lateralus.Component.Model', function () {
-          assert.instanceOf(model, Lateralus.Component.Model);
+        it('Is an instance of Lateralus.Component.Collection', function () {
+          assert.instanceOf(collection, Lateralus.Component.Collection);
         });
       });
 
-      describe('Prototype', function () {
-        describe('dispose()', function () {
+      describe('Prototype (inherited)', function () {
+        describe('add()', function () {
           var App = getLateralusApp();
           var app = new App();
           var component = app.addComponent(Lateralus.Component);
@@ -48,14 +49,14 @@ define([
             component.initCollection(Lateralus.Component.Collection);
           collection.add(model);
 
-          model.dispose();
-
-          it('Is removed from the collection to which it belongs', function () {
-            assert.equal(0, collection.length);
+          it('Adds a Lateralus.Component.Model instance', function () {
+            assert.equal(1, collection.length);
           });
         });
+      });
 
-        describe('destroy', function () {
+      describe('Prototype', function () {
+        describe('remove()', function () {
           var App = getLateralusApp();
           var app = new App();
           var component = app.addComponent(Lateralus.Component);
@@ -74,11 +75,11 @@ define([
             beforeDisposeWasCalled = true;
           });
 
-          model.destroy({ dispose: true });
+          collection.remove(model, { dispose: true });
 
-          var afterDestroyLength = collection.length;
+          var afterRemoveLength = collection.length;
           it('Removed the model', function () {
-            assert.equal(0, afterDestroyLength);
+            assert.equal(0, afterRemoveLength);
           });
 
           it('Called .dispose() on the model', function () {

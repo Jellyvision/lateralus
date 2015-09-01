@@ -36,6 +36,22 @@ define([
         }
       }
     }
+
+    /**
+     * Perform general-purpose memory cleanup for a Lateralus/Backbone Object.
+     * @param {Object} obj
+     * @param {Fuction=} customDisposeLogic
+     */
+    ,lateralusDispose: function (obj, customDisposeLogic) {
+      obj.trigger('beforeDispose');
+
+      if (customDisposeLogic) {
+        customDisposeLogic();
+      }
+
+      obj.stopListening();
+      _(obj).lateralusEmptyObject();
+    }
   });
 
   /**
@@ -201,12 +217,11 @@ define([
    * @method dispose
    */
   fn.dispose = function () {
-    if (this.components) {
-      _.invoke(this.components, 'dispose');
-    }
-
-    this.stopListening();
-    _(this).lateralusEmptyObject();
+    _(this).lateralusDispose(_.bind(function () {
+      if (this.components) {
+        _.invoke(this.components, 'dispose');
+      }
+    }, this));
   };
   fn.spiralOut = fn.dispose;
 

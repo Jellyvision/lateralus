@@ -15,6 +15,9 @@ define([
 ) {
   'use strict';
 
+  var Base = Backbone.Model;
+  var baseProto = Base.prototype;
+
   var fn = {
     /**
      * The constructor for this class should not be called by application code,
@@ -48,11 +51,50 @@ define([
       this.delegateLateralusEvents();
       Backbone.Model.call(this, attributes, options);
     }
+
+    /**
+     * Lateralus-compatible override for
+     * [Backbone.Model#destroy](http://backbonejs.org/#Model-destroy).
+     * @param {Object} [options] This object is also passed to
+     * [Backbone.Model.#destroy](http://backbonejs.org/#Model-destroy).
+     * @param {boolean} [options.dispose] If true, call `{{#crossLink
+     * "Lateralus.Component.Model/dispose:method"}}{{/crossLink}}` after
+     * `destroy` operations are complete.
+     * @method destroy
+     * @override
+     */
+    ,destroy: function (options) {
+      options = options || {};
+      var dispose = options.dispose;
+      options.dispose = false;
+
+      baseProto.destroy.apply(this, arguments);
+
+      if (dispose) {
+        this.dispose();
+      }
+    }
+
+    /**
+     * Remove this `{{#crossLink "Lateralus.Component.Model"}}{{/crossLink}}`
+     * from memory.  Also remove this `{{#crossLink
+     * "Lateralus.Component.Model"}}{{/crossLink}}` from the `{{#crossLink
+     * "Lateralus.Component.Collection"}}{{/crossLink}}` to which it belongs,
+     * if any.
+     * @method dispose
+     */
+    ,dispose: function () {
+      _(this).lateralusDispose(_.bind(function () {
+        if (this.collection) {
+          this.collection.remove(this);
+        }
+      }, this));
+    }
   };
 
   _.extend(fn, mixins);
 
-  var ComponentModel = Backbone.Model.extend(fn);
+  var ComponentModel = Base.extend(fn);
 
   /**
    * @method toString

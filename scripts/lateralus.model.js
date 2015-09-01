@@ -28,7 +28,7 @@ define([
    * @param {Lateralus} lateralus
    * @param {Object} [attributes]
    * @param {Object} [options]
-   * @extends {Backbone.Model}
+   * @extends Backbone.Model
    * @uses Lateralus.mixins
    * @constructor
    */
