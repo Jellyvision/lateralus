@@ -19,7 +19,7 @@ require.config({
   ,paths: {
     jquery:           '../bower_components/jquery/dist/jquery'
     ,backbone:        '../bower_components/backbone/backbone'
-    ,underscore:      '../bower_components/underscore/underscore'
+    ,underscore:      '../bower_components/lodash/lodash'
     ,mustache:        '../bower_components/mustache/mustache'
     ,text:            '../bower_components/requirejs-text/text'
     ,chai:            '../../test/bower_components/chai/chai'

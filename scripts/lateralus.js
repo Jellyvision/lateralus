@@ -52,7 +52,7 @@ define([
       obj.stopListening();
       _(obj).lateralusEmptyObject();
     }
-  });
+  }, { chain: false });
 
   /**
    * You should not need to call the Lateralus constructor directly, use
