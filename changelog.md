@@ -1,3 +1,7 @@
+# 0.9.1
+
+  * Add support for Lodash 3.10.1
+
 # 0.9.0
 
   * Add memory management utilities:

@@ -1,4 +1,4 @@
-/* Lateralus v.0.9.0 | https://github.com/Jellyvision/lateralus */
+/* Lateralus v.0.9.1 | https://github.com/Jellyvision/lateralus */
 define('lateralus/lateralus.mixins',[
 
   'underscore'
@@ -1422,7 +1422,7 @@ define('lateralus/lateralus',[
       obj.stopListening();
       _(obj).lateralusEmptyObject();
     }
-  });
+  }, { chain: false });
 
   /**
    * You should not need to call the Lateralus constructor directly, use
