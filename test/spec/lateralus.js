@@ -371,22 +371,48 @@ define([
               }
             });
 
-            var ExtendedComponent = Lateralus.Component.extend({
-              name: 'extended'
-              ,provide: {
-                test: function () {
-                  return 1;
+            it('Only returns defined values', function () {
+              var ExtendedComponent = Lateralus.Component.extend({
+                name: 'extended'
+                ,provide: {
+                  test: function () {
+                    return 1;
+                  }
                 }
-              }
+              });
+
+              var app = new App();
+              app.addComponent(ExtendedComponent);
+
+              var collectedTest = app.collect('test');
+              assert.deepEqual(collectedTest, [1]);
             });
 
-            var app = new App();
-            app.addComponent(ExtendedComponent);
+            it('Returns falsy values except for undefined', function () {
+              var ExtendedComponent1 = Lateralus.Component.extend({
+                name: 'extended-1'
+                ,provide: {
+                  test: function () {
+                    return false;
+                  }
+                }
+              });
 
-            var collectedTest = app.collect('test');
+              var ExtendedComponent2 = Lateralus.Component.extend({
+                name: 'extended-2'
+                ,provide: {
+                  test: function () {
+                    return 0;
+                  }
+                }
+              });
 
-            it('Only returns defined values', function () {
-              assert.deepEqual(collectedTest, [1]);
+              var app = new App();
+              app.addComponent(ExtendedComponent1);
+              app.addComponent(ExtendedComponent2);
+
+              var collectedTest = app.collect('test');
+              assert.deepEqual(collectedTest, [false, 0]);
             });
           });
         });
