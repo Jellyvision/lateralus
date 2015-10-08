@@ -241,6 +241,8 @@ define([
    * Execute any `{{#crossLink
    * "Lateralus.mixins/provide:property"}}{{/crossLink}}` handlers that have
    * been set up in the app and return an array of the returned values.
+   *
+   * Values that are `undefined` are excluded from the returned Array.
    * @method collect
    * @param {string} key The name of the `{{#crossLink
    * "Lateralus.mixins/provide:property"}}{{/crossLink}}` methods to run.
@@ -255,7 +257,9 @@ define([
     this.emit(PROVIDE_PREFIX + key,
         _.bind(collectedValues.push, collectedValues), args);
 
-    return collectedValues;
+    return _.reject(collectedValues, function (collectedValue) {
+      return collectedValue === undefined;
+    });
   };
 
   /**
