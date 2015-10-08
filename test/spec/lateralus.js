@@ -359,6 +359,36 @@ define([
               assert.deepEqual(collectedTest, [5]);
             });
           });
+
+          describe('Returned array contains no undefined values', function () {
+            var App = getLateralusApp();
+
+            _.extend(App.prototype, {
+              provide: {
+                test: function () {
+                  return;
+                }
+              }
+            });
+
+            var ExtendedComponent = Lateralus.Component.extend({
+              name: 'extended'
+              ,provide: {
+                test: function () {
+                  return 1;
+                }
+              }
+            });
+
+            var app = new App();
+            app.addComponent(ExtendedComponent);
+
+            var collectedTest = app.collect('test');
+
+            it('Only returns defined values', function () {
+              assert.deepEqual(collectedTest, [1]);
+            });
+          });
         });
 
         describe('collectOne()', function () {
