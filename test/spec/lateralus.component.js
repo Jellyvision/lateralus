@@ -88,7 +88,7 @@ define([
                 }
 
                 ,provide: {
-                  foo: function () {
+                  bar: function () {
                     return true;
                   }
                 }
