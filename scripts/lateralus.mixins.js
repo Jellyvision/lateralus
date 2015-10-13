@@ -192,6 +192,13 @@ define([
 
   mixins.setupProviders = function () {
     _.each(this.provide, function (fn, key) {
+      // The `provide` Object may have already been processed by setupProviders
+      // from a previous class instantiation (it is a shared prototype Object)
+      // so check for that and don't namespace the keys again.
+      if (key.match(PROVIDE_PREFIX)) {
+        return;
+      }
+
       this.provide[PROVIDE_PREFIX + key] = function (callback, args) {
         callback(fn.apply(this, args));
       };
@@ -376,7 +383,6 @@ define([
         } else {
           this.listenTo(subject, eventName, boundMethod);
         }
-
       }
     }, this);
 
