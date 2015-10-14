@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.9.1</em>
+            <em>API Docs for: 0.9.2</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -293,49 +293,19 @@ define([
   };
 
   mixins.setupProviders = function () {
-    /**
-     * A map of functions that will handle &#x60;{{#crossLink
-     * &quot;Lateralus.mixins/collect&quot;}}{{/crossLink}}&#x60; calls.  Each of the
-     * functions attached to this Object should return a value.  These
-     * functions **must** be completely synchronous.
-     *
-     *     var App = Lateralus.beget(function () {
-     *       Lateralus.apply(this, arguments);
-     *     });
-     *
-     *     _.extend(App.prototype, {
-     *       provide: {
-     *         demoData: function () {
-     *           return 1;
-     *         }
-     *       }
-     *     });
-     *
-     *     var app = new App();
-     *     var ComponentSubclass = Lateralus.Component.extend({
-     *       name: &#x27;provider&#x27;
-     *       ,provide: {
-     *         demoData: function () {
-     *           return 2;
-     *         }
-     *       }
-     *     });
-     *
-     *     app.addComponent(ComponentSubclass);
-     *     console.log(app.collect(&#x27;demoData&#x27;)); // [1, 2]
-     * @property provide
-     * @type {Object|undefined}
-     */
-    if (!this.provide) {
-      return;
-    }
-
-    this.lateralusEvents = this.lateralusEvents || {};
-
     _.each(this.provide, function (fn, key) {
-      this.lateralusEvents[PROVIDE_PREFIX + key] = function (callback, args) {
+      // The &#x60;provide&#x60; Object may have already been processed by setupProviders
+      // from a previous class instantiation (it is a shared prototype Object)
+      // so check for that and don&#x27;t namespace the keys again.
+      if (key.match(PROVIDE_PREFIX)) {
+        return;
+      }
+
+      this.provide[PROVIDE_PREFIX + key] = function (callback, args) {
         callback(fn.apply(this, args));
       };
+
+      delete this.provide[key];
     }, this);
   };
 
@@ -343,6 +313,8 @@ define([
    * Execute any &#x60;{{#crossLink
    * &quot;Lateralus.mixins/provide:property&quot;}}{{/crossLink}}&#x60; handlers that have
    * been set up in the app and return an array of the returned values.
+   *
+   * Values that are &#x60;undefined&#x60; are excluded from the returned Array.
    * @method collect
    * @param {string} key The name of the &#x60;{{#crossLink
    * &quot;Lateralus.mixins/provide:property&quot;}}{{/crossLink}}&#x60; methods to run.
@@ -357,7 +329,9 @@ define([
     this.emit(PROVIDE_PREFIX + key,
         _.bind(collectedValues.push, collectedValues), args);
 
-    return collectedValues;
+    return _.reject(collectedValues, function (collectedValue) {
+      return collectedValue === undefined;
+    });
   };
 
   /**
@@ -413,6 +387,41 @@ define([
          * @default undefined
          */
         lateralusEvents: this.lateralus || this
+
+        /**
+         * A map of functions that will handle &#x60;{{#crossLink
+         * &quot;Lateralus.mixins/collect&quot;}}{{/crossLink}}&#x60; calls.  Each of the
+         * functions attached to this Object should return a value.  These
+         * functions **must** be completely synchronous.
+         *
+         *     var App = Lateralus.beget(function () {
+         *       Lateralus.apply(this, arguments);
+         *     });
+         *
+         *     _.extend(App.prototype, {
+         *       provide: {
+         *         demoData: function () {
+         *           return 1;
+         *         }
+         *       }
+         *     });
+         *
+         *     var app = new App();
+         *     var ComponentSubclass = Lateralus.Component.extend({
+         *       name: &#x27;provider&#x27;
+         *       ,provide: {
+         *         demoData: function () {
+         *           return 2;
+         *         }
+         *       }
+         *     });
+         *
+         *     app.addComponent(ComponentSubclass);
+         *     console.log(app.collect(&#x27;demoData&#x27;)); // [1, 2]
+         * @property provide
+         * @type {Object|undefined}
+         */
+        ,provide: this.lateralus || this
 
         /**
          * A map of functions or string references to functions that will
@@ -476,7 +485,6 @@ define([
         } else {
           this.listenTo(subject, eventName, boundMethod);
         }
-
       }
     }, this);
 

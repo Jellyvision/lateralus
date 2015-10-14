@@ -359,6 +359,62 @@ define([
               assert.deepEqual(collectedTest, [5]);
             });
           });
+
+          describe('Returned array contains no undefined values', function () {
+            var App = getLateralusApp();
+
+            _.extend(App.prototype, {
+              provide: {
+                test: function () {
+                  return;
+                }
+              }
+            });
+
+            it('Only returns defined values', function () {
+              var ExtendedComponent = Lateralus.Component.extend({
+                name: 'extended'
+                ,provide: {
+                  test: function () {
+                    return 1;
+                  }
+                }
+              });
+
+              var app = new App();
+              app.addComponent(ExtendedComponent);
+
+              var collectedTest = app.collect('test');
+              assert.deepEqual(collectedTest, [1]);
+            });
+
+            it('Returns falsy values except for undefined', function () {
+              var ExtendedComponent1 = Lateralus.Component.extend({
+                name: 'extended-1'
+                ,provide: {
+                  test: function () {
+                    return false;
+                  }
+                }
+              });
+
+              var ExtendedComponent2 = Lateralus.Component.extend({
+                name: 'extended-2'
+                ,provide: {
+                  test: function () {
+                    return 0;
+                  }
+                }
+              });
+
+              var app = new App();
+              app.addComponent(ExtendedComponent1);
+              app.addComponent(ExtendedComponent2);
+
+              var collectedTest = app.collect('test');
+              assert.deepEqual(collectedTest, [false, 0]);
+            });
+          });
         });
 
         describe('collectOne()', function () {
