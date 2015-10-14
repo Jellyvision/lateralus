@@ -191,49 +191,19 @@ define([
   };
 
   mixins.setupProviders = function () {
-    /**
-     * A map of functions that will handle `{{#crossLink
-     * "Lateralus.mixins/collect"}}{{/crossLink}}` calls.  Each of the
-     * functions attached to this Object should return a value.  These
-     * functions **must** be completely synchronous.
-     *
-     *     var App = Lateralus.beget(function () {
-     *       Lateralus.apply(this, arguments);
-     *     });
-     *
-     *     _.extend(App.prototype, {
-     *       provide: {
-     *         demoData: function () {
-     *           return 1;
-     *         }
-     *       }
-     *     });
-     *
-     *     var app = new App();
-     *     var ComponentSubclass = Lateralus.Component.extend({
-     *       name: 'provider'
-     *       ,provide: {
-     *         demoData: function () {
-     *           return 2;
-     *         }
-     *       }
-     *     });
-     *
-     *     app.addComponent(ComponentSubclass);
-     *     console.log(app.collect('demoData')); // [1, 2]
-     * @property provide
-     * @type {Object|undefined}
-     */
-    if (!this.provide) {
-      return;
-    }
-
-    this.lateralusEvents = this.lateralusEvents || {};
-
     _.each(this.provide, function (fn, key) {
-      this.lateralusEvents[PROVIDE_PREFIX + key] = function (callback, args) {
+      // The `provide` Object may have already been processed by setupProviders
+      // from a previous class instantiation (it is a shared prototype Object)
+      // so check for that and don't namespace the keys again.
+      if (key.match(PROVIDE_PREFIX)) {
+        return;
+      }
+
+      this.provide[PROVIDE_PREFIX + key] = function (callback, args) {
         callback(fn.apply(this, args));
       };
+
+      delete this.provide[key];
     }, this);
   };
 
@@ -317,6 +287,41 @@ define([
         lateralusEvents: this.lateralus || this
 
         /**
+         * A map of functions that will handle `{{#crossLink
+         * "Lateralus.mixins/collect"}}{{/crossLink}}` calls.  Each of the
+         * functions attached to this Object should return a value.  These
+         * functions **must** be completely synchronous.
+         *
+         *     var App = Lateralus.beget(function () {
+         *       Lateralus.apply(this, arguments);
+         *     });
+         *
+         *     _.extend(App.prototype, {
+         *       provide: {
+         *         demoData: function () {
+         *           return 1;
+         *         }
+         *       }
+         *     });
+         *
+         *     var app = new App();
+         *     var ComponentSubclass = Lateralus.Component.extend({
+         *       name: 'provider'
+         *       ,provide: {
+         *         demoData: function () {
+         *           return 2;
+         *         }
+         *       }
+         *     });
+         *
+         *     app.addComponent(ComponentSubclass);
+         *     console.log(app.collect('demoData')); // [1, 2]
+         * @property provide
+         * @type {Object|undefined}
+         */
+        ,provide: this.lateralus || this
+
+        /**
          * A map of functions or string references to functions that will
          * handle [events](http://backbonejs.org/#Events) emitted by
          * `this.model`.
@@ -378,7 +383,6 @@ define([
         } else {
           this.listenTo(subject, eventName, boundMethod);
         }
-
       }
     }, this);
 

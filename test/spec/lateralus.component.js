@@ -45,31 +45,65 @@ define([
       describe('mixins', function () {
         describe('delegateLateralusEvents', function () {
           describe('Inheritance', function () {
-            var App = getLateralusApp();
-            var app = new App();
-            var testWasCalled = false;
-
-            var BaseComponent = Lateralus.Component.extend({
-              name: 'base'
-              ,lateralusEvents: {
-                test: function () {
-                  testWasCalled = true;
-                }
-              }
-            });
-
-            var ChildComponent = BaseComponent.extend({
-              name: 'child'
-              ,lateralusEvents: {
-                foo: _.noop
-              }
-            });
-
-            app.addComponent(ChildComponent);
-            app.emit('test');
-
-            it('Inherited the parent component\'s lateralusEvents map',
+            it('Inherits the parent component\'s lateralusEvents map',
                 function () {
+              var App = getLateralusApp();
+              var app = new App();
+              var testWasCalled = false;
+
+              var BaseComponent = Lateralus.Component.extend({
+                name: 'base'
+                ,lateralusEvents: {
+                  test: function () {
+                    testWasCalled = true;
+                  }
+                }
+              });
+
+              var ChildComponent = BaseComponent.extend({
+                name: 'child'
+                ,lateralusEvents: {
+                  foo: _.noop
+                }
+              });
+
+              app.addComponent(ChildComponent);
+              app.emit('test');
+
+              assert.isTrue(testWasCalled);
+            });
+
+            it('Inherits lateralusEvents from a parent component that also provides values',
+                function () {
+              var App = getLateralusApp();
+              var app = new App();
+              var testWasCalled = false;
+
+              var BaseComponent = Lateralus.Component.extend({
+                name: 'base'
+                ,lateralusEvents: {
+                  test: function () {
+                    testWasCalled = true;
+                  }
+                }
+
+                ,provide: {
+                  bar: function () {
+                    return true;
+                  }
+                }
+              });
+
+              var ChildComponent = BaseComponent.extend({
+                name: 'child'
+                ,lateralusEvents: {
+                  foo: _.noop
+                }
+              });
+
+              app.addComponent(ChildComponent);
+              app.emit('test');
+
               assert.isTrue(testWasCalled);
             });
           });
