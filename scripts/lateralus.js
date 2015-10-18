@@ -213,6 +213,23 @@ define([
   };
 
   /**
+   * Relay `{{#crossLink "Lateralus.mixins/provide:property"}}{{/crossLink}}`d
+   * handlers to another `{{#crossLink "Lateralus"}}{{/crossLink}}` instance.
+   * This is the `{{#crossLink
+   * "Lateralus.mixins/provide:property"}}{{/crossLink}}` analog to
+   * `{{#crossLink "Lateralus.mixins/amplify"}}{{/crossLink}}`.
+   * @method shareWith
+   * @param {Lateralus} receiver The `{{#crossLink "Lateralus"}}{{/crossLink}}`
+   * instance to share `{{#crossLink
+   * "Lateralus.mixins/provide:property"}}{{/crossLink}}`d handlers with.
+   * @param {string} providerName The name of the `{{#crossLink
+   * "Lateralus.mixins/provide:property"}}{{/crossLink}}`er.
+   */
+  fn.shareWith = function (receiver, providerName) {
+    this.amplify(receiver, mixins.PROVIDE_PREFIX + providerName);
+  };
+
+  /**
    * Remove this `{{#crossLink "Lateralus"}}{{/crossLink}}` app from memory.
    * @method dispose
    */

@@ -9,8 +9,6 @@ define([
 ) {
   'use strict';
 
-  var PROVIDE_PREFIX = '_provide:';
-
   /**
    * These method are mixed into `{{#crossLink "Lateralus"}}{{/crossLink}}`,
    * `{{#crossLink "Lateralus.Component"}}{{/crossLink}}`, and `{{#crossLink
@@ -19,6 +17,17 @@ define([
    * @requires http://backbonejs.org/#Events
    */
   var mixins = {};
+
+  /**
+   * Event namespace for `{{#crossLink
+   * "Lateralus.mixins/provide:property"}}{{/crossLink}}` handlers.
+   * @type {string}
+   * @property PROVIDE_PREFIX
+   * @final
+   * @private
+   */
+  mixins.PROVIDE_PREFIX = '_provide:';
+  var PROVIDE_PREFIX = mixins.PROVIDE_PREFIX;
 
   /**
    * @param {Object} obj
