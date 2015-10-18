@@ -154,6 +154,31 @@ define([
             assert.equal(app.toString(), 'lateralus');
           });
         });
+
+        describe('shareWith()', function () {
+          it('Relays the providers from another Lateralus app', function () {
+            var App1 = getLateralusApp();
+            var App2 = getLateralusApp();
+
+            _.extend(App1.prototype, {
+              provide: {
+                test: function () {
+                  return true;
+                }
+              }
+            });
+
+            var app1 = new App1();
+            var app2 = new App2();
+
+            app1.shareWith(app2, 'test');
+
+            var expected = true;
+            var actual = app2.collectOne('test');
+
+            assert.equal(expected, actual);
+          });
+        });
       });
 
       describe('Mixins', function () {
