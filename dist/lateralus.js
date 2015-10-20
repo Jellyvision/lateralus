@@ -1,4 +1,4 @@
-/* Lateralus v.0.9.2 | https://github.com/Jellyvision/lateralus */
+/* Lateralus v.0.9.3 | https://github.com/Jellyvision/lateralus */
 define('lateralus/lateralus.mixins',[
 
   'underscore'
@@ -10,8 +10,6 @@ define('lateralus/lateralus.mixins',[
 ) {
   
 
-  var PROVIDE_PREFIX = '_provide:';
-
   /**
    * These method are mixed into `{{#crossLink "Lateralus"}}{{/crossLink}}`,
    * `{{#crossLink "Lateralus.Component"}}{{/crossLink}}`, and `{{#crossLink
@@ -20,6 +18,17 @@ define('lateralus/lateralus.mixins',[
    * @requires http://backbonejs.org/#Events
    */
   var mixins = {};
+
+  /**
+   * Event namespace for `{{#crossLink
+   * "Lateralus.mixins/provide:property"}}{{/crossLink}}` handlers.
+   * @type {string}
+   * @property PROVIDE_PREFIX
+   * @final
+   * @private
+   */
+  mixins.PROVIDE_PREFIX = '_provide:';
+  var PROVIDE_PREFIX = mixins.PROVIDE_PREFIX;
 
   /**
    * @param {Object} obj
@@ -1588,6 +1597,23 @@ define('lateralus/lateralus',[
    */
   fn.initRouter = function (Router, options) {
     return new Router(this, options);
+  };
+
+  /**
+   * Relay `{{#crossLink "Lateralus.mixins/provide:property"}}{{/crossLink}}`d
+   * handlers to another `{{#crossLink "Lateralus"}}{{/crossLink}}` instance.
+   * This is the `{{#crossLink
+   * "Lateralus.mixins/provide:property"}}{{/crossLink}}` analog to
+   * `{{#crossLink "Lateralus.mixins/amplify"}}{{/crossLink}}`.
+   * @method shareWith
+   * @param {Lateralus} receiver The `{{#crossLink "Lateralus"}}{{/crossLink}}`
+   * instance to share `{{#crossLink
+   * "Lateralus.mixins/provide:property"}}{{/crossLink}}`d handlers with.
+   * @param {string} providerName The name of the `{{#crossLink
+   * "Lateralus.mixins/provide:property"}}{{/crossLink}}`er.
+   */
+  fn.shareWith = function (receiver, providerName) {
+    this.amplify(receiver, mixins.PROVIDE_PREFIX + providerName);
   };
 
   /**
