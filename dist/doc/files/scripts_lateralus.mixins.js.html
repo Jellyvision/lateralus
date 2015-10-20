@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.9.2</em>
+            <em>API Docs for: 0.9.3</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -111,8 +111,6 @@ define([
 ) {
   &#x27;use strict&#x27;;
 
-  var PROVIDE_PREFIX = &#x27;_provide:&#x27;;
-
   /**
    * These method are mixed into &#x60;{{#crossLink &quot;Lateralus&quot;}}{{/crossLink}}&#x60;,
    * &#x60;{{#crossLink &quot;Lateralus.Component&quot;}}{{/crossLink}}&#x60;, and &#x60;{{#crossLink
@@ -121,6 +119,17 @@ define([
    * @requires http://backbonejs.org/#Events
    */
   var mixins = {};
+
+  /**
+   * Event namespace for &#x60;{{#crossLink
+   * &quot;Lateralus.mixins/provide:property&quot;}}{{/crossLink}}&#x60; handlers.
+   * @type {string}
+   * @property PROVIDE_PREFIX
+   * @final
+   * @private
+   */
+  mixins.PROVIDE_PREFIX = &#x27;_provide:&#x27;;
+  var PROVIDE_PREFIX = mixins.PROVIDE_PREFIX;
 
   /**
    * @param {Object} obj

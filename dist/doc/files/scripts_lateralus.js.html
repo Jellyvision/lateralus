@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.9.2</em>
+            <em>API Docs for: 0.9.3</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -312,6 +312,23 @@ define([
    */
   fn.initRouter = function (Router, options) {
     return new Router(this, options);
+  };
+
+  /**
+   * Relay &#x60;{{#crossLink &quot;Lateralus.mixins/provide:property&quot;}}{{/crossLink}}&#x60;d
+   * handlers to another &#x60;{{#crossLink &quot;Lateralus&quot;}}{{/crossLink}}&#x60; instance.
+   * This is the &#x60;{{#crossLink
+   * &quot;Lateralus.mixins/provide:property&quot;}}{{/crossLink}}&#x60; analog to
+   * &#x60;{{#crossLink &quot;Lateralus.mixins/amplify&quot;}}{{/crossLink}}&#x60;.
+   * @method shareWith
+   * @param {Lateralus} receiver The &#x60;{{#crossLink &quot;Lateralus&quot;}}{{/crossLink}}&#x60;
+   * instance to share &#x60;{{#crossLink
+   * &quot;Lateralus.mixins/provide:property&quot;}}{{/crossLink}}&#x60;d handlers with.
+   * @param {string} providerName The name of the &#x60;{{#crossLink
+   * &quot;Lateralus.mixins/provide:property&quot;}}{{/crossLink}}&#x60;er.
+   */
+  fn.shareWith = function (receiver, providerName) {
+    this.amplify(receiver, mixins.PROVIDE_PREFIX + providerName);
   };
 
   /**
