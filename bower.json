@@ -15,7 +15,7 @@
     "bower_components"
   ],
   "dependencies": {
-    "backbone": "~1.1.2",
+    "backbone": "~1.2.3",
     "lodash": "~3.10.1",
     "jquery": "1.11.1",
     "requirejs": "~2.1.10",
@@ -23,6 +23,7 @@
     "mustache": "~0.8.2"
   },
   "resolutions": {
-    "lodash": "~3.10.1"
+    "lodash": "~3.10.1",
+    "backbone": "~1.2.3"
   }
 }
