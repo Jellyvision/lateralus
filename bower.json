@@ -21,9 +21,5 @@
     "requirejs": "~2.1.10",
     "requirejs-text": "~2.0.12",
     "mustache": "~0.8.2"
-  },
-  "resolutions": {
-    "lodash": "~3.10.1",
-    "backbone": "~1.2.3"
   }
 }
