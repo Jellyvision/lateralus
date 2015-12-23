@@ -18,7 +18,7 @@ require.config({
     text: 'bower_components/requirejs-text/text'
     ,jquery: 'bower_components/jquery/dist/jquery'
     ,backbone: 'bower_components/backbone/backbone'
-    ,underscore: 'bower_components/lodash/dist/lodash'
+    ,underscore: 'bower_components/lodash/lodash'
     ,mustache: 'bower_components/mustache/mustache'
   }
   ,packages: [{
