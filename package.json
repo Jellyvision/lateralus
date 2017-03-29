@@ -3,7 +3,7 @@
   "version": "0.9.3",
   "description": "A UI component framework",
   "license": "MIT",
-  "main": "Gruntfile.js",
+  "main": "dist/lateralus.js",
   "author": {
     "name": "Jeremy Kahn",
     "email": "jeremy@jellyvision.com",

@@ -130,7 +130,7 @@ define([
           app.dispose();
 
           it('Stopped listening to other objects', function () {
-            assert.typeOf(model._events.test, 'undefined');
+            assert.typeOf(model._events, 'undefined');
           });
 
           it('Component is disposed', function () {
