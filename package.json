@@ -1,6 +1,6 @@
 {
   "name": "lateralus",
-  "version": "0.9.4",
+  "version": "0.10.1",
   "description": "A UI component framework",
   "license": "MIT",
   "main": "dist/lateralus.js",
@@ -12,7 +12,10 @@
   "scripts": {
     "test": "phantomjs ./node_modules/mocha-phantomjs-core/mocha-phantomjs-core.js test/index.html",
     "start": "live-server --no-browser ./",
-    "setup": "npm install && bower install"
+    "setup": "npm install && bower install",
+    "version": "grunt buildForPublish && git add -A",
+    "preversion": "npm test",
+    "postversion": "git push && git push --tags"
   },
   "dependencies": {},
   "repository": {
@@ -24,7 +27,6 @@
     "connect-livereload": "^0.6.0",
     "grunt": "~1.0.1",
     "grunt-banner": "^0.6.0",
-    "grunt-bump": "0.8.0",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-requirejs": "^1.0.0",
     "grunt-contrib-yuidoc": "^1.0.0",
