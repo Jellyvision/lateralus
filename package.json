@@ -1,6 +1,6 @@
 {
   "name": "lateralus",
-  "version": "0.9.4",
+  "version": "0.10.0",
   "description": "A UI component framework",
   "license": "MIT",
   "main": "dist/lateralus.js",

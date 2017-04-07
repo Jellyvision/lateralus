@@ -11,6 +11,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "Lateralus.mixins"
     ],
     "modules": [],
-    "allModules": []
+    "allModules": [],
+    "elements": []
 } };
 });
