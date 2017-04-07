@@ -1,0 +1,10 @@
+# Created by .ignore support plugin (hsz.mobi)
+bower_components
+node_modules
+test
+scripts
+.gitignore
+.npmignore
+.jshintrc
+.travis.yml
+Gruntfile.js

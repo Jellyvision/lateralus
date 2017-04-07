@@ -4,3 +4,13 @@ node_js:
 
 install:
  - npm run setup
+
+
+before_deploy:
+ - grunt buildForPublish
+deploy:
+  provider: npm
+    email: operations@jellyvision.com
+    api_key: PLACEHOLDER
+  on:
+    tags: true
