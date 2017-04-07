@@ -11,6 +11,7 @@
   },
   "scripts": {
     "test": "phantomjs ./node_modules/mocha-phantomjs-core/mocha-phantomjs-core.js test/index.html",
+    "start": "live-server --no-browser ./",
     "setup": "npm install && bower install"
   },
   "dependencies": {},
@@ -25,12 +26,10 @@
     "grunt-banner": "^0.6.0",
     "grunt-bump": "0.8.0",
     "grunt-contrib-clean": "^1.0.0",
-    "grunt-contrib-connect": "^1.0.2",
     "grunt-contrib-requirejs": "^1.0.0",
-    "grunt-contrib-watch": "^1.0.0",
     "grunt-contrib-yuidoc": "^1.0.0",
     "grunt-exec": "^2.0.0",
-    "grunt-open": "^0.2.3",
+    "live-server": "^1.2.0",
     "load-grunt-tasks": "~0.6.0",
     "mocha-phantomjs-core": "^2.1.1",
     "phantomjs-prebuilt": "^2.1.14"

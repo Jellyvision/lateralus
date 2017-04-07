@@ -242,13 +242,15 @@ Each component can (and should) have its own `.sass` file (the generator sets th
 You can run the Lateralus unit tests both in your browser as well as in a command line environment.  To run the tests in your browser:
 
 ````
-grunt debug
+npm run start
 ````
+
+And then navigate to http://127.0.0.1:8080/test/.
 
 To run them in a headless browser at the command line:
 
 ````
-grunt test
+npm test
 ````
 
 The tests are also run by the default `grunt` task.
