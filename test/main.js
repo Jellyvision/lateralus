@@ -1,6 +1,6 @@
 /* global mocha */
 require.config({
-  baseUrl: '../'
+  baseUrl: './'
   ,shim: {
     underscore: {
       exports: '_'
@@ -22,12 +22,12 @@ require.config({
     ,underscore:      '../bower_components/lodash/lodash'
     ,mustache:        '../bower_components/mustache/mustache'
     ,text:            '../bower_components/requirejs-text/text'
-    ,chai:            '../../test/bower_components/chai/chai'
-    ,mocha:           '../../test/bower_components/mocha/mocha'
+    ,chai:            '../bower_components/chai/chai'
+    ,mocha:           '../bower_components/mocha/mocha'
   }
   ,packages: [{
     name: 'lateralus'
-    ,location: 'scripts'
+    ,location: '../scripts'
     ,main: 'lateralus'
   }]
 });
@@ -38,11 +38,11 @@ mocha.setup({
 
 require([
 
-  '../../test/spec/lateralus'
-  ,'../../test/spec/lateralus.model'
-  ,'../../test/spec/lateralus.component'
-  ,'../../test/spec/lateralus.component.model'
-  ,'../../test/spec/lateralus.component.collection'
+  'spec/lateralus'
+  ,'spec/lateralus.model'
+  ,'spec/lateralus.component'
+  ,'spec/lateralus.component.model'
+  ,'spec/lateralus.component.collection'
 
 ], function (
 

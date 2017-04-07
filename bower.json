@@ -21,5 +21,10 @@
     "requirejs": "~2.1.10",
     "requirejs-text": "~2.0.12",
     "mustache": "~0.8.2"
+  },
+  "devDependencies": {
+    "mocha": "~2.2.0",
+    "chai": "~2.1.1",
+    "requirejs": "~2.1.16"
   }
 }

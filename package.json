@@ -9,25 +9,29 @@
     "email": "jeremy@jellyvision.com",
     "url": "https://github.com/jeremyckahn"
   },
+  "scripts": {
+    "test": "phantomjs ./node_modules/mocha-phantomjs-core/mocha-phantomjs-core.js test/index.html",
+    "setup": "npm install && bower install"
+  },
   "dependencies": {
-    "grunt": "~0.4.5",
-    "load-grunt-tasks": "~0.6.0",
-    "grunt-contrib-yuidoc": "^0.5.2",
-    "grunt-contrib-clean": "^0.6.0",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-bump": "0.0.16",
-    "grunt-contrib-requirejs": "^0.4.4",
-    "grunt-banner": "^0.2.3"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/jellyvision/lateralus.git"
   },
   "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-banner": "^0.2.3",
+    "grunt-bump": "0.0.16",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-requirejs": "^0.4.4",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-contrib-yuidoc": "^0.5.2",
+    "load-grunt-tasks": "~0.6.0",
+    "phantomjs-prebuilt": "^2.1.14",
     "connect-livereload": "^0.5.3",
     "grunt-contrib-connect": "^0.9.0",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-mocha-require-phantom": "Jellyvision/grunt-mocha-require-phantom#a36c9ea8d1414a9bbf8b5b3b9fad853570041a82",
+    "grunt-mocha-require-phantom": "^0.8.0",
     "grunt-open": "^0.2.3"
   }
 }
