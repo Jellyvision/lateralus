@@ -254,3 +254,17 @@ npm test
 ````
 
 The tests are also run by the default `grunt` task.
+
+## Publishing new versions
+
+Once things are ready, you should use `npm version`.
+This will:
+ - change the version in the `package.json` file. 
+ - build the documentation (with the new version).
+ - commit the new documentation
+ - tag the new version
+ - push to the repo.
+ 
+Bower files no longer require a `version` attribute and bower ignores then in lieu of git tags anyway!
+ 
+Once this is done, Travis will publish the change to NPM.

@@ -23,16 +23,6 @@ module.exports = function (grunt) {
         }
       }
     },
-    bump: {
-      options: {
-        files: ['package.json', 'bower.json', 'generator-lateralus/package.json'],
-        commit: false,
-        createTag: false,
-        tagName: '%VERSION%',
-        tagMessage: 'Version %VERSION%',
-        push: false
-      }
-    },
     requirejs: {
       options: {
         include: 'lateralus',
