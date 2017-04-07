@@ -116,28 +116,13 @@ module.exports = function (grunt) {
         }
       }
     },
-    /* jshint camelcase:false */
-    mocha_require_phantom: {
-      options: {
-        base: '.',
-        main: 'test/main',
-        requireLib: 'bower_components/requirejs/require.js'
-      },
-      debug: {
-        options: {
-          keepAlive: true
-        }
-      },
-      auto: {
-        options: {
-          keepAlive: false
-        }
-      }
-    },
+    exec: {
+      test: 'npm test'
+    }
   });
 
   grunt.registerTask('test', [
-    'mocha_require_phantom:auto',
+    'exec:test',
   ]);
 
   grunt.registerTask('debug', [
