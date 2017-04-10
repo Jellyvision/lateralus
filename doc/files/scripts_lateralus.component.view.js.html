@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>scripts/lateralus.component.view.js - Lateralus</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="http://cdn.jellyvision.com/wp-content/themes/jellyvision/img/header-logo.png" title="Lateralus"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 0.10.1</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/Lateralus.html">Lateralus</a></li>
+            
+                <li><a href="../classes/Lateralus.Collection.html">Lateralus.Collection</a></li>
+            
+                <li><a href="../classes/Lateralus.Component.html">Lateralus.Component</a></li>
+            
+                <li><a href="../classes/Lateralus.Component.Model.html">Lateralus.Component.Model</a></li>
+            
+                <li><a href="../classes/Lateralus.Component.View.html">Lateralus.Component.View</a></li>
+            
+                <li><a href="../classes/Lateralus.mixins.html">Lateralus.mixins</a></li>
+            
+                <li><a href="../classes/Lateralus.Model.html">Lateralus.Model</a></li>
+            
+                <li><a href="../classes/Lateralus.Router.html">Lateralus.Router</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: scripts/lateralus.component.view.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+define([
+
+  &#x27;jquery&#x27;
+  ,&#x27;underscore&#x27;
+  ,&#x27;backbone&#x27;
+  ,&#x27;mustache&#x27;
+
+  ,&#x27;./lateralus.mixins&#x27;
+
+], function (
+
+  $
+  ,_
+  ,Backbone
+  ,Mustache
+
+  ,mixins
+
+) {
+  &#x27;use strict&#x27;;
+
+  var fn = {};
+
+  /**
+   * The DOM template to be used with this View.
+   * @type {string|null}
+   * @default {null}
+   */
+  fn.template = null;
+
+  // jshint maxlen:100
+  /**
+   * The constructor for this class should not be called by application code,
+   * it is used by the &#x60;{{#crossLink &quot;Lateralus.Component&quot;}}{{/crossLink}}&#x60;
+   * constructor.
+   * @private
+   * @param {Lateralus} lateralus
+   * @param {Lateralus.Component} component
+   * @param {Object} [options] Gets passed to
+   * [Backbone.View#initialize](http://backbonejs.org/#Collection-constructor).
+   * @param {Lateralus.Component.View} [opt_parentView]
+   * @uses Lateralus.mixins
+   * @constructor
+   */
+  fn.constructor = function (lateralus, component, options, opt_parentView) {
+    this.lateralus = lateralus;
+
+    /**
+     * If this is a subview of another &#x60;{{#crossLink
+     * &quot;Lateralus.Component.View&quot;}}{{/crossLink}}&#x60;, this property is a
+     * reference to the parent &#x60;{{#crossLink
+     * &quot;Lateralus.Component.View&quot;}}{{/crossLink}}&#x60;.
+     * @property parentView
+     * @type {Lateralus.Component.View|null}
+     * @default null
+     */
+    this.parentView = opt_parentView || null;
+
+    /**
+     * A reference to the &#x60;{{#crossLink &quot;Lateralus.Component&quot;}}{{/crossLink}}&#x60;
+     * to which this &#x60;{{#crossLink &quot;Lateralus.Component.View&quot;}}{{/crossLink}}&#x60;
+     * belongs.
+     * @property component
+     * @type {Lateralus.Component}
+     * @final
+     */
+    this.component = component;
+
+    if (options.model) {
+      // Attach the model a bit early here so that the modelEvents map is
+      // properly bound in the delegateLateralusEvents call below.
+      this.model = options.model;
+    }
+
+    this.delegateLateralusEvents();
+    Backbone.View.call(this, options);
+  };
+
+  /**
+   * This is called when a &#x60;{{#crossLink
+   * &quot;Lateralus.Component.View&quot;}}{{/crossLink}}&#x60; is initialized, it is not
+   * called directly.
+   *
+   * &#x60;{{#crossLink &quot;Lateralus.Component.View&quot;}}{{/crossLink}}&#x60; subclasses that
+   * override &#x60;initialize&#x60; must call this base method:
+   *
+   *     var Base = Lateralus.Component.View;
+   *     var baseProto = Base.prototype;
+   *
+   *     var ExtendedComponentView = Base.extend({
+   *       initialize: function () {
+   *         baseProto.initialize.apply(this, arguments);
+   *         // Other logic...
+   *       }
+   *     });
+   * @method initialize
+   * @param {Object} [opts] Any properties or methods to attach to this
+   * &#x60;{{#crossLink &quot;Lateralus.Component.View&quot;}}{{/crossLink}}&#x60; instance.
+   */
+  fn.initialize = function (opts) {
+    // this.toString references the central Component constructor, so don&#x27;t
+    // attach the class for it here.
+    if (!this.parentView) {
+      this.$el.addClass(this.toString());
+    }
+
+    /**
+     * The CSS class names specified by this property will be attached to &#x60;$el&#x60;
+     * when this &#x60;{{#crossLink &quot;Lateralus.Component.View&quot;}}{{/crossLink}}&#x60; is
+     * initialized.
+     * @property className
+     * @type {string|undefined}
+     * @default undefined
+     */
+    if (this.className) {
+      this.$el.addClass(this.className);
+    }
+
+    _.extend(this, _.defaults(_.clone(opts), this.attachDefaultOptions));
+    this.renderTemplate();
+
+    /**
+     * A function to be called in the JavaScript thread that follows the one
+     * that ran &#x60;{{#crossLink
+     * &quot;Lateralus.Component.View/initialize:method&quot;}}{{/crossLink}}&#x60;.  This can
+     * be necessary for situations where setup logic needs to happen after a
+     * View has been rendered.
+     *
+     * In other words, &#x60;{{#crossLink
+     * &quot;Lateralus.Component.View/initialize:method&quot;}}{{/crossLink}}&#x60; runs
+     * before the View has been rendered to the DOM, and &#x60;{{#crossLink
+     * &quot;Lateralus.Component.View/deferredInitialize:method&quot;}}{{/crossLink}}&#x60;
+     * runs immediately after it has been rendered.
+     * @method deferredInitialize
+     */
+    if (this.deferredInitialize) {
+      _.defer(_.bind(this.deferredInitialize, this));
+    }
+  };
+
+  /**
+   * Meant to be overridden in subclasses.  With &#x60;attachDefaultOptions&#x60;, you
+   * can provide an object of default parameters that should be attached to the
+   * View instance when the base &#x60;initialize&#x60; method is called.  These values
+   * can be overridden by the [&#x60;options&#x60; values that are provided to the View
+   * constructor](http://backbonejs.org/#View-constructor).
+   * @property attachDefaultOptions
+   * @type {Object}
+   */
+  fn.attachDefaultOptions = {};
+
+  /**
+   * Adds a subview.  Subviews are lighter than subcomponents.  It is
+   * preferable to use a subview rather than a subcomponent when there is clear
+   * interdependency between two Views.  This pattern is useful when you want
+   * to keep display logic well-organized into several Views, but have it
+   * compartmentalized within a single component.
+   * @method addSubview
+   * @param {Lateralus.Component.View} Subview A constructor, not an instance.
+   * @param {Object} [subviewOptions] Backbone.View [constructor
+   * options](http://backbonejs.org/#View-constructor) to pass along to the
+   * subview when it is instantiated.
+   * @return {Lateralus.Component.View} The instantiated subview.
+   */
+  fn.addSubview = function (Subview, subviewOptions) {
+    if (!this.subviews) {
+      /**
+       * The subviews of this object.  Do not modify this property directly, it
+       * is managed by Lateralus.
+       * @property subviews
+       * @type {Array(Lateralus.Component.View)}
+       */
+      this.subviews = [];
+    }
+
+    var subview = new Subview(
+      this.lateralus
+      ,this.component
+      ,subviewOptions
+      ,this
+    );
+
+    this.subviews.push(subview);
+
+    return subview;
+  };
+
+  /**
+   * This method returns the object whose properties are used as render
+   * variables in &#x60;{{#crossLink
+   * &quot;Lateralus.Component.View/renderTemplate&quot;}}{{/crossLink}}&#x60;.  The method
+   * can be overridden.
+   * @method getTemplateRenderData
+   * @return {Object} The [raw &#x60;Backbone.Model&#x60;
+   * data](http://backbonejs.org/#Model-toJSON), if this View has a Model.
+   * Otherwise, an empty object is returned.
+   */
+  fn.getTemplateRenderData = function () {
+    var renderData = {};
+
+    if (this.model) {
+      _.extend(renderData, this.model.toJSON());
+    }
+
+    _.extend(renderData, this.lateralus.globalRenderData);
+
+    return renderData;
+  };
+
+  fn.getTemplatePartials = function () {
+    /**
+     * An optional map of template partials to be passed to the
+     * &#x60;Mustache.render&#x60; call for this View.
+     *
+     *     Lateralus.Component.View.extend({
+     *       templatePartials: {
+     *         myNamePartial: &#x27;Hello my name is {{name}}.&#x27;
+     *       }
+     *     });
+     *
+     * @property templatePartials
+     * @type {Object(String)|undefined}
+     * @default undefined
+     */
+    return _.extend(this.templatePartials || {}, this.lateralus.globalPartials);
+  };
+
+  /**
+   * Meant to be called by &#x60;{{#crossLink
+   * &quot;Lateralus.Component.View/initialize&quot;}}{{/crossLink}}&#x60; and infrequently
+   * thereafter, this method empties out
+   * [&#x60;$el&#x60;](http://backbonejs.org/#View-$el) and does a full re-render.
+   * [&#x60;render&#x60;](http://backbonejs.org/#View-render) should only be used for
+   * partial renders.
+   * @method renderTemplate
+   */
+  fn.renderTemplate = function () {
+    if (!this.template) {
+      return;
+    }
+
+    this.$el.children().remove();
+    this.$el.html(
+      Mustache.render(
+        this.template
+        ,this.getTemplateRenderData()
+        ,this.getTemplatePartials()
+      )
+    );
+
+    this.bindToDOM();
+  };
+
+  /**
+   * Look for any DOM elements within [&#x60;$el&#x60;](http://backbonejs.org/#View-$el)
+   * that have a class that looks like _&#x60;$this&#x60;_ and create a property on this
+   * instance with the same name.  The attached property is a jQuery object
+   * that references the corresponding DOM element.
+   * @method bindToDOM
+   * @private
+   */
+  fn.bindToDOM = function () {
+    this.$el.find(&#x27;[class]&#x27;).each(_.bind(function (i, el) {
+      var $el = $(el);
+      var classes = $el.attr(&#x27;class&#x27;).split(/\s+/);
+
+      _.each(classes, function (_class) {
+        if (_class.match(/^\$/)) {
+          this[_class] = $el;
+          return false;
+        }
+      }, this);
+    }, this));
+  };
+
+  /**
+   * Remove this &#x60;{{#crossLink &quot;Lateralus.Component.View&quot;}}{{/crossLink}}&#x60; from
+   * the DOM and cleanly dispose of any references.
+   * @method dispose
+   * @chainable
+   */
+  fn.dispose = function () {
+    this.remove();
+
+    var parentView = this.parentView;
+    if (parentView) {
+      parentView.subviews = _.without(parentView.subviews, this);
+    }
+
+    return this;
+  };
+
+  _.extend(fn, mixins);
+
+  /**
+   * This class builds on the ideas and APIs of
+   * [&#x60;Backbone.View&#x60;](http://backbonejs.org/#View).
+   * @class Lateralus.Component.View
+   * @extends {Backbone.View}
+   */
+  var ComponentView = Backbone.View.extend(fn);
+
+  /**
+   * @method toString
+   * @return {string} The name of this View.  This is used internally by
+   * Lateralus.
+   */
+  ComponentView.prototype.toString = function () {
+    return this.component.toString() + &#x27;-view&#x27;;
+  };
+
+  return ComponentView;
+});
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>
