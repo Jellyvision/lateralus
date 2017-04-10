@@ -165,10 +165,9 @@
             "tagname": "",
             "params": [
                 {
-                    "name": "attributes",
-                    "description": "Gets passed to\n[Backbone.Model#initialize](http://backbonejs.org/#Model-constructor).",
-                    "type": "Object",
-                    "optional": true
+                    "name": "[attributes] Gets passed to\n[Backbone.Model#initialize]",
+                    "description": "(http://backbonejs.org/#Model-constructor).",
+                    "type": "Object"
                 },
                 {
                     "name": "options",
@@ -317,6 +316,7 @@
             "is_constructor": 1
         }
     },
+    "elements": {},
     "classitems": [
         {
             "file": "scripts/lateralus.component.collection.js",
@@ -368,18 +368,15 @@
                     "type": "Array.(Lateralus.Component.Model)|Lateralus.Component.Model"
                 },
                 {
-                    "name": "options",
-                    "description": "This object is also passed to\n[Backbone.Collection.#remove](http://backbonejs.org/#Collection-remove).",
-                    "type": "Object",
-                    "optional": true,
-                    "props": [
-                        {
-                            "name": "dispose",
-                            "description": "If true, call `{{#crossLink\n\"Lateralus.Component.Model/dispose:method\"}}{{/crossLink}}` after removing\n`models`.",
-                            "type": "Boolean",
-                            "optional": true
-                        }
-                    ]
+                    "name": "[options] This object is also passed to\n[Backbone.Collection.#remove]",
+                    "description": "(http://backbonejs.org/#Collection-remove).",
+                    "type": "Object"
+                },
+                {
+                    "name": "options.dispose",
+                    "description": "If true, call `{{#crossLink\n\"Lateralus.Component.Model/dispose:method\"}}{{/crossLink}}` after removing\n`models`.",
+                    "type": "Boolean",
+                    "optional": true
                 }
             ],
             "itemtype": "method",
@@ -567,18 +564,15 @@
             "description": "Lateralus-compatible override for\n[Backbone.Model#destroy](http://backbonejs.org/#Model-destroy).",
             "params": [
                 {
-                    "name": "options",
-                    "description": "This object is also passed to\n[Backbone.Model.#destroy](http://backbonejs.org/#Model-destroy).",
-                    "type": "Object",
-                    "optional": true,
-                    "props": [
-                        {
-                            "name": "dispose",
-                            "description": "If true, call `{{#crossLink\n\"Lateralus.Component.Model/dispose:method\"}}{{/crossLink}}` after\n`destroy` operations are complete.",
-                            "type": "Boolean",
-                            "optional": true
-                        }
-                    ]
+                    "name": "[options] This object is also passed to\n[Backbone.Model.#destroy]",
+                    "description": "(http://backbonejs.org/#Model-destroy).",
+                    "type": "Object"
+                },
+                {
+                    "name": "options.dispose",
+                    "description": "If true, call `{{#crossLink\n\"Lateralus.Component.Model/dispose:method\"}}{{/crossLink}}` after\n`destroy` operations are complete.",
+                    "type": "Boolean",
+                    "optional": true
                 }
             ],
             "itemtype": "method",
@@ -631,10 +625,9 @@
                     "type": "Lateralus.Component"
                 },
                 {
-                    "name": "options",
-                    "description": "Gets passed to\n[Backbone.View#initialize](http://backbonejs.org/#Collection-constructor).",
-                    "type": "Object",
-                    "optional": true
+                    "name": "[options] Gets passed to\n[Backbone.View#initialize]",
+                    "description": "(http://backbonejs.org/#Collection-constructor).",
+                    "type": "Object"
                 },
                 {
                     "name": "opt_parentView",
@@ -725,10 +718,9 @@
                     "type": "Lateralus.Component.View"
                 },
                 {
-                    "name": "subviewOptions",
-                    "description": "Backbone.View [constructor\noptions](http://backbonejs.org/#View-constructor) to pass along to the\nsubview when it is instantiated.",
-                    "type": "Object",
-                    "optional": true
+                    "name": "[subviewOptions] Backbone.View [constructor\noptions]",
+                    "description": "(http://backbonejs.org/#View-constructor) to pass along to the\nsubview when it is instantiated.",
+                    "type": "Object"
                 }
             ],
             "return": {
@@ -996,10 +988,9 @@
                     "type": "Lateralus.Router"
                 },
                 {
-                    "name": "options",
-                    "description": "To be passed to the [Router\n`initialize`](http://backbonejs.org/#Router-constructor) method.",
-                    "type": "Object",
-                    "optional": true
+                    "name": "[options] To be passed to the [Router\n`initialize`]",
+                    "description": "(http://backbonejs.org/#Router-constructor) method.",
+                    "type": "Object"
                 }
             ],
             "return": {
