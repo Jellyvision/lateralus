@@ -70,7 +70,7 @@ module.exports = function (grunt) {
     'exec:test',
   ]);
 
-  grunt.registerTask('buildForPublish', [
+  grunt.registerTask('build', [
     'clean',
     'yuidoc',
     'requirejs',
@@ -79,6 +79,6 @@ module.exports = function (grunt) {
 
   grunt.registerTask('default', [
     'test',
-    'buildForPublish'
+    'build'
   ]);
 };
