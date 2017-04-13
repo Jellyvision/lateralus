@@ -1,6 +1,6 @@
 {
   "name": "lateralus",
-  "version": "0.10.1",
+  "version": "0.10.2",
   "description": "A UI component framework",
   "license": "MIT",
   "main": "dist/lateralus.js",
@@ -10,10 +10,11 @@
     "url": "https://github.com/jeremyckahn"
   },
   "scripts": {
+    "build": "grunt build",
     "test": "phantomjs ./node_modules/mocha-phantomjs-core/mocha-phantomjs-core.js test/index.html",
     "start": "live-server --no-browser ./",
     "setup": "npm install && bower install",
-    "version": "grunt buildForPublish && git add -A",
+    "version": "npm run build && git add -A",
     "preversion": "npm test",
     "postversion": "git push && git push --tags"
   },

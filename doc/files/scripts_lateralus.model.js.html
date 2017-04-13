@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>scripts/lateralus.component.model.js - Lateralus</title>
+    <title>scripts/lateralus.model.js - Lateralus</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -17,7 +17,7 @@
                 <h1><img src="http://cdn.jellyvision.com/wp-content/themes/jellyvision/img/header-logo.png" title="Lateralus"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.10.1</em>
+            <em>API Docs for: 0.10.2</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -83,7 +83,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1 class="file-heading">File: scripts/lateralus.component.model.js</h1>
+<h1 class="file-heading">File: scripts/lateralus.model.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -104,97 +104,66 @@ define([
 ) {
   &#x27;use strict&#x27;;
 
-  var Base = Backbone.Model;
-  var baseProto = Base.prototype;
+  var fn = {};
 
-  var fn = {
-    /**
-     * The constructor for this class should not be called by application code,
-     * it is used by the &#x60;{{#crossLink &quot;Lateralus.Component&quot;}}{{/crossLink}}&#x60;
-     * constructor.
-     * @private
-     * @param {Object} [attributes] Gets passed to
-     * [Backbone.Model#initialize](http://backbonejs.org/#Model-constructor).
-     * @param {Object} options Gets passed to
-     * [Backbone.Model#initialize](http://backbonejs.org/#Model-constructor).
-     * @param {Lateralus} options.lateralus
-     * @param {Lateralus.Component} options.component
-     * @class Lateralus.Component.Model
-     * @extends Backbone.Model
-     * @uses Lateralus.mixins
-     * @constructor
-     */
-    constructor: function (attributes, options) {
-      this.lateralus = options.lateralus;
+  // jshint maxlen:100
+  /**
+   * This class builds on the ideas and APIs of
+   * [&#x60;Backbone.Model&#x60;](http://backbonejs.org/#Model).  The constructor for
+   * this class should not be called by application code, it is used by the
+   * &#x60;{{#crossLink &quot;Lateralus&quot;}}{{/crossLink}}&#x60; constructor.
+   * @private
+   * @class Lateralus.Model
+   * @param {Lateralus} lateralus
+   * @param {Object} [attributes]
+   * @param {Object} [options]
+   * @extends Backbone.Model
+   * @uses Lateralus.mixins
+   * @constructor
+   */
+  fn.constructor = function (lateralus, attributes, options) {
+    this.lateralus = lateralus;
+    this.delegateLateralusEvents();
+    this.on(&#x27;change&#x27;, _.bind(this.onChange, this));
+    Backbone.Model.call(this, attributes, options);
+  };
 
-      /**
-       * A reference to the &#x60;{{#crossLink
-       * &quot;Lateralus.Component&quot;}}{{/crossLink}}&#x60; to which this &#x60;{{#crossLink
-       * &quot;Lateralus.Component.Model&quot;}}{{/crossLink}}&#x60; belongs.
-       * @property component
-       * @type {Lateralus.Component}
-       * @final
-       */
-      this.component = options.component;
+  /**
+   * For every key that is changed on this model, a corresponding &#x60;change:&#x60;
+   * event is &#x60;{{#crossLink &quot;Lateralus.mixins/emit:method&quot;}}{{/crossLink}}&#x60;ed.
+   * For example, &#x60;set&#x60;ting the &#x60;&quot;foo&quot;&#x60; attribute will &#x60;{{#crossLink
+   * &quot;Lateralus.mixins/emit:method&quot;}}{{/crossLink}}&#x60; &#x60;change:foo&#x60; and provide
+   * the changed value.
+   * @method onChange
+   */
+  fn.onChange = function () {
+    var changed = this.changedAttributes();
 
-      this.delegateLateralusEvents();
-      Backbone.Model.call(this, attributes, options);
-    }
+    _.each(_.keys(changed), function (changedKey) {
+      this.emit(&#x27;change:&#x27; + changedKey, changed[changedKey]);
 
-    /**
-     * Lateralus-compatible override for
-     * [Backbone.Model#destroy](http://backbonejs.org/#Model-destroy).
-     * @param {Object} [options] This object is also passed to
-     * [Backbone.Model.#destroy](http://backbonejs.org/#Model-destroy).
-     * @param {boolean} [options.dispose] If true, call &#x60;{{#crossLink
-     * &quot;Lateralus.Component.Model/dispose:method&quot;}}{{/crossLink}}&#x60; after
-     * &#x60;destroy&#x60; operations are complete.
-     * @method destroy
-     * @override
-     */
-    ,destroy: function (options) {
-      options = options || {};
-      var dispose = options.dispose;
-      options.dispose = false;
+      // Delete this property from the internal &quot;changed&quot; object before
+      // Backbone typically would to prevent &quot;stacking&quot; changed properties
+      // across onChange calls, thereby causing redundant handler calls.
+      delete this.changed[changedKey];
+    }, this);
 
-      baseProto.destroy.apply(this, arguments);
-
-      if (dispose) {
-        this.dispose();
-      }
-    }
-
-    /**
-     * Remove this &#x60;{{#crossLink &quot;Lateralus.Component.Model&quot;}}{{/crossLink}}&#x60;
-     * from memory.  Also remove this &#x60;{{#crossLink
-     * &quot;Lateralus.Component.Model&quot;}}{{/crossLink}}&#x60; from the &#x60;{{#crossLink
-     * &quot;Lateralus.Component.Collection&quot;}}{{/crossLink}}&#x60; to which it belongs,
-     * if any.
-     * @method dispose
-     */
-    ,dispose: function () {
-      _(this).lateralusDispose(_.bind(function () {
-        if (this.collection) {
-          this.collection.remove(this);
-        }
-      }, this));
-    }
   };
 
   _.extend(fn, mixins);
 
-  var ComponentModel = Base.extend(fn);
+  var LateralusModel = Backbone.Model.extend(fn);
 
   /**
    * @method toString
    * @return {string} The name of this Model.  This is used internally by
    * Lateralus.
    */
-  ComponentModel.prototype.toString = function () {
-    return this.component.toString() + &#x27;-model&#x27;;
+  LateralusModel.prototype.toString = function () {
+    return this.lateralus.toString() + &#x27;-model&#x27;;
   };
 
-  return ComponentModel;
+  return LateralusModel;
 });
 
     </pre>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Lateralus.Component - Lateralus</title>
+    <title>Lateralus - Lateralus</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -17,7 +17,7 @@
                 <h1><img src="http://cdn.jellyvision.com/wp-content/themes/jellyvision/img/header-logo.png" title="Lateralus"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.10.1</em>
+            <em>API Docs for: 0.10.2</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -83,19 +83,18 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1>Lateralus.Component Class</h1>
+<h1>Lateralus Class</h1>
 <div class="box meta">
         <div class="uses">
             Uses
             <ul class="inline commas">
-                    <li><a href="http://backbonejs.org/#Events.html">http://backbonejs.org/#Events</a></li>
                     <li><a href="Lateralus.mixins.html">Lateralus.mixins</a></li>
             </ul>
         </div>
 
 
         <div class="foundat">
-            Defined in: <a href="../files/scripts_lateralus.component.js.html#l22"><code>scripts&#x2F;lateralus.component.js:22</code></a>
+            Defined in: <a href="../files/scripts_lateralus.js.html#l57"><code>scripts&#x2F;lateralus.js:57</code></a>
         </div>
 
 
@@ -103,38 +102,27 @@
 
 
 <div class="box intro">
-    <p>The constructor for this method should not be called directly.  Instead,
-use the <code><a href="../classes/Lateralus.mixins.html#method_addComponent" class="crosslink">addComponent</a></code>
-mixin method:</p>
+    <p>You should not need to call the Lateralus constructor directly, use
+<code><a href="../classes/Lateralus.html#method_beget" class="crosslink">beget</a></code> instead.  To create a new
+Lateralus app:</p>
 <pre class="code prettyprint"><code>var App = Lateralus.beget(function () {
+  // Don't forget to call the Lateralus constructor!
   Lateralus.apply(this, arguments);
 });
 
-var app = new App(document.getElementById('app'));
-var component = app.addComponent(Lateralus.Component);
-
-console.log(component instanceof Lateralus.Component); // true</code></pre>
+var app = new App(document.getElementById('app'));</code></pre>
 
 </div>
 
     <div class="constructor">
         <h2>Constructor</h2>
-<div id="method_Lateralus.Component" class="method item">
-    <h3 class="name"><code>Lateralus.Component</code></h3>
+<div id="method_Lateralus" class="method item">
+    <h3 class="name"><code>Lateralus</code></h3>
 
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
-                        <code>lateralus</code>
-                </li>
-                <li class="arg">
-                        <code>options</code>
-                </li>
-                <li class="arg">
-                        <code>viewOptions</code>
-                </li>
-                <li class="arg">
-                        <code class="optional">[opt_parentComponent]</code>
+                        <code>el</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
@@ -149,7 +137,7 @@ console.log(component instanceof Lateralus.Component); // true</code></pre>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/scripts_lateralus.component.js.html#l22"><code>scripts&#x2F;lateralus.component.js:22</code></a>
+        <a href="../files/scripts_lateralus.js.html#l57"><code>scripts&#x2F;lateralus.js:57</code></a>
         </p>
 
 
@@ -165,78 +153,13 @@ console.log(component instanceof Lateralus.Component); // true</code></pre>
 
             <ul class="params-list">
                 <li class="param">
-                        <code class="param-name">lateralus</code>
-                        <span class="type"><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a></span>
+                        <code class="param-name">el</code>
+                        <span class="type">Element</span>
 
 
                     <div class="param-description">
-                         
-                    </div>
-
-                </li>
-                <li class="param">
-                        <code class="param-name">options</code>
-                        <span class="type">Object</span>
-
-
-                    <div class="param-description">
-                        <p>Values to attach to this <code><a href="../classes/Lateralus.Component.html" class="crosslink">Lateralus.Component</a></code> instance.  This object also get
-passed to the <code><a href="../classes/Lateralus.Component.html#property_initialize" class="crosslink">initialize</a></code> method, if one
-is defined.</p>
-
-                    </div>
-
-                        <ul class="params-list">
-                            <li class="param">
-                                    <code class="param-name optional">[modelAttributes]</code>
-                                    <span class="type">Object</span>
-                                    <span class="flag optional" title="This parameter is optional.">optional</span>
-
-                                <div class="param-description">
-                                    <p>Any attributes to pre-populate
-the <code>Lateralus.Component/Model:property</code>
-instance with, if there is one.</p>
-
-                                </div>
-
-                            </li>
-                            <li class="param">
-                                    <code class="param-name optional">[modelOptions]</code>
-                                    <span class="type">Object</span>
-                                    <span class="flag optional" title="This parameter is optional.">optional</span>
-
-                                <div class="param-description">
-                                    <p>Any parameters to pass to the
-<code>Lateralus.Component/Model:property</code>
-instance, if there is one.</p>
-
-                                </div>
-
-                            </li>
-                        </ul>
-                </li>
-                <li class="param">
-                        <code class="param-name">viewOptions</code>
-                        <span class="type">Object</span>
-
-
-                    <div class="param-description">
-                        <p>The <code>options</code> Object to pass to the
-<code><a href="../classes/Lateralus.Component.html#property_View" class="crosslink">View</a></code>
-constructor.</p>
-
-                    </div>
-
-                </li>
-                <li class="param">
-                        <code class="param-name optional">[opt_parentComponent]</code>
-                        <span class="type"><a href="../classes/Lateralus.Component.html" class="crosslink">Lateralus.Component</a></span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-
-
-                    <div class="param-description">
-                        <p>The parent component of
-this component, if any.</p>
+                        <p>The DOM element that contains the entire Lateralus
+app.</p>
 
                     </div>
 
@@ -273,6 +196,11 @@ this component, if any.</p>
                                 <a href="#method_amplify">amplify</a>
 
                             </li>
+                            <li class="index-item method">
+                                <a href="#method_beget">beget</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
                             <li class="index-item method inherited">
                                 <a href="#method_collect">collect</a>
 
@@ -294,8 +222,13 @@ this component, if any.</p>
 
                             </li>
                             <li class="index-item method">
-                                <a href="#method_extend">extend</a>
+                                <a href="#method_error">error</a>
 
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_inherit">inherit</a>
+
+                                    <span class="flag static">static</span>
                             </li>
                             <li class="index-item method inherited">
                                 <a href="#method_initCollection">initCollection</a>
@@ -305,8 +238,16 @@ this component, if any.</p>
                                 <a href="#method_initModel">initModel</a>
 
                             </li>
+                            <li class="index-item method">
+                                <a href="#method_initRouter">initRouter</a>
+
+                            </li>
                             <li class="index-item method inherited">
                                 <a href="#method_listenFor">listenFor</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_log">log</a>
 
                             </li>
                             <li class="index-item method inherited">
@@ -314,11 +255,15 @@ this component, if any.</p>
 
                             </li>
                             <li class="index-item method">
-                                <a href="#method_toJSON">toJSON</a>
+                                <a href="#method_shareWith">shareWith</a>
 
                             </li>
                             <li class="index-item method">
                                 <a href="#method_toString">toString</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_warn">warn</a>
 
                             </li>
                     </ul>
@@ -328,6 +273,10 @@ this component, if any.</p>
                     <h3>Properties</h3>
 
                     <ul class="index-list properties">
+                            <li class="index-item property">
+                                <a href="#property_$el">$el</a>
+
+                            </li>
                             <li class="index-item property private inherited">
                                 <a href="#property_componentCounters">componentCounters</a>
 
@@ -337,11 +286,15 @@ this component, if any.</p>
 
                             </li>
                             <li class="index-item property">
-                                <a href="#property_initialize">initialize</a>
+                                <a href="#property_el">el</a>
 
                             </li>
                             <li class="index-item property">
-                                <a href="#property_lateralus">lateralus</a>
+                                <a href="#property_globalPartials">globalPartials</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_globalRenderData">globalRenderData</a>
 
                             </li>
                             <li class="index-item property inherited">
@@ -349,19 +302,11 @@ this component, if any.</p>
 
                             </li>
                             <li class="index-item property">
-                                <a href="#property_mixins">mixins</a>
+                                <a href="#property_model">model</a>
 
                             </li>
                             <li class="index-item property inherited">
                                 <a href="#property_modelEvents">modelEvents</a>
-
-                            </li>
-                            <li class="index-item property protected">
-                                <a href="#property_name">name</a>
-
-                            </li>
-                            <li class="index-item property">
-                                <a href="#property_parentComponent">parentComponent</a>
 
                             </li>
                             <li class="index-item property inherited">
@@ -370,14 +315,6 @@ this component, if any.</p>
                             </li>
                             <li class="index-item property private inherited">
                                 <a href="#property_PROVIDE_PREFIX">PROVIDE_PREFIX</a>
-
-                            </li>
-                            <li class="index-item property">
-                                <a href="#property_view">view</a>
-
-                            </li>
-                            <li class="index-item property">
-                                <a href="#property_View">View</a>
 
                             </li>
                     </ul>
@@ -586,6 +523,105 @@ should be amplified globally across the app.
             </ul>
         </div>
 
+
+
+</div>
+<div id="method_beget" class="method item">
+    <h3 class="name"><code>beget</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>child</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[config]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Function</span>
+        </span>
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/scripts_lateralus.js.html#l139"><code>scripts&#x2F;lateralus.js:139</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Create a <code><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a></code> application instance.</p>
+<pre class="code prettyprint"><code>var App = Lateralus.beget(function () {
+  Lateralus.apply(this, arguments);
+});</code></pre>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">child</code>
+                        <span class="type">Function</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[config]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                        <ul class="params-list">
+                            <li class="param">
+                                    <code class="param-name optional">[Model]</code>
+                                    <span class="type">LateralusModel</span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+
+                                <div class="param-description">
+                                    <p>A <code><a href="../classes/Lateralus.Model.html" class="crosslink">Lateralus.Model</a></code> subclass constructor to use for
+<code><a href="../classes/Lateralus.html#property_model" class="crosslink">model</a></code> instead of a
+standard <code><a href="../classes/Lateralus.Model.html" class="crosslink">Lateralus.Model</a></code>.</p>
+
+                                </div>
+
+                            </li>
+                        </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Function</span>:
+                    <p>The created <code><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a></code>
+subclass.</p>
+
+            </div>
+        </div>
 
 
 </div>
@@ -799,7 +835,7 @@ defined.
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/scripts_lateralus.component.js.html#l215"><code>scripts&#x2F;lateralus.component.js:215</code></a>
+        <a href="../files/scripts_lateralus.js.html#l232"><code>scripts&#x2F;lateralus.js:232</code></a>
         </p>
 
 
@@ -807,8 +843,7 @@ defined.
     </div>
 
     <div class="description">
-        <p>Remove this <code><a href="../classes/Lateralus.Component.html" class="crosslink">Lateralus.Component</a></code> from
-memory.  Also remove any nested components added by <code><a href="../classes/Lateralus.mixins.html#method_addComponent" class="crosslink">addComponent</a></code>.</p>
+        <p>Remove this <code><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a></code> app from memory.</p>
 
     </div>
 
@@ -903,13 +938,13 @@ This method has the same method signature as
 
 
 </div>
-<div id="method_extend" class="method item">
-    <h3 class="name"><code>extend</code></h3>
+<div id="method_error" class="method item">
+    <h3 class="name"><code>error</code></h3>
 
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
-                        <code>protoProps</code>
+                        <code>Any</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
@@ -924,7 +959,7 @@ This method has the same method signature as
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/scripts_lateralus.component.js.html#l165"><code>scripts&#x2F;lateralus.component.js:165</code></a>
+        <a href="../files/scripts_lateralus.js.html#l184"><code>scripts&#x2F;lateralus.js:184</code></a>
         </p>
 
 
@@ -932,7 +967,7 @@ This method has the same method signature as
     </div>
 
     <div class="description">
-        <p>Create a <code><a href="../classes/Lateralus.Component.html" class="crosslink">Lateralus.Component</a></code> subclass.</p>
+        <p>Cross-browser friendly wrapper for <code>console.error</code>.</p>
 
     </div>
 
@@ -941,56 +976,98 @@ This method has the same method signature as
 
             <ul class="params-list">
                 <li class="param">
-                        <code class="param-name">protoProps</code>
-                        <span class="type">Object</span>
+                        <code class="param-name">Any</code>
+                        <span class="type">...any</span>
+
+
+                    <div class="param-description">
+                        <p>parameters to pass along to <code>console.error</code>.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_inherit" class="method item">
+    <h3 class="name"><code>inherit</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>child</code>
+                </li>
+                <li class="arg">
+                        <code>parent</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Function</span>
+        </span>
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/scripts_lateralus.js.html#l124"><code>scripts&#x2F;lateralus.js:124</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Set up the prototype chain between two objects.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">child</code>
+                        <span class="type">Function</span>
 
 
                     <div class="param-description">
                          
                     </div>
 
-                        <ul class="params-list">
-                            <li class="param">
-                                    <code class="param-name">name</code>
-                                    <span class="type">String</span>
+                </li>
+                <li class="param">
+                        <code class="param-name">parent</code>
+                        <span class="type">Function</span>
 
-                                <div class="param-description">
-                                    <p>The name of this component.  It should
-have no whitespace.</p>
 
-                                </div>
+                    <div class="param-description">
+                         
+                    </div>
 
-                            </li>
-                            <li class="param">
-                                    <code class="param-name optional">[View]</code>
-                                    <span class="type"><a href="../classes/Lateralus.Component.View.html" class="crosslink">Lateralus.Component.View</a></span>
-                                    <span class="flag optional" title="This parameter is optional.">optional</span>
-
-                                <div class="param-description">
-                                    <p>The <code><a href="../classes/Lateralus.Component.View.html" class="crosslink">Lateralus.Component.View</a></code> to render this component with.</p>
-
-                                </div>
-
-                            </li>
-                            <li class="param">
-                                    <code class="param-name optional">[Model]</code>
-                                    <span class="type"><a href="../classes/Lateralus.Component.Model.html" class="crosslink">Lateralus.Component.Model</a></span>
-                                    <span class="flag optional" title="This parameter is optional.">optional</span>
-
-                                <div class="param-description">
-                                    <p>The optional
-<code><a href="../classes/Lateralus.Component.Model.html" class="crosslink">Lateralus.Component.Model</a></code> to be provided
-to <code>protoProps.View</code> when it is instantiated.  This does nothing if
-<code>protoProps.View</code> is not defined.</p>
-
-                                </div>
-
-                            </li>
-                        </ul>
                 </li>
             </ul>
         </div>
 
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Function</span>:
+                    <p>A reference to the passed-in <code>child</code> parameter.</p>
+
+            </div>
+        </div>
 
 
 </div>
@@ -1179,6 +1256,88 @@ constructor.
 
 
 </div>
+<div id="method_initRouter" class="method item">
+    <h3 class="name"><code>initRouter</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>Router</code>
+                </li>
+                <li class="arg">
+                        <code>[options] To be passed to the [Router
+&#x60;initialize&#x60;]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/Lateralus.Router.html" class="crosslink">Lateralus.Router</a></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/scripts_lateralus.js.html#l203"><code>scripts&#x2F;lateralus.js:203</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">Router</code>
+                        <span class="type"><a href="../classes/Lateralus.Router.html" class="crosslink">Lateralus.Router</a></span>
+
+
+                    <div class="param-description">
+                        <p>A constructor, not an instance.</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">[options] To be passed to the [Router
+&#x60;initialize&#x60;]</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>(<a href="http://backbonejs.org/#Router-constructor">http://backbonejs.org/#Router-constructor</a>) method.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="../classes/Lateralus.Router.html" class="crosslink">Lateralus.Router</a></span>:
+                    <p>An instance of the provided Router
+constructor.</p>
+
+            </div>
+        </div>
+
+
+</div>
 <div id="method_listenFor" class="method item inherited">
     <h3 class="name"><code>listenFor</code></h3>
 
@@ -1245,6 +1404,60 @@ constructor.
 
 
 </div>
+<div id="method_log" class="method item">
+    <h3 class="name"><code>log</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>Any</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/scripts_lateralus.js.html#l170"><code>scripts&#x2F;lateralus.js:170</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Cross-browser friendly wrapper for <code>console.log</code>.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">Any</code>
+                        <span class="type">...any</span>
+
+
+                    <div class="param-description">
+                        <p>parameters to pass along to <code>console.log</code>.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
 <div id="method_mixin" class="method item inherited">
     <h3 class="name"><code>mixin</code></h3>
 
@@ -1299,14 +1512,20 @@ context of the object calling this function.
 
 
 </div>
-<div id="method_toJSON" class="method item">
-    <h3 class="name"><code>toJSON</code></h3>
+<div id="method_shareWith" class="method item">
+    <h3 class="name"><code>shareWith</code></h3>
 
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>receiver</code>
+                </li>
+                <li class="arg">
+                        <code>providerName</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
 
-        <span class="returns-inline">
-            <span class="type">Object</span>
-        </span>
 
 
 
@@ -1317,7 +1536,7 @@ context of the object calling this function.
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/scripts_lateralus.component.js.html#l242"><code>scripts&#x2F;lateralus.component.js:242</code></a>
+        <a href="../files/scripts_lateralus.js.html#l215"><code>scripts&#x2F;lateralus.js:215</code></a>
         </p>
 
 
@@ -1325,18 +1544,43 @@ context of the object calling this function.
     </div>
 
     <div class="description">
-        <p>Meant to be overridden by subclasses.</p>
+        <p>Relay <code><a href="../classes/Lateralus.mixins.html#property_provide" class="crosslink">provide</a></code>d
+handlers to another <code><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a></code> instance.
+This is the <code><a href="../classes/Lateralus.mixins.html#property_provide" class="crosslink">provide</a></code> analog to
+<code><a href="../classes/Lateralus.mixins.html#method_amplify" class="crosslink">amplify</a></code>.</p>
 
     </div>
 
+        <div class="params">
+            <h4>Parameters:</h4>
 
-        <div class="returns">
-            <h4>Returns:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">receiver</code>
+                        <span class="type"><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a></span>
 
-            <div class="returns-description">
-                        <span class="type">Object</span>:
-            </div>
+
+                    <div class="param-description">
+                        <p>The <code><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a></code>
+instance to share <code><a href="../classes/Lateralus.mixins.html#property_provide" class="crosslink">provide</a></code>d handlers with.</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">providerName</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>The name of the <code><a href="../classes/Lateralus.mixins.html#property_provide" class="crosslink">provide</a></code>er.</p>
+
+                    </div>
+
+                </li>
+            </ul>
         </div>
+
 
 
 </div>
@@ -1351,6 +1595,7 @@ context of the object calling this function.
 
 
 
+        <span class="flag final">final</span>
 
 
 
@@ -1358,7 +1603,7 @@ context of the object calling this function.
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/scripts_lateralus.component.js.html#l251"><code>scripts&#x2F;lateralus.component.js:251</code></a>
+        <a href="../files/scripts_lateralus.js.html#l245"><code>scripts&#x2F;lateralus.js:245</code></a>
         </p>
 
 
@@ -1366,7 +1611,8 @@ context of the object calling this function.
     </div>
 
     <div class="description">
-        
+        <p>Do not override this method, it is used internally.</p>
+
     </div>
 
 
@@ -1375,11 +1621,64 @@ context of the object calling this function.
 
             <div class="returns-description">
                         <span class="type">String</span>:
-                    <p>The name of this Component.  This is used internally by
-Lateralus.</p>
+                    <p>This is <code>&quot;lateralus&quot;</code>.</p>
 
             </div>
         </div>
+
+
+</div>
+<div id="method_warn" class="method item">
+    <h3 class="name"><code>warn</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>Any</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/scripts_lateralus.js.html#l177"><code>scripts&#x2F;lateralus.js:177</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Cross-browser friendly wrapper for <code>console.warn</code>.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">Any</code>
+                        <span class="type">...any</span>
+
+
+                    <div class="param-description">
+                        <p>parameters to pass along to <code>console.warn</code>.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
 
 
 </div>
@@ -1388,6 +1687,31 @@ Lateralus.</p>
             <div id="properties" class="api-class-tabpanel">
                 <h2 class="off-left">Properties</h2>
 
+<div id="property_$el" class="property item">
+    <h3 class="name"><code>$el</code></h3>
+    <span class="type">JQuery</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/scripts_lateralus.js.html#l83"><code>scripts&#x2F;lateralus.js:83</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>The jQuery Object that contains <code><a href="../classes/Lateralus.html#property_el" class="crosslink">el</a></code>.</p>
+
+    </div>
+
+
+
+</div>
 <div id="property_componentCounters" class="property item private inherited">
     <h3 class="name"><code>componentCounters</code></h3>
     <span class="type">Object(number)</span>
@@ -1439,9 +1763,9 @@ property directly, it is managed by Lateralus.
 
 
 </div>
-<div id="property_initialize" class="property item">
-    <h3 class="name"><code>initialize</code></h3>
-    <span class="type">Function | Undefined</span>
+<div id="property_el" class="property item">
+    <h3 class="name"><code>el</code></h3>
+    <span class="type">HTMLElement</span>
 
 
 
@@ -1450,42 +1774,66 @@ property directly, it is managed by Lateralus.
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/scripts_lateralus.component.js.html#l145"><code>scripts&#x2F;lateralus.component.js:145</code></a>
+        <a href="../files/scripts_lateralus.js.html#l75"><code>scripts&#x2F;lateralus.js:75</code></a>
         </p>
 
 
     </div>
 
     <div class="description">
-        <p>A method to be called when this <code><a href="../classes/Lateralus.Component.html" class="crosslink">Lateralus.Component</a></code> has been set up.</p>
+        <p>The DOM node that contains this <code><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a></code> instance.</p>
 
     </div>
 
-        <p><strong>Default:</strong> undefined</p>
 
 
 </div>
-<div id="property_lateralus" class="property item">
-    <h3 class="name"><code>lateralus</code></h3>
-    <span class="type"><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a></span>
+<div id="property_globalPartials" class="property item">
+    <h3 class="name"><code>globalPartials</code></h3>
+    <span class="type">Object(String)</span>
 
 
 
-        <span class="flag final">final</span>
 
 
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/scripts_lateralus.component.js.html#l59"><code>scripts&#x2F;lateralus.component.js:59</code></a>
+        <a href="../files/scripts_lateralus.js.html#l109"><code>scripts&#x2F;lateralus.js:109</code></a>
         </p>
 
 
     </div>
 
     <div class="description">
-        <p>A reference to the central <code><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a></code>
-instance.</p>
+        <p>An optional map of template partials to be passed to the
+<code>Mustache.render</code> call for all Views belonging to this Lateralus app.</p>
+
+    </div>
+
+
+
+</div>
+<div id="property_globalRenderData" class="property item">
+    <h3 class="name"><code>globalRenderData</code></h3>
+    <span class="type">Object(String)</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/scripts_lateralus.js.html#l101"><code>scripts&#x2F;lateralus.js:101</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>An optional map of template render data to be passed to the
+<code>Mustache.render</code> call for all Views belonging to this Lateralus app.</p>
 
     </div>
 
@@ -1535,9 +1883,9 @@ central <code>{{#crossLink &quot;Lateralus&quot;}}{{&#x2F;crossLink}}</code> ins
 
 
 </div>
-<div id="property_mixins" class="property item">
-    <h3 class="name"><code>mixins</code></h3>
-    <span class="type">Object | Array(Object) | Undefined</span>
+<div id="property_model" class="property item">
+    <h3 class="name"><code>model</code></h3>
+    <span class="type"><a href="../classes/Lateralus.Model.html" class="crosslink">Lateralus.Model</a></span>
 
 
 
@@ -1546,21 +1894,17 @@ central <code>{{#crossLink &quot;Lateralus&quot;}}{{&#x2F;crossLink}}</code> ins
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/scripts_lateralus.component.js.html#l68"><code>scripts&#x2F;lateralus.component.js:68</code></a>
+        <a href="../files/scripts_lateralus.js.html#l93"><code>scripts&#x2F;lateralus.js:93</code></a>
         </p>
 
 
     </div>
 
     <div class="description">
-        <p>If a <code><a href="../classes/Lateralus.Component.html" class="crosslink">Lateralus.Component</a></code> has <code>mixins</code>
-defined on its <code>prototype</code> before it is instantiated, the objects
-within <code>mixins</code> will be merged into this <code><a href="../classes/Lateralus.Component.html" class="crosslink">Lateralus.Component</a></code> at instantiation-time with
-<code>Lateralus.Component/mixin</code>.</p>
+        <p>Maintains the state of the central <code><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a></code> instance.</p>
 
     </div>
 
-        <p><strong>Default:</strong> undefined</p>
 
 
 </div>
@@ -1593,59 +1937,6 @@ handle [events](http://backbonejs.org/#Events) emitted by
         }
       }
     });
-    </div>
-
-        <p><strong>Default:</strong> undefined</p>
-
-
-</div>
-<div id="property_name" class="property item protected">
-    <h3 class="name"><code>name</code></h3>
-    <span class="type">String</span>
-
-
-        <span class="flag protected">protected</span>
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/scripts_lateralus.component.js.html#l194"><code>scripts&#x2F;lateralus.component.js:194</code></a>
-        </p>
-
-
-    </div>
-
-    <div class="description">
-        <p>The name of this component.  This is used internally by Lateralus.</p>
-
-    </div>
-
-
-
-</div>
-<div id="property_parentComponent" class="property item">
-    <h3 class="name"><code>parentComponent</code></h3>
-    <span class="type"><a href="../classes/Lateralus.Component.html" class="crosslink">Lateralus.Component</a> | Undefined</span>
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/scripts_lateralus.component.js.html#l83"><code>scripts&#x2F;lateralus.component.js:83</code></a>
-        </p>
-
-
-    </div>
-
-    <div class="description">
-        <p>If this is a subcomponent of another <code><a href="../classes/Lateralus.Component.html" class="crosslink">Lateralus.Component</a></code>, this property is a reference
-to the parent <code><a href="../classes/Lateralus.Component.html" class="crosslink">Lateralus.Component</a></code>.</p>
-
     </div>
 
         <p><strong>Default:</strong> undefined</p>
@@ -1728,66 +2019,6 @@ functions **must** be completely synchronous.
 "Lateralus.mixins/provide:property"}}{{/crossLink}}` handlers.
     </div>
 
-
-
-</div>
-<div id="property_view" class="property item">
-    <h3 class="name"><code>view</code></h3>
-    <span class="type"><a href="../classes/Lateralus.Component.View.html" class="crosslink">Lateralus.Component.View</a> | Undefined</span>
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/scripts_lateralus.component.js.html#l129"><code>scripts&#x2F;lateralus.component.js:129</code></a>
-        </p>
-
-
-    </div>
-
-    <div class="description">
-        <p>If <code><a href="../classes/Lateralus.Component.html#property_View" class="crosslink">View</a></code>
-is defined, this is an instance of that constructor.</p>
-
-    </div>
-
-        <p><strong>Default:</strong> undefined</p>
-
-
-</div>
-<div id="property_View" class="property item">
-    <h3 class="name"><code>View</code></h3>
-    <span class="type"><a href="../classes/Lateralus.Component.View.html" class="crosslink">Lateralus.Component.View</a> | Undefined</span>
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/scripts_lateralus.component.js.html#l94"><code>scripts&#x2F;lateralus.component.js:94</code></a>
-        </p>
-
-
-    </div>
-
-    <div class="description">
-        <p>The <code><a href="../classes/Lateralus.Component.View.html" class="crosslink">Lateralus.Component.View</a></code>
-constructor to use, if any.  If this <code><a href="../classes/Lateralus.Component.html" class="crosslink">Lateralus.Component</a></code> is intended to render to the DOM,
-<code>View</code> should be defined on the <code>prototype</code> before instantiating:</p>
-<pre class="code prettyprint"><code>var ExtendedComponent = Lateralus.Component.extend({
-  name: 'extended'
-  ,View: Lateralus.Component.View
-  ,template: '&lt;div&gt;&lt;/div&gt;'
-});</code></pre>
-
-    </div>
-
-        <p><strong>Default:</strong> undefined</p>
 
 
 </div>

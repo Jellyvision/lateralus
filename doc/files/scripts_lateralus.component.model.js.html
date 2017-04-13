@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>scripts/lateralus.router.js - Lateralus</title>
+    <title>scripts/lateralus.component.model.js - Lateralus</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -17,7 +17,7 @@
                 <h1><img src="http://cdn.jellyvision.com/wp-content/themes/jellyvision/img/header-logo.png" title="Lateralus"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.10.1</em>
+            <em>API Docs for: 0.10.2</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -83,7 +83,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1 class="file-heading">File: scripts/lateralus.router.js</h1>
+<h1 class="file-heading">File: scripts/lateralus.component.model.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -104,42 +104,97 @@ define([
 ) {
   &#x27;use strict&#x27;;
 
-  var fn = {};
+  var Base = Backbone.Model;
+  var baseProto = Base.prototype;
 
-  // jshint maxlen:100
-  /**
-   * This class builds on the ideas and APIs of
-   * [&#x60;Backbone.Router&#x60;](http://backbonejs.org/#Router).  The constructor for
-   * this class should not be called by application code.  Instead, use
-   * &#x60;{{#crossLink &quot;Lateralus/initRouter&quot;}}{{/crossLink}}&#x60;.
-   * @private
-   * @class Lateralus.Router
-   * @param {Lateralus} lateralus
-   * @extends {Backbone.Router}
-   * @uses Lateralus.mixins
-   * @constructor
-   */
-  fn.constructor = function (lateralus) {
-    this.lateralus = lateralus;
-    this.delegateLateralusEvents();
-    Backbone.Router.apply(this, arguments);
+  var fn = {
+    /**
+     * The constructor for this class should not be called by application code,
+     * it is used by the &#x60;{{#crossLink &quot;Lateralus.Component&quot;}}{{/crossLink}}&#x60;
+     * constructor.
+     * @private
+     * @param {Object} [attributes] Gets passed to
+     * [Backbone.Model#initialize](http://backbonejs.org/#Model-constructor).
+     * @param {Object} options Gets passed to
+     * [Backbone.Model#initialize](http://backbonejs.org/#Model-constructor).
+     * @param {Lateralus} options.lateralus
+     * @param {Lateralus.Component} options.component
+     * @class Lateralus.Component.Model
+     * @extends Backbone.Model
+     * @uses Lateralus.mixins
+     * @constructor
+     */
+    constructor: function (attributes, options) {
+      this.lateralus = options.lateralus;
+
+      /**
+       * A reference to the &#x60;{{#crossLink
+       * &quot;Lateralus.Component&quot;}}{{/crossLink}}&#x60; to which this &#x60;{{#crossLink
+       * &quot;Lateralus.Component.Model&quot;}}{{/crossLink}}&#x60; belongs.
+       * @property component
+       * @type {Lateralus.Component}
+       * @final
+       */
+      this.component = options.component;
+
+      this.delegateLateralusEvents();
+      Backbone.Model.call(this, attributes, options);
+    }
+
+    /**
+     * Lateralus-compatible override for
+     * [Backbone.Model#destroy](http://backbonejs.org/#Model-destroy).
+     * @param {Object} [options] This object is also passed to
+     * [Backbone.Model.#destroy](http://backbonejs.org/#Model-destroy).
+     * @param {boolean} [options.dispose] If true, call &#x60;{{#crossLink
+     * &quot;Lateralus.Component.Model/dispose:method&quot;}}{{/crossLink}}&#x60; after
+     * &#x60;destroy&#x60; operations are complete.
+     * @method destroy
+     * @override
+     */
+    ,destroy: function (options) {
+      options = options || {};
+      var dispose = options.dispose;
+      options.dispose = false;
+
+      baseProto.destroy.apply(this, arguments);
+
+      if (dispose) {
+        this.dispose();
+      }
+    }
+
+    /**
+     * Remove this &#x60;{{#crossLink &quot;Lateralus.Component.Model&quot;}}{{/crossLink}}&#x60;
+     * from memory.  Also remove this &#x60;{{#crossLink
+     * &quot;Lateralus.Component.Model&quot;}}{{/crossLink}}&#x60; from the &#x60;{{#crossLink
+     * &quot;Lateralus.Component.Collection&quot;}}{{/crossLink}}&#x60; to which it belongs,
+     * if any.
+     * @method dispose
+     */
+    ,dispose: function () {
+      _(this).lateralusDispose(_.bind(function () {
+        if (this.collection) {
+          this.collection.remove(this);
+        }
+      }, this));
+    }
   };
-
 
   _.extend(fn, mixins);
 
-  var LateralusRouter = Backbone.Router.extend(fn);
+  var ComponentModel = Base.extend(fn);
 
   /**
    * @method toString
-   * @return {string} The name of this Router.  This is used internally by
+   * @return {string} The name of this Model.  This is used internally by
    * Lateralus.
    */
-  LateralusRouter.prototype.toString = function () {
-    return this.lateralus.toString() + &#x27;-router&#x27;;
+  ComponentModel.prototype.toString = function () {
+    return this.component.toString() + &#x27;-model&#x27;;
   };
 
-  return LateralusRouter;
+  return ComponentModel;
 });
 
     </pre>
