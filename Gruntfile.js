@@ -1,13 +1,6 @@
 // jshint maxlen:120
 'use strict';
 
-var LIVERELOAD_PORT = 35730;
-var SERVER_PORT = 9010;
-var lrSnippet = require('connect-livereload')({port: LIVERELOAD_PORT});
-var mountFolder = function (connect, dir) {
-  return connect.static(require('path').resolve(dir));
-};
-
 module.exports = function (grunt) {
   // load all grunt tasks
   require('load-grunt-tasks')(grunt);
@@ -16,22 +9,6 @@ module.exports = function (grunt) {
 
   grunt.initConfig({
     pkg: pkg,
-    watch: {
-      options: {
-        nospawn: true,
-        livereload: LIVERELOAD_PORT
-      },
-      yuidoc: {
-        files: ['scripts/*.js'],
-        tasks: ['clean', 'yuidoc']
-      },
-      livereload: {
-        files: [
-          'scripts/*.js',
-          'test/spec/*.js'
-        ]
-      }
-    },
     clean: {
       dist: ['dist']
     },
@@ -42,18 +19,8 @@ module.exports = function (grunt) {
         logo: 'http://cdn.jellyvision.com/wp-content/themes/jellyvision/img/header-logo.png',
         options: {
           paths: ['scripts'],
-          outdir: 'dist/doc'
+          outdir: 'doc'
         }
-      }
-    },
-    bump: {
-      options: {
-        files: ['package.json', 'bower.json', 'generator-lateralus/package.json'],
-        commit: false,
-        createTag: false,
-        tagName: '%VERSION%',
-        tagMessage: 'Version %VERSION%',
-        push: false
       }
     },
     requirejs: {
@@ -94,63 +61,24 @@ module.exports = function (grunt) {
         }
       }
     },
-    open: {
-      debug: {
-        path: 'http://localhost:' + SERVER_PORT + '/test'
-      }
-    },
-    connect: {
-      options: {
-        port: SERVER_PORT,
-        // change this to '0.0.0.0' to access the server from outside
-        hostname: 'localhost'
-      },
-      livereload: {
-        options: {
-          middleware: function (connect) {
-            return [
-              lrSnippet,
-              mountFolder(connect, './')
-            ];
-          }
-        }
-      }
-    },
-    /* jshint camelcase:false */
-    mocha_require_phantom: {
-      options: {
-        base: '.',
-        main: 'test/main',
-        requireLib: 'bower_components/requirejs/require.js'
-      },
-      debug: {
-        options: {
-          keepAlive: true
-        }
-      },
-      auto: {
-        options: {
-          keepAlive: false
-        }
-      }
-    },
+    exec: {
+      test: 'npm test'
+    }
   });
 
   grunt.registerTask('test', [
-    'mocha_require_phantom:auto',
+    'exec:test',
   ]);
 
-  grunt.registerTask('debug', [
-    'open:debug',
-    'connect:livereload',
-    'watch:livereload'
-  ]);
-
-  grunt.registerTask('default', [
-    'test',
+  grunt.registerTask('build', [
     'clean',
     'yuidoc',
     'requirejs',
     'usebanner'
+  ]);
+
+  grunt.registerTask('default', [
+    'test',
+    'build'
   ]);
 };

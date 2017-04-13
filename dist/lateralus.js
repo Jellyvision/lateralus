@@ -1,4 +1,4 @@
-/* Lateralus v.0.9.3 | https://github.com/Jellyvision/lateralus */
+/* Lateralus v.0.10.2 | https://github.com/Jellyvision/lateralus */
 define('lateralus/lateralus.mixins',[
 
   'underscore'
@@ -8,7 +8,7 @@ define('lateralus/lateralus.mixins',[
   _
 
 ) {
-  
+  'use strict';
 
   /**
    * These method are mixed into `{{#crossLink "Lateralus"}}{{/crossLink}}`,
@@ -483,7 +483,7 @@ define('lateralus/lateralus.model',[
   ,mixins
 
 ) {
-  
+  'use strict';
 
   var fn = {};
 
@@ -562,7 +562,7 @@ define('lateralus/lateralus.router',[
   ,mixins
 
 ) {
-  
+  'use strict';
 
   var fn = {};
 
@@ -621,7 +621,7 @@ define('lateralus/lateralus.component.view',[
   ,mixins
 
 ) {
-  
+  'use strict';
 
   var fn = {};
 
@@ -931,7 +931,7 @@ define('lateralus/lateralus.component.model',[
   ,mixins
 
 ) {
-  
+  'use strict';
 
   var Base = Backbone.Model;
   var baseProto = Base.prototype;
@@ -1041,7 +1041,7 @@ define('lateralus/lateralus.component.collection',[
   ,mixins
 
 ) {
-  
+  'use strict';
 
   var Base = Backbone.Collection;
   var baseProto = Base.prototype;
@@ -1142,7 +1142,7 @@ define('lateralus/lateralus.component',[
   ,ComponentCollection
 
 ) {
-  
+  'use strict';
 
   /**
    * The constructor for this method should not be called directly.  Instead,
@@ -1406,7 +1406,7 @@ define('lateralus/lateralus',[
   ,Component
 
 ) {
-  
+  'use strict';
 
   // UNDERSCORE MIXINS
   _.mixin({

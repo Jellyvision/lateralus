@@ -242,13 +242,29 @@ Each component can (and should) have its own `.sass` file (the generator sets th
 You can run the Lateralus unit tests both in your browser as well as in a command line environment.  To run the tests in your browser:
 
 ````
-grunt debug
+npm run start
 ````
+
+And then navigate to http://127.0.0.1:8080/test/.
 
 To run them in a headless browser at the command line:
 
 ````
-grunt test
+npm test
 ````
 
 The tests are also run by the default `grunt` task.
+
+## Publishing new versions
+
+Once things are ready, you should use `npm version`.
+This will:
+ - change the version in the `package.json` file. 
+ - build the documentation (with the new version).
+ - commit the new documentation
+ - tag the new version
+ - push to the repo.
+ 
+Bower files no longer require a `version` attribute and bower ignores then in lieu of git tags anyway!
+ 
+Once this is done, Travis will publish the change to NPM.
