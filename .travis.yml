@@ -4,7 +4,7 @@ node_js:
 install:
 - npm run setup
 before_deploy:
-- grunt buildForPublish
+- npm run build
 deploy:
   provider: npm
   email: operations@jellyvision.com
