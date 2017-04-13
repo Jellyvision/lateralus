@@ -19,7 +19,7 @@ module.exports = function (grunt) {
         logo: 'http://cdn.jellyvision.com/wp-content/themes/jellyvision/img/header-logo.png',
         options: {
           paths: ['scripts'],
-          outdir: 'doc'
+          outdir: 'docs'
         }
       }
     },
