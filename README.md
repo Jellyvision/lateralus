@@ -135,7 +135,7 @@ Lateralus's functionality is divided up into several primary Objects under the `
 
 Contains static utility methods, such as `Lateralus.inherit`.
 
-### [Lateralus.Component](http://jellyvision.github.io/lateralus/dist/doc/classes/Lateralus.Component.html)
+### [Lateralus.Component](http://jellyvision.github.io/lateralus/docs/classes/Lateralus.Component.html)
 
 The primary class used within the framework to define UI components.  Typically, a component encompasses a `Lateralus.Component.View` and a template (though these are not required).
 
@@ -183,7 +183,7 @@ This is set up for you by the Lateralus Yeoman generator.  `Lateralus.Component`
 
 Lateralus uses [Mustache.js](https://github.com/janl/mustache.js/) for its templating engine.  Components that render something have at least one template associated with them as `this.template`.
 
-### [Lateralus.Component.View](http://jellyvision.github.io/lateralus/dist/doc/classes/Lateralus.Component.View.html)
+### [Lateralus.Component.View](http://jellyvision.github.io/lateralus/docs/classes/Lateralus.Component.View.html)
 
 This Object extends [`Backbone.View`](http://backbonejs.org/#View) with Lateralus-specific functionality.  Here's a basic `Lateralus.Component.View` subclass module:
 
@@ -224,12 +224,12 @@ The view will automatically have properties `this.$container` and `this.$header`
 
 `Lateralus.Component.View` transparently renders its template for you.  `this.renderTemplate` is called by `Lateralus.Component.View.prototype.initialize` (which is why you should generally call `baseProto.initialize` as demonstrated above), but you are free to do further rendering with `this.render`.  `this.render` should be used for partial updates, whereas `this.renderTemplate` should be used to completely replace the contents of the View's `$el` with whatever is in `this.template`.
 
-### [Lateralus.Component.Model](http://jellyvision.github.io/lateralus/dist/doc/classes/Lateralus.Model.html)
+### [Lateralus.Component.Model](http://jellyvision.github.io/lateralus/docs/classes/Lateralus.Model.html)
 
 Similarly to `Lateralus.Component.View`, this object extends its Backbone counterpart &mdash; `Backbone.Model`.  This doesn't add much in the way of new functionality, but it does have a reference to the central `Lateralus` instance and can therefore `emit` and `listenFor` messages.
 
 
-### [Lateralus.Component.Collection](http://jellyvision.github.io/lateralus/dist/doc/classes/Lateralus.Collection.html)
+### [Lateralus.Component.Collection](http://jellyvision.github.io/lateralus/docs/classes/Lateralus.Collection.html)
 
 Just like `Lateralus.Component.Model`, this works consistently with `Backbone.Collection`, but in a way that is compatible with Lateralus.
 
@@ -259,12 +259,12 @@ The tests are also run by the default `grunt` task.
 
 Once things are ready, you should use `npm version`.
 This will:
- - change the version in the `package.json` file. 
+ - change the version in the `package.json` file.
  - build the documentation (with the new version).
  - commit the new documentation
  - tag the new version
  - push to the repo.
- 
+
 Bower files no longer require a `version` attribute and bower ignores then in lieu of git tags anyway!
- 
+
 Once this is done, Travis will publish the change to NPM.
