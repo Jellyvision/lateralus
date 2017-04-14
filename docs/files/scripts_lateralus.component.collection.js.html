@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>scripts/lateralus.router.js - Lateralus</title>
+    <title>scripts/lateralus.component.collection.js - Lateralus</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -17,7 +17,7 @@
                 <h1><img src="http://cdn.jellyvision.com/wp-content/themes/jellyvision/img/header-logo.png" title="Lateralus"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.10.2</em>
+            <em>API Docs for: 0.10.3</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -83,7 +83,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1 class="file-heading">File: scripts/lateralus.router.js</h1>
+<h1 class="file-heading">File: scripts/lateralus.component.collection.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -104,42 +104,84 @@ define([
 ) {
   &#x27;use strict&#x27;;
 
+  var Base = Backbone.Collection;
+  var baseProto = Base.prototype;
   var fn = {};
 
-  // jshint maxlen:100
   /**
-   * This class builds on the ideas and APIs of
-   * [&#x60;Backbone.Router&#x60;](http://backbonejs.org/#Router).  The constructor for
-   * this class should not be called by application code.  Instead, use
-   * &#x60;{{#crossLink &quot;Lateralus/initRouter&quot;}}{{/crossLink}}&#x60;.
+   * The constructor for this class should not be called by application code,
+   * should only be called by &#x60;{{#crossLink
+   * &quot;Lateralus.Component.initCollection:method&quot;}}{{/crossLink}}&#x60;.
    * @private
-   * @class Lateralus.Router
-   * @param {Lateralus} lateralus
-   * @extends {Backbone.Router}
-   * @uses Lateralus.mixins
+   * @param {Array.(Lateralus.Component.Model)} models
+   * @param {Object} options
+   * @param {Lateralus} options.lateralus
+   * @param {Lateralus.Component} options.component
    * @constructor
    */
-  fn.constructor = function (lateralus) {
-    this.lateralus = lateralus;
+  fn.constructor = function (models, options) {
+    this.lateralus = options.lateralus;
+    this.component = options.component;
     this.delegateLateralusEvents();
-    Backbone.Router.apply(this, arguments);
+    Base.apply(this, arguments);
   };
 
+  /**
+   * @override
+   */
+  fn.set = function (models, options) {
+    var augmentedOptions = _.extend(options || {}, {
+      lateralus: this.lateralus
+      ,component: this.component
+    });
+
+    return baseProto.set.call(this, models, augmentedOptions);
+  };
+
+  /**
+   * Remove a &#x60;{{#crossLink &quot;Lateralus.Component.Model&quot;}}{{/crossLink}}&#x60; or
+   * array of &#x60;{{#crossLink &quot;Lateralus.Component.Model&quot;}}{{/crossLink}}&#x60;s from
+   * this collection.
+   * @param {Array.(Lateralus.Component.Model)|Lateralus.Component.Model} models
+   * @param {Object} [options] This object is also passed to
+   * [Backbone.Collection.#remove](http://backbonejs.org/#Collection-remove).
+   * @param {boolean} [options.dispose] If true, call &#x60;{{#crossLink
+   * &quot;Lateralus.Component.Model/dispose:method&quot;}}{{/crossLink}}&#x60; after removing
+   * &#x60;models&#x60;.
+   * @method remove
+   * @override
+   */
+  fn.remove = function (models, options) {
+    options = options || {};
+    baseProto.remove.apply(this, arguments);
+
+    if (options.dispose) {
+      models = _.isArray(models) ? models : [models];
+      _.invoke(models, &#x27;dispose&#x27;);
+    }
+  };
 
   _.extend(fn, mixins);
 
-  var LateralusRouter = Backbone.Router.extend(fn);
+  /**
+   * This class builds on the ideas and APIs of
+   * [&#x60;Backbone.Collection&#x60;](http://backbonejs.org/#Collection).
+   * @class Lateralus.Collection
+   * @extends {Backbone.Collection}
+   * @uses Lateralus.mixins
+   */
+  var LateralusCollection = Base.extend(fn);
 
   /**
    * @method toString
-   * @return {string} The name of this Router.  This is used internally by
+   * @return {string} The name of this Collection.  This is used internally by
    * Lateralus.
    */
-  LateralusRouter.prototype.toString = function () {
-    return this.lateralus.toString() + &#x27;-router&#x27;;
+  LateralusCollection.prototype.toString = function () {
+    return this.lateralus.toString() + &#x27;-collection&#x27;;
   };
 
-  return LateralusRouter;
+  return LateralusCollection;
 });
 
     </pre>

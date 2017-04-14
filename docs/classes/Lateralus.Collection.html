@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Lateralus.mixins - Lateralus</title>
+    <title>Lateralus.Collection - Lateralus</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -17,7 +17,7 @@
                 <h1><img src="http://cdn.jellyvision.com/wp-content/themes/jellyvision/img/header-logo.png" title="Lateralus"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.10.2</em>
+            <em>API Docs for: 0.10.3</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -83,12 +83,21 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1>Lateralus.mixins Class</h1>
+<h1>Lateralus.Collection Class</h1>
 <div class="box meta">
+        <div class="uses">
+            Uses
+            <ul class="inline commas">
+                    <li><a href="Lateralus.mixins.html">Lateralus.mixins</a></li>
+            </ul>
+        </div>
 
+        <div class="extends">
+            Extends Backbone.Collection
+        </div>
 
         <div class="foundat">
-            Defined in: <a href="../files/scripts_lateralus.mixins.js.html#l12"><code>scripts&#x2F;lateralus.mixins.js:12</code></a>
+            Defined in: <a href="../files/scripts_lateralus.component.collection.js.html#l77"><code>scripts&#x2F;lateralus.component.collection.js:77</code></a>
         </div>
 
 
@@ -96,8 +105,8 @@
 
 
 <div class="box intro">
-    <p>These method are mixed into <code><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a></code>,
-<code><a href="../classes/Lateralus.Component.html" class="crosslink">Lateralus.Component</a></code>, and <code><a href="../classes/Lateralus.Component.View.html" class="crosslink">Lateralus.Component.View</a></code>.</p>
+    <p>This class builds on the ideas and APIs of
+<a href="http://backbonejs.org/#Collection"><code>Backbone.Collection</code></a>.</p>
 
 </div>
 
@@ -117,45 +126,53 @@
                 <div class="index-section methods">
                     <h3>Methods</h3>
 
-                    <ul class="index-list methods">
-                            <li class="index-item method">
+                    <ul class="index-list methods extends">
+                            <li class="index-item method inherited">
                                 <a href="#method_addComponent">addComponent</a>
 
                             </li>
-                            <li class="index-item method">
+                            <li class="index-item method inherited">
                                 <a href="#method_amplify">amplify</a>
 
                             </li>
-                            <li class="index-item method">
+                            <li class="index-item method inherited">
                                 <a href="#method_collect">collect</a>
 
                             </li>
-                            <li class="index-item method">
+                            <li class="index-item method inherited">
                                 <a href="#method_collectOne">collectOne</a>
 
                             </li>
-                            <li class="index-item method">
+                            <li class="index-item method inherited">
                                 <a href="#method_delegateLateralusEvents">delegateLateralusEvents</a>
 
                             </li>
-                            <li class="index-item method">
+                            <li class="index-item method inherited">
                                 <a href="#method_emit">emit</a>
 
                             </li>
-                            <li class="index-item method">
+                            <li class="index-item method inherited">
                                 <a href="#method_initCollection">initCollection</a>
 
                             </li>
-                            <li class="index-item method">
+                            <li class="index-item method inherited">
                                 <a href="#method_initModel">initModel</a>
 
                             </li>
-                            <li class="index-item method">
+                            <li class="index-item method inherited">
                                 <a href="#method_listenFor">listenFor</a>
 
                             </li>
-                            <li class="index-item method">
+                            <li class="index-item method inherited">
                                 <a href="#method_mixin">mixin</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_remove">remove</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_toString">toString</a>
 
                             </li>
                     </ul>
@@ -164,28 +181,28 @@
                 <div class="index-section properties">
                     <h3>Properties</h3>
 
-                    <ul class="index-list properties">
-                            <li class="index-item property private">
+                    <ul class="index-list properties extends">
+                            <li class="index-item property private inherited">
                                 <a href="#property_componentCounters">componentCounters</a>
 
                             </li>
-                            <li class="index-item property">
+                            <li class="index-item property inherited">
                                 <a href="#property_components">components</a>
 
                             </li>
-                            <li class="index-item property">
+                            <li class="index-item property inherited">
                                 <a href="#property_lateralusEvents">lateralusEvents</a>
 
                             </li>
-                            <li class="index-item property">
+                            <li class="index-item property inherited">
                                 <a href="#property_modelEvents">modelEvents</a>
 
                             </li>
-                            <li class="index-item property">
+                            <li class="index-item property inherited">
                                 <a href="#property_provide">provide</a>
 
                             </li>
-                            <li class="index-item property private">
+                            <li class="index-item property private inherited">
                                 <a href="#property_PROVIDE_PREFIX">PROVIDE_PREFIX</a>
 
                             </li>
@@ -198,7 +215,7 @@
             <div id="methods" class="api-class-tabpanel">
                 <h2 class="off-left">Methods</h2>
 
-<div id="method_addComponent" class="method item">
+<div id="method_addComponent" class="method item inherited">
     <h3 class="name"><code>addComponent</code></h3>
 
         <div class="args">
@@ -226,8 +243,8 @@
 
 
     <div class="meta">
-                <p>
-                Defined in
+                <p>Inherited from
+                <a href="../classes/Lateralus.mixins.html#method_addComponent">Lateralus.mixins</a>:
         <a href="../files/scripts_lateralus.mixins.js.html#l40"><code>scripts&#x2F;lateralus.mixins.js:40</code></a>
         </p>
 
@@ -236,16 +253,16 @@
     </div>
 
     <div class="description">
-        <p>Add a subcomponent to a <code><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a></code> or
-<code><a href="../classes/Lateralus.Component.html" class="crosslink">Lateralus.Component</a></code> instance.</p>
-<pre class="code prettyprint"><code>var App = Lateralus.beget(function () {
-  Lateralus.apply(this, arguments);
-});
+        Add a subcomponent to a <code>{{#crossLink &quot;Lateralus&quot;}}{{&#x2F;crossLink}}</code> or
+<code>{{#crossLink &quot;Lateralus.Component&quot;}}{{&#x2F;crossLink}}</code> instance.
 
-var app = new App(document.getElementById('app'));
-var component = app.addComponent(Lateralus.Component);
-var subcomponent = component.addComponent(Lateralus.Component);</code></pre>
+    var App = Lateralus.beget(function () {
+      Lateralus.apply(this, arguments);
+    });
 
+    var app = new App(document.getElementById('app'));
+    var component = app.addComponent(Lateralus.Component);
+    var subcomponent = component.addComponent(Lateralus.Component);
     </div>
 
         <div class="params">
@@ -258,8 +275,7 @@ var subcomponent = component.addComponent(Lateralus.Component);</code></pre>
 
 
                     <div class="param-description">
-                        <p>A constructor, not an instance.</p>
-
+                        A constructor, not an instance.
                     </div>
 
                 </li>
@@ -270,9 +286,9 @@ var subcomponent = component.addComponent(Lateralus.Component);</code></pre>
 
 
                     <div class="param-description">
-                        <p>The <code>options</code> object to be passed along to
-the <code>Component</code> parameter's <a href="../classes/Lateralus.Component.View.html" class="crosslink">Lateralus.Component.View</a> instance.</p>
-
+                        The <code>options</code> object to be passed along to
+the <code>Component</code> parameter's {{#crossLink
+"Lateralus.Component.View"}}{{/crossLink}} instance.
                     </div>
 
                 </li>
@@ -283,8 +299,8 @@ the <code>Component</code> parameter's <a href="../classes/Lateralus.Component.V
 
 
                     <div class="param-description">
-                        <p>Gets passed to the new <a href="../classes/Lateralus.Component.html" class="crosslink">Lateralus.Component</a> instance.</p>
-
+                        Gets passed to the new {{#crossLink
+"Lateralus.Component"}}{{/crossLink}} instance.
                     </div>
 
                         <ul class="params-list">
@@ -324,14 +340,13 @@ instance, if there is one.</p>
 
             <div class="returns-description">
                         <span class="type"><a href="../classes/Lateralus.Component.html" class="crosslink">Lateralus.Component</a></span>:
-                    <p>The component that was added.</p>
-
+                    The component that was added.
             </div>
         </div>
 
 
 </div>
-<div id="method_amplify" class="method item">
+<div id="method_amplify" class="method item inherited">
     <h3 class="name"><code>amplify</code></h3>
 
         <div class="args">
@@ -353,8 +368,8 @@ instance, if there is one.</p>
 
 
     <div class="meta">
-                <p>
-                Defined in
+                <p>Inherited from
+                <a href="../classes/Lateralus.mixins.html#method_amplify">Lateralus.mixins</a>:
         <a href="../files/scripts_lateralus.mixins.js.html#l172"><code>scripts&#x2F;lateralus.mixins.js:172</code></a>
         </p>
 
@@ -363,11 +378,10 @@ instance, if there is one.</p>
     </div>
 
     <div class="description">
-        <p>Listen to an event-emitting Object and amplify one of its events across
-the <a href="../classes/Lateralus.html" class="crosslink">Lateralus</a> application.  Useful for
+        Listen to an event-emitting Object and amplify one of its events across
+the {{#crossLink "Lateralus"}}{{/crossLink}} application.  Useful for
 making plain Backbone Objects (i.e., non-Lateralus Objects) communicate
-important information in a broader way.</p>
-
+important information in a broader way.
     </div>
 
         <div class="params">
@@ -380,9 +394,8 @@ important information in a broader way.</p>
 
 
                     <div class="param-description">
-                        <p>The object that <code>trigger</code>s events that
-should be amplified globally across the app.</p>
-
+                        The object that <code>trigger</code>s events that
+should be amplified globally across the app.
                     </div>
 
                 </li>
@@ -392,8 +405,7 @@ should be amplified globally across the app.</p>
 
 
                     <div class="param-description">
-                        <p>The event to amplify globally across the app.</p>
-
+                        The event to amplify globally across the app.
                     </div>
 
                 </li>
@@ -403,7 +415,7 @@ should be amplified globally across the app.</p>
 
 
 </div>
-<div id="method_collect" class="method item">
+<div id="method_collect" class="method item inherited">
     <h3 class="name"><code>collect</code></h3>
 
         <div class="args">
@@ -428,8 +440,8 @@ should be amplified globally across the app.</p>
 
 
     <div class="meta">
-                <p>
-                Defined in
+                <p>Inherited from
+                <a href="../classes/Lateralus.mixins.html#method_collect">Lateralus.mixins</a>:
         <a href="../files/scripts_lateralus.mixins.js.html#l219"><code>scripts&#x2F;lateralus.mixins.js:219</code></a>
         </p>
 
@@ -438,10 +450,11 @@ should be amplified globally across the app.</p>
     </div>
 
     <div class="description">
-        <p>Execute any <code><a href="../classes/Lateralus.mixins.html#property_provide" class="crosslink">provide</a></code> handlers that have
-been set up in the app and return an array of the returned values.</p>
-<p>Values that are <code>undefined</code> are excluded from the returned Array.</p>
+        Execute any `{{#crossLink
+"Lateralus.mixins/provide:property"}}{{/crossLink}}` handlers that have
+been set up in the app and return an array of the returned values.
 
+Values that are <code>undefined</code> are excluded from the returned Array.
     </div>
 
         <div class="params">
@@ -454,8 +467,8 @@ been set up in the app and return an array of the returned values.</p>
 
 
                     <div class="param-description">
-                        <p>The name of the <code><a href="../classes/Lateralus.mixins.html#property_provide" class="crosslink">provide</a></code> methods to run.</p>
-
+                        The name of the `{{#crossLink
+"Lateralus.mixins/provide:property"}}{{/crossLink}}` methods to run.
                     </div>
 
                 </li>
@@ -466,8 +479,8 @@ been set up in the app and return an array of the returned values.</p>
 
 
                     <div class="param-description">
-                        <p>Any parameters to pass along to <code><a href="../classes/Lateralus.mixins.html#property_provide" class="crosslink">provide</a></code> methods.</p>
-
+                        Any parameters to pass along to `{{#crossLink
+"Lateralus.mixins/provide:property"}}{{/crossLink}}` methods.
                     </div>
 
                 </li>
@@ -484,7 +497,7 @@ been set up in the app and return an array of the returned values.</p>
 
 
 </div>
-<div id="method_collectOne" class="method item">
+<div id="method_collectOne" class="method item inherited">
     <h3 class="name"><code>collectOne</code></h3>
 
         <div class="args">
@@ -509,8 +522,8 @@ been set up in the app and return an array of the returned values.</p>
 
 
     <div class="meta">
-                <p>
-                Defined in
+                <p>Inherited from
+                <a href="../classes/Lateralus.mixins.html#method_collectOne">Lateralus.mixins</a>:
         <a href="../files/scripts_lateralus.mixins.js.html#l244"><code>scripts&#x2F;lateralus.mixins.js:244</code></a>
         </p>
 
@@ -519,9 +532,9 @@ been set up in the app and return an array of the returned values.</p>
     </div>
 
     <div class="description">
-        <p>Execute any <code><a href="../classes/Lateralus.mixins.html#property_provide" class="crosslink">provide</a></code> handlers that have
-been set up in the app and return the first value.</p>
-
+        Execute any `{{#crossLink
+"Lateralus.mixins/provide:property"}}{{/crossLink}}` handlers that have
+been set up in the app and return the first value.
     </div>
 
         <div class="params">
@@ -534,8 +547,8 @@ been set up in the app and return the first value.</p>
 
 
                     <div class="param-description">
-                        <p>The name of the <code><a href="../classes/Lateralus.mixins.html#property_provide" class="crosslink">provide</a></code> methods to run.</p>
-
+                        The name of the `{{#crossLink
+"Lateralus.mixins/provide:property"}}{{/crossLink}}` methods to run.
                     </div>
 
                 </li>
@@ -546,8 +559,8 @@ been set up in the app and return the first value.</p>
 
 
                     <div class="param-description">
-                        <p>Any parameters to pass along to <code><a href="../classes/Lateralus.mixins.html#property_provide" class="crosslink">provide</a></code> methods.</p>
-
+                        Any parameters to pass along to `{{#crossLink
+"Lateralus.mixins/provide:property"}}{{/crossLink}}` methods.
                     </div>
 
                 </li>
@@ -564,7 +577,7 @@ been set up in the app and return the first value.</p>
 
 
 </div>
-<div id="method_delegateLateralusEvents" class="method item">
+<div id="method_delegateLateralusEvents" class="method item inherited">
     <h3 class="name"><code>delegateLateralusEvents</code></h3>
 
         <span class="paren">()</span>
@@ -578,8 +591,8 @@ been set up in the app and return the first value.</p>
 
 
     <div class="meta">
-                <p>
-                Defined in
+                <p>Inherited from
+                <a href="../classes/Lateralus.mixins.html#method_delegateLateralusEvents">Lateralus.mixins</a>:
         <a href="../files/scripts_lateralus.mixins.js.html#l261"><code>scripts&#x2F;lateralus.mixins.js:261</code></a>
         </p>
 
@@ -588,16 +601,16 @@ been set up in the app and return the first value.</p>
     </div>
 
     <div class="description">
-        <p>Bind <code><a href="../classes/Lateralus.mixins.html#property_lateralusEvents" class="crosslink">lateralusEvents</a></code>, if it is
-defined.</p>
-
+        Bind `{{#crossLink
+"Lateralus.mixins/lateralusEvents:property"}}{{/crossLink}}`, if it is
+defined.
     </div>
 
 
 
 
 </div>
-<div id="method_emit" class="method item">
+<div id="method_emit" class="method item inherited">
     <h3 class="name"><code>emit</code></h3>
 
         <div class="args">
@@ -619,8 +632,8 @@ defined.</p>
 
 
     <div class="meta">
-                <p>
-                Defined in
+                <p>Inherited from
+                <a href="../classes/Lateralus.mixins.html#method_emit">Lateralus.mixins</a>:
         <a href="../files/scripts_lateralus.mixins.js.html#l130"><code>scripts&#x2F;lateralus.mixins.js:130</code></a>
         </p>
 
@@ -629,27 +642,28 @@ defined.</p>
     </div>
 
     <div class="description">
-        <p>Components should never communicate directly with one another in order to
+        Components should never communicate directly with one another in order to
 maintain a loosely-coupled architecture.  Instead, they should just
-broadcast general messages with the <a href="http://backbonejs.org/#Events"><code>Backbone.Events</code>
-API</a>.  <code>emit</code> facilitates this loose
+broadcast general messages with the [<code>Backbone.Events</code>
+API](http://backbonejs.org/#Events).  <code>emit</code> facilitates this loose
 coupling by firing an event that bubbles throughout the app, depending on
-what calls it:</p>
-<ul>
-<li>If this is called by <code><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a></code>, this
-just triggers an event on that <code><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a></code>
-instance.</li>
-<li>If this is called by a <code><a href="../classes/Lateralus.Component.html" class="crosslink">Lateralus.Component</a></code>, this triggers an event on that
-<code><a href="../classes/Lateralus.Component.html" class="crosslink">Lateralus.Component</a></code> as well as the
-central <code><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a></code> instance.</li>
-<li>If this is called by a <code><a href="../classes/Lateralus.Component.View.html" class="crosslink">Lateralus.Component.View</a></code>, this triggers an event on
-that <code><a href="../classes/Lateralus.Component.View.html" class="crosslink">Lateralus.Component.View</a></code>, the
-<code><a href="../classes/Lateralus.Component.html" class="crosslink">Lateralus.Component</a></code> to which it belongs,
-and the central <code><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a></code> instance.</li>
-</ul>
-<p>This method has the same method signature as
-<a href="http://backbonejs.org/#Events-trigger"><code>Backbone.Events.trigger</code></a>.</p>
+what calls it:
 
+* If this is called by <code>{{#crossLink &quot;Lateralus&quot;}}{{&#x2F;crossLink}}</code>, this
+just triggers an event on that <code>{{#crossLink &quot;Lateralus&quot;}}{{&#x2F;crossLink}}</code>
+instance.
+* If this is called by a `{{#crossLink
+"Lateralus.Component"}}{{/crossLink}}`, this triggers an event on that
+<code>{{#crossLink &quot;Lateralus.Component&quot;}}{{&#x2F;crossLink}}</code> as well as the
+central <code>{{#crossLink &quot;Lateralus&quot;}}{{&#x2F;crossLink}}</code> instance.
+* If this is called by a `{{#crossLink
+"Lateralus.Component.View"}}{{/crossLink}}`, this triggers an event on
+that <code>{{#crossLink &quot;Lateralus.Component.View&quot;}}{{&#x2F;crossLink}}</code>, the
+<code>{{#crossLink &quot;Lateralus.Component&quot;}}{{&#x2F;crossLink}}</code> to which it belongs,
+and the central <code>{{#crossLink &quot;Lateralus&quot;}}{{&#x2F;crossLink}}</code> instance.
+
+This method has the same method signature as
+[<code>Backbone.Events.trigger</code>](http://backbonejs.org/#Events-trigger).
     </div>
 
         <div class="params">
@@ -662,8 +676,7 @@ and the central <code><a href="../classes/Lateralus.html" class="crosslink">Late
 
 
                     <div class="param-description">
-                        <p>The name of the event.</p>
-
+                        The name of the event.
                     </div>
 
                 </li>
@@ -674,8 +687,7 @@ and the central <code><a href="../classes/Lateralus.html" class="crosslink">Late
 
 
                     <div class="param-description">
-                        <p>Any arguments to pass along to the listeners.</p>
-
+                        Any arguments to pass along to the listeners.
                     </div>
 
                 </li>
@@ -685,7 +697,7 @@ and the central <code><a href="../classes/Lateralus.html" class="crosslink">Late
 
 
 </div>
-<div id="method_initCollection" class="method item">
+<div id="method_initCollection" class="method item inherited">
     <h3 class="name"><code>initCollection</code></h3>
 
         <div class="args">
@@ -713,8 +725,8 @@ and the central <code><a href="../classes/Lateralus.html" class="crosslink">Late
 
 
     <div class="meta">
-                <p>
-                Defined in
+                <p>Inherited from
+                <a href="../classes/Lateralus.mixins.html#method_initCollection">Lateralus.mixins</a>:
         <a href="../files/scripts_lateralus.mixins.js.html#l438"><code>scripts&#x2F;lateralus.mixins.js:438</code></a>
         </p>
 
@@ -736,9 +748,8 @@ and the central <code><a href="../classes/Lateralus.html" class="crosslink">Late
 
 
                     <div class="param-description">
-                        <p>A constructor, not an
-instance.</p>
-
+                        A constructor, not an
+instance.
                     </div>
 
                 </li>
@@ -749,7 +760,7 @@ instance.</p>
 
 
                     <div class="param-description">
-                        
+                         
                     </div>
 
                 </li>
@@ -760,7 +771,7 @@ instance.</p>
 
 
                     <div class="param-description">
-                        
+                         
                     </div>
 
                 </li>
@@ -772,15 +783,14 @@ instance.</p>
 
             <div class="returns-description">
                         <span class="type">Lateralus.Component.Collection</span>:
-                    <p>Am instance of the provided
-Collection constructor.</p>
-
+                    Am instance of the provided
+Collection constructor.
             </div>
         </div>
 
 
 </div>
-<div id="method_initModel" class="method item">
+<div id="method_initModel" class="method item inherited">
     <h3 class="name"><code>initModel</code></h3>
 
         <div class="args">
@@ -808,8 +818,8 @@ Collection constructor.</p>
 
 
     <div class="meta">
-                <p>
-                Defined in
+                <p>Inherited from
+                <a href="../classes/Lateralus.mixins.html#method_initModel">Lateralus.mixins</a>:
         <a href="../files/scripts_lateralus.mixins.js.html#l421"><code>scripts&#x2F;lateralus.mixins.js:421</code></a>
         </p>
 
@@ -831,8 +841,7 @@ Collection constructor.</p>
 
 
                     <div class="param-description">
-                        <p>A constructor, not an instance.</p>
-
+                        A constructor, not an instance.
                     </div>
 
                 </li>
@@ -843,7 +852,7 @@ Collection constructor.</p>
 
 
                     <div class="param-description">
-                        
+                         
                     </div>
 
                 </li>
@@ -854,7 +863,7 @@ Collection constructor.</p>
 
 
                     <div class="param-description">
-                        
+                         
                     </div>
 
                 </li>
@@ -866,15 +875,14 @@ Collection constructor.</p>
 
             <div class="returns-description">
                         <span class="type"><a href="../classes/Lateralus.Component.Model.html" class="crosslink">Lateralus.Component.Model</a></span>:
-                    <p>An instance of the provided Model
-constructor.</p>
-
+                    An instance of the provided Model
+constructor.
             </div>
         </div>
 
 
 </div>
-<div id="method_listenFor" class="method item">
+<div id="method_listenFor" class="method item inherited">
     <h3 class="name"><code>listenFor</code></h3>
 
         <div class="args">
@@ -896,8 +904,8 @@ constructor.</p>
 
 
     <div class="meta">
-                <p>
-                Defined in
+                <p>Inherited from
+                <a href="../classes/Lateralus.mixins.html#method_listenFor">Lateralus.mixins</a>:
         <a href="../files/scripts_lateralus.mixins.js.html#l186"><code>scripts&#x2F;lateralus.mixins.js:186</code></a>
         </p>
 
@@ -906,8 +914,8 @@ constructor.</p>
     </div>
 
     <div class="description">
-        <p>Listen for an event that is triggered on the central <a href="../classes/Lateralus.html" class="crosslink">Lateralus</a> instance and bind a function handler.</p>
-
+        Listen for an event that is triggered on the central {{#crossLink
+"Lateralus"}}{{/crossLink}} instance and bind a function handler.
     </div>
 
         <div class="params">
@@ -920,8 +928,7 @@ constructor.</p>
 
 
                     <div class="param-description">
-                        <p>The name of the event to listen for.</p>
-
+                        The name of the event to listen for.
                     </div>
 
                 </li>
@@ -931,8 +938,7 @@ constructor.</p>
 
 
                     <div class="param-description">
-                        <p>The function handler to bind.</p>
-
+                        The function handler to bind.
                     </div>
 
                 </li>
@@ -942,7 +948,7 @@ constructor.</p>
 
 
 </div>
-<div id="method_mixin" class="method item">
+<div id="method_mixin" class="method item inherited">
     <h3 class="name"><code>mixin</code></h3>
 
         <div class="args">
@@ -961,8 +967,8 @@ constructor.</p>
 
 
     <div class="meta">
-                <p>
-                Defined in
+                <p>Inherited from
+                <a href="../classes/Lateralus.mixins.html#method_mixin">Lateralus.mixins</a>:
         <a href="../files/scripts_lateralus.mixins.js.html#l452"><code>scripts&#x2F;lateralus.mixins.js:452</code></a>
         </p>
 
@@ -971,10 +977,9 @@ constructor.</p>
     </div>
 
     <div class="description">
-        <p>Merge the properties of another object into this object.  If the <code>mixin</code>
+        Merge the properties of another object into this object.  If the <code>mixin</code>
 configuration object has a method called <code>initialize</code>, it is called in the
-context of the object calling this function.</p>
-
+context of the object calling this function.
     </div>
 
         <div class="params">
@@ -987,7 +992,93 @@ context of the object calling this function.</p>
 
 
                     <div class="param-description">
-                        <p>The object to mix in to this one.</p>
+                        The object to mix in to this one.
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_remove" class="method item">
+    <h3 class="name"><code>remove</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>models</code>
+                </li>
+                <li class="arg">
+                        <code>[options] This object is also passed to
+[Backbone.Collection.#remove]</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[options.dispose]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/scripts_lateralus.component.collection.js.html#l52"><code>scripts&#x2F;lateralus.component.collection.js:52</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Remove a <code><a href="../classes/Lateralus.Component.Model.html" class="crosslink">Lateralus.Component.Model</a></code> or
+array of <code><a href="../classes/Lateralus.Component.Model.html" class="crosslink">Lateralus.Component.Model</a></code>s from
+this collection.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">models</code>
+                        <span class="type">Array.(Lateralus.Component.Model) | <a href="../classes/Lateralus.Component.Model.html" class="crosslink">Lateralus.Component.Model</a></span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">[options] This object is also passed to
+[Backbone.Collection.#remove]</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>(<a href="http://backbonejs.org/#Collection-remove">http://backbonejs.org/#Collection-remove</a>).</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[options.dispose]</code>
+                        <span class="type">Boolean</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>If true, call <code><a href="../classes/Lateralus.Component.Model.html#method_dispose" class="crosslink">dispose</a></code> after removing
+<code>models</code>.</p>
 
                     </div>
 
@@ -998,12 +1089,55 @@ context of the object calling this function.</p>
 
 
 </div>
+<div id="method_toString" class="method item">
+    <h3 class="name"><code>toString</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">String</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/scripts_lateralus.component.collection.js.html#l86"><code>scripts&#x2F;lateralus.component.collection.js:86</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">String</span>:
+                    <p>The name of this Collection.  This is used internally by
+Lateralus.</p>
+
+            </div>
+        </div>
+
+
+</div>
             </div>
 
             <div id="properties" class="api-class-tabpanel">
                 <h2 class="off-left">Properties</h2>
 
-<div id="property_componentCounters" class="property item private">
+<div id="property_componentCounters" class="property item private inherited">
     <h3 class="name"><code>componentCounters</code></h3>
     <span class="type">Object(number)</span>
 
@@ -1013,8 +1147,8 @@ context of the object calling this function.</p>
 
 
     <div class="meta">
-                <p>
-                Defined in
+                <p>Inherited from
+                <a href="../classes/Lateralus.mixins.html#property_componentCounters">Lateralus.mixins</a>:
         <a href="../files/scripts_lateralus.mixins.js.html#l91"><code>scripts&#x2F;lateralus.mixins.js:91</code></a>
         </p>
 
@@ -1022,15 +1156,14 @@ context of the object calling this function.</p>
     </div>
 
     <div class="description">
-        <p>An internal counter registry of the subcomponents belonging to this
-object.</p>
-
+        An internal counter registry of the subcomponents belonging to this
+object.
     </div>
 
 
 
 </div>
-<div id="property_components" class="property item">
+<div id="property_components" class="property item inherited">
     <h3 class="name"><code>components</code></h3>
     <span class="type">Object(Lateralus.Component)</span>
 
@@ -1039,8 +1172,8 @@ object.</p>
 
 
     <div class="meta">
-                <p>
-                Defined in
+                <p>Inherited from
+                <a href="../classes/Lateralus.mixins.html#property_components">Lateralus.mixins</a>:
         <a href="../files/scripts_lateralus.mixins.js.html#l83"><code>scripts&#x2F;lateralus.mixins.js:83</code></a>
         </p>
 
@@ -1048,15 +1181,14 @@ object.</p>
     </div>
 
     <div class="description">
-        <p>The subcomponents belonging to this object.  Do not modify this
-property directly, it is managed by Lateralus.</p>
-
+        The subcomponents belonging to this object.  Do not modify this
+property directly, it is managed by Lateralus.
     </div>
 
 
 
 </div>
-<div id="property_lateralusEvents" class="property item">
+<div id="property_lateralusEvents" class="property item inherited">
     <h3 class="name"><code>lateralusEvents</code></h3>
     <span class="type">Object | Undefined</span>
 
@@ -1065,8 +1197,8 @@ property directly, it is managed by Lateralus.</p>
 
 
     <div class="meta">
-                <p>
-                Defined in
+                <p>Inherited from
+                <a href="../classes/Lateralus.mixins.html#property_lateralusEvents">Lateralus.mixins</a>:
         <a href="../files/scripts_lateralus.mixins.js.html#l272"><code>scripts&#x2F;lateralus.mixins.js:272</code></a>
         </p>
 
@@ -1074,32 +1206,32 @@ property directly, it is managed by Lateralus.</p>
     </div>
 
     <div class="description">
-        <p>A map of functions or string references to functions that will
-handle <a href="http://backbonejs.org/#Events">events</a> dispatched to the
-central <code><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a></code> instance.</p>
-<pre class="code prettyprint"><code>var ExtendedComponent = Lateralus.Component.extend({
-  name: 'extended'
+        A map of functions or string references to functions that will
+handle [events](http://backbonejs.org/#Events) dispatched to the
+central <code>{{#crossLink &quot;Lateralus&quot;}}{{&#x2F;crossLink}}</code> instance.
 
-  ,lateralusEvents: {
-    anotherComponentChanged: 'onAnotherComponentChanged'
+    var ExtendedComponent = Lateralus.Component.extend({
+      name: 'extended'
 
-    ,anotherComponentDestroyed: function () {
-      // ...
-    }
-  }
+      ,lateralusEvents: {
+        anotherComponentChanged: 'onAnotherComponentChanged'
 
-  ,onAnotherComponentChanged: function () {
-    // ...
-  }
-});</code></pre>
+        ,anotherComponentDestroyed: function () {
+          // ...
+        }
+      }
 
+      ,onAnotherComponentChanged: function () {
+        // ...
+      }
+    });
     </div>
 
         <p><strong>Default:</strong> undefined</p>
 
 
 </div>
-<div id="property_modelEvents" class="property item">
+<div id="property_modelEvents" class="property item inherited">
     <h3 class="name"><code>modelEvents</code></h3>
     <span class="type">Object | Undefined</span>
 
@@ -1108,8 +1240,8 @@ central <code><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a
 
 
     <div class="meta">
-                <p>
-                Defined in
+                <p>Inherited from
+                <a href="../classes/Lateralus.mixins.html#property_modelEvents">Lateralus.mixins</a>:
         <a href="../files/scripts_lateralus.mixins.js.html#l333"><code>scripts&#x2F;lateralus.mixins.js:333</code></a>
         </p>
 
@@ -1117,24 +1249,24 @@ central <code><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a
     </div>
 
     <div class="description">
-        <p>A map of functions or string references to functions that will
-handle <a href="http://backbonejs.org/#Events">events</a> emitted by
-<code>this.model</code>.</p>
-<pre class="code prettyprint"><code>var ExtendedComponent = Lateralus.View.extend({
-  modelEvents: {
-    changed:someProperty: function (model, someProperty) {
-      // ...
-    }
-  }
-});</code></pre>
+        A map of functions or string references to functions that will
+handle [events](http://backbonejs.org/#Events) emitted by
+<code>this.model</code>.
 
+    var ExtendedComponent = Lateralus.View.extend({
+      modelEvents: {
+        changed:someProperty: function (model, someProperty) {
+          // ...
+        }
+      }
+    });
     </div>
 
         <p><strong>Default:</strong> undefined</p>
 
 
 </div>
-<div id="property_provide" class="property item">
+<div id="property_provide" class="property item inherited">
     <h3 class="name"><code>provide</code></h3>
     <span class="type">Object | Undefined</span>
 
@@ -1143,8 +1275,8 @@ handle <a href="http://backbonejs.org/#Events">events</a> emitted by
 
 
     <div class="meta">
-                <p>
-                Defined in
+                <p>Inherited from
+                <a href="../classes/Lateralus.mixins.html#property_provide">Lateralus.mixins</a>:
         <a href="../files/scripts_lateralus.mixins.js.html#l298"><code>scripts&#x2F;lateralus.mixins.js:298</code></a>
         </p>
 
@@ -1152,40 +1284,41 @@ handle <a href="http://backbonejs.org/#Events">events</a> emitted by
     </div>
 
     <div class="description">
-        <p>A map of functions that will handle <code><a href="../classes/Lateralus.mixins.html#method_collect" class="crosslink">collect</a></code> calls.  Each of the
+        A map of functions that will handle `{{#crossLink
+"Lateralus.mixins/collect"}}{{/crossLink}}` calls.  Each of the
 functions attached to this Object should return a value.  These
-functions <strong>must</strong> be completely synchronous.</p>
-<pre class="code prettyprint"><code>var App = Lateralus.beget(function () {
-  Lateralus.apply(this, arguments);
-});
+functions **must** be completely synchronous.
 
-_.extend(App.prototype, {
-  provide: {
-    demoData: function () {
-      return 1;
-    }
-  }
-});
+    var App = Lateralus.beget(function () {
+      Lateralus.apply(this, arguments);
+    });
 
-var app = new App();
-var ComponentSubclass = Lateralus.Component.extend({
-  name: 'provider'
-  ,provide: {
-    demoData: function () {
-      return 2;
-    }
-  }
-});
+    _.extend(App.prototype, {
+      provide: {
+        demoData: function () {
+          return 1;
+        }
+      }
+    });
 
-app.addComponent(ComponentSubclass);
-console.log(app.collect('demoData')); // [1, 2]</code></pre>
+    var app = new App();
+    var ComponentSubclass = Lateralus.Component.extend({
+      name: 'provider'
+      ,provide: {
+        demoData: function () {
+          return 2;
+        }
+      }
+    });
 
+    app.addComponent(ComponentSubclass);
+    console.log(app.collect('demoData')); // [1, 2]
     </div>
 
 
 
 </div>
-<div id="property_PROVIDE_PREFIX" class="property item private">
+<div id="property_PROVIDE_PREFIX" class="property item private inherited">
     <h3 class="name"><code>PROVIDE_PREFIX</code></h3>
     <span class="type">String</span>
 
@@ -1196,8 +1329,8 @@ console.log(app.collect('demoData')); // [1, 2]</code></pre>
 
 
     <div class="meta">
-                <p>
-                Defined in
+                <p>Inherited from
+                <a href="../classes/Lateralus.mixins.html#property_PROVIDE_PREFIX">Lateralus.mixins</a>:
         <a href="../files/scripts_lateralus.mixins.js.html#l21"><code>scripts&#x2F;lateralus.mixins.js:21</code></a>
         </p>
 
@@ -1205,8 +1338,8 @@ console.log(app.collect('demoData')); // [1, 2]</code></pre>
     </div>
 
     <div class="description">
-        <p>Event namespace for <code><a href="../classes/Lateralus.mixins.html#property_provide" class="crosslink">provide</a></code> handlers.</p>
-
+        Event namespace for `{{#crossLink
+"Lateralus.mixins/provide:property"}}{{/crossLink}}` handlers.
     </div>
 
 

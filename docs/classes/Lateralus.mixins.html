@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Lateralus.Model - Lateralus</title>
+    <title>Lateralus.mixins - Lateralus</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -17,7 +17,7 @@
                 <h1><img src="http://cdn.jellyvision.com/wp-content/themes/jellyvision/img/header-logo.png" title="Lateralus"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.10.2</em>
+            <em>API Docs for: 0.10.3</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -83,21 +83,12 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1>Lateralus.Model Class</h1>
+<h1>Lateralus.mixins Class</h1>
 <div class="box meta">
-        <div class="uses">
-            Uses
-            <ul class="inline commas">
-                    <li><a href="Lateralus.mixins.html">Lateralus.mixins</a></li>
-            </ul>
-        </div>
 
-        <div class="extends">
-            Extends Backbone.Model
-        </div>
 
         <div class="foundat">
-            Defined in: <a href="../files/scripts_lateralus.model.js.html#l21"><code>scripts&#x2F;lateralus.model.js:21</code></a>
+            Defined in: <a href="../files/scripts_lateralus.mixins.js.html#l12"><code>scripts&#x2F;lateralus.mixins.js:12</code></a>
         </div>
 
 
@@ -105,97 +96,11 @@
 
 
 <div class="box intro">
-    <p>This class builds on the ideas and APIs of
-<a href="http://backbonejs.org/#Model"><code>Backbone.Model</code></a>.  The constructor for
-this class should not be called by application code, it is used by the
-<code><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a></code> constructor.</p>
+    <p>These method are mixed into <code><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a></code>,
+<code><a href="../classes/Lateralus.Component.html" class="crosslink">Lateralus.Component</a></code>, and <code><a href="../classes/Lateralus.Component.View.html" class="crosslink">Lateralus.Component.View</a></code>.</p>
 
 </div>
 
-    <div class="constructor">
-        <h2>Constructor</h2>
-<div id="method_Lateralus.Model" class="method item private">
-    <h3 class="name"><code>Lateralus.Model</code></h3>
-
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-                <li class="arg">
-                        <code>lateralus</code>
-                </li>
-                <li class="arg">
-                        <code class="optional">[attributes]</code>
-                </li>
-                <li class="arg">
-                        <code class="optional">[options]</code>
-                </li>
-            </ul><span class="paren">)</span>
-        </div>
-
-
-
-        <span class="flag private">private</span>
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/scripts_lateralus.model.js.html#l21"><code>scripts&#x2F;lateralus.model.js:21</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-                <li class="param">
-                        <code class="param-name">lateralus</code>
-                        <span class="type"><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a></span>
-
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                </li>
-                <li class="param">
-                        <code class="param-name optional">[attributes]</code>
-                        <span class="type">Object</span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                </li>
-                <li class="param">
-                        <code class="param-name optional">[options]</code>
-                        <span class="type">Object</span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                </li>
-            </ul>
-        </div>
-
-
-
-</div>
-    </div>
 
 <div id="classdocs" class="tabview">
     <ul class="api-class-tabs">
@@ -212,53 +117,45 @@ this class should not be called by application code, it is used by the
                 <div class="index-section methods">
                     <h3>Methods</h3>
 
-                    <ul class="index-list methods extends">
-                            <li class="index-item method inherited">
+                    <ul class="index-list methods">
+                            <li class="index-item method">
                                 <a href="#method_addComponent">addComponent</a>
 
                             </li>
-                            <li class="index-item method inherited">
+                            <li class="index-item method">
                                 <a href="#method_amplify">amplify</a>
 
                             </li>
-                            <li class="index-item method inherited">
+                            <li class="index-item method">
                                 <a href="#method_collect">collect</a>
 
                             </li>
-                            <li class="index-item method inherited">
+                            <li class="index-item method">
                                 <a href="#method_collectOne">collectOne</a>
 
                             </li>
-                            <li class="index-item method inherited">
+                            <li class="index-item method">
                                 <a href="#method_delegateLateralusEvents">delegateLateralusEvents</a>
 
                             </li>
-                            <li class="index-item method inherited">
+                            <li class="index-item method">
                                 <a href="#method_emit">emit</a>
 
                             </li>
-                            <li class="index-item method inherited">
+                            <li class="index-item method">
                                 <a href="#method_initCollection">initCollection</a>
 
                             </li>
-                            <li class="index-item method inherited">
+                            <li class="index-item method">
                                 <a href="#method_initModel">initModel</a>
 
                             </li>
-                            <li class="index-item method inherited">
+                            <li class="index-item method">
                                 <a href="#method_listenFor">listenFor</a>
 
                             </li>
-                            <li class="index-item method inherited">
+                            <li class="index-item method">
                                 <a href="#method_mixin">mixin</a>
-
-                            </li>
-                            <li class="index-item method">
-                                <a href="#method_onChange">onChange</a>
-
-                            </li>
-                            <li class="index-item method">
-                                <a href="#method_toString">toString</a>
 
                             </li>
                     </ul>
@@ -267,28 +164,28 @@ this class should not be called by application code, it is used by the
                 <div class="index-section properties">
                     <h3>Properties</h3>
 
-                    <ul class="index-list properties extends">
-                            <li class="index-item property private inherited">
+                    <ul class="index-list properties">
+                            <li class="index-item property private">
                                 <a href="#property_componentCounters">componentCounters</a>
 
                             </li>
-                            <li class="index-item property inherited">
+                            <li class="index-item property">
                                 <a href="#property_components">components</a>
 
                             </li>
-                            <li class="index-item property inherited">
+                            <li class="index-item property">
                                 <a href="#property_lateralusEvents">lateralusEvents</a>
 
                             </li>
-                            <li class="index-item property inherited">
+                            <li class="index-item property">
                                 <a href="#property_modelEvents">modelEvents</a>
 
                             </li>
-                            <li class="index-item property inherited">
+                            <li class="index-item property">
                                 <a href="#property_provide">provide</a>
 
                             </li>
-                            <li class="index-item property private inherited">
+                            <li class="index-item property private">
                                 <a href="#property_PROVIDE_PREFIX">PROVIDE_PREFIX</a>
 
                             </li>
@@ -301,7 +198,7 @@ this class should not be called by application code, it is used by the
             <div id="methods" class="api-class-tabpanel">
                 <h2 class="off-left">Methods</h2>
 
-<div id="method_addComponent" class="method item inherited">
+<div id="method_addComponent" class="method item">
     <h3 class="name"><code>addComponent</code></h3>
 
         <div class="args">
@@ -329,8 +226,8 @@ this class should not be called by application code, it is used by the
 
 
     <div class="meta">
-                <p>Inherited from
-                <a href="../classes/Lateralus.mixins.html#method_addComponent">Lateralus.mixins</a>:
+                <p>
+                Defined in
         <a href="../files/scripts_lateralus.mixins.js.html#l40"><code>scripts&#x2F;lateralus.mixins.js:40</code></a>
         </p>
 
@@ -434,7 +331,7 @@ instance, if there is one.</p>
 
 
 </div>
-<div id="method_amplify" class="method item inherited">
+<div id="method_amplify" class="method item">
     <h3 class="name"><code>amplify</code></h3>
 
         <div class="args">
@@ -456,8 +353,8 @@ instance, if there is one.</p>
 
 
     <div class="meta">
-                <p>Inherited from
-                <a href="../classes/Lateralus.mixins.html#method_amplify">Lateralus.mixins</a>:
+                <p>
+                Defined in
         <a href="../files/scripts_lateralus.mixins.js.html#l172"><code>scripts&#x2F;lateralus.mixins.js:172</code></a>
         </p>
 
@@ -506,7 +403,7 @@ should be amplified globally across the app.</p>
 
 
 </div>
-<div id="method_collect" class="method item inherited">
+<div id="method_collect" class="method item">
     <h3 class="name"><code>collect</code></h3>
 
         <div class="args">
@@ -531,8 +428,8 @@ should be amplified globally across the app.</p>
 
 
     <div class="meta">
-                <p>Inherited from
-                <a href="../classes/Lateralus.mixins.html#method_collect">Lateralus.mixins</a>:
+                <p>
+                Defined in
         <a href="../files/scripts_lateralus.mixins.js.html#l219"><code>scripts&#x2F;lateralus.mixins.js:219</code></a>
         </p>
 
@@ -587,7 +484,7 @@ been set up in the app and return an array of the returned values.</p>
 
 
 </div>
-<div id="method_collectOne" class="method item inherited">
+<div id="method_collectOne" class="method item">
     <h3 class="name"><code>collectOne</code></h3>
 
         <div class="args">
@@ -612,8 +509,8 @@ been set up in the app and return an array of the returned values.</p>
 
 
     <div class="meta">
-                <p>Inherited from
-                <a href="../classes/Lateralus.mixins.html#method_collectOne">Lateralus.mixins</a>:
+                <p>
+                Defined in
         <a href="../files/scripts_lateralus.mixins.js.html#l244"><code>scripts&#x2F;lateralus.mixins.js:244</code></a>
         </p>
 
@@ -667,7 +564,7 @@ been set up in the app and return the first value.</p>
 
 
 </div>
-<div id="method_delegateLateralusEvents" class="method item inherited">
+<div id="method_delegateLateralusEvents" class="method item">
     <h3 class="name"><code>delegateLateralusEvents</code></h3>
 
         <span class="paren">()</span>
@@ -681,8 +578,8 @@ been set up in the app and return the first value.</p>
 
 
     <div class="meta">
-                <p>Inherited from
-                <a href="../classes/Lateralus.mixins.html#method_delegateLateralusEvents">Lateralus.mixins</a>:
+                <p>
+                Defined in
         <a href="../files/scripts_lateralus.mixins.js.html#l261"><code>scripts&#x2F;lateralus.mixins.js:261</code></a>
         </p>
 
@@ -700,7 +597,7 @@ defined.</p>
 
 
 </div>
-<div id="method_emit" class="method item inherited">
+<div id="method_emit" class="method item">
     <h3 class="name"><code>emit</code></h3>
 
         <div class="args">
@@ -722,8 +619,8 @@ defined.</p>
 
 
     <div class="meta">
-                <p>Inherited from
-                <a href="../classes/Lateralus.mixins.html#method_emit">Lateralus.mixins</a>:
+                <p>
+                Defined in
         <a href="../files/scripts_lateralus.mixins.js.html#l130"><code>scripts&#x2F;lateralus.mixins.js:130</code></a>
         </p>
 
@@ -788,7 +685,7 @@ and the central <code><a href="../classes/Lateralus.html" class="crosslink">Late
 
 
 </div>
-<div id="method_initCollection" class="method item inherited">
+<div id="method_initCollection" class="method item">
     <h3 class="name"><code>initCollection</code></h3>
 
         <div class="args">
@@ -816,8 +713,8 @@ and the central <code><a href="../classes/Lateralus.html" class="crosslink">Late
 
 
     <div class="meta">
-                <p>Inherited from
-                <a href="../classes/Lateralus.mixins.html#method_initCollection">Lateralus.mixins</a>:
+                <p>
+                Defined in
         <a href="../files/scripts_lateralus.mixins.js.html#l438"><code>scripts&#x2F;lateralus.mixins.js:438</code></a>
         </p>
 
@@ -852,7 +749,7 @@ instance.</p>
 
 
                     <div class="param-description">
-                         
+                        
                     </div>
 
                 </li>
@@ -863,7 +760,7 @@ instance.</p>
 
 
                     <div class="param-description">
-                         
+                        
                     </div>
 
                 </li>
@@ -883,7 +780,7 @@ Collection constructor.</p>
 
 
 </div>
-<div id="method_initModel" class="method item inherited">
+<div id="method_initModel" class="method item">
     <h3 class="name"><code>initModel</code></h3>
 
         <div class="args">
@@ -911,8 +808,8 @@ Collection constructor.</p>
 
 
     <div class="meta">
-                <p>Inherited from
-                <a href="../classes/Lateralus.mixins.html#method_initModel">Lateralus.mixins</a>:
+                <p>
+                Defined in
         <a href="../files/scripts_lateralus.mixins.js.html#l421"><code>scripts&#x2F;lateralus.mixins.js:421</code></a>
         </p>
 
@@ -946,7 +843,7 @@ Collection constructor.</p>
 
 
                     <div class="param-description">
-                         
+                        
                     </div>
 
                 </li>
@@ -957,7 +854,7 @@ Collection constructor.</p>
 
 
                     <div class="param-description">
-                         
+                        
                     </div>
 
                 </li>
@@ -977,7 +874,7 @@ constructor.</p>
 
 
 </div>
-<div id="method_listenFor" class="method item inherited">
+<div id="method_listenFor" class="method item">
     <h3 class="name"><code>listenFor</code></h3>
 
         <div class="args">
@@ -999,8 +896,8 @@ constructor.</p>
 
 
     <div class="meta">
-                <p>Inherited from
-                <a href="../classes/Lateralus.mixins.html#method_listenFor">Lateralus.mixins</a>:
+                <p>
+                Defined in
         <a href="../files/scripts_lateralus.mixins.js.html#l186"><code>scripts&#x2F;lateralus.mixins.js:186</code></a>
         </p>
 
@@ -1045,7 +942,7 @@ constructor.</p>
 
 
 </div>
-<div id="method_mixin" class="method item inherited">
+<div id="method_mixin" class="method item">
     <h3 class="name"><code>mixin</code></h3>
 
         <div class="args">
@@ -1064,8 +961,8 @@ constructor.</p>
 
 
     <div class="meta">
-                <p>Inherited from
-                <a href="../classes/Lateralus.mixins.html#method_mixin">Lateralus.mixins</a>:
+                <p>
+                Defined in
         <a href="../files/scripts_lateralus.mixins.js.html#l452"><code>scripts&#x2F;lateralus.mixins.js:452</code></a>
         </p>
 
@@ -1101,89 +998,12 @@ context of the object calling this function.</p>
 
 
 </div>
-<div id="method_onChange" class="method item">
-    <h3 class="name"><code>onChange</code></h3>
-
-        <span class="paren">()</span>
-
-
-
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/scripts_lateralus.model.js.html#l42"><code>scripts&#x2F;lateralus.model.js:42</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        <p>For every key that is changed on this model, a corresponding <code>change:</code>
-event is <code><a href="../classes/Lateralus.mixins.html#method_emit" class="crosslink">emit</a></code>ed.
-For example, <code>set</code>ting the <code>"foo"</code> attribute will <code><a href="../classes/Lateralus.mixins.html#method_emit" class="crosslink">emit</a></code> <code>change:foo</code> and provide
-the changed value.</p>
-
-    </div>
-
-
-
-
-</div>
-<div id="method_toString" class="method item">
-    <h3 class="name"><code>toString</code></h3>
-
-        <span class="paren">()</span>
-
-        <span class="returns-inline">
-            <span class="type">String</span>
-        </span>
-
-
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/scripts_lateralus.model.js.html#l68"><code>scripts&#x2F;lateralus.model.js:68</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                        <span class="type">String</span>:
-                    <p>The name of this Model.  This is used internally by
-Lateralus.</p>
-
-            </div>
-        </div>
-
-
-</div>
             </div>
 
             <div id="properties" class="api-class-tabpanel">
                 <h2 class="off-left">Properties</h2>
 
-<div id="property_componentCounters" class="property item private inherited">
+<div id="property_componentCounters" class="property item private">
     <h3 class="name"><code>componentCounters</code></h3>
     <span class="type">Object(number)</span>
 
@@ -1193,8 +1013,8 @@ Lateralus.</p>
 
 
     <div class="meta">
-                <p>Inherited from
-                <a href="../classes/Lateralus.mixins.html#property_componentCounters">Lateralus.mixins</a>:
+                <p>
+                Defined in
         <a href="../files/scripts_lateralus.mixins.js.html#l91"><code>scripts&#x2F;lateralus.mixins.js:91</code></a>
         </p>
 
@@ -1210,7 +1030,7 @@ object.</p>
 
 
 </div>
-<div id="property_components" class="property item inherited">
+<div id="property_components" class="property item">
     <h3 class="name"><code>components</code></h3>
     <span class="type">Object(Lateralus.Component)</span>
 
@@ -1219,8 +1039,8 @@ object.</p>
 
 
     <div class="meta">
-                <p>Inherited from
-                <a href="../classes/Lateralus.mixins.html#property_components">Lateralus.mixins</a>:
+                <p>
+                Defined in
         <a href="../files/scripts_lateralus.mixins.js.html#l83"><code>scripts&#x2F;lateralus.mixins.js:83</code></a>
         </p>
 
@@ -1236,7 +1056,7 @@ property directly, it is managed by Lateralus.</p>
 
 
 </div>
-<div id="property_lateralusEvents" class="property item inherited">
+<div id="property_lateralusEvents" class="property item">
     <h3 class="name"><code>lateralusEvents</code></h3>
     <span class="type">Object | Undefined</span>
 
@@ -1245,8 +1065,8 @@ property directly, it is managed by Lateralus.</p>
 
 
     <div class="meta">
-                <p>Inherited from
-                <a href="../classes/Lateralus.mixins.html#property_lateralusEvents">Lateralus.mixins</a>:
+                <p>
+                Defined in
         <a href="../files/scripts_lateralus.mixins.js.html#l272"><code>scripts&#x2F;lateralus.mixins.js:272</code></a>
         </p>
 
@@ -1279,7 +1099,7 @@ central <code><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a
 
 
 </div>
-<div id="property_modelEvents" class="property item inherited">
+<div id="property_modelEvents" class="property item">
     <h3 class="name"><code>modelEvents</code></h3>
     <span class="type">Object | Undefined</span>
 
@@ -1288,8 +1108,8 @@ central <code><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a
 
 
     <div class="meta">
-                <p>Inherited from
-                <a href="../classes/Lateralus.mixins.html#property_modelEvents">Lateralus.mixins</a>:
+                <p>
+                Defined in
         <a href="../files/scripts_lateralus.mixins.js.html#l333"><code>scripts&#x2F;lateralus.mixins.js:333</code></a>
         </p>
 
@@ -1314,7 +1134,7 @@ handle <a href="http://backbonejs.org/#Events">events</a> emitted by
 
 
 </div>
-<div id="property_provide" class="property item inherited">
+<div id="property_provide" class="property item">
     <h3 class="name"><code>provide</code></h3>
     <span class="type">Object | Undefined</span>
 
@@ -1323,8 +1143,8 @@ handle <a href="http://backbonejs.org/#Events">events</a> emitted by
 
 
     <div class="meta">
-                <p>Inherited from
-                <a href="../classes/Lateralus.mixins.html#property_provide">Lateralus.mixins</a>:
+                <p>
+                Defined in
         <a href="../files/scripts_lateralus.mixins.js.html#l298"><code>scripts&#x2F;lateralus.mixins.js:298</code></a>
         </p>
 
@@ -1365,7 +1185,7 @@ console.log(app.collect('demoData')); // [1, 2]</code></pre>
 
 
 </div>
-<div id="property_PROVIDE_PREFIX" class="property item private inherited">
+<div id="property_PROVIDE_PREFIX" class="property item private">
     <h3 class="name"><code>PROVIDE_PREFIX</code></h3>
     <span class="type">String</span>
 
@@ -1376,8 +1196,8 @@ console.log(app.collect('demoData')); // [1, 2]</code></pre>
 
 
     <div class="meta">
-                <p>Inherited from
-                <a href="../classes/Lateralus.mixins.html#property_PROVIDE_PREFIX">Lateralus.mixins</a>:
+                <p>
+                Defined in
         <a href="../files/scripts_lateralus.mixins.js.html#l21"><code>scripts&#x2F;lateralus.mixins.js:21</code></a>
         </p>
 

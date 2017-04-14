@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Lateralus</title>
+    <title>scripts/lateralus.router.js - Lateralus</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
-    <link rel="stylesheet" href="./assets/vendor/prettify/prettify-min.css">
-    <link rel="stylesheet" href="./assets/css/main.css" id="site_styles">
-    <link rel="icon" href="./assets/favicon.ico">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
     <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
 </head>
 <body class="yui3-skin-sam">
@@ -17,7 +17,7 @@
                 <h1><img src="http://cdn.jellyvision.com/wp-content/themes/jellyvision/img/header-logo.png" title="Lateralus"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.10.2</em>
+            <em>API Docs for: 0.10.3</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -38,14 +38,14 @@
                 
                         <div id="api-tabview-panel">
                             <ul id="api-classes" class="apis classes">
-                                <li><a href="./classes/Lateralus.html">Lateralus</a></li>
-                                <li><a href="./classes/Lateralus.Collection.html">Lateralus.Collection</a></li>
-                                <li><a href="./classes/Lateralus.Component.html">Lateralus.Component</a></li>
-                                <li><a href="./classes/Lateralus.Component.Model.html">Lateralus.Component.Model</a></li>
-                                <li><a href="./classes/Lateralus.Component.View.html">Lateralus.Component.View</a></li>
-                                <li><a href="./classes/Lateralus.mixins.html">Lateralus.mixins</a></li>
-                                <li><a href="./classes/Lateralus.Model.html">Lateralus.Model</a></li>
-                                <li><a href="./classes/Lateralus.Router.html">Lateralus.Router</a></li>
+                                <li><a href="../classes/Lateralus.html">Lateralus</a></li>
+                                <li><a href="../classes/Lateralus.Collection.html">Lateralus.Collection</a></li>
+                                <li><a href="../classes/Lateralus.Component.html">Lateralus.Component</a></li>
+                                <li><a href="../classes/Lateralus.Component.Model.html">Lateralus.Component.Model</a></li>
+                                <li><a href="../classes/Lateralus.Component.View.html">Lateralus.Component.View</a></li>
+                                <li><a href="../classes/Lateralus.mixins.html">Lateralus.mixins</a></li>
+                                <li><a href="../classes/Lateralus.Model.html">Lateralus.Model</a></li>
+                                <li><a href="../classes/Lateralus.Router.html">Lateralus.Router</a></li>
                             </ul>
                 
                 
@@ -83,40 +83,80 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-    <div class="apidocs">
-        <div id="docs-main" class="content">
-            <p>
-            Browse to a module or class using the sidebar to view its API documentation.
-            </p>
+<h1 class="file-heading">File: scripts/lateralus.router.js</h1>
 
-            <h2>Keyboard Shortcuts</h2>
+<div class="file">
+    <pre class="code prettyprint linenums">
+define([
 
-            <ul>
-                <li><p>Press <kbd>s</kbd> to focus the API search box.</p></li>
+  &#x27;underscore&#x27;
+  ,&#x27;backbone&#x27;
 
-                <li><p>Use <kbd>Up</kbd> and <kbd>Down</kbd> to select classes, modules, and search results.</p></li>
+  ,&#x27;./lateralus.mixins&#x27;
 
-                <li class="mac-only"><p>With the API search box or sidebar focused, use <kbd><span class="cmd">&#x2318;</span>-Left</kbd> or <kbd><span class="cmd">&#x2318;</span>-Right</kbd> to switch sidebar tabs.</p></li>
+], function (
 
-                <li class="pc-only"><p>With the API search box or sidebar focused, use <kbd>Ctrl+Left</kbd> and <kbd>Ctrl+Right</kbd> to switch sidebar tabs.</p></li>
-            </ul>
-        </div>
-    </div>
+  _
+  ,Backbone
+
+  ,mixins
+
+) {
+  &#x27;use strict&#x27;;
+
+  var fn = {};
+
+  // jshint maxlen:100
+  /**
+   * This class builds on the ideas and APIs of
+   * [&#x60;Backbone.Router&#x60;](http://backbonejs.org/#Router).  The constructor for
+   * this class should not be called by application code.  Instead, use
+   * &#x60;{{#crossLink &quot;Lateralus/initRouter&quot;}}{{/crossLink}}&#x60;.
+   * @private
+   * @class Lateralus.Router
+   * @param {Lateralus} lateralus
+   * @extends {Backbone.Router}
+   * @uses Lateralus.mixins
+   * @constructor
+   */
+  fn.constructor = function (lateralus) {
+    this.lateralus = lateralus;
+    this.delegateLateralusEvents();
+    Backbone.Router.apply(this, arguments);
+  };
 
 
+  _.extend(fn, mixins);
+
+  var LateralusRouter = Backbone.Router.extend(fn);
+
+  /**
+   * @method toString
+   * @return {string} The name of this Router.  This is used internally by
+   * Lateralus.
+   */
+  LateralusRouter.prototype.toString = function () {
+    return this.lateralus.toString() + &#x27;-router&#x27;;
+  };
+
+  return LateralusRouter;
+});
+
+    </pre>
+</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<script src="./assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
 <script>prettyPrint();</script>
-<script src="./assets/js/yui-prettify.js"></script>
-<script src="./assets/../api.js"></script>
-<script src="./assets/js/api-filter.js"></script>
-<script src="./assets/js/api-list.js"></script>
-<script src="./assets/js/api-search.js"></script>
-<script src="./assets/js/apidocs.js"></script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
 </body>
 </html>

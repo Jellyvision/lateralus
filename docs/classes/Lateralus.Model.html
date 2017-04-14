@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Lateralus.Router - Lateralus</title>
+    <title>Lateralus.Model - Lateralus</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -17,7 +17,7 @@
                 <h1><img src="http://cdn.jellyvision.com/wp-content/themes/jellyvision/img/header-logo.png" title="Lateralus"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.10.2</em>
+            <em>API Docs for: 0.10.3</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -83,7 +83,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1>Lateralus.Router Class</h1>
+<h1>Lateralus.Model Class</h1>
 <div class="box meta">
         <div class="uses">
             Uses
@@ -93,11 +93,11 @@
         </div>
 
         <div class="extends">
-            Extends Backbone.Router
+            Extends Backbone.Model
         </div>
 
         <div class="foundat">
-            Defined in: <a href="../files/scripts_lateralus.router.js.html#l21"><code>scripts&#x2F;lateralus.router.js:21</code></a>
+            Defined in: <a href="../files/scripts_lateralus.model.js.html#l21"><code>scripts&#x2F;lateralus.model.js:21</code></a>
         </div>
 
 
@@ -106,21 +106,27 @@
 
 <div class="box intro">
     <p>This class builds on the ideas and APIs of
-<a href="http://backbonejs.org/#Router"><code>Backbone.Router</code></a>.  The constructor for
-this class should not be called by application code.  Instead, use
-<code><a href="../classes/Lateralus.html#method_initRouter" class="crosslink">initRouter</a></code>.</p>
+<a href="http://backbonejs.org/#Model"><code>Backbone.Model</code></a>.  The constructor for
+this class should not be called by application code, it is used by the
+<code><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a></code> constructor.</p>
 
 </div>
 
     <div class="constructor">
         <h2>Constructor</h2>
-<div id="method_Lateralus.Router" class="method item private">
-    <h3 class="name"><code>Lateralus.Router</code></h3>
+<div id="method_Lateralus.Model" class="method item private">
+    <h3 class="name"><code>Lateralus.Model</code></h3>
 
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
                         <code>lateralus</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[attributes]</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[options]</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
@@ -136,7 +142,7 @@ this class should not be called by application code.  Instead, use
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/scripts_lateralus.router.js.html#l21"><code>scripts&#x2F;lateralus.router.js:21</code></a>
+        <a href="../files/scripts_lateralus.model.js.html#l21"><code>scripts&#x2F;lateralus.model.js:21</code></a>
         </p>
 
 
@@ -154,6 +160,28 @@ this class should not be called by application code.  Instead, use
                 <li class="param">
                         <code class="param-name">lateralus</code>
                         <span class="type"><a href="../classes/Lateralus.html" class="crosslink">Lateralus</a></span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[attributes]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[options]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
                     <div class="param-description">
@@ -223,6 +251,10 @@ this class should not be called by application code.  Instead, use
                             </li>
                             <li class="index-item method inherited">
                                 <a href="#method_mixin">mixin</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_onChange">onChange</a>
 
                             </li>
                             <li class="index-item method">
@@ -1069,6 +1101,40 @@ context of the object calling this function.</p>
 
 
 </div>
+<div id="method_onChange" class="method item">
+    <h3 class="name"><code>onChange</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/scripts_lateralus.model.js.html#l42"><code>scripts&#x2F;lateralus.model.js:42</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>For every key that is changed on this model, a corresponding <code>change:</code>
+event is <code><a href="../classes/Lateralus.mixins.html#method_emit" class="crosslink">emit</a></code>ed.
+For example, <code>set</code>ting the <code>"foo"</code> attribute will <code><a href="../classes/Lateralus.mixins.html#method_emit" class="crosslink">emit</a></code> <code>change:foo</code> and provide
+the changed value.</p>
+
+    </div>
+
+
+
+
+</div>
 <div id="method_toString" class="method item">
     <h3 class="name"><code>toString</code></h3>
 
@@ -1087,7 +1153,7 @@ context of the object calling this function.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/scripts_lateralus.router.js.html#l44"><code>scripts&#x2F;lateralus.router.js:44</code></a>
+        <a href="../files/scripts_lateralus.model.js.html#l68"><code>scripts&#x2F;lateralus.model.js:68</code></a>
         </p>
 
 
@@ -1104,7 +1170,7 @@ context of the object calling this function.</p>
 
             <div class="returns-description">
                         <span class="type">String</span>:
-                    <p>The name of this Router.  This is used internally by
+                    <p>The name of this Model.  This is used internally by
 Lateralus.</p>
 
             </div>
