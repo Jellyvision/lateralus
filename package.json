@@ -11,7 +11,7 @@
   },
   "scripts": {
     "build": "webpack",
-    "test": "phantomjs ./node_modules/mocha-phantomjs-core/mocha-phantomjs-core.js test/index.html",
+    "test": "mocha -r jsdom-global/register ./node_modules/babel-core/register.js test/index.js",
     "start": "live-server --no-browser ./",
     "setup": "npm install",
     "version": "npm run build && git add -A",
@@ -37,6 +37,8 @@
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-yuidoc": "^1.0.0",
     "grunt-exec": "^2.0.0",
+    "jsdom": "^10.1.0",
+    "jsdom-global": "^3.0.2",
     "live-server": "^1.2.0",
     "load-grunt-tasks": "~0.6.0",
     "mocha": "~2.2.0",

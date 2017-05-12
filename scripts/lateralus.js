@@ -1,4 +1,4 @@
-import { jQuery } from 'jquery';
+import $ from 'jquery';
 import { _ } from 'underscore';
 import Backbone from 'backbone';
 import mixins from './lateralus.mixins';
