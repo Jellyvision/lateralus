@@ -24,7 +24,7 @@ Lateralus is a single page web application framework.  It is designed around the
 To install Lateralus into an existing app:
 
 ````
-bower install --save lateralus
+npm install --save lateralus
 ````
 
 ### Generate the boilerplate
@@ -65,7 +65,7 @@ Lateralus needs to be loaded as an [AMD package](http://requirejs.org/docs/api.h
 require.config({
   packages: [{
     name: 'lateralus'
-    ,location: 'bower_components/lateralus/scripts'
+    ,location: 'node_modules/lateralus/scripts'
     ,main: 'lateralus'
   }]
 });
@@ -77,7 +77,7 @@ You will also need to load each component as a package.  For example:
 require.config({
   packages: [{
     name: 'lateralus'
-    ,location: 'bower_components/lateralus/scripts'
+    ,location: 'node_modules/lateralus/scripts'
     ,main: 'lateralus'
   }, {
     // The component that was created by the generator in the previous step
@@ -264,7 +264,5 @@ This will:
  - commit the new documentation
  - tag the new version
  - push to the repo.
-
-Bower files no longer require a `version` attribute and bower ignores then in lieu of git tags anyway!
 
 Once this is done, Travis will publish the change to NPM.
