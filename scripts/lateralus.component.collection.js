@@ -1,96 +1,82 @@
-define([
+import { _ } from 'underscore';
+import Backbone from 'backbone';
+import mixins from './lateralus.mixins';
 
-  'underscore'
-  ,'backbone'
+var Base = Backbone.Collection;
+var baseProto = Base.prototype;
+var fn = {};
 
-  ,'./lateralus.mixins'
+/**
+ * The constructor for this class should not be called by application code,
+ * should only be called by `{{#crossLink
+ * "Lateralus.Component.initCollection:method"}}{{/crossLink}}`.
+ * @private
+ * @param {Array.(Lateralus.Component.Model)} models
+ * @param {Object} options
+ * @param {Lateralus} options.lateralus
+ * @param {Lateralus.Component} options.component
+ * @constructor
+ */
+fn.constructor = function (models, options) {
+  this.lateralus = options.lateralus;
+  this.component = options.component;
+  this.delegateLateralusEvents();
+  Base.apply(this, arguments);
+};
 
-], function (
+/**
+ * @override
+ */
+fn.set = function (models, options) {
+  var augmentedOptions = _.extend(options || {}, {
+    lateralus: this.lateralus
+    ,component: this.component
+  });
 
-  _
-  ,Backbone
+  return baseProto.set.call(this, models, augmentedOptions);
+};
 
-  ,mixins
+/**
+ * Remove a `{{#crossLink "Lateralus.Component.Model"}}{{/crossLink}}` or
+ * array of `{{#crossLink "Lateralus.Component.Model"}}{{/crossLink}}`s from
+ * this collection.
+ * @param {Array.(Lateralus.Component.Model)|Lateralus.Component.Model} models
+ * @param {Object} [options] This object is also passed to
+ * [Backbone.Collection.#remove](http://backbonejs.org/#Collection-remove).
+ * @param {boolean} [options.dispose] If true, call `{{#crossLink
+ * "Lateralus.Component.Model/dispose:method"}}{{/crossLink}}` after removing
+ * `models`.
+ * @method remove
+ * @override
+ */
+fn.remove = function (models, options) {
+  options = options || {};
+  baseProto.remove.apply(this, arguments);
 
-) {
-  'use strict';
+  if (options.dispose) {
+    models = _.isArray(models) ? models : [models];
+    _.invoke(models, 'dispose');
+  }
+};
 
-  var Base = Backbone.Collection;
-  var baseProto = Base.prototype;
-  var fn = {};
+_.extend(fn, mixins);
 
-  /**
-   * The constructor for this class should not be called by application code,
-   * should only be called by `{{#crossLink
-   * "Lateralus.Component.initCollection:method"}}{{/crossLink}}`.
-   * @private
-   * @param {Array.(Lateralus.Component.Model)} models
-   * @param {Object} options
-   * @param {Lateralus} options.lateralus
-   * @param {Lateralus.Component} options.component
-   * @constructor
-   */
-  fn.constructor = function (models, options) {
-    this.lateralus = options.lateralus;
-    this.component = options.component;
-    this.delegateLateralusEvents();
-    Base.apply(this, arguments);
-  };
+/**
+ * This class builds on the ideas and APIs of
+ * [`Backbone.Collection`](http://backbonejs.org/#Collection).
+ * @class Lateralus.Collection
+ * @extends {Backbone.Collection}
+ * @uses Lateralus.mixins
+ */
+var LateralusCollection = Base.extend(fn);
 
-  /**
-   * @override
-   */
-  fn.set = function (models, options) {
-    var augmentedOptions = _.extend(options || {}, {
-      lateralus: this.lateralus
-      ,component: this.component
-    });
+/**
+ * @method toString
+ * @return {string} The name of this Collection.  This is used internally by
+ * Lateralus.
+ */
+LateralusCollection.prototype.toString = function () {
+  return this.lateralus.toString() + '-collection';
+};
 
-    return baseProto.set.call(this, models, augmentedOptions);
-  };
-
-  /**
-   * Remove a `{{#crossLink "Lateralus.Component.Model"}}{{/crossLink}}` or
-   * array of `{{#crossLink "Lateralus.Component.Model"}}{{/crossLink}}`s from
-   * this collection.
-   * @param {Array.(Lateralus.Component.Model)|Lateralus.Component.Model} models
-   * @param {Object} [options] This object is also passed to
-   * [Backbone.Collection.#remove](http://backbonejs.org/#Collection-remove).
-   * @param {boolean} [options.dispose] If true, call `{{#crossLink
-   * "Lateralus.Component.Model/dispose:method"}}{{/crossLink}}` after removing
-   * `models`.
-   * @method remove
-   * @override
-   */
-  fn.remove = function (models, options) {
-    options = options || {};
-    baseProto.remove.apply(this, arguments);
-
-    if (options.dispose) {
-      models = _.isArray(models) ? models : [models];
-      _.invoke(models, 'dispose');
-    }
-  };
-
-  _.extend(fn, mixins);
-
-  /**
-   * This class builds on the ideas and APIs of
-   * [`Backbone.Collection`](http://backbonejs.org/#Collection).
-   * @class Lateralus.Collection
-   * @extends {Backbone.Collection}
-   * @uses Lateralus.mixins
-   */
-  var LateralusCollection = Base.extend(fn);
-
-  /**
-   * @method toString
-   * @return {string} The name of this Collection.  This is used internally by
-   * Lateralus.
-   */
-  LateralusCollection.prototype.toString = function () {
-    return this.lateralus.toString() + '-collection';
-  };
-
-  return LateralusCollection;
-});
+export default LateralusCollection;

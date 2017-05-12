@@ -1,78 +1,64 @@
-define([
+import { _ } from 'underscore';
+import Backbone from 'backbone';
+import mixins from './lateralus.mixins';
 
-  'underscore'
-  ,'backbone'
+var fn = {};
 
-  ,'./lateralus.mixins'
+// jshint maxlen:100
+/**
+ * This class builds on the ideas and APIs of
+ * [`Backbone.Model`](http://backbonejs.org/#Model).  The constructor for
+ * this class should not be called by application code, it is used by the
+ * `{{#crossLink "Lateralus"}}{{/crossLink}}` constructor.
+ * @private
+ * @class Lateralus.Model
+ * @param {Lateralus} lateralus
+ * @param {Object} [attributes]
+ * @param {Object} [options]
+ * @extends Backbone.Model
+ * @uses Lateralus.mixins
+ * @constructor
+ */
+fn.constructor = function (lateralus, attributes, options) {
+  this.lateralus = lateralus;
+  this.delegateLateralusEvents();
+  this.on('change', _.bind(this.onChange, this));
+  Backbone.Model.call(this, attributes, options);
+};
 
-], function (
+/**
+ * For every key that is changed on this model, a corresponding `change:`
+ * event is `{{#crossLink "Lateralus.mixins/emit:method"}}{{/crossLink}}`ed.
+ * For example, `set`ting the `"foo"` attribute will `{{#crossLink
+ * "Lateralus.mixins/emit:method"}}{{/crossLink}}` `change:foo` and provide
+ * the changed value.
+ * @method onChange
+ */
+fn.onChange = function () {
+  var changed = this.changedAttributes();
 
-  _
-  ,Backbone
+  _.each(_.keys(changed), function (changedKey) {
+    this.emit('change:' + changedKey, changed[changedKey]);
 
-  ,mixins
+    // Delete this property from the internal "changed" object before
+    // Backbone typically would to prevent "stacking" changed properties
+    // across onChange calls, thereby causing redundant handler calls.
+    delete this.changed[changedKey];
+  }, this);
 
-) {
-  'use strict';
+};
 
-  var fn = {};
+_.extend(fn, mixins);
 
-  // jshint maxlen:100
-  /**
-   * This class builds on the ideas and APIs of
-   * [`Backbone.Model`](http://backbonejs.org/#Model).  The constructor for
-   * this class should not be called by application code, it is used by the
-   * `{{#crossLink "Lateralus"}}{{/crossLink}}` constructor.
-   * @private
-   * @class Lateralus.Model
-   * @param {Lateralus} lateralus
-   * @param {Object} [attributes]
-   * @param {Object} [options]
-   * @extends Backbone.Model
-   * @uses Lateralus.mixins
-   * @constructor
-   */
-  fn.constructor = function (lateralus, attributes, options) {
-    this.lateralus = lateralus;
-    this.delegateLateralusEvents();
-    this.on('change', _.bind(this.onChange, this));
-    Backbone.Model.call(this, attributes, options);
-  };
+var LateralusModel = Backbone.Model.extend(fn);
 
-  /**
-   * For every key that is changed on this model, a corresponding `change:`
-   * event is `{{#crossLink "Lateralus.mixins/emit:method"}}{{/crossLink}}`ed.
-   * For example, `set`ting the `"foo"` attribute will `{{#crossLink
-   * "Lateralus.mixins/emit:method"}}{{/crossLink}}` `change:foo` and provide
-   * the changed value.
-   * @method onChange
-   */
-  fn.onChange = function () {
-    var changed = this.changedAttributes();
+/**
+ * @method toString
+ * @return {string} The name of this Model.  This is used internally by
+ * Lateralus.
+ */
+LateralusModel.prototype.toString = function () {
+  return this.lateralus.toString() + '-model';
+};
 
-    _.each(_.keys(changed), function (changedKey) {
-      this.emit('change:' + changedKey, changed[changedKey]);
-
-      // Delete this property from the internal "changed" object before
-      // Backbone typically would to prevent "stacking" changed properties
-      // across onChange calls, thereby causing redundant handler calls.
-      delete this.changed[changedKey];
-    }, this);
-
-  };
-
-  _.extend(fn, mixins);
-
-  var LateralusModel = Backbone.Model.extend(fn);
-
-  /**
-   * @method toString
-   * @return {string} The name of this Model.  This is used internally by
-   * Lateralus.
-   */
-  LateralusModel.prototype.toString = function () {
-    return this.lateralus.toString() + '-model';
-  };
-
-  return LateralusModel;
-});
+export default LateralusModel;
