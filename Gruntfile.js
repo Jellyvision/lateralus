@@ -23,34 +23,6 @@ module.exports = function (grunt) {
         }
       }
     },
-    requirejs: {
-      options: {
-        include: 'lateralus',
-        packages: [{
-          name: 'lateralus',
-          location: 'scripts',
-          main: 'lateralus'
-        }],
-        paths: {
-          'jquery': 'empty:',
-          'underscore': 'empty:',
-          'backbone': 'empty:',
-          'mustache': 'empty:'
-        },
-      },
-      unminified: {
-        options: {
-          optimize: 'none',
-          out: 'dist/lateralus.js'
-        }
-      },
-      minified: {
-        options: {
-          optimize: 'uglify',
-          out: 'dist/lateralus.min.js'
-        }
-      }
-    },
     usebanner: {
       dist: {
         options: {
@@ -72,13 +44,10 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean',
-    'yuidoc',
-    'requirejs',
-    'usebanner'
+    'yuidoc'
   ]);
 
   grunt.registerTask('default', [
     'test',
-    'build'
   ]);
 };
