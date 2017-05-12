@@ -22,32 +22,11 @@ module.exports = function (grunt) {
           outdir: 'docs'
         }
       }
-    },
-    usebanner: {
-      dist: {
-        options: {
-          banner: '/* Lateralus v.' + pkg.version + ' | https://github.com/Jellyvision/lateralus */'
-        },
-        files: {
-          src: ['dist/lateralus.js', 'dist/lateralus.min.js']
-        }
-      }
-    },
-    exec: {
-      test: 'npm test'
     }
   });
-
-  grunt.registerTask('test', [
-    'exec:test',
-  ]);
 
   grunt.registerTask('build', [
     'clean',
     'yuidoc'
-  ]);
-
-  grunt.registerTask('default', [
-    'test',
   ]);
 };

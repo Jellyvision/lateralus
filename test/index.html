@@ -1,20 +1,16 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Lateralus Tests</title>
-  <link rel="stylesheet" href="../node_modules/mocha/mocha.css">
+  <title>Lateralus</title>
+  <link rel="stylesheet" href="/node_modules/mocha/mocha.css">
+  <script src="/node_modules/mocha/mocha.js"></script>
 </head>
 <body>
   <div id="mocha"></div>
-  <script src="../node_modules/mocha/mocha.js"></script>
-  <script>mocha.setup('bdd')</script>
-  <script src="../node_modules/chai/chai.js"></script>
-  <script>
-    var assert = chai.assert;
-    var expect = chai.expect;
-    var should = chai.should();
-  </script>
+  <script>mocha.setup('bdd');</script>
+  <script src="/assets/index.js"></script>
+  <script>mocha.run();</script>
 </body>
 </html>
