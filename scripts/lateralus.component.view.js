@@ -16,7 +16,7 @@ fn.template = null;
 // jshint maxlen:100
 /**
  * The constructor for this class should not be called by application code,
- * it is used by the `{{#crossLink "Lateralus.Component"}}{{/crossLink}}`
+ * it is used by the `{@link Lateralus.Component}`
  * constructor.
  * @private
  * @param {Lateralus} lateralus
@@ -24,17 +24,15 @@ fn.template = null;
  * @param {Object} [options] Gets passed to
  * [Backbone.View#initialize](http://backbonejs.org/#Collection-constructor).
  * @param {Lateralus.Component.View} [opt_parentView]
- * @uses Lateralus.mixins
- * @constructor
+ * @mixes Lateralus.mixins
+ * @constructs Lateralus.Component.View
  */
 fn.constructor = function (lateralus, component, options, opt_parentView) {
   this.lateralus = lateralus;
 
   /**
-   * If this is a subview of another `{{#crossLink
-   * "Lateralus.Component.View"}}{{/crossLink}}`, this property is a
-   * reference to the parent `{{#crossLink
-   * "Lateralus.Component.View"}}{{/crossLink}}`.
+   * If this is a subview of another `{@link Lateralus.Component.View}`, this
+   * property is a reference to the parent `{@link Lateralus.Component.View}`.
    * @property parentView
    * @type {Lateralus.Component.View|null}
    * @default null
@@ -42,8 +40,8 @@ fn.constructor = function (lateralus, component, options, opt_parentView) {
   this.parentView = opt_parentView || null;
 
   /**
-   * A reference to the `{{#crossLink "Lateralus.Component"}}{{/crossLink}}`
-   * to which this `{{#crossLink "Lateralus.Component.View"}}{{/crossLink}}`
+   * A reference to the `{@link Lateralus.Component}`
+   * to which this `{@link Lateralus.Component.View}`
    * belongs.
    * @property component
    * @type {Lateralus.Component}
@@ -62,11 +60,10 @@ fn.constructor = function (lateralus, component, options, opt_parentView) {
 };
 
 /**
- * This is called when a `{{#crossLink
- * "Lateralus.Component.View"}}{{/crossLink}}` is initialized, it is not
- * called directly.
+ * This is called when a `{@link Lateralus.Component.View}` is initialized, it
+ * is not called directly.
  *
- * `{{#crossLink "Lateralus.Component.View"}}{{/crossLink}}` subclasses that
+ * `{@link Lateralus.Component.View}` subclasses that
  * override `initialize` must call this base method:
  *
  *     var Base = Lateralus.Component.View;
@@ -78,9 +75,9 @@ fn.constructor = function (lateralus, component, options, opt_parentView) {
  *         // Other logic...
  *       }
  *     });
- * @method initialize
+ * @method Lateralus.Component.View#initialize
  * @param {Object} [opts] Any properties or methods to attach to this
- * `{{#crossLink "Lateralus.Component.View"}}{{/crossLink}}` instance.
+ * `{@link Lateralus.Component.View}` instance.
  */
 fn.initialize = function (opts) {
   // this.toString references the central Component constructor, so don't
@@ -91,7 +88,7 @@ fn.initialize = function (opts) {
 
   /**
    * The CSS class names specified by this property will be attached to `$el`
-   * when this `{{#crossLink "Lateralus.Component.View"}}{{/crossLink}}` is
+   * when this `{@link Lateralus.Component.View}` is
    * initialized.
    * @property className
    * @type {string|undefined}
@@ -105,18 +102,14 @@ fn.initialize = function (opts) {
   this.renderTemplate();
 
   /**
-   * A function to be called in the JavaScript thread that follows the one
-   * that ran `{{#crossLink
-   * "Lateralus.Component.View/initialize:method"}}{{/crossLink}}`.  This can
-   * be necessary for situations where setup logic needs to happen after a
-   * View has been rendered.
+   * A function to be called in the next JavaScript thread.  This can be
+   * necessary for situations where setup logic needs to happen after a View
+   * has been rendered.
    *
-   * In other words, `{{#crossLink
-   * "Lateralus.Component.View/initialize:method"}}{{/crossLink}}` runs
-   * before the View has been rendered to the DOM, and `{{#crossLink
-   * "Lateralus.Component.View/deferredInitialize:method"}}{{/crossLink}}`
-   * runs immediately after it has been rendered.
-   * @method deferredInitialize
+   * In other words, `{@link Lateralus.Component.View#initialize}` runs before
+   * the View has been rendered to the DOM, and `deferredInitialize` runs
+   * immediately after it has been rendered.
+   * @method Lateralus.Component.View#deferredInitialize
    */
   if (this.deferredInitialize) {
     _.defer(_.bind(this.deferredInitialize, this));
@@ -140,7 +133,7 @@ fn.attachDefaultOptions = {};
  * interdependency between two Views.  This pattern is useful when you want
  * to keep display logic well-organized into several Views, but have it
  * compartmentalized within a single component.
- * @method addSubview
+ * @method Lateralus.Component.View#addSubview
  * @param {Lateralus.Component.View} Subview A constructor, not an instance.
  * @param {Object} [subviewOptions] Backbone.View [constructor
  * options](http://backbonejs.org/#View-constructor) to pass along to the
@@ -172,10 +165,9 @@ fn.addSubview = function (Subview, subviewOptions) {
 
 /**
  * This method returns the object whose properties are used as render
- * variables in `{{#crossLink
- * "Lateralus.Component.View/renderTemplate"}}{{/crossLink}}`.  The method
+ * variables in `{@link Lateralus.Component.View#renderTemplate}`.  The method
  * can be overridden.
- * @method getTemplateRenderData
+ * @method Lateralus.Component.View#getTemplateRenderData
  * @return {Object} The [raw `Backbone.Model`
  * data](http://backbonejs.org/#Model-toJSON), if this View has a Model.
  * Otherwise, an empty object is returned.
@@ -211,13 +203,12 @@ fn.getTemplatePartials = function () {
 };
 
 /**
- * Meant to be called by `{{#crossLink
- * "Lateralus.Component.View/initialize"}}{{/crossLink}}` and infrequently
- * thereafter, this method empties out
+ * Meant to be called by `{@link Lateralus.Component.View#initialize}` and
+ * infrequently thereafter, this method empties out
  * [`$el`](http://backbonejs.org/#View-$el) and does a full re-render.
  * [`render`](http://backbonejs.org/#View-render) should only be used for
  * partial renders.
- * @method renderTemplate
+ * @method Lateralus.Component.View#renderTemplate
  */
 fn.renderTemplate = function () {
   if (!this.template) {
@@ -241,7 +232,7 @@ fn.renderTemplate = function () {
  * that have a class that looks like _`$this`_ and create a property on this
  * instance with the same name.  The attached property is a jQuery object
  * that references the corresponding DOM element.
- * @method bindToDOM
+ * @method Lateralus.Component.View#bindToDOM
  * @private
  */
 fn.bindToDOM = function () {
@@ -259,9 +250,9 @@ fn.bindToDOM = function () {
 };
 
 /**
- * Remove this `{{#crossLink "Lateralus.Component.View"}}{{/crossLink}}` from
+ * Remove this `{@link Lateralus.Component.View}` from
  * the DOM and cleanly dispose of any references.
- * @method dispose
+ * @method Lateralus.Component.View#dispose
  * @chainable
  */
 fn.dispose = function () {
@@ -286,7 +277,7 @@ _.extend(fn, mixins);
 var ComponentView = Backbone.View.extend(fn);
 
 /**
- * @method toString
+ * @method Lateralus.Component.View#toString
  * @return {string} The name of this View.  This is used internally by
  * Lateralus.
  */

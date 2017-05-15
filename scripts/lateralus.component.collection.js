@@ -8,14 +8,13 @@ var fn = {};
 
 /**
  * The constructor for this class should not be called by application code,
- * should only be called by `{{#crossLink
- * "Lateralus.Component.initCollection:method"}}{{/crossLink}}`.
+ * should only be called by `{@link Lateralus.Component#initCollection}`.
  * @private
- * @param {Array.(Lateralus.Component.Model)} models
+ * @param {Array.<Lateralus.Component.Model>} models
  * @param {Object} options
  * @param {Lateralus} options.lateralus
  * @param {Lateralus.Component} options.component
- * @constructor
+ * @constructs Lateralus.Component.Collection
  */
 fn.constructor = function (models, options) {
   this.lateralus = options.lateralus;
@@ -37,16 +36,14 @@ fn.set = function (models, options) {
 };
 
 /**
- * Remove a `{{#crossLink "Lateralus.Component.Model"}}{{/crossLink}}` or
- * array of `{{#crossLink "Lateralus.Component.Model"}}{{/crossLink}}`s from
- * this collection.
- * @param {Array.(Lateralus.Component.Model)|Lateralus.Component.Model} models
+ * Remove a `{@link Lateralus.Component.Model}` or array of `{@link
+ * Lateralus.Component.Model}`s from this collection.
+ * @param {Array.<Lateralus.Component.Model>|Lateralus.Component.Model} models
  * @param {Object} [options] This object is also passed to
  * [Backbone.Collection.#remove](http://backbonejs.org/#Collection-remove).
- * @param {boolean} [options.dispose] If true, call `{{#crossLink
- * "Lateralus.Component.Model/dispose:method"}}{{/crossLink}}` after removing
- * `models`.
- * @method remove
+ * @param {boolean} [options.dispose] If true, call `{@link
+ * Lateralus.Component.Model#dispose}` after removing `models`.
+ * @method Lateralus.Component.Collection#remove
  * @override
  */
 fn.remove = function (models, options) {
@@ -64,14 +61,14 @@ _.extend(fn, mixins);
 /**
  * This class builds on the ideas and APIs of
  * [`Backbone.Collection`](http://backbonejs.org/#Collection).
- * @class Lateralus.Collection
+ * @class Lateralus.Component.Collection
  * @extends {Backbone.Collection}
- * @uses Lateralus.mixins
+ * @mixes Lateralus.mixins
  */
 var LateralusCollection = Base.extend(fn);
 
 /**
- * @method toString
+ * @method Lateralus.Component.Collection#toString
  * @return {string} The name of this Collection.  This is used internally by
  * Lateralus.
  */

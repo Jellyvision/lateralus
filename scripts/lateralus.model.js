@@ -6,18 +6,12 @@ var fn = {};
 
 // jshint maxlen:100
 /**
- * This class builds on the ideas and APIs of
- * [`Backbone.Model`](http://backbonejs.org/#Model).  The constructor for
- * this class should not be called by application code, it is used by the
- * `{{#crossLink "Lateralus"}}{{/crossLink}}` constructor.
  * @private
- * @class Lateralus.Model
  * @param {Lateralus} lateralus
  * @param {Object} [attributes]
  * @param {Object} [options]
- * @extends Backbone.Model
- * @uses Lateralus.mixins
- * @constructor
+ * @mixes Lateralus.mixins
+ * @constructs Lateralus.Model
  */
 fn.constructor = function (lateralus, attributes, options) {
   this.lateralus = lateralus;
@@ -27,12 +21,11 @@ fn.constructor = function (lateralus, attributes, options) {
 };
 
 /**
- * For every key that is changed on this model, a corresponding `change:`
- * event is `{{#crossLink "Lateralus.mixins/emit:method"}}{{/crossLink}}`ed.
- * For example, `set`ting the `"foo"` attribute will `{{#crossLink
- * "Lateralus.mixins/emit:method"}}{{/crossLink}}` `change:foo` and provide
+ * For every key that is changed on this model, a corresponding `change:` event
+ * is `{@link Lateralus.mixins#emit}`ed.  For example, `set`ting the `"foo"`
+ * attribute will `{@link Lateralus.mixins#emit}` `"change:foo"` and provide
  * the changed value.
- * @method onChange
+ * @method Lateralus.Model#onChange
  */
 fn.onChange = function () {
   var changed = this.changedAttributes();
@@ -50,10 +43,18 @@ fn.onChange = function () {
 
 _.extend(fn, mixins);
 
+/**
+ * This class builds on the ideas and APIs of
+ * [`Backbone.Model`](http://backbonejs.org/#Model).  The constructor for
+ * this class should not be called by application code, it is used by the
+ * `{@link Lateralus}` constructor.
+ * @extends Backbone.Model
+ * @class Lateralus.Model
+ */
 var LateralusModel = Backbone.Model.extend(fn);
 
 /**
- * @method toString
+ * @method Lateralus.Model#toString
  * @return {string} The name of this Model.  This is used internally by
  * Lateralus.
  */

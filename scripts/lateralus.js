@@ -12,6 +12,7 @@ _.mixin({
   /**
    * Remove all properties from an Object.
    * @param {Object} obj
+   * @private
    */
   lateralusEmptyObject: function (obj) {
     var propName;
@@ -40,9 +41,8 @@ _.mixin({
 }, { chain: false });
 
 /**
- * You should not need to call the Lateralus constructor directly, use
- * `{{#crossLink "Lateralus/beget"}}{{/crossLink}}` instead.  To create a new
- * Lateralus app:
+ * You should not need to call the Lateralus constructor directly, use `{@link
+ * Lateralus.beget}` instead.  To create a new Lateralus app:
  *
  *     var App = Lateralus.beget(function () {
  *       // Don't forget to call the Lateralus constructor!
@@ -50,25 +50,22 @@ _.mixin({
  *     });
  *
  *     var app = new App(document.getElementById('app'));
- * @param {Element} el The DOM element that contains the entire Lateralus
- * app.
+ * @param {Element} el The DOM element that contains the entire Lateralus app.
  * @class Lateralus
- * @uses Lateralus.mixins
- * @constructor
+ * @mixes Lateralus.mixins
+ * @constructs Lateralus
  */
 function Lateralus (el) {
   /**
-   * The DOM node that contains this `{{#crossLink
-   * "Lateralus"}}{{/crossLink}}` instance.
-   * @property el
+   * The DOM node that contains this `{@link Lateralus}` instance.
+   * @member Lateralus#el
    * @type {HTMLElement}
    */
   this.el = el;
 
   /**
-   * The jQuery Object that contains `{{#crossLink
-   * "Lateralus/el:property"}}{{/crossLink}}`.
-   * @property $el
+   * The jQuery Object that contains `{@link Lateralus#el}`.
+   * @member Lateralus#$el
    * @type {jQuery}
    */
   this.$el = $(el);
@@ -76,9 +73,8 @@ function Lateralus (el) {
   var ModelConstructor = this.config.Model || LateralusModel;
   // TODO: Initialize this.model with this.initModel.
   /**
-   * Maintains the state of the central `{{#crossLink
-   * "Lateralus"}}{{/crossLink}}` instance.
-   * @property model
+   * Maintains the state of the central `{@link Lateralus}` instance.
+   * @member Lateralus#model
    * @type {Lateralus.Model}
    */
   this.model = new ModelConstructor(this);
@@ -86,7 +82,7 @@ function Lateralus (el) {
   /**
    * An optional map of template render data to be passed to the
    * `Mustache.render` call for all Views belonging to this Lateralus app.
-   * @property globalRenderData
+   * @member Lateralus#globalRenderData
    * @type {Object(String)}
    */
   this.globalRenderData = {};
@@ -94,7 +90,7 @@ function Lateralus (el) {
   /**
    * An optional map of template partials to be passed to the
    * `Mustache.render` call for all Views belonging to this Lateralus app.
-   * @property globalPartials
+   * @member Lateralus#globalPartials
    * @type {Object(String)}
    */
   this.globalPartials = {};
@@ -109,7 +105,7 @@ _.extend(fn, Backbone.Events);
 /**
  * Set up the prototype chain between two objects.
  * @static
- * @method inherit
+ * @method Lateralus.inherit
  * @param {Function} child
  * @param {Function} parent
  * @return {Function} A reference to the passed-in `child` parameter.
@@ -122,20 +118,19 @@ Lateralus.inherit = function inherit (child, parent) {
 };
 
 /**
- * Create a `{{#crossLink "Lateralus"}}{{/crossLink}}` application instance.
+ * Create a `{@link Lateralus}` application instance.
  *
  *     var App = Lateralus.beget(function () {
  *       Lateralus.apply(this, arguments);
  *     });
  * @static
- * @method beget
+ * @method Lateralus.beget
  * @param {Function} child
  * @param {Object} [config]
- * @param {LateralusModel} [config.Model] A `{{#crossLink
- * "Lateralus.Model"}}{{/crossLink}}` subclass constructor to use for
- * `{{#crossLink "Lateralus/model:property"}}{{/crossLink}}` instead of a
- * standard `{{#crossLink "Lateralus.Model"}}{{/crossLink}}`.
- * @return {Function} The created `{{#crossLink "Lateralus"}}{{/crossLink}}`
+ * @param {LateralusModel} [config.Model] A `{@link Lateralus.Model}` subclass
+ * constructor to use for `{@link Lateralus.model}` instead of a standard
+ * `{@link Lateralus.Model}`.
+ * @return {Function} The created `{@link Lateralus}`
  * subclass.
  */
 Lateralus.beget = function (child, config) {
@@ -154,21 +149,21 @@ _.each([
 
   /**
    * Cross-browser friendly wrapper for `console.log`.
-   * @method log
+   * @method Lateralus#log
    * @param {...any} Any parameters to pass along to `console.log`.
    */
   'log'
 
   /**
    * Cross-browser friendly wrapper for `console.warn`.
-   * @method warn
+   * @method Lateralus#warn
    * @param {...any} Any parameters to pass along to `console.warn`.
    */
   ,'warn'
 
   /**
    * Cross-browser friendly wrapper for `console.error`.
-   * @method error
+   * @method Lateralus#error
    * @param {...any} Any parameters to pass along to `console.error`.
    */
   ,'error'
@@ -191,32 +186,29 @@ _.each([
  * `initialize`](http://backbonejs.org/#Router-constructor) method.
  * @return {Lateralus.Router} An instance of the provided Router
  * constructor.
- * @method initRouter
+ * @method Lateralus#initRouter
  */
 fn.initRouter = function (Router, options) {
   return new Router(this, options);
 };
 
 /**
- * Relay `{{#crossLink "Lateralus.mixins/provide:property"}}{{/crossLink}}`d
- * handlers to another `{{#crossLink "Lateralus"}}{{/crossLink}}` instance.
- * This is the `{{#crossLink
- * "Lateralus.mixins/provide:property"}}{{/crossLink}}` analog to
- * `{{#crossLink "Lateralus.mixins/amplify"}}{{/crossLink}}`.
- * @method shareWith
- * @param {Lateralus} receiver The `{{#crossLink "Lateralus"}}{{/crossLink}}`
- * instance to share `{{#crossLink
- * "Lateralus.mixins/provide:property"}}{{/crossLink}}`d handlers with.
- * @param {string} providerName The name of the `{{#crossLink
- * "Lateralus.mixins/provide:property"}}{{/crossLink}}`er.
+ * Relay `{@link Lateralus.mixins.provide}`d handlers to another `{@link
+ * Lateralus}` instance.  This is the `{@link Lateralus.mixins.provide}` analog
+ * to `{@link Lateralus.mixins.amplify}`.
+ * @method Lateralus#shareWith
+ * @param {Lateralus} receiver The `{@link Lateralus}` instance to share
+ * `{@link Lateralus.mixins.provide}`d handlers with.
+ * @param {string} providerName The name of the `{@link
+ * Lateralus.mixins.provide}`er.
  */
 fn.shareWith = function (receiver, providerName) {
   this.amplify(receiver, mixins.PROVIDE_PREFIX + providerName);
 };
 
 /**
- * Remove this `{{#crossLink "Lateralus"}}{{/crossLink}}` app from memory.
- * @method dispose
+ * Remove this `{@link Lateralus}` app from memory.
+ * @method Lateralus#dispose
  */
 fn.dispose = function () {
   _(this).lateralusDispose(_.bind(function () {
@@ -229,7 +221,7 @@ fn.spiralOut = fn.dispose;
 
 /**
  * Do not override this method, it is used internally.
- * @method toString
+ * @method Lateralus#toString
  * @return {string} This is `"lateralus"`.
  * @final
  */

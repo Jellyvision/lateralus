@@ -6,9 +6,8 @@ import ComponentModel from './lateralus.component.model';
 import ComponentCollection from './lateralus.component.collection';
 
 /**
- * The constructor for this method should not be called directly.  Instead,
- * use the `{{#crossLink "Lateralus.mixins/addComponent"}}{{/crossLink}}`
- * mixin method:
+ * The constructor for this method should not be called directly.  Instead, use
+ * the `{@link Lateralus.mixins#addComponent}` mixin method:
  *
  *     var App = Lateralus.beget(function () {
  *       Lateralus.apply(this, arguments);
@@ -20,43 +19,40 @@ import ComponentCollection from './lateralus.component.collection';
  *     console.log(component instanceof Lateralus.Component); // true
  * @class Lateralus.Component
  * @param {Lateralus} lateralus
- * @param {Object} options Values to attach to this `{{#crossLink
- * "Lateralus.Component"}}{{/crossLink}}` instance.  This object also get
- * passed to the `{{#crossLink
- * "Lateralus.Component/initialize:property"}}{{/crossLink}}` method, if one
- * is defined.
+ * @param {Object} options Values to attach to this `{@link
+ * Lateralus.Component}` instance.  This object also get passed to the `{@link
+ * Lateralus.Component.initialize}` method, if one is defined.
  * @param {Object} [options.modelAttributes] Any attributes to pre-populate
- * the `{{#crossLink "Lateralus.Component/Model:property"}}{{/crossLink}}`
+ * the `{@link Lateralus.Component.Model}`
  * instance with, if there is one.
  * @param {Object} [options.modelOptions] Any parameters to pass to the
- * `{{#crossLink "Lateralus.Component/Model:property"}}{{/crossLink}}`
+ * `{@link Lateralus.Component.Model}`
  * instance, if there is one.
  * @param {Object} viewOptions The `options` Object to pass to the
- * `{{#crossLink "Lateralus.Component/View:property"}}{{/crossLink}}`
+ * `{@link Lateralus.Component.View}`
  * constructor.
  * @param {Lateralus.Component} [opt_parentComponent] The parent component of
  * this component, if any.
- * @uses http://backbonejs.org/#Events
- * @uses Lateralus.mixins
- * @constructor
+ * @mixes http://backbonejs.org/#Events
+ * @mixes Lateralus.mixins
+ * @constructs Lateralus.Component
  */
 function Component (lateralus, options, viewOptions, opt_parentComponent) {
 
   /**
-   * A reference to the central `{{#crossLink "Lateralus"}}{{/crossLink}}`
+   * A reference to the central `{@link Lateralus}`
    * instance.
-   * @property lateralus
+   * @member Lateralus.Component#lateralus
    * @type {Lateralus}
    * @final
    */
   this.lateralus = lateralus;
 
   /**
-   * If a `{{#crossLink "Lateralus.Component"}}{{/crossLink}}` has `mixins`
-   * defined on its `prototype` before it is instantiated, the objects
-   * within `mixins` will be merged into this `{{#crossLink
-   * "Lateralus.Component"}}{{/crossLink}}` at instantiation-time with
-   * `{{#crossLink "Lateralus.Component/mixin"}}{{/crossLink}}`.
+   * If a `{@link Lateralus.Component}` has `mixins` defined on its `prototype`
+   * before it is instantiated, the objects within `mixins` will be merged into
+   * this `{@link  "Lateralus.Component}` at instantiation-time with `{@link
+   * Lateralus.Component/mixin}`.
    * @property mixins
    * @type {Object|Array(Object)|undefined}
    * @default undefined
@@ -67,10 +63,9 @@ function Component (lateralus, options, viewOptions, opt_parentComponent) {
 
   if (opt_parentComponent) {
     /**
-     * If this is a subcomponent of another `{{#crossLink
-     * "Lateralus.Component"}}{{/crossLink}}`, this property is a reference
-     * to the parent `{{#crossLink "Lateralus.Component"}}{{/crossLink}}`.
-     * @property parentComponent
+     * If this is a subcomponent of another `{@link Lateralus.Component}`, this
+     * property is a reference to the parent `{@link Lateralus.Component}`.
+     * @member Lateralus.Component#parentComponent
      * @type {Lateralus.Component|undefined}
      * @default undefined
      */
@@ -78,9 +73,8 @@ function Component (lateralus, options, viewOptions, opt_parentComponent) {
   }
 
   /**
-   * The `{{#crossLink "Lateralus.Component.View"}}{{/crossLink}}`
-   * constructor to use, if any.  If this `{{#crossLink
-   * "Lateralus.Component"}}{{/crossLink}}` is intended to render to the DOM,
+   * The `{@link Lateralus.Component.View}` constructor to use, if any.  If
+   * this `{@link Lateralus.Component}` is intended to render to the DOM,
    * `View` should be defined on the `prototype` before instantiating:
    *
    *     var ExtendedComponent = Lateralus.Component.extend({
@@ -88,7 +82,7 @@ function Component (lateralus, options, viewOptions, opt_parentComponent) {
    *       ,View: Lateralus.Component.View
    *       ,template: '<div></div>'
    *     });
-   * @property View
+   * @member Lateralus.Component#View
    * @type {Lateralus.Component.View|undefined}
    * @default undefined
    */
@@ -113,9 +107,9 @@ function Component (lateralus, options, viewOptions, opt_parentComponent) {
     }
 
     /**
-     * If `{{#crossLink "Lateralus.Component/View:property"}}{{/crossLink}}`
-     * is defined, this is an instance of that constructor.
-     * @property view
+     * If `{@link Lateralus.Component.View}` is defined, this is an instance of
+     * that constructor.
+     * @member Lateralus.Component#view
      * @type {Lateralus.Component.View|undefined}
      * @default undefined
      */
@@ -129,9 +123,9 @@ function Component (lateralus, options, viewOptions, opt_parentComponent) {
   _.extend(this, options);
 
   /**
-   * A method to be called when this `{{#crossLink
-   * "Lateralus.Component"}}{{/crossLink}}` has been set up.
-   * @property initialize
+   * A method to be called when this `{@link Lateralus.Component}` has been set
+   * up.
+   * @member Lateralus.Component#initialize
    * @type {Function|undefined}
    * @default undefined
    */
@@ -149,17 +143,16 @@ Component.Model = ComponentModel;
 Component.Collection = ComponentCollection;
 
 /**
- * Create a `{{#crossLink "Lateralus.Component"}}{{/crossLink}}` subclass.
- * @method extend
+ * Create a `{@link Lateralus.Component}` subclass.
+ * @method Lateralus.Component#extend
  * @param {Object} protoProps
- * @param {string} protoProps.name The name of this component.  It should
- * have no whitespace.
- * @param {Lateralus.Component.View} [protoProps.View] The `{{#crossLink
- * "Lateralus.Component.View"}}{{/crossLink}}` to render this component with.
- * @param {Lateralus.Component.Model} [protoProps.Model] The optional
- * `{{#crossLink "Lateralus.Component.Model"}}{{/crossLink}}` to be provided
- * to `protoProps.View` when it is instantiated.  This does nothing if
- * `protoProps.View` is not defined.
+ * @param {string} protoProps.name The name of this component.  It should have
+ * no whitespace.
+ * @param {Lateralus.Component.View} [protoProps.View] The `{@link
+ * Lateralus.Component.View}` to render this component with.
+ * @param {Lateralus.Component.Model} [protoProps.Model] The optional `{@link
+ * Lateralus.Component.Model}` to be provided to `protoProps.View` when it is
+ * instantiated.  This does nothing if `protoProps.View` is not defined.
  */
 Component.extend = function (protoProps) {
   var extendedComponent = Backbone.Model.extend.call(this, protoProps);
@@ -188,6 +181,7 @@ fn.name = 'component';
 /**
  * @param {any} property
  * @param {Object} object
+ * @private
  */
 function removePropertyFromObject (property, object) {
   var propertyName;
@@ -199,10 +193,9 @@ function removePropertyFromObject (property, object) {
 }
 
 /**
- * Remove this `{{#crossLink "Lateralus.Component"}}{{/crossLink}}` from
- * memory.  Also remove any nested components added by `{{#crossLink
- * "Lateralus.mixins/addComponent"}}{{/crossLink}}`.
- * @method dispose
+ * Remove this `{@link Lateralus.Component}` from memory.  Also remove any
+ * nested components added by `{@link Lateralus.mixins#addComponent}`.
+ * @method Lateralus.Component#dispose
  */
 fn.dispose = function () {
   _(this).lateralusDispose(_.bind(function () {
@@ -227,7 +220,7 @@ fn.dispose = function () {
 
 /**
  * Meant to be overridden by subclasses.
- * @method toJSON
+ * @method Lateralus.Component#toJSON
  * @return {Object}
  */
 fn.toJSON = function () {
@@ -235,7 +228,7 @@ fn.toJSON = function () {
 };
 
 /**
- * @method toString
+ * @method Lateralus.Component#toString
  * @return {string} The name of this Component.  This is used internally by
  * Lateralus.
  */

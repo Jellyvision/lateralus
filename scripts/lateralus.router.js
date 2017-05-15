@@ -6,16 +6,10 @@ var fn = {};
 
 // jshint maxlen:100
 /**
- * This class builds on the ideas and APIs of
- * [`Backbone.Router`](http://backbonejs.org/#Router).  The constructor for
- * this class should not be called by application code.  Instead, use
- * `{{#crossLink "Lateralus/initRouter"}}{{/crossLink}}`.
  * @private
- * @class Lateralus.Router
  * @param {Lateralus} lateralus
- * @extends {Backbone.Router}
- * @uses Lateralus.mixins
- * @constructor
+ * @mixes Lateralus.mixins
+ * @constructs Lateralus.Router
  */
 fn.constructor = function (lateralus) {
   this.lateralus = lateralus;
@@ -26,10 +20,19 @@ fn.constructor = function (lateralus) {
 
 _.extend(fn, mixins);
 
+/**
+ * This class builds on the ideas and APIs of
+ * [`Backbone.Router`](http://backbonejs.org/#Router).  The constructor for
+ * this class should not be called by application code.  Instead, use `{@link
+ * Lateralus#initRouter}`.
+ * @extends {Backbone.Router}
+ * @class Lateralus.Router
+ */
 var LateralusRouter = Backbone.Router.extend(fn);
 
 /**
  * @method toString
+ * @method Lateralus.Router#toString
  * @return {string} The name of this Router.  This is used internally by
  * Lateralus.
  */

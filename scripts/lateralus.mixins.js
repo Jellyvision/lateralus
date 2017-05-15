@@ -1,19 +1,19 @@
 import { _ } from 'underscore';
 
 /**
- * These method are mixed into `{{#crossLink "Lateralus"}}{{/crossLink}}`,
- * `{{#crossLink "Lateralus.Component"}}{{/crossLink}}`, and `{{#crossLink
- * "Lateralus.Component.View"}}{{/crossLink}}`.
- * @class Lateralus.mixins
+ * These method are mixed into `{@link Lateralus}`,
+ * `{@link Lateralus.Component}`, and `{@link Lateralus.Component.View}`.
+ * @mixin Lateralus.mixins
+ * @private
  * @requires http://backbonejs.org/#Events
  */
 var mixins = {};
 
 /**
- * Event namespace for `{{#crossLink
- * "Lateralus.mixins/provide:property"}}{{/crossLink}}` handlers.
+ * Event namespace for `{@link Lateralus.mixins.provide}` handlers.
  * @type {string}
- * @property PROVIDE_PREFIX
+ * @memberof Lateralus.mixins
+ * @name PROVIDE_PREFIX
  * @final
  * @private
  */
@@ -23,14 +23,15 @@ var PROVIDE_PREFIX = mixins.PROVIDE_PREFIX;
 /**
  * @param {Object} obj
  * @return {boolean}
+ * @private
  */
 function isLateralus (obj) {
   return obj.toString() === 'lateralus';
 }
 
 /**
- * Add a subcomponent to a `{{#crossLink "Lateralus"}}{{/crossLink}}` or
- * `{{#crossLink "Lateralus.Component"}}{{/crossLink}}` instance.
+ * Add a subcomponent to a `{@link Lateralus}` or `{@link Lateralus.Component}`
+ * instance.
  *
  *     var App = Lateralus.beget(function () {
  *       Lateralus.apply(this, arguments);
@@ -39,18 +40,18 @@ function isLateralus (obj) {
  *     var app = new App(document.getElementById('app'));
  *     var component = app.addComponent(Lateralus.Component);
  *     var subcomponent = component.addComponent(Lateralus.Component);
- * @method addComponent
+ *
+ * @method Lateralus.mixins#addComponent
  * @param {Lateralus.Component} Component A constructor, not an instance.
  * @param {Object} [viewOptions] The `options` object to be passed along to
- * the `Component` parameter's {{#crossLink
- * "Lateralus.Component.View"}}{{/crossLink}} instance.
- * @param {Object} [options] Gets passed to the new {{#crossLink
- * "Lateralus.Component"}}{{/crossLink}} instance.
+ * the `Component` parameter's {@link Lateralus.Component.View} instance.
+ * @param {Object} [options] Gets passed to the new {@link Lateralus.Component}
+ * instance.
  * @param {Object} [options.modelAttributes] Any attributes to pre-populate
- * the `{{#crossLink "Lateralus.Component/Model:property"}}{{/crossLink}}`
+ * the `{@link Lateralus.Component.Model}`
  * instance with, if there is one.
  * @param {Object} [options.modelOptions] Any parameters to pass to the
- * `{{#crossLink "Lateralus.Component/Model:property"}}{{/crossLink}}`
+ * `{@link Lateralus.Component.Model}`
  * instance, if there is one.
  * @return {Lateralus.Component} The component that was added.
  */
@@ -74,16 +75,17 @@ mixins.addComponent = function (Component, viewOptions, options) {
     /**
      * The subcomponents belonging to this object.  Do not modify this
      * property directly, it is managed by Lateralus.
-     * @property components
-     * @type {Object(Lateralus.Component)}
+     * @memberof Lateralus.mixins
+     * @type {Object.<Lateralus.Component>}
+     * @name components
      */
     this.components = {};
 
     /**
      * An internal counter registry of the subcomponents belonging to this
      * object.
-     * @property componentCounters
-     * @type {Object(number)}
+     * @memberof Lateralus.mixins
+     * @type {Object.<number>}
      * @private
      */
     this.componentCounters = {};
@@ -126,22 +128,19 @@ mixins.addComponent = function (Component, viewOptions, options) {
  * coupling by firing an event that bubbles throughout the app, depending on
  * what calls it:
  *
- * * If this is called by `{{#crossLink "Lateralus"}}{{/crossLink}}`, this
- * just triggers an event on that `{{#crossLink "Lateralus"}}{{/crossLink}}`
- * instance.
- * * If this is called by a `{{#crossLink
- * "Lateralus.Component"}}{{/crossLink}}`, this triggers an event on that
- * `{{#crossLink "Lateralus.Component"}}{{/crossLink}}` as well as the
- * central `{{#crossLink "Lateralus"}}{{/crossLink}}` instance.
- * * If this is called by a `{{#crossLink
- * "Lateralus.Component.View"}}{{/crossLink}}`, this triggers an event on
- * that `{{#crossLink "Lateralus.Component.View"}}{{/crossLink}}`, the
- * `{{#crossLink "Lateralus.Component"}}{{/crossLink}}` to which it belongs,
- * and the central `{{#crossLink "Lateralus"}}{{/crossLink}}` instance.
+ * * If this is called by `{@link Lateralus}`, this just triggers an event on
+ * that `{@link Lateralus}` instance.
+ * * If this is called by a `{@link Lateralus.Component}`, this triggers an
+ * event on that `{@link Lateralus.Component}` as well as the central `{@link
+ * Lateralus}` instance.
+ * * If this is called by a `{@link Lateralus.Component.View}`, this triggers
+ * an event on that `{@link Lateralus.Component.View}`, the `{@link
+ * Lateralus.Component}` to which it belongs, and the central `{@link
+ * Lateralus}` instance.
  *
  * This method has the same method signature as
  * [`Backbone.Events.trigger`](http://backbonejs.org/#Events-trigger).
- * @method emit
+ * @method Lateralus.mixins#emit
  * @param {string} eventName The name of the event.
  * @param {...any} [args] Any arguments to pass along to the listeners.
  */
@@ -161,11 +160,11 @@ mixins.emit = function () {
 };
 
 /**
- * Listen to an event-emitting Object and amplify one of its events across
- * the {{#crossLink "Lateralus"}}{{/crossLink}} application.  Useful for
- * making plain Backbone Objects (i.e., non-Lateralus Objects) communicate
- * important information in a broader way.
- * @method amplify
+ * Listen to an event-emitting Object and amplify one of its events across the
+ * {@link Lateralus} application.  Useful for making plain Backbone Objects
+ * (i.e., non-Lateralus Objects) communicate important information in a broader
+ * way.
+ * @method Lateralus.mixins#amplify
  * @param {Backbone.Events} emitter The object that `trigger`s events that
  * should be amplified globally across the app.
  * @param {string} eventName The event to amplify globally across the app.
@@ -175,9 +174,9 @@ mixins.amplify = function (emitter, eventName) {
 };
 
 /**
- * Listen for an event that is triggered on the central {{#crossLink
- * "Lateralus"}}{{/crossLink}} instance and bind a function handler.
- * @method listenFor
+ * Listen for an event that is triggered on the central {@link Lateralus}
+ * instance and bind a function handler.
+ * @method Lateralus.mixins#listenFor
  * @param {string} event The name of the event to listen for.
  * @param {Function} callback The function handler to bind.
  */
@@ -208,16 +207,15 @@ mixins.setupProviders = function () {
 };
 
 /**
- * Execute any `{{#crossLink
- * "Lateralus.mixins/provide:property"}}{{/crossLink}}` handlers that have
+ * Execute any `{@link Lateralus.mixins.provide}` handlers that have
  * been set up in the app and return an array of the returned values.
  *
  * Values that are `undefined` are excluded from the returned Array.
- * @method collect
- * @param {string} key The name of the `{{#crossLink
- * "Lateralus.mixins/provide:property"}}{{/crossLink}}` methods to run.
- * @param {...any} [args] Any parameters to pass along to `{{#crossLink
- * "Lateralus.mixins/provide:property"}}{{/crossLink}}` methods.
+ * @method Lateralus.mixins#collect
+ * @param {string} key The name of the `{@link Lateralus.mixins.provide}`
+ * methods to run.
+ * @param {...any} [args] Any parameters to pass along to `{@link
+ * Lateralus.mixins.provide}` methods.
  * @return {Array(any)}
  */
 mixins.collect = function (key) {
@@ -233,14 +231,13 @@ mixins.collect = function (key) {
 };
 
 /**
- * Execute any `{{#crossLink
- * "Lateralus.mixins/provide:property"}}{{/crossLink}}` handlers that have
- * been set up in the app and return the first value.
- * @method collectOne
- * @param {string} key The name of the `{{#crossLink
- * "Lateralus.mixins/provide:property"}}{{/crossLink}}` methods to run.
- * @param {...any} [args] Any parameters to pass along to `{{#crossLink
- * "Lateralus.mixins/provide:property"}}{{/crossLink}}` methods.
+ * Execute any `{@link Lateralus.mixins.provide}` handlers that have been set
+ * up in the app and return the first value.
+ * @method Lateralus.mixins#collectOne
+ * @param {string} key The name of the `{@link Lateralus.mixins.provide}`
+ * methods to run.
+ * @param {...any} [args] Any parameters to pass along to `{@link
+ * Lateralus.mixins.provide}` methods.
  * @return {any}
  */
 mixins.collectOne = function () {
@@ -250,10 +247,9 @@ mixins.collectOne = function () {
 var delegateEventSplitter = /^(\S+)\s*(.*)$/;
 
 /**
- * Bind `{{#crossLink
- * "Lateralus.mixins/lateralusEvents:property"}}{{/crossLink}}`, if it is
+ * Bind `{@link Lateralus.mixins.lateralusEvents}`, if it is
  * defined.
- * @method delegateLateralusEvents
+ * @method Lateralus.mixins#delegateLateralusEvents
  * @chainable
  */
 mixins.delegateLateralusEvents = function () {
@@ -263,7 +259,7 @@ mixins.delegateLateralusEvents = function () {
       /**
        * A map of functions or string references to functions that will
        * handle [events](http://backbonejs.org/#Events) dispatched to the
-       * central `{{#crossLink "Lateralus"}}{{/crossLink}}` instance.
+       * central `{@link Lateralus}` instance.
        *
        *     var ExtendedComponent = Lateralus.Component.extend({
        *       name: 'extended'
@@ -280,17 +276,17 @@ mixins.delegateLateralusEvents = function () {
        *         // ...
        *       }
        *     });
-       * @property lateralusEvents
+       * @memberof Lateralus.mixins
+       * @name lateralusEvents
        * @type {Object|undefined}
        * @default undefined
        */
       lateralusEvents: this.lateralus || this
 
       /**
-       * A map of functions that will handle `{{#crossLink
-       * "Lateralus.mixins/collect"}}{{/crossLink}}` calls.  Each of the
-       * functions attached to this Object should return a value.  These
-       * functions **must** be completely synchronous.
+       * A map of functions that will handle `{@link Lateralus.mixins#collect}`
+       * calls.  Each of the functions attached to this Object should return a
+       * value.  These functions **must** be completely synchronous.
        *
        *     var App = Lateralus.beget(function () {
        *       Lateralus.apply(this, arguments);
@@ -316,7 +312,8 @@ mixins.delegateLateralusEvents = function () {
        *
        *     app.addComponent(ComponentSubclass);
        *     console.log(app.collect('demoData')); // [1, 2]
-       * @property provide
+       * @memberof Lateralus.mixins
+       * @name provide
        * @type {Object|undefined}
        */
       ,provide: this.lateralus || this
@@ -333,7 +330,8 @@ mixins.delegateLateralusEvents = function () {
        *         }
        *       }
        *     });
-       * @property modelEvents
+       * @memberof Lateralus.mixins
+       * @name modelEvents
        * @type {Object|undefined}
        * @default undefined
        */
@@ -393,7 +391,8 @@ mixins.delegateLateralusEvents = function () {
  * Helper function for initModel and initCollection.
  * @param {Object} [initialObject]
  * @return {{ lateralus: Lateralus, component: Lateralus.Component= }}
- * component is not defined if `this` is the Lateralus instance.
+ * `component` is not defined if `this` is the Lateralus instance.
+ * @private
  */
 function getAugmentedOptionsObject (initialObject) {
   // jshint validthis:true
@@ -415,7 +414,7 @@ function getAugmentedOptionsObject (initialObject) {
  * @param {Object} [options]
  * @return {Lateralus.Component.Model} An instance of the provided Model
  * constructor.
- * @method initModel
+ * @method Lateralus.mixins#initModel
  */
 mixins.initModel = function (Model, attributes, options) {
   if (isLateralus(this)) {
@@ -429,11 +428,11 @@ mixins.initModel = function (Model, attributes, options) {
 /**
  * @param {Lateralus.Component.Collection} Collection A constructor, not an
  * instance.
- * @param {Array.(Lateralus.Model)} [models]
+ * @param {Array.<Lateralus.Model>} [models]
  * @param {Object} [options]
  * @return {Lateralus.Component.Collection} Am instance of the provided
  * Collection constructor.
- * @method initCollection
+ * @method Lateralus.mixins#initCollection
  */
 mixins.initCollection = function (Collection, models, options) {
   var augmentedOptions = getAugmentedOptionsObject.call(this, options);
@@ -444,7 +443,7 @@ mixins.initCollection = function (Collection, models, options) {
  * Merge the properties of another object into this object.  If the `mixin`
  * configuration object has a method called `initialize`, it is called in the
  * context of the object calling this function.
- * @method mixin
+ * @method Lateralus.mixins#mixin
  * @param {Object} mixin The object to mix in to this one.
  */
 mixins.mixin = function (mixin) {

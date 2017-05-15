@@ -8,7 +8,7 @@ var baseProto = Base.prototype;
 var fn = {
   /**
    * The constructor for this class should not be called by application code,
-   * it is used by the `{{#crossLink "Lateralus.Component"}}{{/crossLink}}`
+   * it is used by the `{@link Lateralus.Component}`
    * constructor.
    * @private
    * @param {Object} [attributes] Gets passed to
@@ -17,18 +17,15 @@ var fn = {
    * [Backbone.Model#initialize](http://backbonejs.org/#Model-constructor).
    * @param {Lateralus} options.lateralus
    * @param {Lateralus.Component} options.component
-   * @class Lateralus.Component.Model
-   * @extends Backbone.Model
-   * @uses Lateralus.mixins
-   * @constructor
+   * @mixes Lateralus.mixins
+   * @constructs Lateralus.Component.Model
    */
   constructor: function (attributes, options) {
     this.lateralus = options.lateralus;
 
     /**
-     * A reference to the `{{#crossLink
-     * "Lateralus.Component"}}{{/crossLink}}` to which this `{{#crossLink
-     * "Lateralus.Component.Model"}}{{/crossLink}}` belongs.
+     * A reference to the `{@link Lateralus.Component}` to which this `{@link
+     * Lateralus.Component.Model}` belongs.
      * @property component
      * @type {Lateralus.Component}
      * @final
@@ -44,10 +41,10 @@ var fn = {
    * [Backbone.Model#destroy](http://backbonejs.org/#Model-destroy).
    * @param {Object} [options] This object is also passed to
    * [Backbone.Model.#destroy](http://backbonejs.org/#Model-destroy).
-   * @param {boolean} [options.dispose] If true, call `{{#crossLink
-   * "Lateralus.Component.Model/dispose:method"}}{{/crossLink}}` after
-   * `destroy` operations are complete.
-   * @method destroy
+   * @param {boolean} [options.dispose] If true, call `{@link
+   * Lateralus.Component.Model/dispose:method}` after `destroy` operations are
+   * complete.
+   * @method Lateralus.Component.Model#destroy
    * @override
    */
   ,destroy: function (options) {
@@ -63,12 +60,10 @@ var fn = {
   }
 
   /**
-   * Remove this `{{#crossLink "Lateralus.Component.Model"}}{{/crossLink}}`
-   * from memory.  Also remove this `{{#crossLink
-   * "Lateralus.Component.Model"}}{{/crossLink}}` from the `{{#crossLink
-   * "Lateralus.Component.Collection"}}{{/crossLink}}` to which it belongs,
-   * if any.
-   * @method dispose
+   * Remove this `{@link Lateralus.Component.Model}`
+   * from memory.  Also remove this `{@link Lateralus.Component.Model}` from
+   * the `{@link Lateralus.Component.Collection}` to which it belongs, if any.
+   * @method Lateralus.Component.Model#dispose
    */
   ,dispose: function () {
     _(this).lateralusDispose(_.bind(function () {
@@ -81,10 +76,16 @@ var fn = {
 
 _.extend(fn, mixins);
 
+/**
+ * This class builds on the ideas and APIs of
+ * [`Backbone.Model`](http://backbonejs.org/#Model).
+ * @class Lateralus.Component.Model
+ * @extends {Backbone.Model}
+ */
 var ComponentModel = Base.extend(fn);
 
 /**
- * @method toString
+ * @method Lateralus.Component.Model#toString
  * @return {string} The name of this Model.  This is used internally by
  * Lateralus.
  */
