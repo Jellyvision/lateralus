@@ -21,14 +21,14 @@ _.mixin({
         delete obj[propName];
       }
     }
-  }
+  },
 
   /**
    * Perform general-purpose memory cleanup for a Lateralus/Backbone Object.
    * @param {Object} obj
    * @param {Fuction=} customDisposeLogic
    */
-  ,lateralusDispose: function (obj, customDisposeLogic) {
+  lateralusDispose: function (obj, customDisposeLogic) {
     obj.trigger('beforeDispose');
 
     if (customDisposeLogic) {
@@ -152,21 +152,21 @@ _.each([
    * @method Lateralus#log
    * @param {...any} Any parameters to pass along to `console.log`.
    */
-  'log'
+  'log',
 
   /**
    * Cross-browser friendly wrapper for `console.warn`.
    * @method Lateralus#warn
    * @param {...any} Any parameters to pass along to `console.warn`.
    */
-  ,'warn'
+  'warn',
 
   /**
    * Cross-browser friendly wrapper for `console.error`.
    * @method Lateralus#error
    * @param {...any} Any parameters to pass along to `console.error`.
    */
-  ,'error'
+  'error'
 
 ], function (consoleMethodName) {
   fn[consoleMethodName] = function () {

@@ -2,36 +2,36 @@
 'use strict';
 
 require.config({
-  baseUrl: '/'
-  ,map: {
+  baseUrl: '/',
+  map: {
     '*': {
       underscore: 'lodash'
     }
-  }
-  ,shim: {
+  },
+  shim: {
     bootstrap: {
-      deps: ['jquery']
-      ,exports: 'jquery'
+      deps: ['jquery'],
+      exports: 'jquery'
     }
-  }
-  ,paths: {
-    text: 'bower_components/requirejs-text/text'
-    ,jquery: 'bower_components/jquery/dist/jquery'
-    ,backbone: 'bower_components/backbone/backbone'
-    ,lodash: 'bower_components/lodash/lodash'
-    ,mustache: 'bower_components/mustache/mustache'
-  }
-  ,packages: [{
-    name: 'lateralus'
-    ,location: 'bower_components/lateralus/scripts'
-    ,main: 'lateralus'
+  },
+  paths: {
+    text: 'bower_components/requirejs-text/text',
+    jquery: 'bower_components/jquery/dist/jquery',
+    backbone: 'bower_components/backbone/backbone',
+    lodash: 'bower_components/lodash/lodash',
+    mustache: 'bower_components/mustache/mustache'
+  },
+  packages: [{
+    name: 'lateralus',
+    location: 'bower_components/lateralus/scripts',
+    main: 'lateralus'
   }, {
-    name: '{{appName}}'
-    ,location: 'scripts'
-    ,main: '{{appName}}'
+    name: '{{appName}}',
+    location: 'scripts',
+    main: '{{appName}}'
   }, {
-    name: '{{appName}}.component.container'
-    ,location: 'scripts/components/container'
+    name: '{{appName}}.component.container',
+    location: 'scripts/components/container'
   }]
 });
 

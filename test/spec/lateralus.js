@@ -205,8 +205,8 @@ describe('Lateralus', function () {
 
       it('Captures Component.View-level events', function () {
         var ExtendedComponent = Lateralus.Component.extend({
-          name: 'extended'
-          ,View: Lateralus.Component.View
+          name: 'extended',
+          View: Lateralus.Component.View
         });
 
         var component = app.addComponent(ExtendedComponent);
@@ -219,9 +219,9 @@ describe('Lateralus', function () {
 
       it('Captures Component.Model-level events', function () {
         var ExtendedComponent = Lateralus.Component.extend({
-          name: 'extended'
-          ,View: Lateralus.Component.View
-          ,Model: Lateralus.Component.Model
+          name: 'extended',
+          View: Lateralus.Component.View,
+          Model: Lateralus.Component.Model
         });
 
         var component = app.addComponent(ExtendedComponent);
@@ -334,8 +334,8 @@ describe('Lateralus', function () {
 
         var app = new App();
         var ComponentSubclass = Lateralus.Component.extend({
-          name: 'provider'
-          ,provide: {
+          name: 'provider',
+          provide: {
             test: function () {
               return 2;
             }
@@ -382,8 +382,8 @@ describe('Lateralus', function () {
 
         it('Only returns defined values', function () {
           var ExtendedComponent = Lateralus.Component.extend({
-            name: 'extended'
-            ,provide: {
+            name: 'extended',
+            provide: {
               test: function () {
                 return 1;
               }
@@ -399,8 +399,8 @@ describe('Lateralus', function () {
 
         it('Returns falsy values except for undefined', function () {
           var ExtendedComponent1 = Lateralus.Component.extend({
-            name: 'extended-1'
-            ,provide: {
+            name: 'extended-1',
+            provide: {
               test: function () {
                 return false;
               }
@@ -408,8 +408,8 @@ describe('Lateralus', function () {
           });
 
           var ExtendedComponent2 = Lateralus.Component.extend({
-            name: 'extended-2'
-            ,provide: {
+            name: 'extended-2',
+            provide: {
               test: function () {
                 return 0;
               }
@@ -477,9 +477,9 @@ describe('Lateralus', function () {
           lateralusTest: function () {
             lateralusEventsTestWasCalled = true;
           }
-        }
+        },
 
-        ,modelEvents: {
+        modelEvents: {
           modelTest: function () {
             modelEventsTestWasCalled = true;
           }

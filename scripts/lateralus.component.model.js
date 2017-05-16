@@ -34,7 +34,7 @@ var fn = {
 
     this.delegateLateralusEvents();
     Backbone.Model.call(this, attributes, options);
-  }
+  },
 
   /**
    * Lateralus-compatible override for
@@ -47,7 +47,7 @@ var fn = {
    * @method Lateralus.Component.Model#destroy
    * @override
    */
-  ,destroy: function (options) {
+  destroy: function (options) {
     options = options || {};
     var dispose = options.dispose;
     options.dispose = false;
@@ -57,7 +57,7 @@ var fn = {
     if (dispose) {
       this.dispose();
     }
-  }
+  },
 
   /**
    * Remove this `{@link Lateralus.Component.Model}`
@@ -65,7 +65,7 @@ var fn = {
    * the `{@link Lateralus.Component.Collection}` to which it belongs, if any.
    * @method Lateralus.Component.Model#dispose
    */
-  ,dispose: function () {
+  dispose: function () {
     _(this).lateralusDispose(_.bind(function () {
       if (this.collection) {
         this.collection.remove(this);

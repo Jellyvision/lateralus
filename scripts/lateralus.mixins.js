@@ -281,7 +281,7 @@ mixins.delegateLateralusEvents = function () {
        * @type {Object|undefined}
        * @default undefined
        */
-      lateralusEvents: this.lateralus || this
+      lateralusEvents: this.lateralus || this,
 
       /**
        * A map of functions that will handle `{@link Lateralus.mixins#collect}`
@@ -316,7 +316,7 @@ mixins.delegateLateralusEvents = function () {
        * @name provide
        * @type {Object|undefined}
        */
-      ,provide: this.lateralus || this
+      provide: this.lateralus || this,
 
       /**
        * A map of functions or string references to functions that will
@@ -335,7 +335,7 @@ mixins.delegateLateralusEvents = function () {
        * @type {Object|undefined}
        * @default undefined
        */
-      ,modelEvents: this.model
+      modelEvents: this.model
     }, function (subject, mapName) {
 
     if (!subject) {

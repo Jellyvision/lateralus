@@ -94,8 +94,8 @@ function Component (lateralus, options, viewOptions, opt_parentComponent) {
     if (this.Model && !viewOptions.model) {
 
       options.modelOptions = _.extend(options.modelOptions || {}, {
-        lateralus: lateralus
-        ,component: this
+        lateralus: lateralus,
+        component: this
       });
 
       this.model = new this.Model(

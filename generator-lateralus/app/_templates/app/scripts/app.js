@@ -1,14 +1,14 @@
 define([
 
-  'lateralus'
+  'lateralus',
 
-  ,'{{appName}}.component.container'
+  '{{appName}}.component.container'
 
 ], function (
 
-  Lateralus
+  Lateralus,
 
-  ,ContainerComponent
+  ContainerComponent
 
 ) {
   'use strict';

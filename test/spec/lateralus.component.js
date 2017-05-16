@@ -36,8 +36,8 @@ describe('Lateralus.Component', function () {
           var testWasCalled = false;
 
           var BaseComponent = Lateralus.Component.extend({
-            name: 'base'
-            ,lateralusEvents: {
+            name: 'base',
+            lateralusEvents: {
               test: function () {
                 testWasCalled = true;
               }
@@ -45,8 +45,8 @@ describe('Lateralus.Component', function () {
           });
 
           var ChildComponent = BaseComponent.extend({
-            name: 'child'
-            ,lateralusEvents: {
+            name: 'child',
+            lateralusEvents: {
               foo: _.noop
             }
           });
@@ -64,14 +64,14 @@ describe('Lateralus.Component', function () {
           var testWasCalled = false;
 
           var BaseComponent = Lateralus.Component.extend({
-            name: 'base'
-            ,lateralusEvents: {
+            name: 'base',
+            lateralusEvents: {
               test: function () {
                 testWasCalled = true;
               }
-            }
+            },
 
-            ,provide: {
+            provide: {
               bar: function () {
                 return true;
               }
@@ -79,8 +79,8 @@ describe('Lateralus.Component', function () {
           });
 
           var ChildComponent = BaseComponent.extend({
-            name: 'child'
-            ,lateralusEvents: {
+            name: 'child',
+            lateralusEvents: {
               foo: _.noop
             }
           });

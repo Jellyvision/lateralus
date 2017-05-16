@@ -28,8 +28,8 @@ fn.constructor = function (models, options) {
  */
 fn.set = function (models, options) {
   var augmentedOptions = _.extend(options || {}, {
-    lateralus: this.lateralus
-    ,component: this.component
+    lateralus: this.lateralus,
+    component: this.component
   });
 
   return baseProto.set.call(this, models, augmentedOptions);
