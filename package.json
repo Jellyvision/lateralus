@@ -15,7 +15,8 @@
     "test": "mocha -r jsdom-global/register ./node_modules/babel-core/register.js test/index.js",
     "doc": "jsdoc -c .jsdoc scripts/*.js",
     "setup": "npm install",
-    "version": "npm run build && git add -A",
+    "version": "npm run generate-artifacts && git add -A",
+    "generate-artifacts": "npm run clean && npm run build && npm run doc",
     "preversion": "npm test",
     "postversion": "git push && git push --tags",
     "clean": "rm -rf dist docs"
