@@ -6,4 +6,3 @@ scripts
 .npmignore
 .jshintrc
 .travis.yml
-Gruntfile.js

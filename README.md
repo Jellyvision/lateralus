@@ -253,8 +253,6 @@ To run them in a headless browser at the command line:
 npm test
 ````
 
-The tests are also run by the default `grunt` task.
-
 ## Publishing new versions
 
 Once things are ready, you should use `npm version`.
