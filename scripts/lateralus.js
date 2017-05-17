@@ -233,4 +233,7 @@ Lateralus.Component = Component;
 Lateralus.Model = LateralusModel;
 Lateralus.Router = LateralusRouter;
 
-export default Lateralus;
+// Using the old-school CommonJS export format here for better
+// backwards-compatibility:
+// https://github.com/webpack/webpack/issues/3929
+module.exports = Lateralus;
