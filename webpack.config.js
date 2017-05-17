@@ -26,6 +26,7 @@ module.exports = {
       }
     ]
   },
+  externals: ['backbone', 'underscore', 'jquery', 'mustache'],
   resolve: {
     modules: [
       'node_modules'
