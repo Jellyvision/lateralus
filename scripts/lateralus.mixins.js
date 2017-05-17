@@ -1,4 +1,4 @@
-import { _ } from 'underscore';
+import _ from 'lodash-compat';
 
 /**
  * These method are mixed into `{@link Lateralus}`,

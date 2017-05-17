@@ -30,6 +30,9 @@ module.exports = {
   resolve: {
     modules: [
       'node_modules'
-    ]
+    ],
+    alias: {
+      underscore: path.resolve(__dirname, 'node_modules/lodash-compat/index')
+    }
   }
 };

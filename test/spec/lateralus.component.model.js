@@ -1,5 +1,5 @@
 import chai from 'chai';
-import { _ } from 'underscore';
+import _ from 'lodash-compat';
 import Backbone from 'backbone';
 import Lateralus from '../../scripts/lateralus';
 import { getLateralusApp } from '../utils';

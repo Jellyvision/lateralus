@@ -1,4 +1,4 @@
-import { _ } from 'underscore';
+import _ from 'lodash-compat';
 import Backbone from 'backbone';
 import mixins from './lateralus.mixins';
 
@@ -52,10 +52,18 @@ var fn = {
     var dispose = options.dispose;
     options.dispose = false;
 
-    baseProto.destroy.apply(this, arguments);
+    baseProto.destroy.call(this, options);
 
     if (dispose) {
-      this.dispose();
+      if (this.isNew()) {
+        // Backbone 1.3.0 changed Backbone.Model#destroy to be _.defer-red, so
+        // this .dispose needs to also be deferred to prevent a null reference
+        // error in the second thread.
+        // https://github.com/jashkenas/backbone/commit/d7943fe4c06e11c99b84e7dacd6e16431d8e321b
+        _.defer(() => this.dispose());
+      } else {
+        this.dispose();
+      }
     }
   },
 

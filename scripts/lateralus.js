@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import { _ } from 'underscore';
+import _ from 'lodash-compat';
 import Backbone from 'backbone';
 import mixins from './lateralus.mixins';
 import Component from './lateralus.component';

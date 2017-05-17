@@ -1,4 +1,4 @@
-import { _ } from 'underscore';
+import _ from 'lodash-compat';
 import Backbone from 'backbone';
 import mixins from './lateralus.mixins';
 import ComponentView from './lateralus.component.view';

@@ -1,5 +1,5 @@
 import chai from 'chai';
-import { _ } from 'underscore';
+import _ from 'lodash-compat';
 import Backbone from 'backbone';
 import Lateralus from '../../scripts/lateralus';
 import { getLateralusApp } from '../utils';
@@ -114,7 +114,7 @@ describe('Lateralus', function () {
       app.dispose();
 
       it('Stopped listening to other objects', function () {
-        assert.typeOf(model._events, 'undefined');
+        assert.equal(_.keys(model._events).length, 0);
       });
 
       it('Component is disposed', function () {
