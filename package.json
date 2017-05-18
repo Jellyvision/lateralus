@@ -18,13 +18,16 @@
     "version": "npm run generate-artifacts && git add -A",
     "generate-artifacts": "npm run clean && npm run build && npm run doc",
     "preversion": "npm test",
-    "postversion": "git push && git push --tags",
+    "postversion": "git push --follow-tags",
     "clean": "rm -rf dist docs"
   },
+  "engines": {
+    "node": ">=6.7.0"
+  },
   "dependencies": {
-    "backbone": "^1.3.3",
-    "jquery": "^1.12.4",
-    "lodash-compat": "^3.10.2",
+    "backbone": "~1.3.3",
+    "jquery": "~1.12.4",
+    "lodash-compat": "~3.10.2",
     "mustache": "~0.8.2"
   },
   "repository": {
