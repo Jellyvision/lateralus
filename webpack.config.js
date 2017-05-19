@@ -1,13 +1,7 @@
+const config = require('./webpack.common');
 const path = require('path');
-const Webpack = require('webpack');
 
-const { version } = require('./package.json');
-
-const modulePaths = [
-  path.join(__dirname, 'node_modules')
-];
-
-module.exports = {
+module.exports = Object.assign(config, {
   entry: './scripts/lateralus.js',
   output: {
     path: path.join(__dirname, 'dist'),
@@ -17,23 +11,5 @@ module.exports = {
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
-  devtool: 'source-map',
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        use: 'babel-loader',
-        exclude: /node_modules/
-      }
-    ]
-  },
-  externals: ['backbone', 'underscore', 'jquery', 'mustache'],
-  resolve: {
-    modules: [
-      'node_modules'
-    ],
-    alias: {
-      underscore: path.resolve(__dirname, 'node_modules/lodash-compat/index')
-    }
-  }
-};
+  externals: ['backbone', 'lodash-compat', 'jquery', 'mustache']
+});
