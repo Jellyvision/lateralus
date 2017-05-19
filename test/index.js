@@ -1,5 +1,5 @@
-import {} from './spec/lateralus';
-import {} from './spec/lateralus.model';
-import {} from './spec/lateralus.component';
-import {} from './spec/lateralus.component.model';
-import {} from './spec/lateralus.component.collection';
+import './spec/lateralus';
+import './spec/lateralus.model';
+import './spec/lateralus.component';
+import './spec/lateralus.component.model';
+import './spec/lateralus.component.collection';
