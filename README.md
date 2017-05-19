@@ -27,36 +27,6 @@ To install Lateralus into an existing app:
 npm install --save lateralus
 ````
 
-### Generate the boilerplate
-
-For your convenience, Lateralus comes bundled with a Yeoman generator for quickly scaffolding apps and components from scratch.  This is particularly handy for starting a new project with Lateralus.  First, clone this repo:
-
-````bash
-git clone https://github.com/Jellyvision/lateralus.git
-````
-
-Then link up the generator:
-
-````bash
-cd lateralus/generator-lateralus
-npm link
-````
-
-The generator is now set up.  To scaffold a new Lateralus app:
-
-```bash
-mkdir -p path/to/app
-cd $_
-
-# Configure the app with the prompts.  For this example, call it "app."
-yo lateralus
-
-# Create a new component
-yo lateralus:component my-component
-```
-
-New Lateralus apps are scaffolded with a `ContainerComponent`.  It is suggested that you use this as the single parent component of your app.
-
 ### Loading Lateralus
 
 Lateralus is a [UMD module](http://davidbcalhoun.com/2014/what-is-amd-commonjs-and-umd/), so load it however you like.  This README's examples use the AMD format.
@@ -149,7 +119,7 @@ define(['lateralus', './view', 'text!./template.mustache'],
 });
 ```
 
-This is set up for you by the Lateralus Yeoman generator.  `Lateralus.Component` instances have a reference to the central `Lateralus` instance as `this.lateralus`.
+`Lateralus.Component` instances have a reference to the central `Lateralus` instance as `this.lateralus`.
 
 **Note:** The `styles/main.sass` file is not `@import`ed for you automatically in your main Sass file, you will need to do that manually when you set up a new component.
 
@@ -171,8 +141,7 @@ define(['lateralus'], function (Lateralus) {
   var ExtendedComponentView = Base.extend({
     initialize: function () {
       // An initialize method definition isn't strictly required for a simple
-      // example like this, but it's a good habit to get into.  Additionally,
-      // generator-lateralus sets up new Views this way.  With the Base/baseProto
+      // example like this, but it's a good habit to get into. With the Base/baseProto
       // pattern above, you can easily achieve "super"-like functionality (like
       // Java has).  If you want to add additional initialization code for this
       // View, you should insert it after the baseProto.initialize call.
@@ -209,7 +178,7 @@ Just like `Lateralus.Component.Model`, this works consistently with `Backbone.Co
 
 ### Component styles
 
-Each component can (and should) have its own `.sass` file (the generator sets this up at `[component-name]/styles/sass.main`).  It is recommended that all rules be nested under the `[component-name]-view` CSS class, as that class is dynamically added to all `Lateralus.Component.View` instances.  This provides clean and easy component-based style isolation.
+Each component can (and should) have its own `.sass` file.  It is recommended that all rules be nested under the `[component-name]-view` CSS class, as that class is dynamically added to all `Lateralus.Component.View` instances.  This provides clean and easy component-based style isolation.
 
 ## Running tests
 
