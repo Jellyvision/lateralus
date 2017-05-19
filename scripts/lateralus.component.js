@@ -99,8 +99,8 @@ function Component (lateralus, options, viewOptions, opt_parentComponent) {
       });
 
       this.model = new this.Model(
-        options.modelAttributes
-        ,options.modelOptions
+        options.modelAttributes,
+        options.modelOptions
       );
 
       augmentedViewOptions.model = this.model;
