@@ -236,17 +236,10 @@ fn.renderTemplate = function () {
  * @private
  */
 fn.bindToDOM = function () {
-  this.$el.find('[class]').each(_.bind(function (i, el) {
-    var $el = $(el);
-    var classes = $el.attr('class').split(/\s+/);
-
-    _.each(classes, function (_class) {
-      if (_class.match(/^\$/)) {
-        this[_class] = $el;
-        return false;
-      }
-    }, this);
-  }, this));
+  this.$el.find('[class^="$"]').each((i, el) => {
+    const $el = $(el);
+    this[$el.attr('class').split(/\s+/)[0]] = $el;
+  });
 };
 
 /**
