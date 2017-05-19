@@ -1,0 +1,12 @@
+{
+  "plugins": ["plugins/markdown"],
+  "opts": {
+    "destination": "docs",
+    "readme": "README.md"
+  },
+  "templates": {
+    "default": {
+      "useLongnameInNav": true
+    }
+  }
+}

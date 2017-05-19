@@ -26,9 +26,9 @@ var LateralusGenerator = yeoman.generators.Base.extend({
       var appCtor = _s.classify(this.appName);
 
       var renderData = {
-        appName: this.appName
-        ,appCtor: appCtor
-        ,appInstance: appCtor[0].toLowerCase() + appCtor.slice(1)
+        appName: this.appName,
+        appCtor: appCtor,
+        appInstance: appCtor[0].toLowerCase() + appCtor.slice(1)
       };
 
       var templateProcessor = function (file) {

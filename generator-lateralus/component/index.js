@@ -27,9 +27,9 @@ var LateralusComponentGenerator = yeoman.generators.Base.extend({
       var prefix = namespaceFiles ? this.componentName + '-' : '';
 
       var renderData = {
-        componentName: this.componentName
-        ,componentClassName: _s.classify(this.componentName)
-        ,prefix: prefix
+        componentName: this.componentName,
+        componentClassName: _s.classify(this.componentName),
+        prefix: prefix
       };
 
       var destRoot = this.isLateralus ?
@@ -38,11 +38,11 @@ var LateralusComponentGenerator = yeoman.generators.Base.extend({
       this.destinationRoot(destRoot + this.componentName);
 
       [
-        'main.js'
-        ,'model.js'
-        ,'view.js'
-        ,'template.mustache'
-        ,'styles/main.sass'
+        'main.js',
+        'model.js',
+        'view.js',
+        'template.mustache',
+        'styles/main.sass'
       ].forEach(function (fileName) {
         var renderedTemplate = Mustache.render(
           this.src.read(fileName), renderData);
