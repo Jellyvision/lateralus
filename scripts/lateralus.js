@@ -145,6 +145,9 @@ Lateralus.beget = function (child, config) {
 
 _.extend(fn, mixins);
 
+const { bind } = Function.prototype;
+const logger = window.console || {};
+
 _.each([
 
   /**
@@ -169,15 +172,7 @@ _.each([
   'error'
 
 ], function (consoleMethodName) {
-  fn[consoleMethodName] = function () {
-    if (typeof console !== 'undefined' &&
-        console[consoleMethodName] &&
-        // .apply is undefined for console object methods in IE.
-        console[consoleMethodName].apply) {
-
-      console[consoleMethodName].apply(console, arguments);
-    }
-  };
+  fn[consoleMethodName] = bind.call(logger[consoleMethodName], logger);
 });
 
 /**
