@@ -1,8 +1,12 @@
-# Created by .ignore support plugin (hsz.mobi)
-node_modules
-test
-scripts
 .gitignore
-.npmignore
+.jsdoc
 .jshintrc
+.npmignore
 .travis.yml
+_config.yml
+changelog.md
+img/
+node_modules
+scripts
+test
+webpack.*
