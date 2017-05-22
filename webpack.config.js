@@ -2,7 +2,7 @@ const config = require('./webpack.common');
 const path = require('path');
 
 module.exports = Object.assign(config, {
-  entry: './scripts/lateralus.js',
+  entry: './src/lateralus.js',
   output: {
     path: path.join(__dirname, 'dist'),
     publicPath: '/assets/',
