@@ -1,7 +1,7 @@
 import chai from 'chai';
 import _ from 'lodash-compat';
 import Backbone from 'backbone';
-import Lateralus from '../../scripts/lateralus';
+import Lateralus from '../../src/lateralus';
 import { getLateralusApp } from '../utils';
 
 var assert = chai.assert;

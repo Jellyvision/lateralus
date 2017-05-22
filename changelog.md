@@ -1,3 +1,16 @@
+# 1.0.0
+
+  * Upgrade to jQuery to 1.12.4, Backbone to 1.3.3, and drop Underscore for Lodash
+  * Drop Grunt for npm scripts
+  * Drop Bower for npm
+  * Frop YUIDoc for JSDoc
+  * Drop PhantomJS test runner infrastructure for mocha CLI
+  * Drop RequireJS build tool for Webpack
+  * Drop AMD module format for ES6 (with UMD wrapped build artifacts)
+  * Rename scripts/ to src/
+  * Untrack dist from source control
+  * Convert to comma-last formatting
+
 # 0.9.1
 
   * Add support for Lodash 3.10.1

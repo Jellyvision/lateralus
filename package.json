@@ -13,7 +13,7 @@
     "start": "webpack-dev-server --config webpack.test.config.js",
     "build": "webpack",
     "test": "mocha -r jsdom-global/register ./node_modules/babel-core/register.js test/index.js",
-    "doc": "jsdoc -c .jsdoc scripts/*.js",
+    "doc": "jsdoc -c .jsdoc src/*.js",
     "setup": "npm install",
     "version": "npm run generate-artifacts && git add -A",
     "generate-artifacts": "npm run clean && npm run build && npm run doc",
