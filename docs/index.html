@@ -55,19 +55,7 @@
 <li><a href="https://github.com/janl/mustache.js/">Mustache</a> 0.8.2</li>
 </ul>
 <h2>Getting started</h2><h3>Installation</h3><p>To install Lateralus into an existing app:</p>
-<pre class="prettyprint source"><code>npm install --save lateralus</code></pre><h3>Generate the boilerplate</h3><p>For your convenience, Lateralus comes bundled with a Yeoman generator for quickly scaffolding apps and components from scratch.  This is particularly handy for starting a new project with Lateralus.  First, clone this repo:</p>
-<pre class="prettyprint source lang-bash"><code>git clone https://github.com/Jellyvision/lateralus.git</code></pre><p>Then link up the generator:</p>
-<pre class="prettyprint source lang-bash"><code>cd lateralus/generator-lateralus
-npm link</code></pre><p>The generator is now set up.  To scaffold a new Lateralus app:</p>
-<pre class="prettyprint source lang-bash"><code>mkdir -p path/to/app
-cd $_
-
-# Configure the app with the prompts.  For this example, call it &quot;app.&quot;
-yo lateralus
-
-# Create a new component
-yo lateralus:component my-component</code></pre><p>New Lateralus apps are scaffolded with a <code>ContainerComponent</code>.  It is suggested that you use this as the single parent component of your app.</p>
-<h3>Loading Lateralus</h3><p>Lateralus is a <a href="http://davidbcalhoun.com/2014/what-is-amd-commonjs-and-umd/">UMD module</a>, so load it however you like.  This README's examples use the AMD format.</p>
+<pre class="prettyprint source"><code>npm install --save lateralus</code></pre><h3>Loading Lateralus</h3><p>Lateralus is a <a href="http://davidbcalhoun.com/2014/what-is-amd-commonjs-and-umd/">UMD module</a>, so load it however you like.  This README's examples use the AMD format.</p>
 <p>Once loaded, you can instantiate a Lateralus app:</p>
 <pre class="prettyprint source lang-javascript"><code>require(['lateralus'], function (Lateralus) {
   var App = Lateralus.beget(function () {
@@ -122,7 +110,7 @@ yo lateralus:component my-component</code></pre><p>New Lateralus apps are scaffo
   });
 
   return ExtendedComponent;
-});</code></pre><p>This is set up for you by the Lateralus Yeoman generator.  <code>Lateralus.Component</code> instances have a reference to the central <code>Lateralus</code> instance as <code>this.lateralus</code>.</p>
+});</code></pre><p><code>Lateralus.Component</code> instances have a reference to the central <code>Lateralus</code> instance as <code>this.lateralus</code>.</p>
 <p><strong>Note:</strong> The <code>styles/main.sass</code> file is not <code>@import</code>ed for you automatically in your main Sass file, you will need to do that manually when you set up a new component.</p>
 <h3>Templates</h3><p>Lateralus uses <a href="https://github.com/janl/mustache.js/">Mustache.js</a> for its templating engine.  Components that render something have at least one template associated with them as <code>this.template</code>.</p>
 <h3><a href="http://jellyvision.github.io/lateralus/docs/Lateralus.Component.View.html">Lateralus.Component.View</a></h3><p>This Object extends <a href="http://backbonejs.org/#View"><code>Backbone.View</code></a> with Lateralus-specific functionality.  Here's a basic <code>Lateralus.Component.View</code> subclass module:</p>
@@ -135,8 +123,7 @@ yo lateralus:component my-component</code></pre><p>New Lateralus apps are scaffo
   var ExtendedComponentView = Base.extend({
     initialize: function () {
       // An initialize method definition isn't strictly required for a simple
-      // example like this, but it's a good habit to get into.  Additionally,
-      // generator-lateralus sets up new Views this way.  With the Base/baseProto
+      // example like this, but it's a good habit to get into. With the Base/baseProto
       // pattern above, you can easily achieve &quot;super&quot;-like functionality (like
       // Java has).  If you want to add additional initialization code for this
       // View, you should insert it after the baseProto.initialize call.
@@ -153,7 +140,7 @@ yo lateralus:component my-component</code></pre><p>New Lateralus apps are scaffo
 <p><code>Lateralus.Component.View</code> transparently renders its template for you.  <code>this.renderTemplate</code> is called by <code>Lateralus.Component.View.prototype.initialize</code> (which is why you should generally call <code>baseProto.initialize</code> as demonstrated above), but you are free to do further rendering with <code>this.render</code>.  <code>this.render</code> should be used for partial updates, whereas <code>this.renderTemplate</code> should be used to completely replace the contents of the View's <code>$el</code> with whatever is in <code>this.template</code>.</p>
 <h3><a href="http://jellyvision.github.io/lateralus/docs/Lateralus.Model.html">Lateralus.Component.Model</a></h3><p>Similarly to <code>Lateralus.Component.View</code>, this object extends its Backbone counterpart &mdash; <code>Backbone.Model</code>.  This doesn't add much in the way of new functionality, but it does have a reference to the central <code>Lateralus</code> instance and can therefore <code>emit</code> and <code>listenFor</code> messages.</p>
 <h3><a href="http://jellyvision.github.io/lateralus/docs/Lateralus.Collection.html">Lateralus.Component.Collection</a></h3><p>Just like <code>Lateralus.Component.Model</code>, this works consistently with <code>Backbone.Collection</code>, but in a way that is compatible with Lateralus.</p>
-<h3>Component styles</h3><p>Each component can (and should) have its own <code>.sass</code> file (the generator sets this up at <code>[component-name]/styles/sass.main</code>).  It is recommended that all rules be nested under the <code>[component-name]-view</code> CSS class, as that class is dynamically added to all <code>Lateralus.Component.View</code> instances.  This provides clean and easy component-based style isolation.</p>
+<h3>Component styles</h3><p>Each component can (and should) have its own <code>.sass</code> file.  It is recommended that all rules be nested under the <code>[component-name]-view</code> CSS class, as that class is dynamically added to all <code>Lateralus.Component.View</code> instances.  This provides clean and easy component-based style isolation.</p>
 <h2>Running tests</h2><p>You can run the Lateralus unit tests both in your browser as well as in a command line environment.  To run the tests in your browser:</p>
 <pre class="prettyprint source"><code>npm run start</code></pre><p>And then navigate to http://127.0.0.1:8080/test/.</p>
 <p>To run them at the command line:</p>
@@ -183,7 +170,7 @@ This will:</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Fri May 19 2017 17:06:50 GMT-0500 (CDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Mon May 22 2017 10:08:23 GMT-0500 (CDT)
 </footer>
 
 <script> prettyPrint(); </script>
