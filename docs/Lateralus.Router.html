@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Class: Router</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Class: Router</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+            <span class="ancestors"><a href="Lateralus.html">Lateralus</a>.</span>Router</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+    
+
+    <h4 class="name" id="Router"><span class="type-signature"></span>new Router<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>This class builds on the ideas and APIs of
+<a href="http://backbonejs.org/#Router"><code>Backbone.Router</code></a>.  The constructor for
+this class should not be called by application code.  Instead, use <code><a href="Lateralus.html#initRouter">Lateralus#initRouter</a></code>.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lateralus.router.js.html">lateralus.router.js</a>, <a href="lateralus.router.js.html#line23">line 23</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li>Backbone.Router</li>
+    </ul>
+
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="components"><span class="type-signature"></span>components<span class="type-signature"> :Object.&lt;<a href="Lateralus.Component.html">Lateralus.Component</a>></span></h4>
+
+
+
+
+<div class="description">
+    <p>The subcomponents belonging to this object.  Do not modify this
+property directly, it is managed by Lateralus.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object.&lt;<a href="Lateralus.Component.html">Lateralus.Component</a>></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <dt class="mixes">Mixes In:</dt>
+
+        <dd class="mixes"><ul>
+        
+            <li><a href="Lateralus.mixins.html#.components">Lateralus.mixins.components</a></li>
+        
+        </ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lateralus.mixins.js.html">lateralus.mixins.js</a>, <a href="lateralus.mixins.js.html#line75">line 75</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="lateralusEvents"><span class="type-signature"></span>lateralusEvents<span class="type-signature"> :Object|undefined</span></h4>
+
+
+
+
+<div class="description">
+    <p>A map of functions or string references to functions that will
+handle <a href="http://backbonejs.org/#Events">events</a> dispatched to the
+central <code><a href="Lateralus.html">Lateralus</a></code> instance.</p>
+<pre class="prettyprint source"><code>var ExtendedComponent = Lateralus.Component.extend({
+  name: 'extended'
+
+  ,lateralusEvents: {
+    anotherComponentChanged: 'onAnotherComponentChanged'
+
+    ,anotherComponentDestroyed: function () {
+      // ...
+    }
+  }
+
+  ,onAnotherComponentChanged: function () {
+    // ...
+  }
+});</code></pre>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+|
+
+<span class="param-type">undefined</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <dt class="mixes">Mixes In:</dt>
+
+        <dd class="mixes"><ul>
+        
+            <li><a href="Lateralus.mixins.html#.lateralusEvents">Lateralus.mixins.lateralusEvents</a></li>
+        
+        </ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>undefined</li>
+        </ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lateralus.mixins.js.html">lateralus.mixins.js</a>, <a href="lateralus.mixins.js.html#line259">line 259</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="modelEvents"><span class="type-signature"></span>modelEvents<span class="type-signature"> :Object|undefined</span></h4>
+
+
+
+
+<div class="description">
+    <p>A map of functions or string references to functions that will
+handle <a href="http://backbonejs.org/#Events">events</a> emitted by
+<code>this.model</code>.</p>
+<pre class="prettyprint source"><code>var ExtendedComponent = Lateralus.View.extend({
+  modelEvents: {
+    changed:someProperty: function (model, someProperty) {
+      // ...
+    }
+  }
+});</code></pre>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+|
+
+<span class="param-type">undefined</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <dt class="mixes">Mixes In:</dt>
+
+        <dd class="mixes"><ul>
+        
+            <li><a href="Lateralus.mixins.html#.modelEvents">Lateralus.mixins.modelEvents</a></li>
+        
+        </ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>undefined</li>
+        </ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lateralus.mixins.js.html">lateralus.mixins.js</a>, <a href="lateralus.mixins.js.html#line321">line 321</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="provide"><span class="type-signature"></span>provide<span class="type-signature"> :Object|undefined</span></h4>
+
+
+
+
+<div class="description">
+    <p>A map of functions that will handle <code><a href="Lateralus.mixins.html#collect">Lateralus.mixins#collect</a></code>
+calls.  Each of the functions attached to this Object should return a
+value.  These functions <strong>must</strong> be completely synchronous.</p>
+<pre class="prettyprint source"><code>var App = Lateralus.beget(function () {
+  Lateralus.apply(this, arguments);
+});
+
+_.extend(App.prototype, {
+  provide: {
+    demoData: function () {
+      return 1;
+    }
+  }
+});
+
+var app = new App();
+var ComponentSubclass = Lateralus.Component.extend({
+  name: 'provider'
+  ,provide: {
+    demoData: function () {
+      return 2;
+    }
+  }
+});
+
+app.addComponent(ComponentSubclass);
+console.log(app.collect('demoData')); // [1, 2]</code></pre>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+|
+
+<span class="param-type">undefined</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <dt class="mixes">Mixes In:</dt>
+
+        <dd class="mixes"><ul>
+        
+            <li><a href="Lateralus.mixins.html#.provide">Lateralus.mixins.provide</a></li>
+        
+        </ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lateralus.mixins.js.html">lateralus.mixins.js</a>, <a href="lateralus.mixins.js.html#line286">line 286</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="toString"><span class="type-signature"></span>toString<span class="signature">()</span><span class="type-signature"> &rarr; {string}</span></h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lateralus.router.js.html">lateralus.router.js</a>, <a href="lateralus.router.js.html#line33">line 33</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>The name of this Router.  This is used internally by
+Lateralus.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Lateralus.html">Lateralus</a></li><li><a href="Lateralus.Component.html">Lateralus.Component</a></li><li><a href="Lateralus.Component.Collection.html">Lateralus.Component.Collection</a></li><li><a href="Lateralus.Component.Model.html">Lateralus.Component.Model</a></li><li><a href="Lateralus.Component.View.html">Lateralus.Component.View</a></li><li><a href="Lateralus.Model.html">Lateralus.Model</a></li><li><a href="Lateralus.Router.html">Lateralus.Router</a></li></ul><h3>Global</h3><ul><li><a href="global.html#lateralusDispose">lateralusDispose</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Mon May 22 2017 10:31:33 GMT-0500 (CDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -1,26 +1,14 @@
-define([
+import Lateralus from '../src/lateralus';
 
-  'lateralus'
+/**
+ * @param {Function} [extraConstructorCode]
+ */
+export function getLateralusApp (extraConstructorCode) {
+  return Lateralus.beget(function () {
+    Lateralus.apply(this, arguments);
 
-], function (
-
-  Lateralus
-
-) {
-  'use strict';
-
-  return {
-    /**
-     * @param {Function} [extraConstructorCode]
-     */
-    getLateralusApp: function (extraConstructorCode) {
-      return Lateralus.beget(function () {
-        Lateralus.apply(this, arguments);
-
-        if (extraConstructorCode) {
-          extraConstructorCode.call(this);
-        }
-      });
+    if (extraConstructorCode) {
+      extraConstructorCode.call(this);
     }
-  };
-});
+  });
+}

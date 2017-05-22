@@ -1,0 +1,1799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Class: Component</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Class: Component</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+            <span class="ancestors"><a href="Lateralus.html">Lateralus</a>.</span>Component</h2>
+        
+            <div class="class-description"><p>Lateralus.Component</p></div>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+    
+    <h2>Constructor</h2>
+    
+
+    <h4 class="name" id="Component"><span class="type-signature"></span>new Component<span class="signature">(lateralus, options, viewOptions, opt_parentComponent<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>The constructor for this method should not be called directly.  Instead, use
+the <code><a href="Lateralus.mixins.html#addComponent">Lateralus.mixins#addComponent</a></code> mixin method:</p>
+<pre class="prettyprint source"><code>var App = Lateralus.beget(function () {
+  Lateralus.apply(this, arguments);
+});
+
+var app = new App(document.getElementById('app'));
+var component = app.addComponent(Lateralus.Component);
+
+console.log(component instanceof Lateralus.Component); // true</code></pre>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>lateralus</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Lateralus.html">Lateralus</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Values to attach to this <code><a href="Lateralus.Component.html">Lateralus.Component</a></code> instance.  This object also get passed to the <code>Lateralus.Component.initialize</code> method, if one is defined.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>modelAttributes</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Any attributes to pre-populate
+the <code><a href="Lateralus.Component.Model.html">Lateralus.Component.Model</a></code>
+instance with, if there is one.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>modelOptions</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Any parameters to pass to the
+<code><a href="Lateralus.Component.Model.html">Lateralus.Component.Model</a></code>
+instance, if there is one.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>viewOptions</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The <code>options</code> Object to pass to the
+<code><a href="Lateralus.Component.View.html">Lateralus.Component.View</a></code>
+constructor.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>opt_parentComponent</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Lateralus.Component.html">Lateralus.Component</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The parent component of
+this component, if any.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <dt class="mixes">Mixes In:</dt>
+
+        <dd class="mixes"><ul>
+        
+            <li><a href="http://backbonejs.org/#Events">http://backbonejs.org/#Events</a></li>
+        
+            <li><a href="Lateralus.mixins.html">Lateralus.mixins</a></li>
+        
+        </ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lateralus.component.js.html">lateralus.component.js</a>, <a href="lateralus.component.js.html#line40">line 40</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Classes</h3>
+
+        <dl>
+            <dt><a href="Lateralus.Component.Collection.html">Collection</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Lateralus.Component.Model.html">Model</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Lateralus.Component.View.html">View</a></dt>
+            <dd></dd>
+        </dl>
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="components"><span class="type-signature"></span>components<span class="type-signature"> :Object.&lt;<a href="Lateralus.Component.html">Lateralus.Component</a>></span></h4>
+
+
+
+
+<div class="description">
+    <p>The subcomponents belonging to this object.  Do not modify this
+property directly, it is managed by Lateralus.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object.&lt;<a href="Lateralus.Component.html">Lateralus.Component</a>></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <dt class="mixes">Mixes In:</dt>
+
+        <dd class="mixes"><ul>
+        
+            <li><a href="Lateralus.mixins.html#.components">Lateralus.mixins.components</a></li>
+        
+        </ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lateralus.mixins.js.html">lateralus.mixins.js</a>, <a href="lateralus.mixins.js.html#line75">line 75</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="initialize"><span class="type-signature"></span>initialize<span class="type-signature"> :function|undefined</span></h4>
+
+
+
+
+<div class="description">
+    <p>A method to be called when this <code><a href="Lateralus.Component.html">Lateralus.Component</a></code> has been set
+up.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">function</span>
+|
+
+<span class="param-type">undefined</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>undefined</li>
+        </ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lateralus.component.js.html">lateralus.component.js</a>, <a href="lateralus.component.js.html#line125">line 125</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="lateralus"><span class="type-signature">(readonly) </span>lateralus<span class="type-signature"> :<a href="Lateralus.html">Lateralus</a></span></h4>
+
+
+
+
+<div class="description">
+    <p>A reference to the central <code><a href="Lateralus.html">Lateralus</a></code>
+instance.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><a href="Lateralus.html">Lateralus</a></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lateralus.component.js.html">lateralus.component.js</a>, <a href="lateralus.component.js.html#line42">line 42</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="lateralusEvents"><span class="type-signature"></span>lateralusEvents<span class="type-signature"> :Object|undefined</span></h4>
+
+
+
+
+<div class="description">
+    <p>A map of functions or string references to functions that will
+handle <a href="http://backbonejs.org/#Events">events</a> dispatched to the
+central <code><a href="Lateralus.html">Lateralus</a></code> instance.</p>
+<pre class="prettyprint source"><code>var ExtendedComponent = Lateralus.Component.extend({
+  name: 'extended'
+
+  ,lateralusEvents: {
+    anotherComponentChanged: 'onAnotherComponentChanged'
+
+    ,anotherComponentDestroyed: function () {
+      // ...
+    }
+  }
+
+  ,onAnotherComponentChanged: function () {
+    // ...
+  }
+});</code></pre>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+|
+
+<span class="param-type">undefined</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <dt class="mixes">Mixes In:</dt>
+
+        <dd class="mixes"><ul>
+        
+            <li><a href="Lateralus.mixins.html#.lateralusEvents">Lateralus.mixins.lateralusEvents</a></li>
+        
+        </ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>undefined</li>
+        </ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lateralus.mixins.js.html">lateralus.mixins.js</a>, <a href="lateralus.mixins.js.html#line259">line 259</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="modelEvents"><span class="type-signature"></span>modelEvents<span class="type-signature"> :Object|undefined</span></h4>
+
+
+
+
+<div class="description">
+    <p>A map of functions or string references to functions that will
+handle <a href="http://backbonejs.org/#Events">events</a> emitted by
+<code>this.model</code>.</p>
+<pre class="prettyprint source"><code>var ExtendedComponent = Lateralus.View.extend({
+  modelEvents: {
+    changed:someProperty: function (model, someProperty) {
+      // ...
+    }
+  }
+});</code></pre>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+|
+
+<span class="param-type">undefined</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <dt class="mixes">Mixes In:</dt>
+
+        <dd class="mixes"><ul>
+        
+            <li><a href="Lateralus.mixins.html#.modelEvents">Lateralus.mixins.modelEvents</a></li>
+        
+        </ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>undefined</li>
+        </ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lateralus.mixins.js.html">lateralus.mixins.js</a>, <a href="lateralus.mixins.js.html#line321">line 321</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="parentComponent"><span class="type-signature"></span>parentComponent<span class="type-signature"> :<a href="Lateralus.Component.html">Lateralus.Component</a>|undefined</span></h4>
+
+
+
+
+<div class="description">
+    <p>If this is a subcomponent of another <code><a href="Lateralus.Component.html">Lateralus.Component</a></code>, this
+property is a reference to the parent <code><a href="Lateralus.Component.html">Lateralus.Component</a></code>.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><a href="Lateralus.Component.html">Lateralus.Component</a></span>
+|
+
+<span class="param-type">undefined</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>undefined</li>
+        </ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lateralus.component.js.html">lateralus.component.js</a>, <a href="lateralus.component.js.html#line65">line 65</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="provide"><span class="type-signature"></span>provide<span class="type-signature"> :Object|undefined</span></h4>
+
+
+
+
+<div class="description">
+    <p>A map of functions that will handle <code><a href="Lateralus.mixins.html#collect">Lateralus.mixins#collect</a></code>
+calls.  Each of the functions attached to this Object should return a
+value.  These functions <strong>must</strong> be completely synchronous.</p>
+<pre class="prettyprint source"><code>var App = Lateralus.beget(function () {
+  Lateralus.apply(this, arguments);
+});
+
+_.extend(App.prototype, {
+  provide: {
+    demoData: function () {
+      return 1;
+    }
+  }
+});
+
+var app = new App();
+var ComponentSubclass = Lateralus.Component.extend({
+  name: 'provider'
+  ,provide: {
+    demoData: function () {
+      return 2;
+    }
+  }
+});
+
+app.addComponent(ComponentSubclass);
+console.log(app.collect('demoData')); // [1, 2]</code></pre>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+|
+
+<span class="param-type">undefined</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <dt class="mixes">Mixes In:</dt>
+
+        <dd class="mixes"><ul>
+        
+            <li><a href="Lateralus.mixins.html#.provide">Lateralus.mixins.provide</a></li>
+        
+        </ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lateralus.mixins.js.html">lateralus.mixins.js</a>, <a href="lateralus.mixins.js.html#line286">line 286</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="view"><span class="type-signature"></span>view<span class="type-signature"> :<a href="Lateralus.Component.View.html">Lateralus.Component.View</a>|undefined</span></h4>
+
+
+
+
+<div class="description">
+    <p>If <code><a href="Lateralus.Component.View.html">Lateralus.Component.View</a></code> is defined, this is an instance of
+that constructor.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><a href="Lateralus.Component.View.html">Lateralus.Component.View</a></span>
+|
+
+<span class="param-type">undefined</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>undefined</li>
+        </ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lateralus.component.js.html">lateralus.component.js</a>, <a href="lateralus.component.js.html#line109">line 109</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="View"><span class="type-signature"></span>View<span class="type-signature"> :<a href="Lateralus.Component.View.html">Lateralus.Component.View</a>|undefined</span></h4>
+
+
+
+
+<div class="description">
+    <p>The <code><a href="Lateralus.Component.View.html">Lateralus.Component.View</a></code> constructor to use, if any.  If
+this <code><a href="Lateralus.Component.html">Lateralus.Component</a></code> is intended to render to the DOM,
+<code>View</code> should be defined on the <code>prototype</code> before instantiating:</p>
+<pre class="prettyprint source"><code>var ExtendedComponent = Lateralus.Component.extend({
+  name: 'extended'
+  ,View: Lateralus.Component.View
+  ,template: '&lt;div>&lt;/div>'
+});</code></pre>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><a href="Lateralus.Component.View.html">Lateralus.Component.View</a></span>
+|
+
+<span class="param-type">undefined</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>undefined</li>
+        </ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lateralus.component.js.html">lateralus.component.js</a>, <a href="lateralus.component.js.html#line75">line 75</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="dispose"><span class="type-signature"></span>dispose<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Remove this <code><a href="Lateralus.Component.html">Lateralus.Component</a></code> from memory.  Also remove any
+nested components added by <code><a href="Lateralus.mixins.html#addComponent">Lateralus.mixins#addComponent</a></code>.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lateralus.component.js.html">lateralus.component.js</a>, <a href="lateralus.component.js.html#line195">line 195</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="extend"><span class="type-signature"></span>extend<span class="signature">(protoProps)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Create a <code><a href="Lateralus.Component.html">Lateralus.Component</a></code> subclass.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>protoProps</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The name of this component.  It should have
+no whitespace.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>View</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Lateralus.Component.View.html">Lateralus.Component.View</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The <code><a href="Lateralus.Component.View.html">Lateralus.Component.View</a></code> to render this component with.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>Model</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Lateralus.Component.Model.html">Lateralus.Component.Model</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The optional <code><a href="Lateralus.Component.Model.html">Lateralus.Component.Model</a></code> to be provided to <code>protoProps.View</code> when it is
+instantiated.  This does nothing if <code>protoProps.View</code> is not defined.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lateralus.component.js.html">lateralus.component.js</a>, <a href="lateralus.component.js.html#line145">line 145</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="toJSON"><span class="type-signature"></span>toJSON<span class="signature">()</span><span class="type-signature"> &rarr; {Object}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Meant to be overridden by subclasses.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lateralus.component.js.html">lateralus.component.js</a>, <a href="lateralus.component.js.html#line221">line 221</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="toString"><span class="type-signature"></span>toString<span class="signature">()</span><span class="type-signature"> &rarr; {string}</span></h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lateralus.component.js.html">lateralus.component.js</a>, <a href="lateralus.component.js.html#line230">line 230</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>The name of this Component.  This is used internally by
+Lateralus.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Lateralus.html">Lateralus</a></li><li><a href="Lateralus.Component.html">Lateralus.Component</a></li><li><a href="Lateralus.Component.Collection.html">Lateralus.Component.Collection</a></li><li><a href="Lateralus.Component.Model.html">Lateralus.Component.Model</a></li><li><a href="Lateralus.Component.View.html">Lateralus.Component.View</a></li><li><a href="Lateralus.Model.html">Lateralus.Model</a></li><li><a href="Lateralus.Router.html">Lateralus.Router</a></li></ul><h3>Global</h3><ul><li><a href="global.html#lateralusDispose">lateralusDispose</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Mon May 22 2017 10:31:33 GMT-0500 (CDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
