@@ -171,7 +171,7 @@ _.each([
    */
   'error'
 
-], function (consoleMethodName) {
+], (consoleMethodName) => {
   fn[consoleMethodName] = bind.call(logger[consoleMethodName], logger);
 });
 
@@ -206,11 +206,11 @@ fn.shareWith = function (receiver, providerName) {
  * @method Lateralus#dispose
  */
 fn.dispose = function () {
-  _(this).lateralusDispose(_.bind(function () {
+  _(this).lateralusDispose(() => {
     if (this.components) {
       _.invoke(this.components, 'dispose');
     }
-  }, this));
+  });
 };
 fn.spiralOut = fn.dispose;
 
