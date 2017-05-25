@@ -1,15 +1,16 @@
+'use strict';
 import chai from 'chai';
 import _ from 'lodash-compat';
 import Backbone from 'backbone';
 import Lateralus from '../../src/lateralus';
 import { getLateralusApp } from '../utils';
 
-var assert = chai.assert;
+const assert = chai.assert;
 
 describe('Lateralus.Model', function () {
   describe('constructor', function () {
-    var App = getLateralusApp();
-    var app = new App();
+    const App = getLateralusApp();
+    const app = new App();
 
     it('Is an instance of Backbone.Model', function () {
       assert.instanceOf(app.model, Backbone.Model);
@@ -22,8 +23,8 @@ describe('Lateralus.Model', function () {
 
   describe('Prototype', function () {
     describe('onChange()', function () {
-      var count = 0;
-      var App = getLateralusApp(function () {
+      let count = 0;
+      const App = getLateralusApp(function () {
         this.model.set('prop1', 'foo');
       });
 
@@ -48,8 +49,8 @@ describe('Lateralus.Model', function () {
     });
 
     describe('toString()', function () {
-      var App = getLateralusApp();
-      var app = new App();
+      const App = getLateralusApp();
+      const app = new App();
 
       it('Returns internal name', function () {
         assert.equal(app.model.toString(), 'lateralus-model');
@@ -59,10 +60,10 @@ describe('Lateralus.Model', function () {
 
   describe('Mixins', function () {
     describe('addComponent()', function () {
-      var App = getLateralusApp();
-      var app = new App();
+      const App = getLateralusApp();
+      const app = new App();
 
-      var component = app.model.addComponent(Lateralus.Component);
+      const component = app.model.addComponent(Lateralus.Component);
 
       it('Adds component to the central Lateralus instance', function () {
         assert.equal(component, app.components.component0);
@@ -70,16 +71,16 @@ describe('Lateralus.Model', function () {
     });
 
     describe('emit()', function () {
-      var App = getLateralusApp();
+      const App = getLateralusApp();
 
-      var testWasCalled = false;
+      let testWasCalled = false;
       App.prototype.lateralusEvents = {
         test: function () {
           testWasCalled = true;
         }
       };
 
-      var app = new App();
+      const app = new App();
       app.model.emit('test');
 
       it('Emits events to Lateralus', function () {

@@ -1,3 +1,4 @@
+'use strict';
 import _ from 'lodash-compat';
 
 /**
@@ -7,7 +8,7 @@ import _ from 'lodash-compat';
  * @private
  * @requires http://backbonejs.org/#Events
  */
-var mixins = {};
+const mixins = {};
 
 /**
  * Event namespace for `{@link Lateralus.mixins.provide}` handlers.
@@ -18,7 +19,7 @@ var mixins = {};
  * @private
  */
 mixins.PROVIDE_PREFIX = '_provide:';
-var PROVIDE_PREFIX = mixins.PROVIDE_PREFIX;
+const PROVIDE_PREFIX = mixins.PROVIDE_PREFIX;
 
 /**
  * @param {Object} obj
@@ -33,13 +34,13 @@ function isLateralus (obj) {
  * Add a subcomponent to a `{@link Lateralus}` or `{@link Lateralus.Component}`
  * instance.
  *
- *     var App = Lateralus.beget(function () {
+ *     const App = Lateralus.beget(function () {
  *       Lateralus.apply(this, arguments);
  *     });
  *
- *     var app = new App(document.getElementById('app'));
- *     var component = app.addComponent(Lateralus.Component);
- *     var subcomponent = component.addComponent(Lateralus.Component);
+ *     const app = new App(document.getElementById('app'));
+ *     const component = app.addComponent(Lateralus.Component);
+ *     const subcomponent = component.addComponent(Lateralus.Component);
  *
  * @method Lateralus.mixins#addComponent
  * @param {Lateralus.Component} Component A constructor, not an instance.
@@ -92,10 +93,10 @@ mixins.addComponent = function (Component, viewOptions, options) {
   }
 
   // If thisIsLateralus is false, `this` is a Lateralus.Component instance.
-  var thisIsLateralus = isLateralus(this);
+  const thisIsLateralus = isLateralus(this);
 
-  var lateralusReference = thisIsLateralus ? this : this.lateralus;
-  var component = new Component(
+  const lateralusReference = thisIsLateralus ? this : this.lateralus;
+  const component = new Component(
     lateralusReference
     ,options
     ,viewOptions || {}
@@ -106,14 +107,14 @@ mixins.addComponent = function (Component, viewOptions, options) {
     this.$el.append(component.view.$el);
   }
 
-  var componentType = component.toString();
+  const componentType = component.toString();
   if (this.componentCounters.hasOwnProperty(componentType)) {
     this.componentCounters[componentType]++;
   } else {
     this.componentCounters[componentType] = 0;
   }
 
-  var componentInstanceName =
+  const componentInstanceName =
       componentType + this.componentCounters[componentType];
   this.components[componentInstanceName] = component;
 
@@ -145,7 +146,7 @@ mixins.addComponent = function (Component, viewOptions, options) {
  * @param {...any} [args] Any arguments to pass along to the listeners.
  */
 mixins.emit = function () {
-  var args = _.toArray(arguments);
+  const args = _.toArray(arguments);
   this.trigger.apply(this, args);
 
   if (isLateralus(this)) {
@@ -181,7 +182,7 @@ mixins.amplify = function (emitter, eventName) {
  * @param {Function} callback The function handler to bind.
  */
 mixins.listenFor = function (event, callback) {
-  var thisIsLateralus = isLateralus(this);
+  const thisIsLateralus = isLateralus(this);
   if (thisIsLateralus) {
     this.on(event, callback);
   } else {
@@ -219,8 +220,8 @@ mixins.setupProviders = function () {
  * @return {Array(any)}
  */
 mixins.collect = function (key) {
-  var args = _.toArray(arguments).slice(1);
-  var collectedValues = [];
+  const args = _.toArray(arguments).slice(1);
+  const collectedValues = [];
 
   this.emit(PROVIDE_PREFIX + key,
       _.bind(collectedValues.push, collectedValues), args);
@@ -244,7 +245,7 @@ mixins.collectOne = function () {
   return this.collect.apply(this, arguments)[0];
 };
 
-var delegateEventSplitter = /^(\S+)\s*(.*)$/;
+const delegateEventSplitter = /^(\S+)\s*(.*)$/;
 
 /**
  * Bind `{@link Lateralus.mixins.lateralusEvents}`, if it is
@@ -261,7 +262,7 @@ mixins.delegateLateralusEvents = function () {
        * handle [events](http://backbonejs.org/#Events) dispatched to the
        * central `{@link Lateralus}` instance.
        *
-       *     var ExtendedComponent = Lateralus.Component.extend({
+       *     const ExtendedComponent = Lateralus.Component.extend({
        *       name: 'extended'
        *
        *       ,lateralusEvents: {
@@ -288,7 +289,7 @@ mixins.delegateLateralusEvents = function () {
        * calls.  Each of the functions attached to this Object should return a
        * value.  These functions **must** be completely synchronous.
        *
-       *     var App = Lateralus.beget(function () {
+       *     const App = Lateralus.beget(function () {
        *       Lateralus.apply(this, arguments);
        *     });
        *
@@ -300,8 +301,8 @@ mixins.delegateLateralusEvents = function () {
        *       }
        *     });
        *
-       *     var app = new App();
-       *     var ComponentSubclass = Lateralus.Component.extend({
+       *     const app = new App();
+       *     const ComponentSubclass = Lateralus.Component.extend({
        *       name: 'provider'
        *       ,provide: {
        *         demoData: function () {
@@ -323,7 +324,7 @@ mixins.delegateLateralusEvents = function () {
        * handle [events](http://backbonejs.org/#Events) emitted by
        * `this.model`.
        *
-       *     var ExtendedComponent = Lateralus.View.extend({
+       *     const ExtendedComponent = Lateralus.View.extend({
        *       modelEvents: {
        *         changed:someProperty: function (model, someProperty) {
        *           // ...
@@ -342,12 +343,12 @@ mixins.delegateLateralusEvents = function () {
       return;
     }
 
-    var eventMap = this[mapName];
+    const eventMap = this[mapName];
 
     if (eventMap) {
       // Inherit the parent object's event map, if there is one.
-      var childEventMap = eventMap;
-      var ctorProto = this.constructor.prototype;
+      const childEventMap = eventMap;
+      const ctorProto = this.constructor.prototype;
 
       if (ctorProto[mapName]) {
         // Temporarily delete the key so the next analogous key on the
@@ -355,15 +356,15 @@ mixins.delegateLateralusEvents = function () {
         delete ctorProto[mapName];
 
         // Grab the inherited map.
-        var baseEventMap = this[mapName];
+        const baseEventMap = this[mapName];
 
         // Augment the child's map with the parent's.
         ctorProto[mapName] = _.defaults(childEventMap, baseEventMap);
       }
     }
 
-    for (var key in eventMap) {
-      var method = eventMap[key];
+    for (const key in eventMap) {
+      let method = eventMap[key];
       if (!_.isFunction(method)) {
         method = this[eventMap[key]];
       }
@@ -372,9 +373,9 @@ mixins.delegateLateralusEvents = function () {
         new Error('Method "' + method + '" not found for ' + this.toString());
       }
 
-      var match = key.match(delegateEventSplitter);
-      var eventName = match[1];
-      var boundMethod = _.bind(method, this);
+      const match = key.match(delegateEventSplitter);
+      const eventName = match[1];
+      const boundMethod = _.bind(method, this);
 
       if (isLateralus(this) && isLateralus(subject)) {
         this.on(eventName, boundMethod);
@@ -396,8 +397,8 @@ mixins.delegateLateralusEvents = function () {
  */
 function getAugmentedOptionsObject (initialObject) {
   // jshint validthis:true
-  var thisIsLateralus = isLateralus(this);
-  var augmentedOptions = _.extend(initialObject || {}, {
+  const thisIsLateralus = isLateralus(this);
+  const augmentedOptions = _.extend(initialObject || {}, {
     lateralus: thisIsLateralus ? this : this.lateralus
   });
 
@@ -421,7 +422,7 @@ mixins.initModel = function (Model, attributes, options) {
     return new Model(this, attributes, options);
   }
 
-  var augmentedOptions = getAugmentedOptionsObject.call(this, options);
+  const augmentedOptions = getAugmentedOptionsObject.call(this, options);
   return new Model(attributes, augmentedOptions);
 };
 
@@ -435,7 +436,7 @@ mixins.initModel = function (Model, attributes, options) {
  * @method Lateralus.mixins#initCollection
  */
 mixins.initCollection = function (Collection, models, options) {
-  var augmentedOptions = getAugmentedOptionsObject.call(this, options);
+  const augmentedOptions = getAugmentedOptionsObject.call(this, options);
   return new Collection(models, augmentedOptions);
 };
 

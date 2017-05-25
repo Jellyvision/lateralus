@@ -1,10 +1,11 @@
+'use strict';
 import chai from 'chai';
 import _ from 'lodash-compat';
 import Backbone from 'backbone';
 import Lateralus from '../../src/lateralus';
 import { getLateralusApp } from '../utils';
 
-var assert = chai.assert;
+const assert = chai.assert;
 
 describe('Lateralus', function () {
   describe('Static properties', function () {
@@ -29,7 +30,7 @@ describe('Lateralus', function () {
       function Child () {}
       Parent.prototype.foo = function () {};
       Lateralus.inherit(Child, Parent);
-      var child = new Child();
+      const child = new Child();
 
       it('Sets up prototype chain between Parent and Child', function () {
         assert.instanceOf(child, Parent);
@@ -44,15 +45,15 @@ describe('Lateralus', function () {
   describe('Static methods', function () {
     describe('beget()', function () {
       describe('Config: Custom model', function () {
-        var ExtendedModel = Lateralus.Model.extend({});
+        const ExtendedModel = Lateralus.Model.extend({});
 
-        var App = Lateralus.beget(function () {
+        const App = Lateralus.beget(function () {
           Lateralus.apply(this, arguments);
         }, {
           Model: ExtendedModel
         });
 
-        var app = new App();
+        const app = new App();
 
         it('Uses the specified Lateralus.Model', function () {
           assert.instanceOf(app.model, ExtendedModel);
@@ -63,9 +64,9 @@ describe('Lateralus', function () {
 
   describe('Instance properties', function () {
     describe('el', function () {
-      var App = getLateralusApp();
-      var el = document.createElement('div');
-      var app = new App(el);
+      const App = getLateralusApp();
+      const el = document.createElement('div');
+      const app = new App(el);
 
       it('Is root element', function () {
         assert.equal(app.el, el);
@@ -73,9 +74,9 @@ describe('Lateralus', function () {
     });
 
     describe('$el', function () {
-      var App = getLateralusApp();
-      var el = document.createElement('div');
-      var app = new App(el);
+      const App = getLateralusApp();
+      const el = document.createElement('div');
+      const app = new App(el);
 
       it('Is jQuery reference to root element', function () {
         assert.equal(app.$el[0], el);
@@ -85,16 +86,16 @@ describe('Lateralus', function () {
 
   describe('Prototype', function () {
     describe('initRouter()', function () {
-      var App = getLateralusApp();
-      var app = new App();
+      const App = getLateralusApp();
+      const app = new App();
 
-      var ExtendedRouter = Lateralus.Router.extend({
+      const ExtendedRouter = Lateralus.Router.extend({
         initialize: function (options) {
           this.gotOptions = !!options;
         }
       });
 
-      var router = app.initRouter(ExtendedRouter, {});
+      const router = app.initRouter(ExtendedRouter, {});
 
       it('Instantiates a Lateralus.Router', function () {
         assert.instanceOf(router, Lateralus.Router);
@@ -106,11 +107,11 @@ describe('Lateralus', function () {
     });
 
     describe('dispose()', function () {
-      var App = getLateralusApp();
-      var app = new App(document.createElement('div'));
-      var model = new Backbone.Model();
+      const App = getLateralusApp();
+      const app = new App(document.createElement('div'));
+      const model = new Backbone.Model();
       app.listenTo(model, 'test', _.noop);
-      var component = app.addComponent(Lateralus.Component);
+      const component = app.addComponent(Lateralus.Component);
       app.dispose();
 
       it('Stopped listening to other objects', function () {
@@ -131,8 +132,8 @@ describe('Lateralus', function () {
     });
 
     describe('toString()', function () {
-      var App = getLateralusApp();
-      var app = new App();
+      const App = getLateralusApp();
+      const app = new App();
 
       it('Returns internal name', function () {
         assert.equal(app.toString(), 'lateralus');
@@ -141,8 +142,8 @@ describe('Lateralus', function () {
 
     describe('shareWith()', function () {
       it('Relays the providers from another Lateralus app', function () {
-        var App1 = getLateralusApp();
-        var App2 = getLateralusApp();
+        const App1 = getLateralusApp();
+        const App2 = getLateralusApp();
 
         _.extend(App1.prototype, {
           provide: {
@@ -152,13 +153,13 @@ describe('Lateralus', function () {
           }
         });
 
-        var app1 = new App1();
-        var app2 = new App2();
+        const app1 = new App1();
+        const app2 = new App2();
 
         app1.shareWith(app2, 'test');
 
-        var expected = true;
-        var actual = app2.collectOne('test');
+        const expected = true;
+        const actual = app2.collectOne('test');
 
         assert.equal(expected, actual);
       });
@@ -167,8 +168,8 @@ describe('Lateralus', function () {
 
   describe('Mixins', function () {
     describe('lateralusEvents', function () {
-      var App = getLateralusApp();
-      var testWasCalled = false;
+      const App = getLateralusApp();
+      let testWasCalled = false;
 
       _.extend(App.prototype, {
         lateralusEvents: {
@@ -178,7 +179,7 @@ describe('Lateralus', function () {
         }
       });
 
-      var app = new App(document.createElement('div'));
+      const app = new App(document.createElement('div'));
 
       it('Captures top-level events', function () {
         app.emit('test');
@@ -195,7 +196,7 @@ describe('Lateralus', function () {
       testWasCalled = false;
 
       it('Captures Component-level events', function () {
-        var component = app.addComponent(Lateralus.Component);
+        const component = app.addComponent(Lateralus.Component);
         component.emit('test');
         assert.isTrue(testWasCalled);
         component.dispose();
@@ -204,12 +205,12 @@ describe('Lateralus', function () {
       testWasCalled = false;
 
       it('Captures Component.View-level events', function () {
-        var ExtendedComponent = Lateralus.Component.extend({
+        const ExtendedComponent = Lateralus.Component.extend({
           name: 'extended',
           View: Lateralus.Component.View
         });
 
-        var component = app.addComponent(ExtendedComponent);
+        const component = app.addComponent(ExtendedComponent);
         component.view.emit('test');
         assert.isTrue(testWasCalled);
         component.dispose();
@@ -218,13 +219,13 @@ describe('Lateralus', function () {
       testWasCalled = false;
 
       it('Captures Component.Model-level events', function () {
-        var ExtendedComponent = Lateralus.Component.extend({
+        const ExtendedComponent = Lateralus.Component.extend({
           name: 'extended',
           View: Lateralus.Component.View,
           Model: Lateralus.Component.Model
         });
 
-        var component = app.addComponent(ExtendedComponent);
+        const component = app.addComponent(ExtendedComponent);
         component.view.model.emit('test');
         assert.isTrue(testWasCalled);
         component.dispose();
@@ -232,17 +233,17 @@ describe('Lateralus', function () {
     });
 
     describe('addComponent()', function () {
-      var App = getLateralusApp();
-      var app = new App(document.createElement('div'));
+      const App = getLateralusApp();
+      const app = new App(document.createElement('div'));
 
       // Need to capture the original value here because it() calls are
       // lazily evaluated.
-      var originalComponentCounter = app.componentCounters;
+      const originalComponentCounter = app.componentCounters;
       it('Does not start out with this.componentCounters', function () {
         assert.isUndefined(originalComponentCounter);
       });
 
-      var component = app.addComponent(Lateralus.Component);
+      const component = app.addComponent(Lateralus.Component);
 
       it('Initializes the proper key on this.componentCounters'
           ,function () {
@@ -260,8 +261,8 @@ describe('Lateralus', function () {
 
     describe('amplify()', function () {
       describe('Basic amplify functionality', function () {
-        var App = getLateralusApp();
-        var testWasAmplified = false;
+        const App = getLateralusApp();
+        let testWasAmplified = false;
         _.extend(App.prototype, {
           lateralusEvents: {
             test: function () {
@@ -270,10 +271,10 @@ describe('Lateralus', function () {
           }
         });
 
-        var app = new App(document.createElement('div'));
+        const app = new App(document.createElement('div'));
 
         it('Broadcasts a Backbone.Model\'s events globally', function () {
-          var model = new Backbone.Model();
+          const model = new Backbone.Model();
           app.amplify(model, 'test');
           model.trigger('test');
           assert.isTrue(testWasAmplified);
@@ -282,9 +283,9 @@ describe('Lateralus', function () {
     });
 
     describe('listenFor()', function () {
-      var App = getLateralusApp();
-      var app = new App();
-      var testWasCalled = false;
+      const App = getLateralusApp();
+      const app = new App();
+      let testWasCalled = false;
 
       app.listenFor('test', function () {
         testWasCalled = true;
@@ -299,7 +300,7 @@ describe('Lateralus', function () {
 
     describe('collect()', function () {
       describe('Single providers', function () {
-        var App = getLateralusApp();
+        const App = getLateralusApp();
 
         _.extend(App.prototype, {
           provide: {
@@ -309,8 +310,8 @@ describe('Lateralus', function () {
           }
         });
 
-        var app = new App();
-        var collectedTest = app.collect('test');
+        const app = new App();
+        const collectedTest = app.collect('test');
 
         it('Collects an array', function () {
           assert.isArray(collectedTest);
@@ -322,7 +323,7 @@ describe('Lateralus', function () {
       });
 
       describe('Multiple providers', function () {
-        var App = getLateralusApp();
+        const App = getLateralusApp();
 
         _.extend(App.prototype, {
           provide: {
@@ -332,8 +333,8 @@ describe('Lateralus', function () {
           }
         });
 
-        var app = new App();
-        var ComponentSubclass = Lateralus.Component.extend({
+        const app = new App();
+        const ComponentSubclass = Lateralus.Component.extend({
           name: 'provider',
           provide: {
             test: function () {
@@ -343,7 +344,7 @@ describe('Lateralus', function () {
         });
 
         app.addComponent(ComponentSubclass);
-        var collectedTest = app.collect('test');
+        const collectedTest = app.collect('test');
 
         it('Collects an Array with correct values', function () {
           assert.deepEqual(collectedTest, [1, 2]);
@@ -351,7 +352,7 @@ describe('Lateralus', function () {
       });
 
       describe('Argument passing', function () {
-        var App = getLateralusApp();
+        const App = getLateralusApp();
 
         _.extend(App.prototype, {
           provide: {
@@ -361,8 +362,8 @@ describe('Lateralus', function () {
           }
         });
 
-        var app = new App();
-        var collectedTest = app.collect('test', 5);
+        const app = new App();
+        const collectedTest = app.collect('test', 5);
 
         it('Returns values based on provided arguments', function () {
           assert.deepEqual(collectedTest, [5]);
@@ -370,7 +371,7 @@ describe('Lateralus', function () {
       });
 
       describe('Returned array contains no undefined values', function () {
-        var App = getLateralusApp();
+        const App = getLateralusApp();
 
         _.extend(App.prototype, {
           provide: {
@@ -381,7 +382,7 @@ describe('Lateralus', function () {
         });
 
         it('Only returns defined values', function () {
-          var ExtendedComponent = Lateralus.Component.extend({
+          const ExtendedComponent = Lateralus.Component.extend({
             name: 'extended',
             provide: {
               test: function () {
@@ -390,15 +391,15 @@ describe('Lateralus', function () {
             }
           });
 
-          var app = new App();
+          const app = new App();
           app.addComponent(ExtendedComponent);
 
-          var collectedTest = app.collect('test');
+          const collectedTest = app.collect('test');
           assert.deepEqual(collectedTest, [1]);
         });
 
         it('Returns falsy values except for undefined', function () {
-          var ExtendedComponent1 = Lateralus.Component.extend({
+          const ExtendedComponent1 = Lateralus.Component.extend({
             name: 'extended-1',
             provide: {
               test: function () {
@@ -407,7 +408,7 @@ describe('Lateralus', function () {
             }
           });
 
-          var ExtendedComponent2 = Lateralus.Component.extend({
+          const ExtendedComponent2 = Lateralus.Component.extend({
             name: 'extended-2',
             provide: {
               test: function () {
@@ -416,11 +417,11 @@ describe('Lateralus', function () {
             }
           });
 
-          var app = new App();
+          const app = new App();
           app.addComponent(ExtendedComponent1);
           app.addComponent(ExtendedComponent2);
 
-          var collectedTest = app.collect('test');
+          const collectedTest = app.collect('test');
           assert.deepEqual(collectedTest, [false, 0]);
         });
       });
@@ -428,7 +429,7 @@ describe('Lateralus', function () {
 
     describe('collectOne()', function () {
       describe('Basic usage', function () {
-        var App = getLateralusApp();
+        const App = getLateralusApp();
 
         _.extend(App.prototype, {
           provide: {
@@ -438,8 +439,8 @@ describe('Lateralus', function () {
           }
         });
 
-        var app = new App();
-        var collectedTest = app.collectOne('test');
+        const app = new App();
+        const collectedTest = app.collectOne('test');
 
         it('Collects an Array with correct values', function () {
           assert.equal(collectedTest, 1);
@@ -450,7 +451,7 @@ describe('Lateralus', function () {
 
   describe('delegateLateralusEvents()', function () {
     describe('Lateralus.prototype is not modified', function () {
-      var App = getLateralusApp();
+      const App = getLateralusApp();
       _.extend(App.prototype, {
         lateralusEvents: {}
       });
@@ -468,9 +469,9 @@ describe('Lateralus', function () {
     });
 
     describe('Lateralus events are delegated', function () {
-      var App = getLateralusApp();
-      var lateralusEventsTestWasCalled = false;
-      var modelEventsTestWasCalled = false;
+      const App = getLateralusApp();
+      let lateralusEventsTestWasCalled = false;
+      let modelEventsTestWasCalled = false;
 
       _.extend(App.prototype, {
         lateralusEvents: {
@@ -486,7 +487,7 @@ describe('Lateralus', function () {
         }
       });
 
-      var app = new App();
+      const app = new App();
       app.emit('lateralusTest');
 
       it('Wires up lateralusEvents', function () {
@@ -502,17 +503,17 @@ describe('Lateralus', function () {
   });
 
   describe('initModel()', function () {
-    var App = getLateralusApp();
-    var app = new App();
+    const App = getLateralusApp();
+    const app = new App();
 
-    var recievedOptions;
-    var ExtendedModel = Lateralus.Model.extend({
+    let recievedOptions;
+    const ExtendedModel = Lateralus.Model.extend({
       initialize: function (attributes, options) {
         recievedOptions = options;
       }
     });
 
-    var model = app.initModel(ExtendedModel, { foo: true }, { bar: true });
+    const model = app.initModel(ExtendedModel, { foo: true }, { bar: true });
 
     it('Inherits from base class', function () {
       assert.instanceOf(model, Lateralus.Model);

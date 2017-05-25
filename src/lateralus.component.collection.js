@@ -1,10 +1,11 @@
+'use strict';
 import _ from 'lodash-compat';
 import Backbone from 'backbone';
 import mixins from './lateralus.mixins';
 
-var Base = Backbone.Collection;
-var baseProto = Base.prototype;
-var fn = {};
+const Base = Backbone.Collection;
+const baseProto = Base.prototype;
+const fn = {};
 
 /**
  * The constructor for this class should not be called by application code,
@@ -27,7 +28,7 @@ fn.constructor = function (models, options) {
  * @override
  */
 fn.set = function (models, options) {
-  var augmentedOptions = _.extend(options || {}, {
+  const augmentedOptions = _.extend(options || {}, {
     lateralus: this.lateralus,
     component: this.component
   });
@@ -65,7 +66,7 @@ _.extend(fn, mixins);
  * @extends {Backbone.Collection}
  * @mixes Lateralus.mixins
  */
-var LateralusCollection = Base.extend(fn);
+const LateralusCollection = Base.extend(fn);
 
 /**
  * @method Lateralus.Component.Collection#toString

@@ -1,11 +1,12 @@
+'use strict';
 import _ from 'lodash-compat';
 import Backbone from 'backbone';
 import mixins from './lateralus.mixins';
 
-var Base = Backbone.Model;
-var baseProto = Base.prototype;
+const Base = Backbone.Model;
+const baseProto = Base.prototype;
 
-var fn = {
+const fn = {
   /**
    * The constructor for this class should not be called by application code,
    * it is used by the `{@link Lateralus.Component}`
@@ -49,7 +50,7 @@ var fn = {
    */
   destroy: function (options) {
     options = options || {};
-    var dispose = options.dispose;
+    const dispose = options.dispose;
     options.dispose = false;
 
     baseProto.destroy.call(this, options);
@@ -90,7 +91,7 @@ _.extend(fn, mixins);
  * @class Lateralus.Component.Model
  * @extends {Backbone.Model}
  */
-var ComponentModel = Base.extend(fn);
+const ComponentModel = Base.extend(fn);
 
 /**
  * @method Lateralus.Component.Model#toString
