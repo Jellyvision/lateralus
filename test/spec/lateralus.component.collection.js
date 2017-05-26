@@ -1,17 +1,17 @@
+'use strict';
 import chai from 'chai';
-import _ from 'lodash-compat';
 import Backbone from 'backbone';
 import Lateralus from '../../src/lateralus';
 import { getLateralusApp } from '../utils';
 
-var assert = chai.assert;
+const assert = chai.assert;
 
 describe('Lateralus.Component.Collection', function () {
   describe('constructor', function () {
-    var App = getLateralusApp();
-    var app = new App();
-    var component = app.addComponent(Lateralus.Component);
-    var collection =
+    const App = getLateralusApp();
+    const app = new App();
+    const component = app.addComponent(Lateralus.Component);
+    const collection =
       component.initCollection(Lateralus.Component.Collection);
 
     it('Is an instance of Backbone.Collection', function () {
@@ -25,11 +25,11 @@ describe('Lateralus.Component.Collection', function () {
 
   describe('Prototype (inherited)', function () {
     describe('add()', function () {
-      var App = getLateralusApp();
-      var app = new App();
-      var component = app.addComponent(Lateralus.Component);
-      var model = component.initModel(Lateralus.Component.Model);
-      var collection =
+      const App = getLateralusApp();
+      const app = new App();
+      const component = app.addComponent(Lateralus.Component);
+      const model = component.initModel(Lateralus.Component.Model);
+      const collection =
         component.initCollection(Lateralus.Component.Collection);
       collection.add(model);
 
@@ -41,27 +41,27 @@ describe('Lateralus.Component.Collection', function () {
 
   describe('Prototype', function () {
     describe('remove()', function () {
-      var App = getLateralusApp();
-      var app = new App();
-      var component = app.addComponent(Lateralus.Component);
-      var model = component.initModel(Lateralus.Component.Model);
-      var collection =
+      const App = getLateralusApp();
+      const app = new App();
+      const component = app.addComponent(Lateralus.Component);
+      const model = component.initModel(Lateralus.Component.Model);
+      const collection =
         component.initCollection(Lateralus.Component.Collection);
       collection.add(model);
 
-      var afterAddLength = collection.length;
+      const afterAddLength = collection.length;
       it('Adds a Lateralus.Component.Model instance', function () {
         assert.equal(1, afterAddLength);
       });
 
-      var beforeDisposeWasCalled = false;
+      let beforeDisposeWasCalled = false;
       model.on('beforeDispose', function () {
         beforeDisposeWasCalled = true;
       });
 
       collection.remove(model, { dispose: true });
 
-      var afterRemoveLength = collection.length;
+      const afterRemoveLength = collection.length;
       it('Removed the model', function () {
         assert.equal(0, afterRemoveLength);
       });

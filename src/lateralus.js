@@ -1,3 +1,4 @@
+'use strict';
 import $ from 'jquery';
 import _ from 'lodash-compat';
 import Backbone from 'backbone';
@@ -15,8 +16,7 @@ _.mixin({
    * @private
    */
   lateralusEmptyObject: function (obj) {
-    var propName;
-    for (propName in obj) {
+    for (const propName in obj) {
       if (obj.hasOwnProperty(propName)) {
         delete obj[propName];
       }
@@ -26,7 +26,7 @@ _.mixin({
   /**
    * Perform general-purpose memory cleanup for a Lateralus/Backbone Object.
    * @param {Object} obj
-   * @param {Fuction=} customDisposeLogic
+   * @param {Function=} customDisposeLogic
    */
   lateralusDispose: function (obj, customDisposeLogic) {
     obj.trigger('beforeDispose');
@@ -70,7 +70,7 @@ function Lateralus (el) {
    */
   this.$el = $(el);
 
-  var ModelConstructor = this.config.Model || LateralusModel;
+  const ModelConstructor = this.config.Model || LateralusModel;
   // TODO: Initialize this.model with this.initModel.
   /**
    * Maintains the state of the central `{@link Lateralus}` instance.
@@ -83,7 +83,7 @@ function Lateralus (el) {
    * An optional map of template render data to be passed to the
    * `Mustache.render` call for all Views belonging to this Lateralus app.
    * @member Lateralus#globalRenderData
-   * @type {Object(String)}
+   * @type {Object<String>}
    */
   this.globalRenderData = {};
 
@@ -91,14 +91,14 @@ function Lateralus (el) {
    * An optional map of template partials to be passed to the
    * `Mustache.render` call for all Views belonging to this Lateralus app.
    * @member Lateralus#globalPartials
-   * @type {Object(String)}
+   * @type {Object<String>}
    */
   this.globalPartials = {};
 
   this.delegateLateralusEvents();
 }
 
-var fn = Lateralus.prototype;
+const fn = Lateralus.prototype;
 
 _.extend(fn, Backbone.Events);
 
@@ -134,10 +134,10 @@ Lateralus.inherit = function inherit (child, parent) {
  * subclass.
  */
 Lateralus.beget = function (child, config) {
-  var lateralusConfig = config || {};
+  const lateralusConfig = config || {};
 
   child.displayName = child.name || 'begetConstructor';
-  var begottenConstructor = Lateralus.inherit(child, Lateralus);
+  const begottenConstructor = Lateralus.inherit(child, Lateralus);
   begottenConstructor.prototype.config = _.clone(lateralusConfig);
 
   return begottenConstructor;
@@ -171,7 +171,7 @@ _.each([
    */
   'error'
 
-], function (consoleMethodName) {
+], (consoleMethodName) => {
   fn[consoleMethodName] = bind.call(logger[consoleMethodName], logger);
 });
 
@@ -206,11 +206,11 @@ fn.shareWith = function (receiver, providerName) {
  * @method Lateralus#dispose
  */
 fn.dispose = function () {
-  _(this).lateralusDispose(_.bind(function () {
+  _(this).lateralusDispose(() => {
     if (this.components) {
       _.invoke(this.components, 'dispose');
     }
-  }, this));
+  });
 };
 fn.spiralOut = fn.dispose;
 

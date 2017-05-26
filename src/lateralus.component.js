@@ -1,3 +1,4 @@
+'use strict';
 import _ from 'lodash-compat';
 import Backbone from 'backbone';
 import mixins from './lateralus.mixins';
@@ -9,12 +10,12 @@ import ComponentCollection from './lateralus.component.collection';
  * The constructor for this method should not be called directly.  Instead, use
  * the `{@link Lateralus.mixins#addComponent}` mixin method:
  *
- *     var App = Lateralus.beget(function () {
+ *     const App = Lateralus.beget(function () {
  *       Lateralus.apply(this, arguments);
  *     });
  *
- *     var app = new App(document.getElementById('app'));
- *     var component = app.addComponent(Lateralus.Component);
+ *     const app = new App(document.getElementById('app'));
+ *     const component = app.addComponent(Lateralus.Component);
  *
  *     console.log(component instanceof Lateralus.Component); // true
  * @class Lateralus.Component
@@ -54,7 +55,7 @@ function Component (lateralus, options, viewOptions, opt_parentComponent) {
    * this `{@link  "Lateralus.Component}` at instantiation-time with `{@link
    * Lateralus.Component/mixin}`.
    * @property mixins
-   * @type {Object|Array(Object)|undefined}
+   * @type {Object|Array<Object>|undefined}
    * @default undefined
    */
   if (this.mixins) {
@@ -77,7 +78,7 @@ function Component (lateralus, options, viewOptions, opt_parentComponent) {
    * this `{@link Lateralus.Component}` is intended to render to the DOM,
    * `View` should be defined on the `prototype` before instantiating:
    *
-   *     var ExtendedComponent = Lateralus.Component.extend({
+   *     const ExtendedComponent = Lateralus.Component.extend({
    *       name: 'extended'
    *       ,View: Lateralus.Component.View
    *       ,template: '<div></div>'
@@ -87,7 +88,7 @@ function Component (lateralus, options, viewOptions, opt_parentComponent) {
    * @default undefined
    */
   if (this.View) {
-    var augmentedViewOptions = viewOptions;
+    const augmentedViewOptions = viewOptions;
 
     // A model instance provided to addComponent takes precendence over the
     // prototype property.
@@ -136,7 +137,7 @@ function Component (lateralus, options, viewOptions, opt_parentComponent) {
   this.delegateLateralusEvents();
 }
 
-var fn = Component.prototype;
+const fn = Component.prototype;
 
 Component.View = ComponentView;
 Component.Model = ComponentModel;
@@ -155,7 +156,7 @@ Component.Collection = ComponentCollection;
  * instantiated.  This does nothing if `protoProps.View` is not defined.
  */
 Component.extend = function (protoProps) {
-  var extendedComponent = Backbone.Model.extend.call(this, protoProps);
+  const extendedComponent = Backbone.Model.extend.call(this, protoProps);
 
   if (!protoProps.name) {
     throw new Error('A name was not provided to Component.extend.');
@@ -184,8 +185,7 @@ fn.name = 'component';
  * @private
  */
 function removePropertyFromObject (property, object) {
-  var propertyName;
-  for (propertyName in object) {
+  for (const propertyName in object) {
     if (object[propertyName] === property) {
       delete object[propertyName];
     }
@@ -198,7 +198,7 @@ function removePropertyFromObject (property, object) {
  * @method Lateralus.Component#dispose
  */
 fn.dispose = function () {
-  _(this).lateralusDispose(_.bind(function () {
+  _(this).lateralusDispose(() => {
     if (this.view) {
       this.view.dispose();
     }
@@ -207,7 +207,7 @@ fn.dispose = function () {
       _.invoke(this.components, 'dispose');
     }
 
-    var parentComponent = this.parentComponent;
+    const parentComponent = this.parentComponent;
     if (parentComponent) {
       removePropertyFromObject(this, parentComponent.components);
     }
@@ -215,7 +215,7 @@ fn.dispose = function () {
     if (_.contains(this.lateralus.components, this)) {
       removePropertyFromObject(this, this.lateralus);
     }
-  }, this));
+  });
 };
 
 /**
