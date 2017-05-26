@@ -13,6 +13,7 @@
     "start": "webpack-dev-server --config webpack.test.config.js",
     "build": "webpack",
     "test": "mocha -r jsdom-global/register ./node_modules/babel-core/register.js test/index.js",
+    "test:watch": "nodemon --exec \"npm test\" --watch src --watch test",
     "doc": "jsdoc -c .jsdoc src/*.js",
     "setup": "npm install",
     "lint": "eslint -c .eslintrc test",
@@ -45,6 +46,7 @@
     "jsdom": "^10.1.0",
     "jsdom-global": "^3.0.2",
     "mocha": "~2.2.0",
+    "nodemon": "^1.11.0",
     "webpack": "^2.5.1",
     "webpack-dev-server": "^2.4.5"
   }
