@@ -14,7 +14,7 @@
     "build": "webpack",
     "test": "mocha -r jsdom-global/register ./node_modules/babel-core/register.js test/index.js",
     "test:watch": "nodemon --exec \"npm test\" --watch src --watch test",
-    "lint": "eslint -c .eslintrc test",
+    "lint": "eslint -c .eslintrc src test",
     "validate": "npm test && npm run lint",
     "doc": "jsdoc -c .jsdoc src/*.js",
     "setup": "npm install",
