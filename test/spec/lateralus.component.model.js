@@ -1,4 +1,3 @@
-'use strict';
 import chai from 'chai';
 import Backbone from 'backbone';
 import Lateralus from '../../src/lateralus';

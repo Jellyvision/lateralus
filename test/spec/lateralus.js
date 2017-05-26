@@ -1,4 +1,3 @@
-'use strict';
 import chai from 'chai';
 import _ from 'lodash-compat';
 import Backbone from 'backbone';
@@ -461,8 +460,9 @@ describe('Lateralus', function () {
         assert.isUndefined(Lateralus.prototype.lateralusEvents);
       });
 
-      // jshint maxlen: 120
+      /*eslint-disable max-len */
       it('Lateralus.prototype.lateralusEvents remains undefined after delegateLateralusEvents is called',
+      /*eslint-enable max-len */
           function () {
         assert.isUndefined(Lateralus.prototype.lateralusEvents);
       });

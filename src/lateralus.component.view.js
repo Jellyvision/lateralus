@@ -1,4 +1,3 @@
-'use strict';
 import $ from 'jquery';
 import _ from 'lodash-compat';
 import Backbone from 'backbone';

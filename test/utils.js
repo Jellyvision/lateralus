@@ -1,4 +1,3 @@
-'use strict';
 import Lateralus from '../src/lateralus';
 
 /**
