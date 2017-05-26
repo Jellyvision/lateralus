@@ -1,4 +1,3 @@
-'use strict';
 import chai from 'chai';
 import _ from 'lodash-compat';
 import Backbone from 'backbone';

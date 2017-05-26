@@ -1,4 +1,3 @@
-'use strict';
 import _ from 'lodash-compat';
 import Backbone from 'backbone';
 import mixins from './lateralus.mixins';
