@@ -158,7 +158,7 @@ var app = new App(document.getElementById('app'));</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lateralus.js.html">lateralus.js</a>, <a href="lateralus.js.html#line58">line 58</a>
+        <a href="lateralus.js.html">lateralus.js</a>, <a href="lateralus.js.html#line57">line 57</a>
     </li></ul></dd>
     
 
@@ -269,7 +269,7 @@ var app = new App(document.getElementById('app'));</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lateralus.js.html">lateralus.js</a>, <a href="lateralus.js.html#line66">line 66</a>
+        <a href="lateralus.js.html">lateralus.js</a>, <a href="lateralus.js.html#line65">line 65</a>
     </li></ul></dd>
     
 
@@ -422,7 +422,7 @@ property directly, it is managed by Lateralus.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lateralus.js.html">lateralus.js</a>, <a href="lateralus.js.html#line59">line 59</a>
+        <a href="lateralus.js.html">lateralus.js</a>, <a href="lateralus.js.html#line58">line 58</a>
     </li></ul></dd>
     
 
@@ -440,7 +440,7 @@ property directly, it is managed by Lateralus.</p>
 
         
             
-<h4 class="name" id="globalPartials"><span class="type-signature"></span>globalPartials<span class="type-signature"> :Object(String)</span></h4>
+<h4 class="name" id="globalPartials"><span class="type-signature"></span>globalPartials<span class="type-signature"> :Object.&lt;String></span></h4>
 
 
 
@@ -456,7 +456,7 @@ property directly, it is managed by Lateralus.</p>
     <ul>
         <li>
             
-<span class="param-type">Object(String)</span>
+<span class="param-type">Object.&lt;String></span>
 
 
         </li>
@@ -495,7 +495,7 @@ property directly, it is managed by Lateralus.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lateralus.js.html">lateralus.js</a>, <a href="lateralus.js.html#line90">line 90</a>
+        <a href="lateralus.js.html">lateralus.js</a>, <a href="lateralus.js.html#line89">line 89</a>
     </li></ul></dd>
     
 
@@ -513,7 +513,7 @@ property directly, it is managed by Lateralus.</p>
 
         
             
-<h4 class="name" id="globalRenderData"><span class="type-signature"></span>globalRenderData<span class="type-signature"> :Object(String)</span></h4>
+<h4 class="name" id="globalRenderData"><span class="type-signature"></span>globalRenderData<span class="type-signature"> :Object.&lt;String></span></h4>
 
 
 
@@ -529,7 +529,7 @@ property directly, it is managed by Lateralus.</p>
     <ul>
         <li>
             
-<span class="param-type">Object(String)</span>
+<span class="param-type">Object.&lt;String></span>
 
 
         </li>
@@ -568,7 +568,7 @@ property directly, it is managed by Lateralus.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lateralus.js.html">lateralus.js</a>, <a href="lateralus.js.html#line82">line 82</a>
+        <a href="lateralus.js.html">lateralus.js</a>, <a href="lateralus.js.html#line81">line 81</a>
     </li></ul></dd>
     
 
@@ -595,7 +595,7 @@ property directly, it is managed by Lateralus.</p>
     <p>A map of functions or string references to functions that will
 handle <a href="http://backbonejs.org/#Events">events</a> dispatched to the
 central <code><a href="Lateralus.html">Lateralus</a></code> instance.</p>
-<pre class="prettyprint source"><code>var ExtendedComponent = Lateralus.Component.extend({
+<pre class="prettyprint source"><code>const ExtendedComponent = Lateralus.Component.extend({
   name: 'extended'
 
   ,lateralusEvents: {
@@ -673,7 +673,7 @@ central <code><a href="Lateralus.html">Lateralus</a></code> instance.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lateralus.mixins.js.html">lateralus.mixins.js</a>, <a href="lateralus.mixins.js.html#line259">line 259</a>
+        <a href="lateralus.mixins.js.html">lateralus.mixins.js</a>, <a href="lateralus.mixins.js.html#line256">line 256</a>
     </li></ul></dd>
     
 
@@ -745,7 +745,7 @@ central <code><a href="Lateralus.html">Lateralus</a></code> instance.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lateralus.js.html">lateralus.js</a>, <a href="lateralus.js.html#line75">line 75</a>
+        <a href="lateralus.js.html">lateralus.js</a>, <a href="lateralus.js.html#line74">line 74</a>
     </li></ul></dd>
     
 
@@ -772,7 +772,7 @@ central <code><a href="Lateralus.html">Lateralus</a></code> instance.</p>
     <p>A map of functions or string references to functions that will
 handle <a href="http://backbonejs.org/#Events">events</a> emitted by
 <code>this.model</code>.</p>
-<pre class="prettyprint source"><code>var ExtendedComponent = Lateralus.View.extend({
+<pre class="prettyprint source"><code>const ExtendedComponent = Lateralus.View.extend({
   modelEvents: {
     changed:someProperty: function (model, someProperty) {
       // ...
@@ -842,7 +842,7 @@ handle <a href="http://backbonejs.org/#Events">events</a> emitted by
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lateralus.mixins.js.html">lateralus.mixins.js</a>, <a href="lateralus.mixins.js.html#line321">line 321</a>
+        <a href="lateralus.mixins.js.html">lateralus.mixins.js</a>, <a href="lateralus.mixins.js.html#line318">line 318</a>
     </li></ul></dd>
     
 
@@ -869,7 +869,7 @@ handle <a href="http://backbonejs.org/#Events">events</a> emitted by
     <p>A map of functions that will handle <code><a href="Lateralus.mixins.html#collect">Lateralus.mixins#collect</a></code>
 calls.  Each of the functions attached to this Object should return a
 value.  These functions <strong>must</strong> be completely synchronous.</p>
-<pre class="prettyprint source"><code>var App = Lateralus.beget(function () {
+<pre class="prettyprint source"><code>const App = Lateralus.beget(function () {
   Lateralus.apply(this, arguments);
 });
 
@@ -881,8 +881,8 @@ _.extend(App.prototype, {
   }
 });
 
-var app = new App();
-var ComponentSubclass = Lateralus.Component.extend({
+const app = new App();
+const ComponentSubclass = Lateralus.Component.extend({
   name: 'provider'
   ,provide: {
     demoData: function () {
@@ -951,7 +951,7 @@ console.log(app.collect('demoData')); // [1, 2]</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lateralus.mixins.js.html">lateralus.mixins.js</a>, <a href="lateralus.mixins.js.html#line286">line 286</a>
+        <a href="lateralus.mixins.js.html">lateralus.mixins.js</a>, <a href="lateralus.mixins.js.html#line283">line 283</a>
     </li></ul></dd>
     
 
@@ -1187,7 +1187,7 @@ constructor to use for <code>Lateralus.model</code> instead of a standard
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lateralus.js.html">lateralus.js</a>, <a href="lateralus.js.html#line120">line 120</a>
+        <a href="lateralus.js.html">lateralus.js</a>, <a href="lateralus.js.html#line119">line 119</a>
     </li></ul></dd>
     
 
@@ -1364,7 +1364,7 @@ subclass.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lateralus.js.html">lateralus.js</a>, <a href="lateralus.js.html#line105">line 105</a>
+        <a href="lateralus.js.html">lateralus.js</a>, <a href="lateralus.js.html#line104">line 104</a>
     </li></ul></dd>
     
 
@@ -1468,7 +1468,7 @@ subclass.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lateralus.js.html">lateralus.js</a>, <a href="lateralus.js.html#line204">line 204</a>
+        <a href="lateralus.js.html">lateralus.js</a>, <a href="lateralus.js.html#line203">line 203</a>
     </li></ul></dd>
     
 
@@ -1611,7 +1611,7 @@ subclass.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lateralus.js.html">lateralus.js</a>, <a href="lateralus.js.html#line167">line 167</a>
+        <a href="lateralus.js.html">lateralus.js</a>, <a href="lateralus.js.html#line166">line 166</a>
     </li></ul></dd>
     
 
@@ -1782,7 +1782,7 @@ subclass.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lateralus.js.html">lateralus.js</a>, <a href="lateralus.js.html#line178">line 178</a>
+        <a href="lateralus.js.html">lateralus.js</a>, <a href="lateralus.js.html#line177">line 177</a>
     </li></ul></dd>
     
 
@@ -1948,7 +1948,7 @@ constructor.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lateralus.js.html">lateralus.js</a>, <a href="lateralus.js.html#line153">line 153</a>
+        <a href="lateralus.js.html">lateralus.js</a>, <a href="lateralus.js.html#line152">line 152</a>
     </li></ul></dd>
     
 
@@ -2104,7 +2104,7 @@ to <code>Lateralus.mixins.amplify</code>.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lateralus.js.html">lateralus.js</a>, <a href="lateralus.js.html#line190">line 190</a>
+        <a href="lateralus.js.html">lateralus.js</a>, <a href="lateralus.js.html#line189">line 189</a>
     </li></ul></dd>
     
 
@@ -2186,7 +2186,7 @@ to <code>Lateralus.mixins.amplify</code>.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lateralus.js.html">lateralus.js</a>, <a href="lateralus.js.html#line217">line 217</a>
+        <a href="lateralus.js.html">lateralus.js</a>, <a href="lateralus.js.html#line216">line 216</a>
     </li></ul></dd>
     
 
@@ -2351,7 +2351,7 @@ to <code>Lateralus.mixins.amplify</code>.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lateralus.js.html">lateralus.js</a>, <a href="lateralus.js.html#line160">line 160</a>
+        <a href="lateralus.js.html">lateralus.js</a>, <a href="lateralus.js.html#line159">line 159</a>
     </li></ul></dd>
     
 
@@ -2399,7 +2399,7 @@ to <code>Lateralus.mixins.amplify</code>.</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Mon May 22 2017 10:31:33 GMT-0500 (CDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Fri May 26 2017 17:39:20 GMT-0500 (CDT)
 </footer>
 
 <script> prettyPrint(); </script>

@@ -54,12 +54,12 @@
 <div class="description">
     <p>The constructor for this method should not be called directly.  Instead, use
 the <code><a href="Lateralus.mixins.html#addComponent">Lateralus.mixins#addComponent</a></code> mixin method:</p>
-<pre class="prettyprint source"><code>var App = Lateralus.beget(function () {
+<pre class="prettyprint source"><code>const App = Lateralus.beget(function () {
   Lateralus.apply(this, arguments);
 });
 
-var app = new App(document.getElementById('app'));
-var component = app.addComponent(Lateralus.Component);
+const app = new App(document.getElementById('app'));
+const component = app.addComponent(Lateralus.Component);
 
 console.log(component instanceof Lateralus.Component); // true</code></pre>
 </div>
@@ -671,7 +671,7 @@ instance.</p>
     <p>A map of functions or string references to functions that will
 handle <a href="http://backbonejs.org/#Events">events</a> dispatched to the
 central <code><a href="Lateralus.html">Lateralus</a></code> instance.</p>
-<pre class="prettyprint source"><code>var ExtendedComponent = Lateralus.Component.extend({
+<pre class="prettyprint source"><code>const ExtendedComponent = Lateralus.Component.extend({
   name: 'extended'
 
   ,lateralusEvents: {
@@ -749,7 +749,7 @@ central <code><a href="Lateralus.html">Lateralus</a></code> instance.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lateralus.mixins.js.html">lateralus.mixins.js</a>, <a href="lateralus.mixins.js.html#line259">line 259</a>
+        <a href="lateralus.mixins.js.html">lateralus.mixins.js</a>, <a href="lateralus.mixins.js.html#line256">line 256</a>
     </li></ul></dd>
     
 
@@ -776,7 +776,7 @@ central <code><a href="Lateralus.html">Lateralus</a></code> instance.</p>
     <p>A map of functions or string references to functions that will
 handle <a href="http://backbonejs.org/#Events">events</a> emitted by
 <code>this.model</code>.</p>
-<pre class="prettyprint source"><code>var ExtendedComponent = Lateralus.View.extend({
+<pre class="prettyprint source"><code>const ExtendedComponent = Lateralus.View.extend({
   modelEvents: {
     changed:someProperty: function (model, someProperty) {
       // ...
@@ -846,7 +846,7 @@ handle <a href="http://backbonejs.org/#Events">events</a> emitted by
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lateralus.mixins.js.html">lateralus.mixins.js</a>, <a href="lateralus.mixins.js.html#line321">line 321</a>
+        <a href="lateralus.mixins.js.html">lateralus.mixins.js</a>, <a href="lateralus.mixins.js.html#line318">line 318</a>
     </li></ul></dd>
     
 
@@ -954,7 +954,7 @@ property is a reference to the parent <code><a href="Lateralus.Component.html">L
     <p>A map of functions that will handle <code><a href="Lateralus.mixins.html#collect">Lateralus.mixins#collect</a></code>
 calls.  Each of the functions attached to this Object should return a
 value.  These functions <strong>must</strong> be completely synchronous.</p>
-<pre class="prettyprint source"><code>var App = Lateralus.beget(function () {
+<pre class="prettyprint source"><code>const App = Lateralus.beget(function () {
   Lateralus.apply(this, arguments);
 });
 
@@ -966,8 +966,8 @@ _.extend(App.prototype, {
   }
 });
 
-var app = new App();
-var ComponentSubclass = Lateralus.Component.extend({
+const app = new App();
+const ComponentSubclass = Lateralus.Component.extend({
   name: 'provider'
   ,provide: {
     demoData: function () {
@@ -1036,7 +1036,7 @@ console.log(app.collect('demoData')); // [1, 2]</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lateralus.mixins.js.html">lateralus.mixins.js</a>, <a href="lateralus.mixins.js.html#line286">line 286</a>
+        <a href="lateralus.mixins.js.html">lateralus.mixins.js</a>, <a href="lateralus.mixins.js.html#line283">line 283</a>
     </li></ul></dd>
     
 
@@ -1144,7 +1144,7 @@ that constructor.</p>
     <p>The <code><a href="Lateralus.Component.View.html">Lateralus.Component.View</a></code> constructor to use, if any.  If
 this <code><a href="Lateralus.Component.html">Lateralus.Component</a></code> is intended to render to the DOM,
 <code>View</code> should be defined on the <code>prototype</code> before instantiating:</p>
-<pre class="prettyprint source"><code>var ExtendedComponent = Lateralus.Component.extend({
+<pre class="prettyprint source"><code>const ExtendedComponent = Lateralus.Component.extend({
   name: 'extended'
   ,View: Lateralus.Component.View
   ,template: '&lt;div>&lt;/div>'
@@ -1283,7 +1283,7 @@ nested components added by <code><a href="Lateralus.mixins.html#addComponent">La
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lateralus.component.js.html">lateralus.component.js</a>, <a href="lateralus.component.js.html#line195">line 195</a>
+        <a href="lateralus.component.js.html">lateralus.component.js</a>, <a href="lateralus.component.js.html#line194">line 194</a>
     </li></ul></dd>
     
 
@@ -1623,7 +1623,7 @@ instantiated.  This does nothing if <code>protoProps.View</code> is not defined.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lateralus.component.js.html">lateralus.component.js</a>, <a href="lateralus.component.js.html#line221">line 221</a>
+        <a href="lateralus.component.js.html">lateralus.component.js</a>, <a href="lateralus.component.js.html#line220">line 220</a>
     </li></ul></dd>
     
 
@@ -1719,7 +1719,7 @@ instantiated.  This does nothing if <code>protoProps.View</code> is not defined.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lateralus.component.js.html">lateralus.component.js</a>, <a href="lateralus.component.js.html#line230">line 230</a>
+        <a href="lateralus.component.js.html">lateralus.component.js</a>, <a href="lateralus.component.js.html#line229">line 229</a>
     </li></ul></dd>
     
 
@@ -1790,7 +1790,7 @@ Lateralus.</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Mon May 22 2017 10:31:33 GMT-0500 (CDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Fri May 26 2017 17:39:20 GMT-0500 (CDT)
 </footer>
 
 <script> prettyPrint(); </script>
