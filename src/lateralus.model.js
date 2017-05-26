@@ -31,14 +31,14 @@ fn.constructor = function (lateralus, attributes, options) {
 fn.onChange = function () {
   const changed = this.changedAttributes();
 
-  _.each(_.keys(changed), function (changedKey) {
+  _.each(_.keys(changed), (changedKey) => {
     this.emit('change:' + changedKey, changed[changedKey]);
 
     // Delete this property from the internal "changed" object before
     // Backbone typically would to prevent "stacking" changed properties
     // across onChange calls, thereby causing redundant handler calls.
     delete this.changed[changedKey];
-  }, this);
+  });
 
 };
 

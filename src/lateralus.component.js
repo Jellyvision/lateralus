@@ -198,7 +198,7 @@ function removePropertyFromObject (property, object) {
  * @method Lateralus.Component#dispose
  */
 fn.dispose = function () {
-  _(this).lateralusDispose(_.bind(function () {
+  _(this).lateralusDispose(() => {
     if (this.view) {
       this.view.dispose();
     }
@@ -215,7 +215,7 @@ fn.dispose = function () {
     if (_.contains(this.lateralus.components, this)) {
       removePropertyFromObject(this, this.lateralus);
     }
-  }, this));
+  });
 };
 
 /**

@@ -75,11 +75,11 @@ const fn = {
    * @method Lateralus.Component.Model#dispose
    */
   dispose: function () {
-    _(this).lateralusDispose(_.bind(function () {
+    _(this).lateralusDispose(() => {
       if (this.collection) {
         this.collection.remove(this);
       }
-    }, this));
+    });
   }
 };
 

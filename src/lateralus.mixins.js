@@ -191,7 +191,7 @@ mixins.listenFor = function (event, callback) {
 };
 
 mixins.setupProviders = function () {
-  _.each(this.provide, function (fn, key) {
+  _.each(this.provide, (fn, key) => {
     // The `provide` Object may have already been processed by setupProviders
     // from a previous class instantiation (it is a shared prototype Object)
     // so check for that and don't namespace the keys again.
@@ -204,7 +204,7 @@ mixins.setupProviders = function () {
     };
 
     delete this.provide[key];
-  }, this);
+  });
 };
 
 /**
@@ -217,18 +217,15 @@ mixins.setupProviders = function () {
  * methods to run.
  * @param {...any} [args] Any parameters to pass along to `{@link
  * Lateralus.mixins.provide}` methods.
- * @return {Array(any)}
+ * @return {Array<any>}
  */
-mixins.collect = function (key) {
-  const args = _.toArray(arguments).slice(1);
+mixins.collect = function (key, ...args) {
   const collectedValues = [];
 
   this.emit(PROVIDE_PREFIX + key,
       _.bind(collectedValues.push, collectedValues), args);
 
-  return _.reject(collectedValues, function (collectedValue) {
-    return collectedValue === undefined;
-  });
+  return _.reject(collectedValues, _.isUndefined);
 };
 
 /**
@@ -337,7 +334,7 @@ mixins.delegateLateralusEvents = function () {
        * @default undefined
        */
       modelEvents: this.model
-    }, function (subject, mapName) {
+    }, (subject, mapName) => {
 
     if (!subject) {
       return;
@@ -383,7 +380,7 @@ mixins.delegateLateralusEvents = function () {
         this.listenTo(subject, eventName, boundMethod);
       }
     }
-  }, this);
+  });
 
   return this;
 };
