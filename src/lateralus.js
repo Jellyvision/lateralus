@@ -26,6 +26,7 @@ _.mixin({
    * Perform general-purpose memory cleanup for a Lateralus/Backbone Object.
    * @param {Object} obj
    * @param {Function=} customDisposeLogic
+   * @private
    */
   lateralusDispose: function (obj, customDisposeLogic) {
     obj.trigger('beforeDispose');
