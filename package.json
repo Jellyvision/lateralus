@@ -12,6 +12,7 @@
   "scripts": {
     "start": "webpack-dev-server --config webpack.test.config.js",
     "build": "webpack",
+    "debug": "mocha debug -r jsdom-global/register ./node_modules/babel-core/register.js test/index.js",
     "test": "mocha -r jsdom-global/register ./node_modules/babel-core/register.js test/index.js",
     "test:watch": "nodemon --exec \"npm test\" --watch src --watch test",
     "lint": "eslint -c .eslintrc src test",
