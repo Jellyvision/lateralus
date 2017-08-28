@@ -28,8 +28,8 @@
 
 <header>
     
-        <h2>
-            <span class="ancestors"><a href="Lateralus.html">Lateralus</a><a href="Lateralus.Component.html">.Component</a>.</span>View</h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>
+            <span class="ancestors"><a href="Lateralus.html">Lateralus</a><a href="Lateralus.Component.html">.Component</a>.</span>View<span class="signature">()</span><span class="type-signature"></span></h2>
         
     
 </header>
@@ -41,7 +41,9 @@
 
     
 
+    
     <h4 class="name" id="View"><span class="type-signature"></span>new View<span class="signature">()</span><span class="type-signature"></span></h4>
+    
 
     
 
@@ -119,6 +121,8 @@
 
 
 
+
+
     
     </div>
 
@@ -139,7 +143,9 @@
 
     
 
-     
+    
+
+    
 
     
 
@@ -154,8 +160,8 @@
 
 
 <div class="description">
-    <p>A reference to the <code><a href="Lateralus.Component.html">Lateralus.Component</a></code>
-to which this <code><a href="Lateralus.Component.View.html">Lateralus.Component.View</a></code>
+    <p>A reference to the <code><a href="Lateralus.Component.html"><code>Lateralus.Component</code></a></code>
+to which this <code><a href="Lateralus.Component.View.html"><code>Lateralus.Component.View</code></a></code>
 belongs.</p>
 </div>
 
@@ -358,7 +364,7 @@ property directly, it is managed by Lateralus.</p>
 <div class="description">
     <p>A map of functions or string references to functions that will
 handle <a href="http://backbonejs.org/#Events">events</a> dispatched to the
-central <code><a href="Lateralus.html">Lateralus</a></code> instance.</p>
+central <code><a href="Lateralus.html"><code>Lateralus</code></a></code> instance.</p>
 <pre class="prettyprint source"><code>const ExtendedComponent = Lateralus.Component.extend({
   name: 'extended'
 
@@ -558,8 +564,8 @@ handle <a href="http://backbonejs.org/#Events">events</a> emitted by
 
 
 <div class="description">
-    <p>If this is a subview of another <code><a href="Lateralus.Component.View.html">Lateralus.Component.View</a></code>, this
-property is a reference to the parent <code><a href="Lateralus.Component.View.html">Lateralus.Component.View</a></code>.</p>
+    <p>If this is a subview of another <code><a href="Lateralus.Component.View.html"><code>Lateralus.Component.View</code></a></code>, this
+property is a reference to the parent <code><a href="Lateralus.Component.View.html"><code>Lateralus.Component.View</code></a></code>.</p>
 </div>
 
 
@@ -686,7 +692,7 @@ property is a reference to the parent <code><a href="Lateralus.Component.View.ht
 
 
 <div class="description">
-    <p>A map of functions that will handle <code><a href="Lateralus.mixins.html#collect">Lateralus.mixins#collect</a></code>
+    <p>A map of functions that will handle <code><a href="Lateralus.mixins.html#collect"><code>Lateralus.mixins#collect</code></a></code>
 calls.  Each of the functions attached to this Object should return a
 value.  These functions <strong>must</strong> be completely synchronous.</p>
 <pre class="prettyprint source"><code>const App = Lateralus.beget(function () {
@@ -798,7 +804,9 @@ console.log(app.collect('demoData')); // [1, 2]</code></pre>
 
     
 
+    
     <h4 class="name" id="addSubview"><span class="type-signature"></span>addSubview<span class="signature">(Subview, subviewOptions<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="Lateralus.Component.View.html">Lateralus.Component.View</a>}</span></h4>
+    
 
     
 
@@ -995,12 +1003,16 @@ subview when it is instantiated.</p></td>
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id="deferredInitialize"><span class="type-signature"></span>deferredInitialize<span class="signature">()</span><span class="type-signature"></span></h4>
+    
 
     
 
@@ -1010,7 +1022,7 @@ subview when it is instantiated.</p></td>
     <p>A function to be called in the next JavaScript thread.  This can be
 necessary for situations where setup logic needs to happen after a View
 has been rendered.</p>
-<p>In other words, <code><a href="Lateralus.Component.View.html#initialize">Lateralus.Component.View#initialize</a></code> runs before
+<p>In other words, <code><a href="Lateralus.Component.View.html#initialize"><code>Lateralus.Component.View#initialize</code></a></code> runs before
 the View has been rendered to the DOM, and <code>deferredInitialize</code> runs
 immediately after it has been rendered.</p>
 </div>
@@ -1082,19 +1094,23 @@ immediately after it has been rendered.</p>
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id="dispose"><span class="type-signature"></span>dispose<span class="signature">()</span><span class="type-signature"></span></h4>
+    
 
     
 
 
 
 <div class="description">
-    <p>Remove this <code><a href="Lateralus.Component.View.html">Lateralus.Component.View</a></code> from
+    <p>Remove this <code><a href="Lateralus.Component.View.html"><code>Lateralus.Component.View</code></a></code> from
 the DOM and cleanly dispose of any references.</p>
 </div>
 
@@ -1165,12 +1181,16 @@ the DOM and cleanly dispose of any references.</p>
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id="getTemplateRenderData"><span class="type-signature"></span>getTemplateRenderData<span class="signature">()</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
 
     
 
@@ -1178,7 +1198,7 @@ the DOM and cleanly dispose of any references.</p>
 
 <div class="description">
     <p>This method returns the object whose properties are used as render
-variables in <code><a href="Lateralus.Component.View.html#renderTemplate">Lateralus.Component.View#renderTemplate</a></code>.  The method
+variables in <code><a href="Lateralus.Component.View.html#renderTemplate"><code>Lateralus.Component.View#renderTemplate</code></a></code>.  The method
 can be overridden.</p>
 </div>
 
@@ -1273,21 +1293,25 @@ Otherwise, an empty object is returned.</p>
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id="initialize"><span class="type-signature"></span>initialize<span class="signature">(opts<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    
 
     
 
 
 
 <div class="description">
-    <p>This is called when a <code><a href="Lateralus.Component.View.html">Lateralus.Component.View</a></code> is initialized, it
+    <p>This is called when a <code><a href="Lateralus.Component.View.html"><code>Lateralus.Component.View</code></a></code> is initialized, it
 is not called directly.</p>
-<p><code><a href="Lateralus.Component.View.html">Lateralus.Component.View</a></code> subclasses that
+<p><code><a href="Lateralus.Component.View.html"><code>Lateralus.Component.View</code></a></code> subclasses that
 override <code>initialize</code> must call this base method:</p>
 <pre class="prettyprint source"><code>const Base = Lateralus.Component.View;
 const baseProto = Base.prototype;
@@ -1362,7 +1386,7 @@ const ExtendedComponentView = Base.extend({
             
 
             <td class="description last"><p>Any properties or methods to attach to this
-<code><a href="Lateralus.Component.View.html">Lateralus.Component.View</a></code> instance.</p></td>
+<code><a href="Lateralus.Component.View.html"><code>Lateralus.Component.View</code></a></code> instance.</p></td>
         </tr>
 
     
@@ -1429,19 +1453,23 @@ const ExtendedComponentView = Base.extend({
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id="renderTemplate"><span class="type-signature"></span>renderTemplate<span class="signature">()</span><span class="type-signature"></span></h4>
+    
 
     
 
 
 
 <div class="description">
-    <p>Meant to be called by <code><a href="Lateralus.Component.View.html#initialize">Lateralus.Component.View#initialize</a></code> and
+    <p>Meant to be called by <code><a href="Lateralus.Component.View.html#initialize"><code>Lateralus.Component.View#initialize</code></a></code> and
 infrequently thereafter, this method empties out
 <a href="http://backbonejs.org/#View-$el"><code>$el</code></a> and does a full re-render.
 <a href="http://backbonejs.org/#View-render"><code>render</code></a> should only be used for
@@ -1515,12 +1543,16 @@ partial renders.</p>
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id="toString"><span class="type-signature"></span>toString<span class="signature">()</span><span class="type-signature"> &rarr; {string}</span></h4>
+    
 
     
 
@@ -1616,6 +1648,8 @@ Lateralus.</p>
 
 
 
+
+
         
     
 
@@ -1632,13 +1666,13 @@ Lateralus.</p>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Lateralus.html">Lateralus</a></li><li><a href="Lateralus.Component.html">Lateralus.Component</a></li><li><a href="Lateralus.Component.Collection.html">Lateralus.Component.Collection</a></li><li><a href="Lateralus.Component.Model.html">Lateralus.Component.Model</a></li><li><a href="Lateralus.Component.View.html">Lateralus.Component.View</a></li><li><a href="Lateralus.Model.html">Lateralus.Model</a></li><li><a href="Lateralus.Router.html">Lateralus.Router</a></li></ul><h3>Global</h3><ul><li><a href="global.html#lateralusDispose">lateralusDispose</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Lateralus.html">Lateralus</a></li><li><a href="Lateralus.Component.html">Lateralus.Component</a></li><li><a href="Lateralus.Component.Collection.html">Lateralus.Component.Collection</a></li><li><a href="Lateralus.Component.Model.html">Lateralus.Component.Model</a></li><li><a href="Lateralus.Component.View.html">Lateralus.Component.View</a></li><li><a href="Lateralus.Model.html">Lateralus.Model</a></li><li><a href="Lateralus.Router.html">Lateralus.Router</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-using-lateralus.html">Using Lateralus</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Fri May 26 2017 17:39:20 GMT-0500 (CDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.3</a> on Mon Aug 28 2017 10:28:55 GMT-0500 (CDT)
 </footer>
 
 <script> prettyPrint(); </script>

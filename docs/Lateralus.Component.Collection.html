@@ -28,8 +28,8 @@
 
 <header>
     
-        <h2>
-            <span class="ancestors"><a href="Lateralus.html">Lateralus</a><a href="Lateralus.Component.html">.Component</a>.</span>Collection</h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>
+            <span class="ancestors"><a href="Lateralus.html">Lateralus</a><a href="Lateralus.Component.html">.Component</a>.</span>Collection<span class="signature">()</span><span class="type-signature"></span></h2>
         
     
 </header>
@@ -41,7 +41,9 @@
 
     
 
+    
     <h4 class="name" id="Collection"><span class="type-signature"></span>new Collection<span class="signature">()</span><span class="type-signature"></span></h4>
+    
 
     
 
@@ -127,6 +129,8 @@
 
 
 
+
+
     
     </div>
 
@@ -147,7 +151,9 @@
 
     
 
-     
+    
+
+    
 
     
 
@@ -245,7 +251,7 @@ property directly, it is managed by Lateralus.</p>
 <div class="description">
     <p>A map of functions or string references to functions that will
 handle <a href="http://backbonejs.org/#Events">events</a> dispatched to the
-central <code><a href="Lateralus.html">Lateralus</a></code> instance.</p>
+central <code><a href="Lateralus.html"><code>Lateralus</code></a></code> instance.</p>
 <pre class="prettyprint source"><code>const ExtendedComponent = Lateralus.Component.extend({
   name: 'extended'
 
@@ -445,7 +451,7 @@ handle <a href="http://backbonejs.org/#Events">events</a> emitted by
 
 
 <div class="description">
-    <p>A map of functions that will handle <code><a href="Lateralus.mixins.html#collect">Lateralus.mixins#collect</a></code>
+    <p>A map of functions that will handle <code><a href="Lateralus.mixins.html#collect"><code>Lateralus.mixins#collect</code></a></code>
 calls.  Each of the functions attached to this Object should return a
 value.  These functions <strong>must</strong> be completely synchronous.</p>
 <pre class="prettyprint source"><code>const App = Lateralus.beget(function () {
@@ -557,14 +563,16 @@ console.log(app.collect('demoData')); // [1, 2]</code></pre>
 
     
 
+    
     <h4 class="name" id="remove"><span class="type-signature"></span>remove<span class="signature">(models, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    
 
     
 
 
 
 <div class="description">
-    <p>Remove a <code><a href="Lateralus.Component.Model.html">Lateralus.Component.Model</a></code> or array of <code><a href="Lateralus.Component.Model.html">Lateralus.Component.Model</a></code>s from this collection.</p>
+    <p>Remove a <code><a href="Lateralus.Component.Model.html"><code>Lateralus.Component.Model</code></a></code> or array of <code><a href="Lateralus.Component.Model.html"><code>Lateralus.Component.Model</code></a></code>s from this collection.</p>
 </div>
 
 
@@ -717,7 +725,7 @@ console.log(app.collect('demoData')); // [1, 2]</code></pre>
 
             
 
-            <td class="description last"><p>If true, call <code><a href="Lateralus.Component.Model.html#dispose">Lateralus.Component.Model#dispose</a></code> after removing <code>models</code>.</p></td>
+            <td class="description last"><p>If true, call <code><a href="Lateralus.Component.Model.html#dispose"><code>Lateralus.Component.Model#dispose</code></a></code> after removing <code>models</code>.</p></td>
         </tr>
 
     
@@ -791,12 +799,16 @@ console.log(app.collect('demoData')); // [1, 2]</code></pre>
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id="toString"><span class="type-signature"></span>toString<span class="signature">()</span><span class="type-signature"> &rarr; {string}</span></h4>
+    
 
     
 
@@ -892,6 +904,8 @@ Lateralus.</p>
 
 
 
+
+
         
     
 
@@ -908,13 +922,13 @@ Lateralus.</p>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Lateralus.html">Lateralus</a></li><li><a href="Lateralus.Component.html">Lateralus.Component</a></li><li><a href="Lateralus.Component.Collection.html">Lateralus.Component.Collection</a></li><li><a href="Lateralus.Component.Model.html">Lateralus.Component.Model</a></li><li><a href="Lateralus.Component.View.html">Lateralus.Component.View</a></li><li><a href="Lateralus.Model.html">Lateralus.Model</a></li><li><a href="Lateralus.Router.html">Lateralus.Router</a></li></ul><h3>Global</h3><ul><li><a href="global.html#lateralusDispose">lateralusDispose</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Lateralus.html">Lateralus</a></li><li><a href="Lateralus.Component.html">Lateralus.Component</a></li><li><a href="Lateralus.Component.Collection.html">Lateralus.Component.Collection</a></li><li><a href="Lateralus.Component.Model.html">Lateralus.Component.Model</a></li><li><a href="Lateralus.Component.View.html">Lateralus.Component.View</a></li><li><a href="Lateralus.Model.html">Lateralus.Model</a></li><li><a href="Lateralus.Router.html">Lateralus.Router</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-using-lateralus.html">Using Lateralus</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Fri May 26 2017 17:39:20 GMT-0500 (CDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.3</a> on Mon Aug 28 2017 10:28:55 GMT-0500 (CDT)
 </footer>
 
 <script> prettyPrint(); </script>
