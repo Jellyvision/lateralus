@@ -28,8 +28,8 @@
 
 <header>
     
-        <h2>
-            <span class="ancestors"><a href="Lateralus.html">Lateralus</a>.</span>Component</h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>
+            <span class="ancestors"><a href="Lateralus.html">Lateralus</a>.</span>Component<span class="signature">(lateralus, options, viewOptions, opt_parentComponent<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h2>
         
             <div class="class-description"><p>Lateralus.Component</p></div>
         
@@ -45,7 +45,9 @@
     <h2>Constructor</h2>
     
 
+    
     <h4 class="name" id="Component"><span class="type-signature"></span>new Component<span class="signature">(lateralus, options, viewOptions, opt_parentComponent<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    
 
     
 
@@ -53,13 +55,13 @@
 
 <div class="description">
     <p>The constructor for this method should not be called directly.  Instead, use
-the <code><a href="Lateralus.mixins.html#addComponent">Lateralus.mixins#addComponent</a></code> mixin method:</p>
-<pre class="prettyprint source"><code>var App = Lateralus.beget(function () {
+the <code><a href="Lateralus.mixins.html#addComponent"><code>Lateralus.mixins#addComponent</code></a></code> mixin method:</p>
+<pre class="prettyprint source"><code>const App = Lateralus.beget(function () {
   Lateralus.apply(this, arguments);
 });
 
-var app = new App(document.getElementById('app'));
-var component = app.addComponent(Lateralus.Component);
+const app = new App(document.getElementById('app'));
+const component = app.addComponent(Lateralus.Component);
 
 console.log(component instanceof Lateralus.Component); // true</code></pre>
 </div>
@@ -154,7 +156,7 @@ console.log(component instanceof Lateralus.Component); // true</code></pre>
 
             
 
-            <td class="description last"><p>Values to attach to this <code><a href="Lateralus.Component.html">Lateralus.Component</a></code> instance.  This object also get passed to the <code>Lateralus.Component.initialize</code> method, if one is defined.</p>
+            <td class="description last"><p>Values to attach to this <code><a href="Lateralus.Component.html"><code>Lateralus.Component</code></a></code> instance.  This object also get passed to the <code><code>Lateralus.Component.initialize</code></code> method, if one is defined.</p>
                 <h6>Properties</h6>
                 
 
@@ -209,7 +211,7 @@ console.log(component instanceof Lateralus.Component); // true</code></pre>
             
 
             <td class="description last"><p>Any attributes to pre-populate
-the <code><a href="Lateralus.Component.Model.html">Lateralus.Component.Model</a></code>
+the <code><a href="Lateralus.Component.Model.html"><code>Lateralus.Component.Model</code></a></code>
 instance with, if there is one.</p></td>
         </tr>
 
@@ -244,7 +246,7 @@ instance with, if there is one.</p></td>
             
 
             <td class="description last"><p>Any parameters to pass to the
-<code><a href="Lateralus.Component.Model.html">Lateralus.Component.Model</a></code>
+<code><a href="Lateralus.Component.Model.html"><code>Lateralus.Component.Model</code></a></code>
 instance, if there is one.</p></td>
         </tr>
 
@@ -284,7 +286,7 @@ instance, if there is one.</p></td>
             
 
             <td class="description last"><p>The <code>options</code> Object to pass to the
-<code><a href="Lateralus.Component.View.html">Lateralus.Component.View</a></code>
+<code><a href="Lateralus.Component.View.html"><code>Lateralus.Component.View</code></a></code>
 constructor.</p></td>
         </tr>
 
@@ -396,6 +398,8 @@ this component, if any.</p></td>
 
 
 
+
+
     
     </div>
 
@@ -418,7 +422,9 @@ this component, if any.</p></td>
         </dl>
     
 
-     
+    
+
+    
 
     
 
@@ -514,7 +520,7 @@ property directly, it is managed by Lateralus.</p>
 
 
 <div class="description">
-    <p>A method to be called when this <code><a href="Lateralus.Component.html">Lateralus.Component</a></code> has been set
+    <p>A method to be called when this <code><a href="Lateralus.Component.html"><code>Lateralus.Component</code></a></code> has been set
 up.</p>
 </div>
 
@@ -595,7 +601,7 @@ up.</p>
 
 
 <div class="description">
-    <p>A reference to the central <code><a href="Lateralus.html">Lateralus</a></code>
+    <p>A reference to the central <code><a href="Lateralus.html"><code>Lateralus</code></a></code>
 instance.</p>
 </div>
 
@@ -670,8 +676,8 @@ instance.</p>
 <div class="description">
     <p>A map of functions or string references to functions that will
 handle <a href="http://backbonejs.org/#Events">events</a> dispatched to the
-central <code><a href="Lateralus.html">Lateralus</a></code> instance.</p>
-<pre class="prettyprint source"><code>var ExtendedComponent = Lateralus.Component.extend({
+central <code><a href="Lateralus.html"><code>Lateralus</code></a></code> instance.</p>
+<pre class="prettyprint source"><code>const ExtendedComponent = Lateralus.Component.extend({
   name: 'extended'
 
   ,lateralusEvents: {
@@ -749,7 +755,7 @@ central <code><a href="Lateralus.html">Lateralus</a></code> instance.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lateralus.mixins.js.html">lateralus.mixins.js</a>, <a href="lateralus.mixins.js.html#line259">line 259</a>
+        <a href="lateralus.mixins.js.html">lateralus.mixins.js</a>, <a href="lateralus.mixins.js.html#line256">line 256</a>
     </li></ul></dd>
     
 
@@ -776,7 +782,7 @@ central <code><a href="Lateralus.html">Lateralus</a></code> instance.</p>
     <p>A map of functions or string references to functions that will
 handle <a href="http://backbonejs.org/#Events">events</a> emitted by
 <code>this.model</code>.</p>
-<pre class="prettyprint source"><code>var ExtendedComponent = Lateralus.View.extend({
+<pre class="prettyprint source"><code>const ExtendedComponent = Lateralus.View.extend({
   modelEvents: {
     changed:someProperty: function (model, someProperty) {
       // ...
@@ -846,7 +852,7 @@ handle <a href="http://backbonejs.org/#Events">events</a> emitted by
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lateralus.mixins.js.html">lateralus.mixins.js</a>, <a href="lateralus.mixins.js.html#line321">line 321</a>
+        <a href="lateralus.mixins.js.html">lateralus.mixins.js</a>, <a href="lateralus.mixins.js.html#line318">line 318</a>
     </li></ul></dd>
     
 
@@ -870,8 +876,8 @@ handle <a href="http://backbonejs.org/#Events">events</a> emitted by
 
 
 <div class="description">
-    <p>If this is a subcomponent of another <code><a href="Lateralus.Component.html">Lateralus.Component</a></code>, this
-property is a reference to the parent <code><a href="Lateralus.Component.html">Lateralus.Component</a></code>.</p>
+    <p>If this is a subcomponent of another <code><a href="Lateralus.Component.html"><code>Lateralus.Component</code></a></code>, this
+property is a reference to the parent <code><a href="Lateralus.Component.html"><code>Lateralus.Component</code></a></code>.</p>
 </div>
 
 
@@ -951,10 +957,10 @@ property is a reference to the parent <code><a href="Lateralus.Component.html">L
 
 
 <div class="description">
-    <p>A map of functions that will handle <code><a href="Lateralus.mixins.html#collect">Lateralus.mixins#collect</a></code>
+    <p>A map of functions that will handle <code><a href="Lateralus.mixins.html#collect"><code>Lateralus.mixins#collect</code></a></code>
 calls.  Each of the functions attached to this Object should return a
 value.  These functions <strong>must</strong> be completely synchronous.</p>
-<pre class="prettyprint source"><code>var App = Lateralus.beget(function () {
+<pre class="prettyprint source"><code>const App = Lateralus.beget(function () {
   Lateralus.apply(this, arguments);
 });
 
@@ -966,8 +972,8 @@ _.extend(App.prototype, {
   }
 });
 
-var app = new App();
-var ComponentSubclass = Lateralus.Component.extend({
+const app = new App();
+const ComponentSubclass = Lateralus.Component.extend({
   name: 'provider'
   ,provide: {
     demoData: function () {
@@ -1036,7 +1042,7 @@ console.log(app.collect('demoData')); // [1, 2]</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lateralus.mixins.js.html">lateralus.mixins.js</a>, <a href="lateralus.mixins.js.html#line286">line 286</a>
+        <a href="lateralus.mixins.js.html">lateralus.mixins.js</a>, <a href="lateralus.mixins.js.html#line283">line 283</a>
     </li></ul></dd>
     
 
@@ -1060,7 +1066,7 @@ console.log(app.collect('demoData')); // [1, 2]</code></pre>
 
 
 <div class="description">
-    <p>If <code><a href="Lateralus.Component.View.html">Lateralus.Component.View</a></code> is defined, this is an instance of
+    <p>If <code><a href="Lateralus.Component.View.html"><code>Lateralus.Component.View</code></a></code> is defined, this is an instance of
 that constructor.</p>
 </div>
 
@@ -1141,10 +1147,10 @@ that constructor.</p>
 
 
 <div class="description">
-    <p>The <code><a href="Lateralus.Component.View.html">Lateralus.Component.View</a></code> constructor to use, if any.  If
-this <code><a href="Lateralus.Component.html">Lateralus.Component</a></code> is intended to render to the DOM,
+    <p>The <code><a href="Lateralus.Component.View.html"><code>Lateralus.Component.View</code></a></code> constructor to use, if any.  If
+this <code><a href="Lateralus.Component.html"><code>Lateralus.Component</code></a></code> is intended to render to the DOM,
 <code>View</code> should be defined on the <code>prototype</code> before instantiating:</p>
-<pre class="prettyprint source"><code>var ExtendedComponent = Lateralus.Component.extend({
+<pre class="prettyprint source"><code>const ExtendedComponent = Lateralus.Component.extend({
   name: 'extended'
   ,View: Lateralus.Component.View
   ,template: '&lt;div>&lt;/div>'
@@ -1231,15 +1237,17 @@ this <code><a href="Lateralus.Component.html">Lateralus.Component</a></code> is 
 
     
 
+    
     <h4 class="name" id="dispose"><span class="type-signature"></span>dispose<span class="signature">()</span><span class="type-signature"></span></h4>
+    
 
     
 
 
 
 <div class="description">
-    <p>Remove this <code><a href="Lateralus.Component.html">Lateralus.Component</a></code> from memory.  Also remove any
-nested components added by <code><a href="Lateralus.mixins.html#addComponent">Lateralus.mixins#addComponent</a></code>.</p>
+    <p>Remove this <code><a href="Lateralus.Component.html"><code>Lateralus.Component</code></a></code> from memory.  Also remove any
+nested components added by <code><a href="Lateralus.mixins.html#addComponent"><code>Lateralus.mixins#addComponent</code></a></code>.</p>
 </div>
 
 
@@ -1283,7 +1291,7 @@ nested components added by <code><a href="Lateralus.mixins.html#addComponent">La
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lateralus.component.js.html">lateralus.component.js</a>, <a href="lateralus.component.js.html#line195">line 195</a>
+        <a href="lateralus.component.js.html">lateralus.component.js</a>, <a href="lateralus.component.js.html#line194">line 194</a>
     </li></ul></dd>
     
 
@@ -1309,19 +1317,23 @@ nested components added by <code><a href="Lateralus.mixins.html#addComponent">La
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id="extend"><span class="type-signature"></span>extend<span class="signature">(protoProps)</span><span class="type-signature"></span></h4>
+    
 
     
 
 
 
 <div class="description">
-    <p>Create a <code><a href="Lateralus.Component.html">Lateralus.Component</a></code> subclass.</p>
+    <p>Create a <code><a href="Lateralus.Component.html"><code>Lateralus.Component</code></a></code> subclass.</p>
 </div>
 
 
@@ -1459,7 +1471,7 @@ no whitespace.</p></td>
 
             
 
-            <td class="description last"><p>The <code><a href="Lateralus.Component.View.html">Lateralus.Component.View</a></code> to render this component with.</p></td>
+            <td class="description last"><p>The <code><a href="Lateralus.Component.View.html"><code>Lateralus.Component.View</code></a></code> to render this component with.</p></td>
         </tr>
 
     
@@ -1492,7 +1504,7 @@ no whitespace.</p></td>
 
             
 
-            <td class="description last"><p>The optional <code><a href="Lateralus.Component.Model.html">Lateralus.Component.Model</a></code> to be provided to <code>protoProps.View</code> when it is
+            <td class="description last"><p>The optional <code><a href="Lateralus.Component.Model.html"><code>Lateralus.Component.Model</code></a></code> to be provided to <code>protoProps.View</code> when it is
 instantiated.  This does nothing if <code>protoProps.View</code> is not defined.</p></td>
         </tr>
 
@@ -1567,12 +1579,16 @@ instantiated.  This does nothing if <code>protoProps.View</code> is not defined.
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id="toJSON"><span class="type-signature"></span>toJSON<span class="signature">()</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
 
     
 
@@ -1623,7 +1639,7 @@ instantiated.  This does nothing if <code>protoProps.View</code> is not defined.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lateralus.component.js.html">lateralus.component.js</a>, <a href="lateralus.component.js.html#line221">line 221</a>
+        <a href="lateralus.component.js.html">lateralus.component.js</a>, <a href="lateralus.component.js.html#line220">line 220</a>
     </li></ul></dd>
     
 
@@ -1667,12 +1683,16 @@ instantiated.  This does nothing if <code>protoProps.View</code> is not defined.
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id="toString"><span class="type-signature"></span>toString<span class="signature">()</span><span class="type-signature"> &rarr; {string}</span></h4>
+    
 
     
 
@@ -1719,7 +1739,7 @@ instantiated.  This does nothing if <code>protoProps.View</code> is not defined.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lateralus.component.js.html">lateralus.component.js</a>, <a href="lateralus.component.js.html#line230">line 230</a>
+        <a href="lateralus.component.js.html">lateralus.component.js</a>, <a href="lateralus.component.js.html#line229">line 229</a>
     </li></ul></dd>
     
 
@@ -1768,6 +1788,8 @@ Lateralus.</p>
 
 
 
+
+
         
     
 
@@ -1784,13 +1806,13 @@ Lateralus.</p>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Lateralus.html">Lateralus</a></li><li><a href="Lateralus.Component.html">Lateralus.Component</a></li><li><a href="Lateralus.Component.Collection.html">Lateralus.Component.Collection</a></li><li><a href="Lateralus.Component.Model.html">Lateralus.Component.Model</a></li><li><a href="Lateralus.Component.View.html">Lateralus.Component.View</a></li><li><a href="Lateralus.Model.html">Lateralus.Model</a></li><li><a href="Lateralus.Router.html">Lateralus.Router</a></li></ul><h3>Global</h3><ul><li><a href="global.html#lateralusDispose">lateralusDispose</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Lateralus.html">Lateralus</a></li><li><a href="Lateralus.Component.html">Lateralus.Component</a></li><li><a href="Lateralus.Component.Collection.html">Lateralus.Component.Collection</a></li><li><a href="Lateralus.Component.Model.html">Lateralus.Component.Model</a></li><li><a href="Lateralus.Component.View.html">Lateralus.Component.View</a></li><li><a href="Lateralus.Model.html">Lateralus.Model</a></li><li><a href="Lateralus.Router.html">Lateralus.Router</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-using-lateralus.html">Using Lateralus</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Mon May 22 2017 10:31:33 GMT-0500 (CDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.3</a> on Mon Aug 28 2017 10:28:55 GMT-0500 (CDT)
 </footer>
 
 <script> prettyPrint(); </script>

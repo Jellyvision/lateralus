@@ -2,7 +2,7 @@ import _ from 'lodash-compat';
 import Backbone from 'backbone';
 import mixins from './lateralus.mixins';
 
-var fn = {};
+const fn = {};
 
 // jshint maxlen:100
 /**
@@ -28,16 +28,16 @@ fn.constructor = function (lateralus, attributes, options) {
  * @method Lateralus.Model#onChange
  */
 fn.onChange = function () {
-  var changed = this.changedAttributes();
+  const changed = this.changedAttributes();
 
-  _.each(_.keys(changed), function (changedKey) {
+  _.each(_.keys(changed), (changedKey) => {
     this.emit('change:' + changedKey, changed[changedKey]);
 
     // Delete this property from the internal "changed" object before
     // Backbone typically would to prevent "stacking" changed properties
     // across onChange calls, thereby causing redundant handler calls.
     delete this.changed[changedKey];
-  }, this);
+  });
 
 };
 
@@ -51,7 +51,7 @@ _.extend(fn, mixins);
  * @extends Backbone.Model
  * @class Lateralus.Model
  */
-var LateralusModel = Backbone.Model.extend(fn);
+const LateralusModel = Backbone.Model.extend(fn);
 
 /**
  * @method Lateralus.Model#toString

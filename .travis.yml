@@ -12,3 +12,5 @@ deploy:
     secure: FBoXIZbL3PvWIXAH+7zd0GBcaJ96ggPuU3DFZDPizStkq3MKqwVggWkRh4VCpLV0DtfME3axF3UYipVuomoYM5f8f82RoeI71cs/39PkpU/EUmBCn4PvZijo+UzfAdGqQ4r0B3x5JziG7BPYs4ObMo6CgHQJcgMtt59MJfgEklo=
   on:
     tags: true
+script:
+- npm run validate

@@ -1,10 +1,10 @@
 import $ from 'jquery';
 import _ from 'lodash-compat';
 import Backbone from 'backbone';
-import Mustache from 'mustache'
+import Mustache from 'mustache';
 import mixins from './lateralus.mixins';
 
-var fn = {};
+const fn = {};
 
 /**
  * The DOM template to be used with this View.
@@ -66,10 +66,10 @@ fn.constructor = function (lateralus, component, options, opt_parentView) {
  * `{@link Lateralus.Component.View}` subclasses that
  * override `initialize` must call this base method:
  *
- *     var Base = Lateralus.Component.View;
- *     var baseProto = Base.prototype;
+ *     const Base = Lateralus.Component.View;
+ *     const baseProto = Base.prototype;
  *
- *     var ExtendedComponentView = Base.extend({
+ *     const ExtendedComponentView = Base.extend({
  *       initialize: function () {
  *         baseProto.initialize.apply(this, arguments);
  *         // Other logic...
@@ -151,7 +151,7 @@ fn.addSubview = function (Subview, subviewOptions) {
     this.subviews = [];
   }
 
-  var subview = new Subview(
+  const subview = new Subview(
     this.lateralus
     ,this.component
     ,subviewOptions
@@ -173,7 +173,7 @@ fn.addSubview = function (Subview, subviewOptions) {
  * Otherwise, an empty object is returned.
  */
 fn.getTemplateRenderData = function () {
-  var renderData = {};
+  const renderData = {};
 
   if (this.model) {
     _.extend(renderData, this.model.toJSON());
@@ -196,7 +196,7 @@ fn.getTemplatePartials = function () {
    *     });
    *
    * @property templatePartials
-   * @type {Object(String)|undefined}
+   * @type {Object<String>|undefined}
    * @default undefined
    */
   return _.extend(this.templatePartials || {}, this.lateralus.globalPartials);
@@ -251,7 +251,7 @@ fn.bindToDOM = function () {
 fn.dispose = function () {
   this.remove();
 
-  var parentView = this.parentView;
+  const parentView = this.parentView;
   if (parentView) {
     parentView.subviews = _.without(parentView.subviews, this);
   }
@@ -267,7 +267,7 @@ _.extend(fn, mixins);
  * @class Lateralus.Component.View
  * @extends {Backbone.View}
  */
-var ComponentView = Backbone.View.extend(fn);
+const ComponentView = Backbone.View.extend(fn);
 
 /**
  * @method Lateralus.Component.View#toString

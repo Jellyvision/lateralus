@@ -2,7 +2,7 @@ import _ from 'lodash-compat';
 import Backbone from 'backbone';
 import mixins from './lateralus.mixins';
 
-var fn = {};
+const fn = {};
 
 // jshint maxlen:100
 /**
@@ -28,7 +28,7 @@ _.extend(fn, mixins);
  * @extends {Backbone.Router}
  * @class Lateralus.Router
  */
-var LateralusRouter = Backbone.Router.extend(fn);
+const LateralusRouter = Backbone.Router.extend(fn);
 
 /**
  * @method toString

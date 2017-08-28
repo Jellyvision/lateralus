@@ -2,9 +2,11 @@
   "plugins": ["plugins/markdown"],
   "opts": {
     "destination": "docs",
-    "readme": "README.md"
+    "readme": "README.md",
+    "tutorials": "tutorials"
   },
   "templates": {
+  "cleverLinks": true,
     "default": {
       "useLongnameInNav": true
     }

@@ -1,19 +1,18 @@
 import chai from 'chai';
 import _ from 'lodash-compat';
-import Backbone from 'backbone';
 import Lateralus from '../../src/lateralus';
 import { getLateralusApp } from '../utils';
 
-var assert = chai.assert;
+const assert = chai.assert;
 
 describe('Lateralus.Component', function () {
   describe('Prototype', function () {
     describe('dispose()', function () {
-      var App = getLateralusApp();
-      var app = new App();
-      var component = app.addComponent(Lateralus.Component);
+      const App = getLateralusApp();
+      const app = new App();
+      const component = app.addComponent(Lateralus.Component);
 
-      var beforeDisposeWasHeard = false;
+      let beforeDisposeWasHeard = false;
       component.on('beforeDispose', function () {
         beforeDisposeWasHeard = true;
       });
@@ -31,11 +30,11 @@ describe('Lateralus.Component', function () {
       describe('Inheritance', function () {
         it('Inherits the parent component\'s lateralusEvents map',
             function () {
-          var App = getLateralusApp();
-          var app = new App();
-          var testWasCalled = false;
+          const App = getLateralusApp();
+          const app = new App();
+          let testWasCalled = false;
 
-          var BaseComponent = Lateralus.Component.extend({
+          const BaseComponent = Lateralus.Component.extend({
             name: 'base',
             lateralusEvents: {
               test: function () {
@@ -44,7 +43,7 @@ describe('Lateralus.Component', function () {
             }
           });
 
-          var ChildComponent = BaseComponent.extend({
+          const ChildComponent = BaseComponent.extend({
             name: 'child',
             lateralusEvents: {
               foo: _.noop
@@ -57,13 +56,15 @@ describe('Lateralus.Component', function () {
           assert.isTrue(testWasCalled);
         });
 
+        /*eslint-disable max-len */
         it('Inherits lateralusEvents from a parent component that also provides values',
+        /*eslint-enable max-len */
             function () {
-          var App = getLateralusApp();
-          var app = new App();
-          var testWasCalled = false;
+          const App = getLateralusApp();
+          const app = new App();
+          let testWasCalled = false;
 
-          var BaseComponent = Lateralus.Component.extend({
+          const BaseComponent = Lateralus.Component.extend({
             name: 'base',
             lateralusEvents: {
               test: function () {
@@ -78,7 +79,7 @@ describe('Lateralus.Component', function () {
             }
           });
 
-          var ChildComponent = BaseComponent.extend({
+          const ChildComponent = BaseComponent.extend({
             name: 'child',
             lateralusEvents: {
               foo: _.noop

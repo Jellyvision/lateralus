@@ -28,7 +28,7 @@
 
 <header>
     
-        <h2>Lateralus</h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>Lateralus<span class="signature">(el)</span><span class="type-signature"></span></h2>
         
             <div class="class-description"><p>Lateralus</p></div>
         
@@ -44,14 +44,16 @@
     <h2>Constructor</h2>
     
 
+    
     <h4 class="name" id="Lateralus"><span class="type-signature"></span>new Lateralus<span class="signature">(el)</span><span class="type-signature"></span></h4>
+    
 
     
 
 
 
 <div class="description">
-    <p>You should not need to call the Lateralus constructor directly, use <code><a href="Lateralus.html#.beget">Lateralus.beget</a></code> instead.  To create a new Lateralus app:</p>
+    <p>You should not need to call the Lateralus constructor directly, use <code><a href="Lateralus.html#.beget"><code>Lateralus.beget</code></a></code> instead.  To create a new Lateralus app:</p>
 <pre class="prettyprint source"><code>var App = Lateralus.beget(function () {
   // Don't forget to call the Lateralus constructor!
   Lateralus.apply(this, arguments);
@@ -184,6 +186,8 @@ var app = new App(document.getElementById('app'));</code></pre>
 
 
 
+
+
     
     </div>
 
@@ -206,7 +210,9 @@ var app = new App(document.getElementById('app'));</code></pre>
         </dl>
     
 
-     
+    
+
+    
 
     
 
@@ -221,7 +227,7 @@ var app = new App(document.getElementById('app'));</code></pre>
 
 
 <div class="description">
-    <p>The jQuery Object that contains <code><a href="Lateralus.html#el">Lateralus#el</a></code>.</p>
+    <p>The jQuery Object that contains <code><a href="Lateralus.html#el"><code>Lateralus#el</code></a></code>.</p>
 </div>
 
 
@@ -374,7 +380,7 @@ property directly, it is managed by Lateralus.</p>
 
 
 <div class="description">
-    <p>The DOM node that contains this <code><a href="Lateralus.html">Lateralus</a></code> instance.</p>
+    <p>The DOM node that contains this <code><a href="Lateralus.html"><code>Lateralus</code></a></code> instance.</p>
 </div>
 
 
@@ -440,7 +446,7 @@ property directly, it is managed by Lateralus.</p>
 
         
             
-<h4 class="name" id="globalPartials"><span class="type-signature"></span>globalPartials<span class="type-signature"> :Object(String)</span></h4>
+<h4 class="name" id="globalPartials"><span class="type-signature"></span>globalPartials<span class="type-signature"> :Object.&lt;String></span></h4>
 
 
 
@@ -456,7 +462,7 @@ property directly, it is managed by Lateralus.</p>
     <ul>
         <li>
             
-<span class="param-type">Object(String)</span>
+<span class="param-type">Object.&lt;String></span>
 
 
         </li>
@@ -513,7 +519,7 @@ property directly, it is managed by Lateralus.</p>
 
         
             
-<h4 class="name" id="globalRenderData"><span class="type-signature"></span>globalRenderData<span class="type-signature"> :Object(String)</span></h4>
+<h4 class="name" id="globalRenderData"><span class="type-signature"></span>globalRenderData<span class="type-signature"> :Object.&lt;String></span></h4>
 
 
 
@@ -529,7 +535,7 @@ property directly, it is managed by Lateralus.</p>
     <ul>
         <li>
             
-<span class="param-type">Object(String)</span>
+<span class="param-type">Object.&lt;String></span>
 
 
         </li>
@@ -594,8 +600,8 @@ property directly, it is managed by Lateralus.</p>
 <div class="description">
     <p>A map of functions or string references to functions that will
 handle <a href="http://backbonejs.org/#Events">events</a> dispatched to the
-central <code><a href="Lateralus.html">Lateralus</a></code> instance.</p>
-<pre class="prettyprint source"><code>var ExtendedComponent = Lateralus.Component.extend({
+central <code><a href="Lateralus.html"><code>Lateralus</code></a></code> instance.</p>
+<pre class="prettyprint source"><code>const ExtendedComponent = Lateralus.Component.extend({
   name: 'extended'
 
   ,lateralusEvents: {
@@ -673,7 +679,7 @@ central <code><a href="Lateralus.html">Lateralus</a></code> instance.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lateralus.mixins.js.html">lateralus.mixins.js</a>, <a href="lateralus.mixins.js.html#line259">line 259</a>
+        <a href="lateralus.mixins.js.html">lateralus.mixins.js</a>, <a href="lateralus.mixins.js.html#line256">line 256</a>
     </li></ul></dd>
     
 
@@ -697,7 +703,7 @@ central <code><a href="Lateralus.html">Lateralus</a></code> instance.</p>
 
 
 <div class="description">
-    <p>Maintains the state of the central <code><a href="Lateralus.html">Lateralus</a></code> instance.</p>
+    <p>Maintains the state of the central <code><a href="Lateralus.html"><code>Lateralus</code></a></code> instance.</p>
 </div>
 
 
@@ -772,7 +778,7 @@ central <code><a href="Lateralus.html">Lateralus</a></code> instance.</p>
     <p>A map of functions or string references to functions that will
 handle <a href="http://backbonejs.org/#Events">events</a> emitted by
 <code>this.model</code>.</p>
-<pre class="prettyprint source"><code>var ExtendedComponent = Lateralus.View.extend({
+<pre class="prettyprint source"><code>const ExtendedComponent = Lateralus.View.extend({
   modelEvents: {
     changed:someProperty: function (model, someProperty) {
       // ...
@@ -842,7 +848,7 @@ handle <a href="http://backbonejs.org/#Events">events</a> emitted by
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lateralus.mixins.js.html">lateralus.mixins.js</a>, <a href="lateralus.mixins.js.html#line321">line 321</a>
+        <a href="lateralus.mixins.js.html">lateralus.mixins.js</a>, <a href="lateralus.mixins.js.html#line318">line 318</a>
     </li></ul></dd>
     
 
@@ -866,10 +872,10 @@ handle <a href="http://backbonejs.org/#Events">events</a> emitted by
 
 
 <div class="description">
-    <p>A map of functions that will handle <code><a href="Lateralus.mixins.html#collect">Lateralus.mixins#collect</a></code>
+    <p>A map of functions that will handle <code><a href="Lateralus.mixins.html#collect"><code>Lateralus.mixins#collect</code></a></code>
 calls.  Each of the functions attached to this Object should return a
 value.  These functions <strong>must</strong> be completely synchronous.</p>
-<pre class="prettyprint source"><code>var App = Lateralus.beget(function () {
+<pre class="prettyprint source"><code>const App = Lateralus.beget(function () {
   Lateralus.apply(this, arguments);
 });
 
@@ -881,8 +887,8 @@ _.extend(App.prototype, {
   }
 });
 
-var app = new App();
-var ComponentSubclass = Lateralus.Component.extend({
+const app = new App();
+const ComponentSubclass = Lateralus.Component.extend({
   name: 'provider'
   ,provide: {
     demoData: function () {
@@ -951,7 +957,7 @@ console.log(app.collect('demoData')); // [1, 2]</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lateralus.mixins.js.html">lateralus.mixins.js</a>, <a href="lateralus.mixins.js.html#line286">line 286</a>
+        <a href="lateralus.mixins.js.html">lateralus.mixins.js</a>, <a href="lateralus.mixins.js.html#line283">line 283</a>
     </li></ul></dd>
     
 
@@ -978,14 +984,16 @@ console.log(app.collect('demoData')); // [1, 2]</code></pre>
 
     
 
+    
     <h4 class="name" id=".beget"><span class="type-signature">(static) </span>beget<span class="signature">(child, config<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {function}</span></h4>
+    
 
     
 
 
 
 <div class="description">
-    <p>Create a <code><a href="Lateralus.html">Lateralus</a></code> application instance.</p>
+    <p>Create a <code><a href="Lateralus.html"><code>Lateralus</code></a></code> application instance.</p>
 <pre class="prettyprint source"><code>var App = Lateralus.beget(function () {
   Lateralus.apply(this, arguments);
 });</code></pre>
@@ -1137,9 +1145,9 @@ console.log(app.collect('demoData')); // [1, 2]</code></pre>
 
             
 
-            <td class="description last"><p>A <code><a href="Lateralus.Model.html">Lateralus.Model</a></code> subclass
-constructor to use for <code>Lateralus.model</code> instead of a standard
-<code><a href="Lateralus.Model.html">Lateralus.Model</a></code>.</p></td>
+            <td class="description last"><p>A <code><a href="Lateralus.Model.html"><code>Lateralus.Model</code></a></code> subclass
+constructor to use for <code><code>Lateralus.model</code></code> instead of a standard
+<code><a href="Lateralus.Model.html"><code>Lateralus.Model</code></a></code>.</p></td>
         </tr>
 
     
@@ -1214,7 +1222,7 @@ constructor to use for <code>Lateralus.model</code> instead of a standard
 
         
 <div class="param-desc">
-    <p>The created <code><a href="Lateralus.html">Lateralus</a></code>
+    <p>The created <code><a href="Lateralus.html"><code>Lateralus</code></a></code>
 subclass.</p>
 </div>
 
@@ -1236,12 +1244,16 @@ subclass.</p>
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".inherit"><span class="type-signature">(static) </span>inherit<span class="signature">(child, parent)</span><span class="type-signature"> &rarr; {function}</span></h4>
+    
 
     
 
@@ -1412,19 +1424,23 @@ subclass.</p>
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id="dispose"><span class="type-signature"></span>dispose<span class="signature">()</span><span class="type-signature"></span></h4>
+    
 
     
 
 
 
 <div class="description">
-    <p>Remove this <code><a href="Lateralus.html">Lateralus</a></code> app from memory.</p>
+    <p>Remove this <code><a href="Lateralus.html"><code>Lateralus</code></a></code> app from memory.</p>
 </div>
 
 
@@ -1494,12 +1510,16 @@ subclass.</p>
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id="error"><span class="type-signature"></span>error<span class="signature">(&hellip;Any)</span><span class="type-signature"></span></h4>
+    
 
     
 
@@ -1637,12 +1657,16 @@ subclass.</p>
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id="initRouter"><span class="type-signature"></span>initRouter<span class="signature">(Router, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="Lateralus.Router.html">Lateralus.Router</a>}</span></h4>
+    
 
     
 
@@ -1831,12 +1855,16 @@ constructor.</p>
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id="log"><span class="type-signature"></span>log<span class="signature">(&hellip;Any)</span><span class="type-signature"></span></h4>
+    
 
     
 
@@ -1974,20 +2002,24 @@ constructor.</p>
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id="shareWith"><span class="type-signature"></span>shareWith<span class="signature">(receiver, providerName)</span><span class="type-signature"></span></h4>
+    
 
     
 
 
 
 <div class="description">
-    <p>Relay <code><a href="Lateralus.mixins.html#.provide">Lateralus.mixins.provide</a></code>d handlers to another <code><a href="Lateralus.html">Lateralus</a></code> instance.  This is the <code><a href="Lateralus.mixins.html#.provide">Lateralus.mixins.provide</a></code> analog
-to <code>Lateralus.mixins.amplify</code>.</p>
+    <p>Relay <code><a href="Lateralus.mixins.html#.provide"><code>Lateralus.mixins.provide</code></a></code>d handlers to another <code><a href="Lateralus.html"><code>Lateralus</code></a></code> instance.  This is the <code><a href="Lateralus.mixins.html#.provide"><code>Lateralus.mixins.provide</code></a></code> analog
+to <code><code>Lateralus.mixins.amplify</code></code>.</p>
 </div>
 
 
@@ -2039,8 +2071,8 @@ to <code>Lateralus.mixins.amplify</code>.</p>
 
             
 
-            <td class="description last"><p>The <code><a href="Lateralus.html">Lateralus</a></code> instance to share
-<code><a href="Lateralus.mixins.html#.provide">Lateralus.mixins.provide</a></code>d handlers with.</p></td>
+            <td class="description last"><p>The <code><a href="Lateralus.html"><code>Lateralus</code></a></code> instance to share
+<code><a href="Lateralus.mixins.html#.provide"><code>Lateralus.mixins.provide</code></a></code>d handlers with.</p></td>
         </tr>
 
     
@@ -2063,7 +2095,7 @@ to <code>Lateralus.mixins.amplify</code>.</p>
 
             
 
-            <td class="description last"><p>The name of the <code><a href="Lateralus.mixins.html#.provide">Lateralus.mixins.provide</a></code>er.</p></td>
+            <td class="description last"><p>The name of the <code><a href="Lateralus.mixins.html#.provide"><code>Lateralus.mixins.provide</code></a></code>er.</p></td>
         </tr>
 
     
@@ -2130,12 +2162,16 @@ to <code>Lateralus.mixins.amplify</code>.</p>
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id="toString"><span class="type-signature"></span>toString<span class="signature">()</span><span class="type-signature"> &rarr; {string}</span></h4>
+    
 
     
 
@@ -2234,12 +2270,16 @@ to <code>Lateralus.mixins.amplify</code>.</p>
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id="warn"><span class="type-signature"></span>warn<span class="signature">(&hellip;Any)</span><span class="type-signature"></span></h4>
+    
 
     
 
@@ -2377,6 +2417,8 @@ to <code>Lateralus.mixins.amplify</code>.</p>
 
 
 
+
+
         
     
 
@@ -2393,13 +2435,13 @@ to <code>Lateralus.mixins.amplify</code>.</p>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Lateralus.html">Lateralus</a></li><li><a href="Lateralus.Component.html">Lateralus.Component</a></li><li><a href="Lateralus.Component.Collection.html">Lateralus.Component.Collection</a></li><li><a href="Lateralus.Component.Model.html">Lateralus.Component.Model</a></li><li><a href="Lateralus.Component.View.html">Lateralus.Component.View</a></li><li><a href="Lateralus.Model.html">Lateralus.Model</a></li><li><a href="Lateralus.Router.html">Lateralus.Router</a></li></ul><h3>Global</h3><ul><li><a href="global.html#lateralusDispose">lateralusDispose</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Lateralus.html">Lateralus</a></li><li><a href="Lateralus.Component.html">Lateralus.Component</a></li><li><a href="Lateralus.Component.Collection.html">Lateralus.Component.Collection</a></li><li><a href="Lateralus.Component.Model.html">Lateralus.Component.Model</a></li><li><a href="Lateralus.Component.View.html">Lateralus.Component.View</a></li><li><a href="Lateralus.Model.html">Lateralus.Model</a></li><li><a href="Lateralus.Router.html">Lateralus.Router</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-using-lateralus.html">Using Lateralus</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Mon May 22 2017 10:31:33 GMT-0500 (CDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.3</a> on Mon Aug 28 2017 10:28:55 GMT-0500 (CDT)
 </footer>
 
 <script> prettyPrint(); </script>

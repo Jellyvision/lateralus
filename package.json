@@ -1,6 +1,6 @@
 {
   "name": "lateralus",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "description": "A UI component framework",
   "license": "MIT",
   "main": "dist/lateralus.js",
@@ -12,12 +12,16 @@
   "scripts": {
     "start": "webpack-dev-server --config webpack.test.config.js",
     "build": "webpack",
+    "debug": "mocha debug -r jsdom-global/register ./node_modules/babel-core/register.js test/index.js",
     "test": "mocha -r jsdom-global/register ./node_modules/babel-core/register.js test/index.js",
+    "test:watch": "nodemon --exec \"npm test\" --watch src --watch test",
+    "lint": "eslint -c .eslintrc src test",
+    "validate": "npm test && npm run lint",
     "doc": "jsdoc -c .jsdoc src/*.js",
     "setup": "npm install",
     "version": "npm run generate-artifacts && git add -A",
     "generate-artifacts": "npm run clean && npm run build && npm run doc",
-    "preversion": "npm test",
+    "preversion": "npm run validate",
     "postversion": "git push --follow-tags",
     "clean": "rm -rf dist docs"
   },
@@ -39,10 +43,12 @@
     "babel-loader": "^7.0.0",
     "babel-preset-es2015": "^6.24.1",
     "chai": "~2.1.1",
+    "eslint": "^3.19.0",
     "jsdoc": "^3.4.3",
     "jsdom": "^10.1.0",
     "jsdom-global": "^3.0.2",
     "mocha": "~2.2.0",
+    "nodemon": "^1.11.0",
     "webpack": "^2.5.1",
     "webpack-dev-server": "^2.4.5"
   }
