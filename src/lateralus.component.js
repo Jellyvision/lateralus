@@ -40,8 +40,7 @@ import ComponentCollection from './lateralus.component.collection';
 function Component (lateralus, options, viewOptions, opt_parentComponent) {
 
   /**
-   * A reference to the central `{@link Lateralus}`
-   * instance.
+   * A reference to the central {@link Lateralus} instance.
    * @member Lateralus.Component#lateralus
    * @type {Lateralus}
    * @final

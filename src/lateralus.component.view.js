@@ -9,6 +9,7 @@ const fn = {};
 /**
  * The DOM template to be used with this View.
  * @type {string|null}
+ * @member Lateralus.Component.View#template
  * @default {null}
  */
 fn.template = null;
@@ -28,6 +29,12 @@ fn.template = null;
  * @constructs Lateralus.Component.View
  */
 fn.constructor = function (lateralus, component, options, opt_parentView) {
+  /**
+   * A reference to the central {@link Lateralus} instance.
+   * @member Lateralus.Component.View#lateralus
+   * @type {Lateralus}
+   * @final
+   */
   this.lateralus = lateralus;
 
   /**
@@ -40,10 +47,9 @@ fn.constructor = function (lateralus, component, options, opt_parentView) {
   this.parentView = opt_parentView || null;
 
   /**
-   * A reference to the `{@link Lateralus.Component}`
-   * to which this `{@link Lateralus.Component.View}`
-   * belongs.
-   * @property component
+   * A reference to the `{@link Lateralus.Component}` to which this `{@link
+   * Lateralus.Component.View}` belongs.
+   * @member Lateralus.Component.View#component
    * @type {Lateralus.Component}
    * @final
    */

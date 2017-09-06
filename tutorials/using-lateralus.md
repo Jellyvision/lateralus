@@ -75,7 +75,7 @@ define(['lateralus', './view', 'text!./template.mustache'],
 });
 ```
 
-{@link Lateralus.Component} instances have a reference to the central {@link Lateralus} instance as `this.lateralus`.
+{@link Lateralus.Component} instances have a reference to the central {@link Lateralus} instance as {@link Lateralus.Component#lateralus this.lateralus}.
 
 **Note:** The `styles/main.sass` file is not `@import`ed for you automatically in your main Sass file, you will need to do that manually when you set up a new component.
 
@@ -113,7 +113,7 @@ define(['lateralus'], function (Lateralus) {
 });
 ```
 
-A {@link Lateralus.Component.View} has a reference to the central {@link Lateralus} instance as `this.lateralus`, and a reference to the {@link Lateralus.Component} it belongs to with `this.component`.  This is necessary for using the `emit` and `listenFor` mixin methods to communicate with the rest of the app.  Generally, you can use {@link Lateralus.Component.View} exactly as you would [`Backbone.View`](http://backbonejs.org/#View), but it gives you a few additional APIs.
+A {@link Lateralus.Component.View} has a reference to the central {@link Lateralus} instance as {@link Lateralus.Component.View#lateralus this.lateralus}, and a reference to the {@link Lateralus.Component} it belongs to with {@link Lateralus.Component.View#component this.component}.  This is necessary for using the {@link Lateralus.mixins#emit} and {@link Lateralus.mixins#listenFor} mixin methods to communicate with the rest of the app.  Generally, you can use {@link Lateralus.Component.View} exactly as you would [`Backbone.View`](http://backbonejs.org/#View), but it gives you a few additional APIs.
 
 As a convenience, {@link Lateralus.Component.View} implicitly binds DOM nodes in the template as jQuery objects.  If the component's template looks like this:
 
@@ -125,20 +125,20 @@ As a convenience, {@link Lateralus.Component.View} implicitly binds DOM nodes in
 
 The view will automatically have properties `this.$container` and `this.$header` that are jQuery objects referencing the `div` and the `h2`, respecively.
 
-{@link Lateralus.Component.View} transparently renders its template for you.  `this.renderTemplate` is called by {@link Lateralus.Component.View#initialize} (which is why you should generally call `baseProto.initialize` as demonstrated above), but you are free to do further rendering with `this.render`.  `this.render` should be used for partial updates, whereas `this.renderTemplate` should be used to completely replace the contents of the View's `$el` with whatever is in `this.template`.
+{@link Lateralus.Component.View} transparently renders its template for you.  {@link Lateralus.Component.View#renderTemplate} is called by {@link Lateralus.Component.View#initialize} (which is why you should generally call `baseProto.initialize` as demonstrated above), but you are free to do further rendering with [`this.render`](http://backbonejs.org/#View-render).  [`this.render`](http://backbonejs.org/#View-render) should be used for partial updates, whereas {@link Lateralus.Component.View#renderTemplate} should be used to completely replace the contents of the View's `$el` with whatever is in {@link Lateralus.Component.View#template}.
 
 -------------------------------------
 
 ### {@link Lateralus.Component.Model}
 
-Similarly to {@link Lateralus.Component.View}, this object extends its Backbone counterpart &mdash; `Backbone.Model`.  This doesn't add much in the way of new functionality, but it does have a reference to the central {@link Lateralus} instance and can therefore `emit` and `listenFor` messages.
+Similarly to {@link Lateralus.Component.View}, this object extends its Backbone counterpart &mdash; [`Backbone.Model`](http://backbonejs.org/#Model).  This doesn't add much in the way of new functionality, but it does have a reference to the central {@link Lateralus} instance and can therefore {@link Lateralus.mixins#emit} and {@link Lateralus.mixins#listenFor} messages.
 
 
 -------------------------------------
 
 ### {@link Lateralus.Component.Collection}
 
-Just like {@link Lateralus.Component.Model}, this works consistently with `Backbone.Collection`, but in a way that is compatible with Lateralus.
+Just like {@link Lateralus.Component.Model}, this works consistently with [`Backbone.Collection`](http://backbonejs.org/#Collection), but in a way that is compatible with Lateralus.
 
 -------------------------------------
 
