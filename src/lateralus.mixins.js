@@ -4,7 +4,6 @@ import _ from 'lodash-compat';
  * These method are mixed into `{@link Lateralus}`,
  * `{@link Lateralus.Component}`, and `{@link Lateralus.Component.View}`.
  * @mixin Lateralus.mixins
- * @private
  * @requires http://backbonejs.org/#Events
  */
 const mixins = {};
