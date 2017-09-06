@@ -152,10 +152,10 @@ fn.addSubview = function (Subview, subviewOptions) {
   }
 
   const subview = new Subview(
-    this.lateralus
-    ,this.component
-    ,subviewOptions
-    ,this
+    this.lateralus,
+    this.component,
+    subviewOptions,
+    this
   );
 
   this.subviews.push(subview);
@@ -218,9 +218,9 @@ fn.renderTemplate = function () {
   this.$el.children().remove();
   this.$el.html(
     Mustache.render(
-      this.template
-      ,this.getTemplateRenderData()
-      ,this.getTemplatePartials()
+      this.template,
+      this.getTemplateRenderData(),
+      this.getTemplatePartials()
     )
   );
 

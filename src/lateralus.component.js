@@ -78,9 +78,9 @@ function Component (lateralus, options, viewOptions, opt_parentComponent) {
    * `View` should be defined on the `prototype` before instantiating:
    *
    *     const ExtendedComponent = Lateralus.Component.extend({
-   *       name: 'extended'
-   *       ,View: Lateralus.Component.View
-   *       ,template: '<div></div>'
+   *       name: 'extended',
+   *       View: Lateralus.Component.View,
+   *       template: '<div></div>'
    *     });
    * @member Lateralus.Component#View
    * @type {Lateralus.Component.View|undefined}
@@ -114,9 +114,9 @@ function Component (lateralus, options, viewOptions, opt_parentComponent) {
      * @default undefined
      */
     this.view = new this.View(
-        lateralus
-        ,this
-        ,augmentedViewOptions
+        lateralus,
+        this,
+        augmentedViewOptions
       );
   }
 
