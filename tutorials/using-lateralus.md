@@ -18,7 +18,7 @@ require(['lateralus'], function (Lateralus) {
 
 ### API overview
 
-Lateralus's functionality is divided up into several primary Objects under the `Lateralus` namespace:
+Lateralus's functionality is divided up into several primary Objects under the {@link Lateralus} namespace:
 
   * {@link Lateralus}
   * {@link Lateralus.Component}
@@ -27,13 +27,17 @@ Lateralus's functionality is divided up into several primary Objects under the `
   * {@link Lateralus.Component.Collection}
   * A stylesheet
 
+-------------------------------------
+
 ### {@link Lateralus}
 
-Contains static utility methods, such as `Lateralus.inherit`.
+Contains static utility methods, such as {@link Lateralus.inherit}.
+
+-------------------------------------
 
 ### {@link Lateralus.Component}
 
-The primary class used within the framework to define UI components.  Typically, a component encompasses a `Lateralus.Component.View` and a template (though these are not required).
+The primary class used within the framework to define UI components.  Typically, a component encompasses a {@link Lateralus.Component.View} and a template (though these are not required).
 
 A component is distinct from a view.  A view is a graphical, interactive representation of a model.  A component represents all of the interrelated parts of significant, individual part of the UI.  This usually includes one or more Views, a template, a Model, and anything else a UI component needs to function.  A component is a higher-level abstraction than a View.
 
@@ -49,9 +53,9 @@ my-component/
   template.mustache
 ```
 
-`main.js` is the main entry point for the component and defines the `Lateralus.Component` instance.  `view.js` defines the primary `Lateralus.Component.View` instance, and `template.mustache` is the primary DOM template.  All components should adhere to this directory structure, but you are also free change the directory structure to suit your needs.  If you do this, you will need to update the dependency paths in your component's AMD modules.
+`main.js` is the main entry point for the component and defines the {@link Lateralus.Component} instance.  `view.js` defines the primary {@link Lateralus.Component.View} instance, and `template.mustache` is the primary DOM template.  All components should adhere to this directory structure, but you are also free change the directory structure to suit your needs.  If you do this, you will need to update the dependency paths in your component's AMD modules.
 
-Boilerplate for a standard `Lateralus.Component` module:
+Boilerplate for a standard {@link Lateralus.Component} module:
 
 ```javascript
 define(['lateralus', './view', 'text!./template.mustache'],
@@ -71,17 +75,21 @@ define(['lateralus', './view', 'text!./template.mustache'],
 });
 ```
 
-`Lateralus.Component` instances have a reference to the central `Lateralus` instance as `this.lateralus`.
+{@link Lateralus.Component} instances have a reference to the central {@link Lateralus} instance as {@link Lateralus.Component#lateralus this.lateralus}.
 
 **Note:** The `styles/main.sass` file is not `@import`ed for you automatically in your main Sass file, you will need to do that manually when you set up a new component.
+
+-------------------------------------
 
 ### Templates
 
 Lateralus uses [Mustache.js](https://github.com/janl/mustache.js/) for its templating engine.  Components that render something have at least one template associated with them as `this.template`.
 
+-------------------------------------
+
 ### {@link Lateralus.Component.View}
 
-This Object extends [`Backbone.View`](http://backbonejs.org/#View) with Lateralus-specific functionality.  Here's a basic `Lateralus.Component.View` subclass module:
+This Object extends [`Backbone.View`](http://backbonejs.org/#View) with Lateralus-specific functionality.  Here's a basic {@link Lateralus.Component.View} subclass module:
 
 ```javascript
 define(['lateralus'], function (Lateralus) {
@@ -105,9 +113,9 @@ define(['lateralus'], function (Lateralus) {
 });
 ```
 
-A `Lateralus.Component.View` has a reference to the central `Lateralus` instance as `this.lateralus`, and a reference to the `Lateralus.Component` it belongs to with `this.component`.  This is necessary for using the `emit` and `listenFor` mixin methods to communicate with the rest of the app.  Generally, you can use `Lateralus.Component.View` exactly as you would `Backbone.View`, but it gives you a few additional APIs.
+A {@link Lateralus.Component.View} has a reference to the central {@link Lateralus} instance as {@link Lateralus.Component.View#lateralus this.lateralus}, and a reference to the {@link Lateralus.Component} it belongs to with {@link Lateralus.Component.View#component this.component}.  This is necessary for using the {@link Lateralus.mixins#emit} and {@link Lateralus.mixins#listenFor} mixin methods to communicate with the rest of the app.  Generally, you can use {@link Lateralus.Component.View} exactly as you would [`Backbone.View`](http://backbonejs.org/#View), but it gives you a few additional APIs.
 
-As a convenience, `Lateralus.Component.View` implicitly binds DOM nodes in the template as jQuery objects.  If the component's template looks like this:
+As a convenience, {@link Lateralus.Component.View} implicitly binds DOM nodes in the template as jQuery objects.  If the component's template looks like this:
 
 ```html
 <div class="$container">
@@ -117,20 +125,28 @@ As a convenience, `Lateralus.Component.View` implicitly binds DOM nodes in the t
 
 The view will automatically have properties `this.$container` and `this.$header` that are jQuery objects referencing the `div` and the `h2`, respecively.
 
-`Lateralus.Component.View` transparently renders its template for you.  `this.renderTemplate` is called by `Lateralus.Component.View.prototype.initialize` (which is why you should generally call `baseProto.initialize` as demonstrated above), but you are free to do further rendering with `this.render`.  `this.render` should be used for partial updates, whereas `this.renderTemplate` should be used to completely replace the contents of the View's `$el` with whatever is in `this.template`.
+{@link Lateralus.Component.View} transparently renders its template for you.  {@link Lateralus.Component.View#renderTemplate} is called by {@link Lateralus.Component.View#initialize} (which is why you should generally call `baseProto.initialize` as demonstrated above), but you are free to do further rendering with [`this.render`](http://backbonejs.org/#View-render).  [`this.render`](http://backbonejs.org/#View-render) should be used for partial updates, whereas {@link Lateralus.Component.View#renderTemplate} should be used to completely replace the contents of the View's `$el` with whatever is in {@link Lateralus.Component.View#template}.
+
+-------------------------------------
 
 ### {@link Lateralus.Component.Model}
 
-Similarly to `Lateralus.Component.View`, this object extends its Backbone counterpart &mdash; `Backbone.Model`.  This doesn't add much in the way of new functionality, but it does have a reference to the central `Lateralus` instance and can therefore `emit` and `listenFor` messages.
+Similarly to {@link Lateralus.Component.View}, this object extends its Backbone counterpart &mdash; [`Backbone.Model`](http://backbonejs.org/#Model).  This doesn't add much in the way of new functionality, but it does have a reference to the central {@link Lateralus} instance and can therefore {@link Lateralus.mixins#emit} and {@link Lateralus.mixins#listenFor} messages.
 
+
+-------------------------------------
 
 ### {@link Lateralus.Component.Collection}
 
-Just like `Lateralus.Component.Model`, this works consistently with `Backbone.Collection`, but in a way that is compatible with Lateralus.
+Just like {@link Lateralus.Component.Model}, this works consistently with [`Backbone.Collection`](http://backbonejs.org/#Collection), but in a way that is compatible with Lateralus.
+
+-------------------------------------
 
 ### Component styles
 
-Each component can (and should) have its own `.sass` file.  It is recommended that all rules be nested under the `[component-name]-view` CSS class, as that class is dynamically added to all `Lateralus.Component.View` instances.  This provides clean and easy component-based style isolation.
+Each component can (and should) have its own `.sass` file.  It is recommended that all rules be nested under the `[component-name]-view` CSS class, as that class is dynamically added to all {@link Lateralus.Component.View} instances.  This provides clean and easy component-based style isolation.
+
+-------------------------------------
 
 ### Working with components
 

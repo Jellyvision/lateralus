@@ -14,6 +14,12 @@ const fn = {};
  * @constructs Lateralus.Model
  */
 fn.constructor = function (lateralus, attributes, options) {
+  /**
+   * A reference to the central {@link Lateralus} instance.
+   * @member Lateralus.Model#lateralus
+   * @type {Lateralus}
+   * @final
+   */
   this.lateralus = lateralus;
   this.delegateLateralusEvents();
   this.on('change', _.bind(this.onChange, this));
