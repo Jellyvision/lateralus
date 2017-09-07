@@ -21,6 +21,12 @@ const fn = {
    * @constructs Lateralus.Component.Model
    */
   constructor: function (attributes, options) {
+    /**
+     * A reference to the central {@link Lateralus} instance.
+     * @member Lateralus.Component.Model#lateralus
+     * @type {Lateralus}
+     * @final
+     */
     this.lateralus = options.lateralus;
 
     /**

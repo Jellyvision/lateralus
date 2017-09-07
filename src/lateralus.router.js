@@ -12,6 +12,12 @@ const fn = {};
  * @constructs Lateralus.Router
  */
 fn.constructor = function (lateralus) {
+  /**
+   * A reference to the central {@link Lateralus} instance.
+   * @member Lateralus.Router#lateralus
+   * @type {Lateralus}
+   * @final
+   */
   this.lateralus = lateralus;
   this.delegateLateralusEvents();
   Backbone.Router.apply(this, arguments);

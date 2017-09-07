@@ -1,6 +1,6 @@
 {
   "name": "lateralus",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A UI component framework",
   "license": "MIT",
   "main": "dist/lateralus.js",
@@ -47,6 +47,7 @@
     "jsdoc": "^3.4.3",
     "jsdom": "^10.1.0",
     "jsdom-global": "^3.0.2",
+    "minami": "^1.2.3",
     "mocha": "~2.2.0",
     "nodemon": "^1.11.0",
     "webpack": "^2.5.1",

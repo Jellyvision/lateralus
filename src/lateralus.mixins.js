@@ -4,7 +4,6 @@ import _ from 'lodash-compat';
  * These method are mixed into `{@link Lateralus}`,
  * `{@link Lateralus.Component}`, and `{@link Lateralus.Component.View}`.
  * @mixin Lateralus.mixins
- * @private
  * @requires http://backbonejs.org/#Events
  */
 const mixins = {};
@@ -96,10 +95,10 @@ mixins.addComponent = function (Component, viewOptions, options) {
 
   const lateralusReference = thisIsLateralus ? this : this.lateralus;
   const component = new Component(
-    lateralusReference
-    ,options
-    ,viewOptions || {}
-    ,thisIsLateralus ? null : this
+    lateralusReference,
+    options,
+    viewOptions || {},
+    thisIsLateralus ? null : this
   );
 
   if (thisIsLateralus && component.view) {
@@ -259,17 +258,17 @@ mixins.delegateLateralusEvents = function () {
        * central `{@link Lateralus}` instance.
        *
        *     const ExtendedComponent = Lateralus.Component.extend({
-       *       name: 'extended'
+       *       name: 'extended',
        *
-       *       ,lateralusEvents: {
-       *         anotherComponentChanged: 'onAnotherComponentChanged'
+       *       lateralusEvents: {
+       *         anotherComponentChanged: 'onAnotherComponentChanged',
        *
-       *         ,anotherComponentDestroyed: function () {
+       *         anotherComponentDestroyed: function () {
        *           // ...
        *         }
-       *       }
+       *       },
        *
-       *       ,onAnotherComponentChanged: function () {
+       *       onAnotherComponentChanged: function () {
        *         // ...
        *       }
        *     });
@@ -299,8 +298,8 @@ mixins.delegateLateralusEvents = function () {
        *
        *     const app = new App();
        *     const ComponentSubclass = Lateralus.Component.extend({
-       *       name: 'provider'
-       *       ,provide: {
+       *       name: 'provider',
+       *       provide: {
        *         demoData: function () {
        *           return 2;
        *         }
