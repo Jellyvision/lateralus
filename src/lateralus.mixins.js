@@ -119,6 +119,20 @@ mixins.addComponent = function (Component, viewOptions, options) {
   return component;
 };
 
+const emit = (subject, ...args) => {
+  subject.trigger.apply(subject, args);
+
+  if (isLateralus(subject)) {
+    return;
+  }
+
+  if (subject.component) {
+    subject.component.trigger.apply(subject.component, args);
+  }
+
+  subject.lateralus.trigger.apply(subject.lateralus, args);
+};
+
 /**
  * Components should never communicate directly with one another in order to
  * maintain a loosely-coupled architecture.  Instead, they should just
@@ -143,19 +157,13 @@ mixins.addComponent = function (Component, viewOptions, options) {
  * @param {string} eventName The name of the event.
  * @param {...any} [args] Any arguments to pass along to the listeners.
  */
-mixins.emit = function () {
-  const args = _.toArray(arguments);
-  this.trigger.apply(this, args);
+mixins.emit = function (...args) {
+  const acc = [];
+  this._preprocessHandler = val => acc.push(val);
+  emit(this, ...args);
+  this._preprocessHandler = _.noop;
 
-  if (isLateralus(this)) {
-    return;
-  }
-
-  if (this.component) {
-    this.component.trigger.apply(this.component, args);
-  }
-
-  this.lateralus.trigger.apply(this.lateralus, args);
+  return Promise.all(acc);
 };
 
 /**
@@ -241,6 +249,8 @@ mixins.collectOne = function () {
 };
 
 const delegateEventSplitter = /^(\S+)\s*(.*)$/;
+
+mixins._preprocessHandler = _.noop;
 
 /**
  * Bind `{@link Lateralus.mixins.lateralusEvents}`, if it is
@@ -370,12 +380,14 @@ mixins.delegateLateralusEvents = function () {
 
       const match = key.match(delegateEventSplitter);
       const eventName = match[1];
-      const boundMethod = _.bind(method, this);
+
+      const wrappedMethod = (...args) =>
+        this._preprocessHandler(method.call(this, ...args));
 
       if (isLateralus(this) && isLateralus(subject)) {
-        this.on(eventName, boundMethod);
+        this.on(eventName, wrappedMethod);
       } else {
-        this.listenTo(subject, eventName, boundMethod);
+        this.listenTo(subject, eventName, wrappedMethod);
       }
     }
   });

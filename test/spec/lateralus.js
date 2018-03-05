@@ -167,67 +167,93 @@ describe('Lateralus', function () {
 
   describe('Mixins', function () {
     describe('lateralusEvents', function () {
-      const App = getLateralusApp();
-      let testWasCalled = false;
+      describe('synchronous handlers', function () {
+        const App = getLateralusApp();
+        let testWasCalled = false;
 
-      _.extend(App.prototype, {
-        lateralusEvents: {
-          test: function () {
-            testWasCalled = true;
+        _.extend(App.prototype, {
+          lateralusEvents: {
+            test: function () {
+              testWasCalled = true;
+            }
           }
-        }
-      });
-
-      const app = new App(document.createElement('div'));
-
-      it('Captures top-level events', function () {
-        app.emit('test');
-        assert.isTrue(testWasCalled);
-      });
-
-      testWasCalled = false;
-
-      it('Captures Lateralus.Model-level events', function () {
-        app.model.emit('test');
-        assert.isTrue(testWasCalled);
-      });
-
-      testWasCalled = false;
-
-      it('Captures Component-level events', function () {
-        const component = app.addComponent(Lateralus.Component);
-        component.emit('test');
-        assert.isTrue(testWasCalled);
-        component.dispose();
-      });
-
-      testWasCalled = false;
-
-      it('Captures Component.View-level events', function () {
-        const ExtendedComponent = Lateralus.Component.extend({
-          name: 'extended',
-          View: Lateralus.Component.View
         });
 
-        const component = app.addComponent(ExtendedComponent);
-        component.view.emit('test');
-        assert.isTrue(testWasCalled);
-        component.dispose();
-      });
+        const app = new App(document.createElement('div'));
 
-      testWasCalled = false;
-
-      it('Captures Component.Model-level events', function () {
-        const ExtendedComponent = Lateralus.Component.extend({
-          name: 'extended',
-          View: Lateralus.Component.View,
-          Model: Lateralus.Component.Model
+        it('Captures top-level events', function () {
+          app.emit('test');
+          assert.isTrue(testWasCalled);
         });
 
-        const component = app.addComponent(ExtendedComponent);
-        component.view.model.emit('test');
-        assert.isTrue(testWasCalled);
-        component.dispose();
+        testWasCalled = false;
+
+        it('Captures Lateralus.Model-level events', function () {
+          app.model.emit('test');
+          assert.isTrue(testWasCalled);
+        });
+
+        testWasCalled = false;
+
+        it('Captures Component-level events', function () {
+          const component = app.addComponent(Lateralus.Component);
+          component.emit('test');
+          assert.isTrue(testWasCalled);
+          component.dispose();
+        });
+
+        testWasCalled = false;
+
+        it('Captures Component.View-level events', function () {
+          const ExtendedComponent = Lateralus.Component.extend({
+            name: 'extended',
+            View: Lateralus.Component.View
+          });
+
+          const component = app.addComponent(ExtendedComponent);
+          component.view.emit('test');
+          assert.isTrue(testWasCalled);
+          component.dispose();
+        });
+
+        testWasCalled = false;
+
+        it('Captures Component.Model-level events', function () {
+          const ExtendedComponent = Lateralus.Component.extend({
+            name: 'extended',
+            View: Lateralus.Component.View,
+            Model: Lateralus.Component.Model
+          });
+
+          const component = app.addComponent(ExtendedComponent);
+          component.view.model.emit('test');
+          assert.isTrue(testWasCalled);
+          component.dispose();
+        });
+      });
+
+      describe('asynchronous handlers', function () {
+        let App, app;
+        beforeEach(function () {
+          App = getLateralusApp();
+
+          _.extend(App.prototype, {
+            lateralusEvents: {
+              asyncHandler: () =>
+                new Promise(
+                  resolve => setTimeout(() => resolve('hello'), 1)
+                )
+            }
+          });
+
+          app = new App(document.createElement('div'));
+        });
+
+        it('returns the asynchronously-resolved values', function (done) {
+          app.emit('asyncHandler')
+            .then(value => assert.equal(value, 'hello'))
+            .then(() => done());
+        });
       });
     });
 
