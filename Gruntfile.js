@@ -21,10 +21,6 @@ module.exports = function (grunt) {
         nospawn: true,
         livereload: LIVERELOAD_PORT
       },
-      yuidoc: {
-        files: ['scripts/*.js'],
-        tasks: ['clean', 'yuidoc']
-      },
       livereload: {
         files: [
           'scripts/*.js',
@@ -34,17 +30,6 @@ module.exports = function (grunt) {
     },
     clean: {
       dist: ['dist']
-    },
-    yuidoc: {
-      compile: {
-        name: 'Lateralus',
-        version: '<%= pkg.version %>',
-        logo: 'http://cdn.jellyvision.com/wp-content/themes/jellyvision/img/header-logo.png',
-        options: {
-          paths: ['scripts'],
-          outdir: 'dist/doc'
-        }
-      }
     },
     bump: {
       options: {
