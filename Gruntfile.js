@@ -131,11 +131,14 @@ module.exports = function (grunt) {
     'watch:livereload'
   ]);
 
+  grunt.registerTask('build', [
+    'clean',
+    'requirejs',
+    'usebanner',
+  ])
+
   grunt.registerTask('default', [
     'test',
-    'clean',
-    'yuidoc',
-    'requirejs',
-    'usebanner'
+    'build',
   ]);
 };
