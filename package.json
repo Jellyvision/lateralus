@@ -1,6 +1,6 @@
 {
   "name": "lateralus",
-  "version": "0.9.4",
+  "version": "0.9.5",
   "description": "A UI component framework",
   "license": "MIT",
   "main": "dist/lateralus.js",
@@ -10,8 +10,8 @@
     "url": "https://github.com/jeremyckahn"
   },
   "scripts": {
-      "version": "grunt build",
-      "postversion": "git push && git push --tags"
+    "version": "grunt build",
+    "postversion": "git push && git push --tags"
   },
   "dependencies": {
     "grunt": "~0.4.5",
