@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   devtool: 'source-map',
@@ -18,5 +19,12 @@ module.exports = {
     alias: {
       underscore: path.resolve(__dirname, 'node_modules/lodash-compat/index')
     }
-  }
+  },
+  plugins: [
+    new webpack.ProvidePlugin({
+        jQuery: 'jquery',
+        '$': 'jquery',
+        'window.jQuery': 'jquery',
+    }),
+  ]
 };

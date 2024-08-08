@@ -11,8 +11,8 @@
     "url": "https://github.com/jeremyckahn"
   },
   "scripts": {
-    "start": "webpack-dev-server --config webpack.test.config.cjs",
-    "build": "webpack",
+    "start": "webpack serve --open --config webpack.test.config.cjs",
+    "build": "webpack --config webpack.config.cjs",
     "debug": "mocha --require @babel/register debug -r jsdom-global/register test/index.js",
     "test": "mocha --require @babel/register -r jsdom-global/register test/index.js",
     "test:watch": "nodemon --exec \"npm test\" --watch src --watch test",
@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "backbone": "~1.6.0",
-    "jquery": "~3.7.1",
+    "jquery": "^3.7.1",
     "lodash-compat": "~3.10.2",
     "mustache": "~4.2.0"
   },
@@ -57,6 +57,7 @@
     "nodemon": "^3.1.4",
     "webpack": "^5.93.0",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^5.0.4"
+    "webpack-dev-server": "^5.0.4",
+    "webpack-merge": "^6.0.1"
   }
 }

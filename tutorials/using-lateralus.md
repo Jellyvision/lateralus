@@ -20,12 +20,12 @@ require(['lateralus'], function (Lateralus) {
 
 Lateralus's functionality is divided up into several primary Objects under the {@link Lateralus} namespace:
 
-  * {@link Lateralus}
-  * {@link Lateralus.Component}
-  * {@link Lateralus.Component.View}
-  * {@link Lateralus.Component.Model}
-  * {@link Lateralus.Component.Collection}
-  * A stylesheet
+* {@link Lateralus}
+* {@link Lateralus.Component}
+* {@link Lateralus.Component.View}
+* {@link Lateralus.Component.Model}
+* {@link Lateralus.Component.Collection}
+* A stylesheet
 
 -------------------------------------
 
@@ -43,7 +43,7 @@ A component is distinct from a view.  A view is a graphical, interactive represe
 
 This is the standard directory structure for a typical component:
 
-```
+```text
 my-component/
   styles/
     main.sass
@@ -123,7 +123,7 @@ As a convenience, {@link Lateralus.Component.View} implicitly binds DOM nodes in
 </div>
 ```
 
-The view will automatically have properties `this.$container` and `this.$header` that are jQuery objects referencing the `div` and the `h2`, respecively.
+The view will automatically have properties `this.$container` and `this.$header` that are jQuery objects referencing the `div` and the `h2`, respectively.
 
 {@link Lateralus.Component.View} transparently renders its template for you.  {@link Lateralus.Component.View#renderTemplate} is called by {@link Lateralus.Component.View#initialize} (which is why you should generally call `baseProto.initialize` as demonstrated above), but you are free to do further rendering with [`this.render`](http://backbonejs.org/#View-render).  [`this.render`](http://backbonejs.org/#View-render) should be used for partial updates, whereas {@link Lateralus.Component.View#renderTemplate} should be used to completely replace the contents of the View's `$el` with whatever is in {@link Lateralus.Component.View#template}.
 
