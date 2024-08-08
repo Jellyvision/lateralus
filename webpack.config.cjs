@@ -9,6 +9,7 @@ module.exports = Object.assign(config, {
     filename: 'lateralus.js',
     library: 'lateralus',
     libraryTarget: 'umd',
+    libraryExport: "default",
     umdNamedDefine: true
   },
   externals: ['backbone', 'lodash-compat', 'jquery', 'mustache']

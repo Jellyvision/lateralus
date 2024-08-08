@@ -1,4 +1,4 @@
-import Lateralus from '../src/lateralus';
+import Lateralus from '../src/lateralus.js';
 
 /**
  * @param {Function} [extraConstructorCode]

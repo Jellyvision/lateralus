@@ -4,16 +4,17 @@
   "description": "A UI component framework",
   "license": "MIT",
   "main": "dist/lateralus.js",
+  "type": "module",
   "author": {
     "name": "Jeremy Kahn",
     "email": "jeremy@jellyvision.com",
     "url": "https://github.com/jeremyckahn"
   },
   "scripts": {
-    "start": "webpack-dev-server --config webpack.test.config.js",
+    "start": "webpack-dev-server --config webpack.test.config.cjs",
     "build": "webpack",
-    "debug": "mocha debug -r jsdom-global/register ./node_modules/babel-core/register.js test/index.js",
-    "test": "mocha -r jsdom-global/register ./node_modules/babel-core/register.js test/index.js",
+    "debug": "mocha --require @babel/register debug -r jsdom-global/register test/index.js",
+    "test": "mocha --require @babel/register -r jsdom-global/register test/index.js",
     "test:watch": "nodemon --exec \"npm test\" --watch src --watch test",
     "lint": "eslint -c .eslintrc src test",
     "validate": "npm test && npm run lint",
@@ -29,28 +30,30 @@
     "node": ">=6.7.0"
   },
   "dependencies": {
-    "backbone": "~1.3.3",
-    "jquery": "~1.12.4",
+    "backbone": "~1.6.0",
+    "jquery": "~3.7.1",
     "lodash-compat": "~3.10.2",
-    "mustache": "~0.8.2"
+    "mustache": "~4.2.0"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/jellyvision/lateralus.git"
   },
   "devDependencies": {
-    "babel-core": "^6.24.1",
-    "babel-loader": "^7.0.0",
-    "babel-preset-es2015": "^6.24.1",
-    "chai": "~2.1.1",
-    "eslint": "^3.19.0",
-    "jsdoc": "^3.4.3",
-    "jsdom": "^10.1.0",
+    "@babel/core": "^7.25.2",
+    "@babel/preset-env": "^7.25.3",
+    "@babel/register": "^7.24.6",
+    "babel-loader": "^9.1.3",
+    "chai": "~5.1.1",
+    "eslint": "^9.8.0",
+    "jsdoc": "^4.0.3",
+    "jsdom": "^24.1.1",
     "jsdom-global": "^3.0.2",
     "minami": "^1.2.3",
-    "mocha": "~2.2.0",
-    "nodemon": "^1.11.0",
-    "webpack": "^2.5.1",
-    "webpack-dev-server": "^2.4.5"
+    "mocha": "~10.7.0",
+    "nodemon": "^3.1.4",
+    "webpack": "^5.93.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.4"
   }
 }

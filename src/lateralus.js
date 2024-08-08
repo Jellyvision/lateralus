@@ -1,10 +1,10 @@
 import $ from 'jquery';
 import _ from 'lodash-compat';
 import Backbone from 'backbone';
-import mixins from './lateralus.mixins';
-import Component from './lateralus.component';
-import LateralusModel from './lateralus.model';
-import LateralusRouter from './lateralus.router';
+import mixins from './lateralus.mixins.js';
+import Component from './lateralus.component.js';
+import LateralusModel from './lateralus.model.js';
+import LateralusRouter from './lateralus.router.js';
 
 // UNDERSCORE MIXINS
 _.mixin({
@@ -228,7 +228,4 @@ Lateralus.Component = Component;
 Lateralus.Model = LateralusModel;
 Lateralus.Router = LateralusRouter;
 
-// Using the old-school CommonJS export format here for better
-// backwards-compatibility:
-// https://github.com/webpack/webpack/issues/3929
-module.exports = Lateralus;
+export default Lateralus;

@@ -1,10 +1,8 @@
-import chai from 'chai';
+import {assert} from 'chai';
 import _ from 'lodash-compat';
 import Backbone from 'backbone';
-import Lateralus from '../../src/lateralus';
-import { getLateralusApp } from '../utils';
-
-const assert = chai.assert;
+import Lateralus from '../../src/lateralus.js';
+import { getLateralusApp } from '../utils.js';
 
 describe('Lateralus.Model', function () {
   describe('constructor', function () {

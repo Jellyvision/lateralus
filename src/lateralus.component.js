@@ -1,9 +1,9 @@
 import _ from 'lodash-compat';
 import Backbone from 'backbone';
-import mixins from './lateralus.mixins';
-import ComponentView from './lateralus.component.view';
-import ComponentModel from './lateralus.component.model';
-import ComponentCollection from './lateralus.component.collection';
+import mixins from './lateralus.mixins.js';
+import ComponentView from './lateralus.component.view.js';
+import ComponentModel from './lateralus.component.model.js';
+import ComponentCollection from './lateralus.component.collection.js';
 
 /**
  * The constructor for this method should not be called directly.  Instead, use
