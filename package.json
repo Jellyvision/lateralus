@@ -52,7 +52,6 @@
     "jsdoc": "^4.0.3",
     "jsdom": "^24.1.1",
     "jsdom-global": "^3.0.2",
-    "minami": "^1.2.3",
     "mocha": "~10.7.0",
     "nodemon": "^3.1.4",
     "webpack": "^5.93.0",
