@@ -2,7 +2,7 @@ import $ from 'jquery';
 import _ from 'lodash-compat';
 import Backbone from 'backbone';
 import Mustache from 'mustache';
-import mixins from './lateralus.mixins';
+import mixins from './lateralus.mixins.js';
 
 const fn = {};
 

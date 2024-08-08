@@ -1,10 +1,10 @@
-import chai from 'chai';
+/* eslint-disable no-undef */
+
+import { assert } from 'chai';
 import _ from 'lodash-compat';
 import Backbone from 'backbone';
-import Lateralus from '../../src/lateralus';
-import { getLateralusApp } from '../utils';
-
-const assert = chai.assert;
+import Lateralus from '../../src/lateralus.js';
+import { getLateralusApp } from '../utils.js';
 
 describe('Lateralus', function () {
   describe('Static properties', function () {
@@ -460,9 +460,9 @@ describe('Lateralus', function () {
         assert.isUndefined(Lateralus.prototype.lateralusEvents);
       });
 
-      /*eslint-disable max-len */
+      /*eslint-disable @stylistic/js/max-len */
       it('Lateralus.prototype.lateralusEvents remains undefined after delegateLateralusEvents is called',
-      /*eslint-enable max-len */
+      /*eslint-enable @stylistic/js/max-len */
           function () {
         assert.isUndefined(Lateralus.prototype.lateralusEvents);
       });
@@ -506,10 +506,10 @@ describe('Lateralus', function () {
     const App = getLateralusApp();
     const app = new App();
 
-    let recievedOptions;
+    let receivedOptions;
     const ExtendedModel = Lateralus.Model.extend({
       initialize: function (attributes, options) {
-        recievedOptions = options;
+        receivedOptions = options;
       }
     });
 
@@ -519,12 +519,12 @@ describe('Lateralus', function () {
       assert.instanceOf(model, Lateralus.Model);
     });
 
-    it('Recieves a passed-in attribute', function () {
+    it('Receives a passed-in attribute', function () {
       assert.isTrue(model.get('foo'));
     });
 
-    it('Recieves passed-in options', function () {
-      assert.isTrue(recievedOptions.bar);
+    it('Receives passed-in options', function () {
+      assert.isTrue(receivedOptions.bar);
     });
 
     it('Has a reference to central Lateralus Object', function () {

@@ -2,35 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>mixins - Documentation</title>
+    <title>JSDoc: Mixin: mixins</title>
 
-    <script src="scripts/prettify/prettify.js"></script>
-    <script src="scripts/prettify/lang-css.js"></script>
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
     <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
 </head>
+
 <body>
 
-<input type="checkbox" id="nav-trigger" class="nav-trigger" />
-<label for="nav-trigger" class="navicon-button x">
-  <div class="navicon"></div>
-</label>
-
-<label for="nav-trigger" class="overlay"></label>
-
-<nav>
-    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Tutorials</li><li class="nav-item"><a href="tutorial-using-lateralus.html">Using Lateralus</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Lateralus.html">Lateralus</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Lateralus.html#.beget">beget</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Lateralus.html#.inherit">inherit</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Lateralus.html#dispose">dispose</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Lateralus.html#error">error</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Lateralus.html#initRouter">initRouter</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Lateralus.html#log">log</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Lateralus.html#shareWith">shareWith</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Lateralus.html#toString">toString</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Lateralus.html#warn">warn</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Lateralus.Component.html">Lateralus.Component</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Lateralus.Component.html#dispose">dispose</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Lateralus.Component.html#extend">extend</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Lateralus.Component.html#toJSON">toJSON</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Lateralus.Component.html#toString">toString</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Lateralus.Component.Collection.html">Lateralus.Component.Collection</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Lateralus.Component.Collection.html#remove">remove</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Lateralus.Component.Collection.html#toString">toString</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Lateralus.Component.Model.html">Lateralus.Component.Model</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Lateralus.Component.Model.html#destroy">destroy</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Lateralus.Component.Model.html#dispose">dispose</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Lateralus.Component.Model.html#toString">toString</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Lateralus.Component.View.html">Lateralus.Component.View</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Lateralus.Component.View.html#addSubview">addSubview</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Lateralus.Component.View.html#deferredInitialize">deferredInitialize</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Lateralus.Component.View.html#dispose">dispose</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Lateralus.Component.View.html#getTemplateRenderData">getTemplateRenderData</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Lateralus.Component.View.html#initialize">initialize</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Lateralus.Component.View.html#renderTemplate">renderTemplate</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Lateralus.Component.View.html#toString">toString</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Lateralus.Model.html">Lateralus.Model</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Lateralus.Model.html#onChange">onChange</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Lateralus.Model.html#toString">toString</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Lateralus.Router.html">Lateralus.Router</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Lateralus.Router.html#toString">toString</a></span></li><li class="nav-heading">Mixins</li><li class="nav-heading"><span class="nav-item-type type-mixin">M</span><span class="nav-item-name"><a href="Lateralus.mixins.html">Lateralus.mixins</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Lateralus.mixins.html#addComponent">addComponent</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Lateralus.mixins.html#amplify">amplify</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Lateralus.mixins.html#collect">collect</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Lateralus.mixins.html#collectOne">collectOne</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Lateralus.mixins.html#delegateLateralusEvents">delegateLateralusEvents</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Lateralus.mixins.html#emit">emit</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Lateralus.mixins.html#initCollection">initCollection</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Lateralus.mixins.html#initModel">initModel</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Lateralus.mixins.html#listenFor">listenFor</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Lateralus.mixins.html#mixin">mixin</a></span></li>
-</nav>
-
 <div id="main">
-    
-    <h1 class="page-title">mixins</h1>
-    
+
+    <h1 class="page-title">Mixin: mixins</h1>
 
     
 
@@ -42,10 +29,7 @@
 <header>
     
         <h2>
-            <span class="ancestors"><a href="Lateralus.html">Lateralus</a>.</span>
-        
-        mixins
-        </h2>
+            <span class="ancestors"><a href="Lateralus.html">Lateralus</a>.</span>mixins</h2>
         
     
 </header>
@@ -109,10 +93,18 @@
     
 
     
+        <h3 class="subsection-title">Requires</h3>
+
+        <ul>
+            <li>module:http://backbonejs.org/#Events</li>
+        </ul>
+    
 
     
 
-     
+    
+
+    
 
     
 
@@ -121,7 +113,6 @@
 
         
             
-<div class="section-members">
 <h4 class="name" id=".components"><span class="type-signature">(static) </span>components<span class="type-signature"> :Object.&lt;<a href="Lateralus.Component.html">Lateralus.Component</a>></span></h4>
 
 
@@ -131,6 +122,18 @@
     <p>The subcomponents belonging to this object.  Do not modify this
 property directly, it is managed by Lateralus.</p>
 </div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object.&lt;<a href="Lateralus.Component.html">Lateralus.Component</a>></span>
+
+
+        </li>
+    </ul>
 
 
 
@@ -178,25 +181,11 @@ property directly, it is managed by Lateralus.</p>
 
 
 
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type"><code>Object.&lt;<a href="Lateralus.Component.html">Lateralus.Component</a>></code></span>
 
 
-        </li>
-    </ul>
-
-
-
-
-
-</div>
 
         
             
-<div class="section-members">
 <h4 class="name" id=".lateralusEvents"><span class="type-signature">(static) </span>lateralusEvents<span class="type-signature"> :Object|undefined</span></h4>
 
 
@@ -206,7 +195,7 @@ property directly, it is managed by Lateralus.</p>
     <p>A map of functions or string references to functions that will
 handle <a href="http://backbonejs.org/#Events">events</a> dispatched to the
 central <code><a href="Lateralus.html"><code>Lateralus</code></a></code> instance.</p>
-<pre class="prettyprint source"><code>const ExtendedComponent = Lateralus.Component.extend({
+<pre><code>const ExtendedComponent = Lateralus.Component.extend({
   name: 'extended',
 
   lateralusEvents: {
@@ -220,8 +209,24 @@ central <code><a href="Lateralus.html"><code>Lateralus</code></a></code> instanc
   onAnotherComponentChanged: function () {
     // ...
   }
-});</code></pre>
+});
+</code></pre>
 </div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+|
+
+<span class="param-type">undefined</span>
+
+
+        </li>
+    </ul>
 
 
 
@@ -274,28 +279,11 @@ central <code><a href="Lateralus.html"><code>Lateralus</code></a></code> instanc
 
 
 
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type"><code>Object</code></span>
-|
-
-<span class="param-type"><code>undefined</code></span>
 
 
-        </li>
-    </ul>
-
-
-
-
-
-</div>
 
         
             
-<div class="section-members">
 <h4 class="name" id=".modelEvents"><span class="type-signature">(static) </span>modelEvents<span class="type-signature"> :Object|undefined</span></h4>
 
 
@@ -305,14 +293,30 @@ central <code><a href="Lateralus.html"><code>Lateralus</code></a></code> instanc
     <p>A map of functions or string references to functions that will
 handle <a href="http://backbonejs.org/#Events">events</a> emitted by
 <code>this.model</code>.</p>
-<pre class="prettyprint source"><code>const ExtendedComponent = Lateralus.View.extend({
+<pre><code>const ExtendedComponent = Lateralus.View.extend({
   modelEvents: {
     changed:someProperty: function (model, someProperty) {
       // ...
     }
   }
-});</code></pre>
+});
+</code></pre>
 </div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+|
+
+<span class="param-type">undefined</span>
+
+
+        </li>
+    </ul>
 
 
 
@@ -365,28 +369,11 @@ handle <a href="http://backbonejs.org/#Events">events</a> emitted by
 
 
 
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type"><code>Object</code></span>
-|
-
-<span class="param-type"><code>undefined</code></span>
 
 
-        </li>
-    </ul>
-
-
-
-
-
-</div>
 
         
             
-<div class="section-members">
 <h4 class="name" id=".provide"><span class="type-signature">(static) </span>provide<span class="type-signature"> :Object|undefined</span></h4>
 
 
@@ -396,7 +383,7 @@ handle <a href="http://backbonejs.org/#Events">events</a> emitted by
     <p>A map of functions that will handle <code><a href="Lateralus.mixins.html#collect"><code>Lateralus.mixins#collect</code></a></code>
 calls.  Each of the functions attached to this Object should return a
 value.  These functions <strong>must</strong> be completely synchronous.</p>
-<pre class="prettyprint source"><code>const App = Lateralus.beget(function () {
+<pre><code>const App = Lateralus.beget(function () {
   Lateralus.apply(this, arguments);
 });
 
@@ -419,8 +406,24 @@ const ComponentSubclass = Lateralus.Component.extend({
 });
 
 app.addComponent(ComponentSubclass);
-console.log(app.collect('demoData')); // [1, 2]</code></pre>
+console.log(app.collect('demoData')); // [1, 2]
+</code></pre>
 </div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+|
+
+<span class="param-type">undefined</span>
+
+
+        </li>
+    </ul>
 
 
 
@@ -468,24 +471,8 @@ console.log(app.collect('demoData')); // [1, 2]</code></pre>
 
 
 
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type"><code>Object</code></span>
-|
-
-<span class="param-type"><code>undefined</code></span>
 
 
-        </li>
-    </ul>
-
-
-
-
-
-</div>
 
         
     
@@ -495,11 +482,12 @@ console.log(app.collect('demoData')); // [1, 2]</code></pre>
 
         
             
-<div class="section-method">
 
     
 
+    
     <h4 class="name" id="addComponent"><span class="type-signature"></span>addComponent<span class="signature">(Component, viewOptions<span class="signature-attributes">opt</span>, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="Lateralus.Component.html">Lateralus.Component</a>}</span></h4>
+    
 
     
 
@@ -508,14 +496,248 @@ console.log(app.collect('demoData')); // [1, 2]</code></pre>
 <div class="description">
     <p>Add a subcomponent to a <code><a href="Lateralus.html"><code>Lateralus</code></a></code> or <code><a href="Lateralus.Component.html"><code>Lateralus.Component</code></a></code>
 instance.</p>
-<pre class="prettyprint source"><code>const App = Lateralus.beget(function () {
+<pre><code>const App = Lateralus.beget(function () {
   Lateralus.apply(this, arguments);
 });
 
 const app = new App(document.getElementById('app'));
 const component = app.addComponent(Lateralus.Component);
-const subcomponent = component.addComponent(Lateralus.Component);</code></pre>
+const subcomponent = component.addComponent(Lateralus.Component);
+</code></pre>
 </div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>Component</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Lateralus.Component.html">Lateralus.Component</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>A constructor, not an instance.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>viewOptions</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The <code>options</code> object to be passed along to
+the <code>Component</code> parameter's <a href="Lateralus.Component.View.html"><code>Lateralus.Component.View</code></a> instance.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Gets passed to the new <a href="Lateralus.Component.html"><code>Lateralus.Component</code></a>
+instance.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>modelAttributes</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Any attributes to pre-populate
+the <code><a href="Lateralus.Component.Model.html"><code>Lateralus.Component.Model</code></a></code>
+instance with, if there is one.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>modelOptions</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Any parameters to pass to the
+<code><a href="Lateralus.Component.Model.html"><code>Lateralus.Component.Model</code></a></code>
+instance, if there is one.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
 
 
 
@@ -569,6 +791,67 @@ const subcomponent = component.addComponent(Lateralus.Component);</code></pre>
 
 
 
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>The component that was added.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Lateralus.Component.html">Lateralus.Component</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="amplify"><span class="type-signature"></span>amplify<span class="signature">(emitter, eventName)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Listen to an event-emitting Object and amplify one of its events across the
+<a href="Lateralus.html"><code>Lateralus</code></a> application.  Useful for making plain Backbone Objects
+(i.e., non-Lateralus Objects) communicate important information in a broader
+way.</p>
+</div>
+
+
+
+
+
+
+
+
+
     <h5>Parameters:</h5>
     
 
@@ -582,8 +865,6 @@ const subcomponent = component.addComponent(Lateralus.Component);</code></pre>
         <th>Type</th>
 
         
-        <th>Attributes</th>
-        
 
         
 
@@ -596,276 +877,53 @@ const subcomponent = component.addComponent(Lateralus.Component);</code></pre>
 
         <tr>
             
-                <td class="name"><code>Component</code></td>
+                <td class="name"><code>emitter</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><code><a href="Lateralus.Component.html">Lateralus.Component</a></code></span>
+<span class="param-type">Backbone.Events</span>
 
 
             
             </td>
 
             
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
 
             
 
-            <td class="description last">
-                <p>A constructor, not an instance.</p>
-                
-            </td>
+            <td class="description last"><p>The object that <code>trigger</code>s events that
+should be amplified globally across the app.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>viewOptions</code></td>
+                <td class="name"><code>eventName</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><code>Object</code></span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
 
             
 
-            <td class="description last">
-                <p>The <code>options</code> object to be passed along to
-the <code>Component</code> parameter's <a href="Lateralus.Component.View.html"><code>Lateralus.Component.View</code></a> instance.</p>
-                
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>options</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><code>Object</code></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">
-                <p>Gets passed to the new <a href="Lateralus.Component.html"><code>Lateralus.Component</code></a>
-instance.</p>
-                
-                    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>modelAttributes</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><code>Object</code></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">
-                <p>Any attributes to pre-populate
-the <code><a href="Lateralus.Component.Model.html"><code>Lateralus.Component.Model</code></a></code>
-instance with, if there is one.</p>
-                
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>modelOptions</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><code>Object</code></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">
-                <p>Any parameters to pass to the
-<code><a href="Lateralus.Component.Model.html"><code>Lateralus.Component.Model</code></a></code>
-instance, if there is one.</p>
-                
-            </td>
+            <td class="description last"><p>The event to amplify globally across the app.</p></td>
         </tr>
 
     
     </tbody>
 </table>
 
-                
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="section-returns">
-<h5>Returns:</h5>
-
-        
-
-<dl class="param-type">
-    <dt>
-        Type:
-    </dt>
-    <dd>
-        
-<span class="param-type"><code><a href="Lateralus.Component.html">Lateralus.Component</a></code></span>
-
-
-    </dd>
-</dl>
-
-
-<div class="param-desc">
-    <p>The component that was added.</p>
-</div>
-
-    
-</div>
-
-
-
-</div>
-        
-            
-<div class="section-method">
-
-    
-
-    <h4 class="name" id="amplify"><span class="type-signature"></span>amplify<span class="signature">(emitter, eventName)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>Listen to an event-emitting Object and amplify one of its events across the
-<a href="Lateralus.html"><code>Lateralus</code></a> application.  Useful for making plain Backbone Objects
-(i.e., non-Lateralus Objects) communicate important information in a broader
-way.</p>
-</div>
 
 
 
@@ -919,6 +977,44 @@ way.</p>
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="collect"><span class="type-signature"></span>collect<span class="signature">(key, &hellip;args<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Array.&lt;any>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Execute any <code><a href="Lateralus.mixins.html#.provide"><code>Lateralus.mixins.provide</code></a></code> handlers that have
+been set up in the app and return an array of the returned values.</p>
+<p>Values that are <code>undefined</code> are excluded from the returned Array.</p>
+</div>
+
+
+
+
+
+
+
+
+
     <h5>Parameters:</h5>
     
 
@@ -932,6 +1028,8 @@ way.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -944,92 +1042,73 @@ way.</p>
 
         <tr>
             
-                <td class="name"><code>emitter</code></td>
+                <td class="name"><code>key</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><code>Backbone.Events</code></span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
-
-            
-
-            <td class="description last">
-                <p>The object that <code>trigger</code>s events that
-should be amplified globally across the app.</p>
+                <td class="attributes">
                 
-            </td>
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The name of the <code><a href="Lateralus.mixins.html#.provide"><code>Lateralus.mixins.provide</code></a></code>
+methods to run.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>eventName</code></td>
+                <td class="name"><code>args</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><code>string</code></span>
+<span class="param-type">any</span>
 
 
             
             </td>
 
             
-
-            
-
-            <td class="description last">
-                <p>The event to amplify globally across the app.</p>
+                <td class="attributes">
                 
-            </td>
+                    &lt;optional><br>
+                
+
+                
+
+                
+                    &lt;repeatable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Any parameters to pass along to <code><a href="Lateralus.mixins.html#.provide"><code>Lateralus.mixins.provide</code></a></code> methods.</p></td>
         </tr>
 
     
     </tbody>
 </table>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-        
-            
-<div class="section-method">
-
-    
-
-    <h4 class="name" id="collect"><span class="type-signature"></span>collect<span class="signature">(key, &hellip;args<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Array.&lt;any>}</span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>Execute any <code><a href="Lateralus.mixins.html#.provide"><code>Lateralus.mixins.provide</code></a></code> handlers that have
-been set up in the app and return an array of the returned values.</p>
-<p>Values that are <code>undefined</code> are excluded from the returned Array.</p>
-</div>
 
 
 
@@ -1083,6 +1162,61 @@ been set up in the app and return an array of the returned values.</p>
 
 
 
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;any></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="collectOne"><span class="type-signature"></span>collectOne<span class="signature">(key, &hellip;args<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {any}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Execute any <code><a href="Lateralus.mixins.html#.provide"><code>Lateralus.mixins.provide</code></a></code> handlers that have been set
+up in the app and return the first value.</p>
+</div>
+
+
+
+
+
+
+
+
+
     <h5>Parameters:</h5>
     
 
@@ -1116,7 +1250,7 @@ been set up in the app and return an array of the returned values.</p>
             <td class="type">
             
                 
-<span class="param-type"><code>string</code></span>
+<span class="param-type">string</span>
 
 
             
@@ -1134,11 +1268,8 @@ been set up in the app and return an array of the returned values.</p>
 
             
 
-            <td class="description last">
-                <p>The name of the <code><a href="Lateralus.mixins.html#.provide"><code>Lateralus.mixins.provide</code></a></code>
-methods to run.</p>
-                
-            </td>
+            <td class="description last"><p>The name of the <code><a href="Lateralus.mixins.html#.provide"><code>Lateralus.mixins.provide</code></a></code>
+methods to run.</p></td>
         </tr>
 
     
@@ -1151,7 +1282,7 @@ methods to run.</p>
             <td class="type">
             
                 
-<span class="param-type"><code>any</code></span>
+<span class="param-type">any</span>
 
 
             
@@ -1173,69 +1304,13 @@ methods to run.</p>
 
             
 
-            <td class="description last">
-                <p>Any parameters to pass along to <code><a href="Lateralus.mixins.html#.provide"><code>Lateralus.mixins.provide</code></a></code> methods.</p>
-                
-            </td>
+            <td class="description last"><p>Any parameters to pass along to <code><a href="Lateralus.mixins.html#.provide"><code>Lateralus.mixins.provide</code></a></code> methods.</p></td>
         </tr>
 
     
     </tbody>
 </table>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="section-returns">
-<h5>Returns:</h5>
-
-        
-
-<dl class="param-type">
-    <dt>
-        Type:
-    </dt>
-    <dd>
-        
-<span class="param-type"><code>Array.&lt;any></code></span>
-
-
-    </dd>
-</dl>
-
-
-    
-</div>
-
-
-
-</div>
-        
-            
-<div class="section-method">
-
-    
-
-    <h4 class="name" id="collectOne"><span class="type-signature"></span>collectOne<span class="signature">(key, &hellip;args<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {any}</span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>Execute any <code><a href="Lateralus.mixins.html#.provide"><code>Lateralus.mixins.provide</code></a></code> handlers that have been set
-up in the app and return the first value.</p>
-</div>
 
 
 
@@ -1289,150 +1364,43 @@ up in the app and return the first value.</p>
 
 
 
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>key</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><code>string</code></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">
-                <p>The name of the <code><a href="Lateralus.mixins.html#.provide"><code>Lateralus.mixins.provide</code></a></code>
-methods to run.</p>
-                
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>args</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><code>any</code></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                    &lt;repeatable><br>
-                
-                </td>
-            
-
-            
-
-            <td class="description last">
-                <p>Any parameters to pass along to <code><a href="Lateralus.mixins.html#.provide"><code>Lateralus.mixins.provide</code></a></code> methods.</p>
-                
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-<div class="section-returns">
 <h5>Returns:</h5>
 
         
 
-<dl class="param-type">
+
+<dl>
     <dt>
-        Type:
+        Type
     </dt>
     <dd>
         
-<span class="param-type"><code>any</code></span>
+<span class="param-type">any</span>
 
 
     </dd>
 </dl>
 
-
     
-</div>
 
 
 
-</div>
+
+
         
             
-<div class="section-method">
 
     
 
+    
     <h4 class="name" id="delegateLateralusEvents"><span class="type-signature"></span>delegateLateralusEvents<span class="signature">()</span><span class="type-signature"></span></h4>
+    
 
     
 
@@ -1442,6 +1410,14 @@ methods to run.</p>
     <p>Bind <code><a href="Lateralus.mixins.html#.lateralusEvents"><code>Lateralus.mixins.lateralusEvents</code></a></code>, if it is
 defined.</p>
 </div>
+
+
+
+
+
+
+
+
 
 
 
@@ -1506,17 +1482,14 @@ defined.</p>
 
 
 
-
-
-
-</div>
         
             
-<div class="section-method">
 
     
 
+    
     <h4 class="name" id="emit"><span class="type-signature"></span>emit<span class="signature">(eventName, &hellip;args<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    
 
     
 
@@ -1540,6 +1513,108 @@ an event on that <code><a href="Lateralus.Component.View.html"><code>Lateralus.C
 <p>This method has the same method signature as
 <a href="http://backbonejs.org/#Events-trigger"><code>Backbone.Events.trigger</code></a>.</p>
 </div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>eventName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The name of the event.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>args</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">any</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                    &lt;repeatable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Any arguments to pass along to the listeners.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
 
 
 
@@ -1593,6 +1668,38 @@ an event on that <code><a href="Lateralus.Component.View.html"><code>Lateralus.C
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="initCollection"><span class="type-signature"></span>initCollection<span class="signature">(Collection, models<span class="signature-attributes">opt</span>, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="Lateralus.Component.Collection.html">Lateralus.Component.Collection</a>}</span></h4>
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+
     <h5>Parameters:</h5>
     
 
@@ -1620,13 +1727,13 @@ an event on that <code><a href="Lateralus.Component.View.html"><code>Lateralus.C
 
         <tr>
             
-                <td class="name"><code>eventName</code></td>
+                <td class="name"><code>Collection</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><code>string</code></span>
+<span class="param-type"><a href="Lateralus.Component.Collection.html">Lateralus.Component.Collection</a></span>
 
 
             
@@ -1644,23 +1751,21 @@ an event on that <code><a href="Lateralus.Component.View.html"><code>Lateralus.C
 
             
 
-            <td class="description last">
-                <p>The name of the event.</p>
-                
-            </td>
+            <td class="description last"><p>A constructor, not an
+instance.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>args</code></td>
+                <td class="name"><code>models</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><code>any</code></span>
+<span class="param-type">Array.&lt;<a href="Lateralus.Model.html">Lateralus.Model</a>></span>
 
 
             
@@ -1675,49 +1780,50 @@ an event on that <code><a href="Lateralus.Component.View.html"><code>Lateralus.C
                 
 
                 
-                    &lt;repeatable><br>
+                </td>
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
                 
                 </td>
             
 
             
 
-            <td class="description last">
-                <p>Any arguments to pass along to the listeners.</p>
-                
-            </td>
+            <td class="description last"></td>
         </tr>
 
     
     </tbody>
 </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-        
-            
-<div class="section-method">
-
-    
-
-    <h4 class="name" id="initCollection"><span class="type-signature"></span>initCollection<span class="signature">(Collection, models<span class="signature-attributes">opt</span>, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="Lateralus.Component.Collection.html">Lateralus.Component.Collection</a>}</span></h4>
-
-    
-
 
 
 
@@ -1772,6 +1878,61 @@ an event on that <code><a href="Lateralus.Component.View.html"><code>Lateralus.C
 
 
 
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Am instance of the provided
+Collection constructor.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Lateralus.Component.Collection.html">Lateralus.Component.Collection</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="initModel"><span class="type-signature"></span>initModel<span class="signature">(Model, attributes<span class="signature-attributes">opt</span>, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="Lateralus.Component.Model.html">Lateralus.Component.Model</a>}</span></h4>
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+
     <h5>Parameters:</h5>
     
 
@@ -1799,13 +1960,13 @@ an event on that <code><a href="Lateralus.Component.View.html"><code>Lateralus.C
 
         <tr>
             
-                <td class="name"><code>Collection</code></td>
+                <td class="name"><code>Model</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><code><a href="Lateralus.Component.Collection.html">Lateralus.Component.Collection</a></code></span>
+<span class="param-type"><a href="Lateralus.Component.Model.html">Lateralus.Component.Model</a></span>
 
 
             
@@ -1823,24 +1984,20 @@ an event on that <code><a href="Lateralus.Component.View.html"><code>Lateralus.C
 
             
 
-            <td class="description last">
-                <p>A constructor, not an
-instance.</p>
-                
-            </td>
+            <td class="description last"><p>A constructor, not an instance.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>models</code></td>
+                <td class="name"><code>attributes</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><code>Array.&lt;<a href="Lateralus.Model.html">Lateralus.Model</a>></code></span>
+<span class="param-type">Object</span>
 
 
             
@@ -1860,10 +2017,7 @@ instance.</p>
 
             
 
-            <td class="description last">
-                
-                
-            </td>
+            <td class="description last"></td>
         </tr>
 
     
@@ -1876,7 +2030,7 @@ instance.</p>
             <td class="type">
             
                 
-<span class="param-type"><code>Object</code></span>
+<span class="param-type">Object</span>
 
 
             
@@ -1896,68 +2050,12 @@ instance.</p>
 
             
 
-            <td class="description last">
-                
-                
-            </td>
+            <td class="description last"></td>
         </tr>
 
     
     </tbody>
 </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="section-returns">
-<h5>Returns:</h5>
-
-        
-
-<dl class="param-type">
-    <dt>
-        Type:
-    </dt>
-    <dd>
-        
-<span class="param-type"><code><a href="Lateralus.Component.Collection.html">Lateralus.Component.Collection</a></code></span>
-
-
-    </dd>
-</dl>
-
-
-<div class="param-desc">
-    <p>Am instance of the provided
-Collection constructor.</p>
-</div>
-
-    
-</div>
-
-
-
-</div>
-        
-            
-<div class="section-method">
-
-    
-
-    <h4 class="name" id="initModel"><span class="type-signature"></span>initModel<span class="signature">(Model, attributes<span class="signature-attributes">opt</span>, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="Lateralus.Component.Model.html">Lateralus.Component.Model</a>}</span></h4>
-
-    
-
 
 
 
@@ -2012,6 +2110,66 @@ Collection constructor.</p>
 
 
 
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>An instance of the provided Model
+constructor.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Lateralus.Component.Model.html">Lateralus.Component.Model</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="listenFor"><span class="type-signature"></span>listenFor<span class="signature">(event, callback)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Listen for an event that is triggered on the central <a href="Lateralus.html"><code>Lateralus</code></a>
+instance and bind a function handler.</p>
+</div>
+
+
+
+
+
+
+
+
+
     <h5>Parameters:</h5>
     
 
@@ -2025,8 +2183,6 @@ Collection constructor.</p>
         <th>Type</th>
 
         
-        <th>Attributes</th>
-        
 
         
 
@@ -2039,170 +2195,52 @@ Collection constructor.</p>
 
         <tr>
             
-                <td class="name"><code>Model</code></td>
+                <td class="name"><code>event</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><code><a href="Lateralus.Component.Model.html">Lateralus.Component.Model</a></code></span>
+<span class="param-type">string</span>
 
 
             
             </td>
 
             
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
 
             
 
-            <td class="description last">
-                <p>A constructor, not an instance.</p>
-                
-            </td>
+            <td class="description last"><p>The name of the event to listen for.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>attributes</code></td>
+                <td class="name"><code>callback</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><code>Object</code></span>
+<span class="param-type">function</span>
 
 
             
             </td>
 
             
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
 
             
 
-            <td class="description last">
-                
-                
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>options</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><code>Object</code></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">
-                
-                
-            </td>
+            <td class="description last"><p>The function handler to bind.</p></td>
         </tr>
 
     
     </tbody>
 </table>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="section-returns">
-<h5>Returns:</h5>
-
-        
-
-<dl class="param-type">
-    <dt>
-        Type:
-    </dt>
-    <dd>
-        
-<span class="param-type"><code><a href="Lateralus.Component.Model.html">Lateralus.Component.Model</a></code></span>
-
-
-    </dd>
-</dl>
-
-
-<div class="param-desc">
-    <p>An instance of the provided Model
-constructor.</p>
-</div>
-
-    
-</div>
-
-
-
-</div>
-        
-            
-<div class="section-method">
-
-    
-
-    <h4 class="name" id="listenFor"><span class="type-signature"></span>listenFor<span class="signature">(event, callback)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>Listen for an event that is triggered on the central <a href="Lateralus.html"><code>Lateralus</code></a>
-instance and bind a function handler.</p>
-</div>
 
 
 
@@ -2256,6 +2294,44 @@ instance and bind a function handler.</p>
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="mixin"><span class="type-signature"></span>mixin<span class="signature">(mixin)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Merge the properties of another object into this object.  If the <code>mixin</code>
+configuration object has a method called <code>initialize</code>, it is called in the
+context of the object calling this function.</p>
+</div>
+
+
+
+
+
+
+
+
+
     <h5>Parameters:</h5>
     
 
@@ -2281,13 +2357,13 @@ instance and bind a function handler.</p>
 
         <tr>
             
-                <td class="name"><code>event</code></td>
+                <td class="name"><code>mixin</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><code>string</code></span>
+<span class="param-type">Object</span>
 
 
             
@@ -2297,75 +2373,13 @@ instance and bind a function handler.</p>
 
             
 
-            <td class="description last">
-                <p>The name of the event to listen for.</p>
-                
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>callback</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><code>function</code></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">
-                <p>The function handler to bind.</p>
-                
-            </td>
+            <td class="description last"><p>The object to mix in to this one.</p></td>
         </tr>
 
     
     </tbody>
 </table>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-        
-            
-<div class="section-method">
-
-    
-
-    <h4 class="name" id="mixin"><span class="type-signature"></span>mixin<span class="signature">(mixin)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>Merge the properties of another object into this object.  If the <code>mixin</code>
-configuration object has a method called <code>initialize</code>, it is called in the
-context of the object calling this function.</p>
-</div>
 
 
 
@@ -2419,56 +2433,6 @@ context of the object calling this function.</p>
 
 
 
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>mixin</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><code>Object</code></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">
-                <p>The object to mix in to this one.</p>
-                
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -2480,12 +2444,6 @@ context of the object calling this function.</p>
 
 
 
-
-
-
-
-
-</div>
         
     
 
@@ -2501,13 +2459,17 @@ context of the object calling this function.</p>
 
 </div>
 
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Lateralus.html">Lateralus</a></li><li><a href="Lateralus.Component.html">Lateralus.Component</a></li><li><a href="Lateralus.Component.Collection.html">Lateralus.Component.Collection</a></li><li><a href="Lateralus.Component.Model.html">Lateralus.Component.Model</a></li><li><a href="Lateralus.Component.View.html">Lateralus.Component.View</a></li><li><a href="Lateralus.Model.html">Lateralus.Model</a></li><li><a href="Lateralus.Router.html">Lateralus.Router</a></li></ul><h3>Mixins</h3><ul><li><a href="Lateralus.mixins.html">Lateralus.mixins</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-using-lateralus.html">Using Lateralus</a></li></ul>
+</nav>
+
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.3</a> on Thu Sep 07 2017 15:55:10 GMT-0500 (CDT) using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Thu Aug 08 2024 17:54:27 GMT-0500 (Central Daylight Time)
 </footer>
 
-<script>prettyPrint();</script>
-<script src="scripts/linenumber.js"></script>
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
 </body>
 </html>

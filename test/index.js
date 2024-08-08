@@ -1,5 +1,5 @@
-import './spec/lateralus';
-import './spec/lateralus.model';
-import './spec/lateralus.component';
-import './spec/lateralus.component.model';
-import './spec/lateralus.component.collection';
+import './spec/lateralus.js';
+import './spec/lateralus.model.js';
+import './spec/lateralus.component.js';
+import './spec/lateralus.component.model.js';
+import './spec/lateralus.component.collection.js';

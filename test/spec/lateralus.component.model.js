@@ -1,9 +1,9 @@
-import chai from 'chai';
-import Backbone from 'backbone';
-import Lateralus from '../../src/lateralus';
-import { getLateralusApp } from '../utils';
+/* eslint-disable no-undef */
 
-const assert = chai.assert;
+import { assert } from 'chai';
+import Backbone from 'backbone';
+import Lateralus from '../../src/lateralus.js';
+import { getLateralusApp } from '../utils.js';
 
 describe('Lateralus.Component.Model', function () {
   describe('constructor', function () {
