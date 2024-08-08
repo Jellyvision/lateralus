@@ -1,4 +1,6 @@
-import {assert} from 'chai';
+/* eslint-disable no-undef */
+
+import { assert } from 'chai';
 import _ from 'lodash-compat';
 import Backbone from 'backbone';
 import Lateralus from '../../src/lateralus.js';

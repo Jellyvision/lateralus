@@ -12,16 +12,16 @@ Lateralus is built upon Backbone, Lodash, jQuery, and Mustache.
 
 The standard build of Lateralus does not have its dependencies baked, so you must provide them at runtime.  Lateralus expects and is tested with:
 
-  * [Backbone](http://backbonejs.org/) 1.3.3
-  * [lodash-compat](https://www.npmjs.com/package/lodash-compat) 3.10.2
-  * [jQuery](http://jquery.com/) 1.12.4
-  * [Mustache](https://github.com/janl/mustache.js/) 0.8.2
+* [Backbone](http://backbonejs.org/) 1.6.0
+* [lodash-compat](https://www.npmjs.com/package/lodash-compat) 3.10.2
+* [jQuery](http://jquery.com/) 3.7.1
+* [Mustache](https://github.com/janl/mustache.js/) 4.2.0
 
 ## Installation
 
 To install Lateralus into an existing app:
 
-````
+````shell
 npm install --save lateralus
 ````
 
@@ -29,7 +29,7 @@ npm install --save lateralus
 
 You can run the Lateralus unit tests both in your browser as well as in a command line environment.  To run the tests in your browser:
 
-```
+```shell
 npm run start
 ```
 
@@ -37,7 +37,7 @@ And then navigate to http://127.0.0.1:8080/test/.
 
 To run them at the command line:
 
-```
+```shell
 npm test
 ```
 
@@ -45,10 +45,11 @@ npm test
 
 Once things are ready, you should use `npm version`.
 This will:
- - change the version in the `package.json` file.
- - build the documentation (with the new version).
- - commit the new documentation
- - tag the new version
- - push to the repo.
+
+* change the version in the `package.json` file.
+* build the documentation (with the new version).
+* commit the new documentation
+* tag the new version
+* push to the repo.
 
 Once this is done, Travis will publish the change to NPM.

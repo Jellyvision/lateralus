@@ -1,4 +1,6 @@
-import {assert} from 'chai';
+/* eslint-disable no-undef */
+
+import { assert } from 'chai';
 import _ from 'lodash-compat';
 import Lateralus from '../../src/lateralus.js';
 import { getLateralusApp } from '../utils.js';
@@ -54,9 +56,9 @@ describe('Lateralus.Component', function () {
           assert.isTrue(testWasCalled);
         });
 
-        /*eslint-disable max-len */
+        /*eslint-disable @stylistic/js/max-len */
         it('Inherits lateralusEvents from a parent component that also provides values',
-        /*eslint-enable max-len */
+        /*eslint-enable @stylistic/js/max-len */
             function () {
           const App = getLateralusApp();
           const app = new App();
